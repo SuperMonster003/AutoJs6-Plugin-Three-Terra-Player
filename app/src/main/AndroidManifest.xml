@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="org.autojs.permission.PLUGIN" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data
+                android:mimeType="audio/*"
+                android:scheme="content" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="false"
+        tools:targetApi="35">
+
+        <meta-data
+            android:name="org.autojs.plugin.WAKE_ACTIVITY"
+            android:value=".WakeActivity" />
+
+        <meta-data
+            android:name="org.autojs.plugin.info.AUTHOR"
+            android:value="@string/plugin_author" />
+
+        <activity
+            android:name=".WakeActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:finishOnTaskLaunch="true"
+            android:permission="org.autojs.permission.PLUGIN"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="org.autojs.plugin.action.WAKE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ExplorerActionActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:finishOnTaskLaunch="true"
+            android:permission="org.autojs.permission.PLUGIN"
+            android:theme="@style/GatewayTheme">
+            <intent-filter>
+                <action android:name="org.autojs.plugin.EXPLORER_ACTION_EXECUTE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ExternalViewActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:finishOnTaskLaunch="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@style/GatewayTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="content" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AudioPlayerActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
+
+        <service
+            android:name=".ExplorerActionService"
+            android:exported="true"
+            android:permission="org.autojs.permission.PLUGIN">
+            <intent-filter>
+                <action android:name="org.autojs.plugin.EXPLORER_ACTION" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".AudioPlaybackService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
