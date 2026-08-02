@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_back">Volver</string>
+    <string name="action_enable_notifications">Activar notificaciones</string>
+    <string name="action_open_external">Abrir con otra aplicación</string>
+    <string name="action_play_audio">Reproducir audio</string>
+    <string name="app_name">Plugin AutoJs6 - Reproductor de audio</string>
+    <string name="chooser_open_audio">Abrir audio con</string>
+    <string name="error_cannot_read_file">No se puede leer el archivo de audio</string>
+    <string name="error_invalid_request">La solicitud de audio no es válida</string>
+    <string name="error_no_external_app">No hay otra aplicación de audio disponible</string>
+    <string name="error_playback">Esta aplicación no pudo decodificar ni reproducir el archivo de audio</string>
+    <string name="notification_permission_explanation">Permite las notificaciones para ver los controles de reproducción fuera de esta pantalla. La reproducción seguirá disponible si las rechazas.</string>
+    <string name="plugin_description">Reproduce archivos de audio desde el Explorador de AutoJs6 y otras aplicaciones Android</string>
+    <string name="unknown_audio">Audio desconocido</string>
+</resources>

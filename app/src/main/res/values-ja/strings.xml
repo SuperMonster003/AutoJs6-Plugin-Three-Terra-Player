@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_back">戻る</string>
+    <string name="action_enable_notifications">通知を有効にする</string>
+    <string name="action_open_external">別のアプリで開く</string>
+    <string name="action_play_audio">音声を再生</string>
+    <string name="app_name">AutoJs6プラグイン - オーディオプレーヤー</string>
+    <string name="chooser_open_audio">音声を開くアプリ</string>
+    <string name="error_cannot_read_file">音声ファイルを読み取れません</string>
+    <string name="error_invalid_request">音声リクエストが無効です</string>
+    <string name="error_no_external_app">利用可能な別の音声アプリがありません</string>
+    <string name="error_playback">このアプリでは音声ファイルをデコードまたは再生できませんでした</string>
+    <string name="notification_permission_explanation">この画面以外でも再生コントロールを表示するには通知を許可してください. 拒否しても再生は利用できます.</string>
+    <string name="plugin_description">AutoJs6 Explorerおよび他のAndroidアプリから音声ファイルを再生します</string>
+    <string name="unknown_audio">不明な音声</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_back">Назад</string>
+    <string name="action_enable_notifications">Включить уведомления</string>
+    <string name="action_open_external">Открыть в другом приложении</string>
+    <string name="action_play_audio">Воспроизвести аудио</string>
+    <string name="app_name">Плагин AutoJs6 - Аудиоплеер</string>
+    <string name="chooser_open_audio">Открыть аудио с помощью</string>
+    <string name="error_cannot_read_file">Не удалось прочитать аудиофайл</string>
+    <string name="error_invalid_request">Запрос аудио недействителен</string>
+    <string name="error_no_external_app">Нет другого приложения для аудио</string>
+    <string name="error_playback">Это приложение не смогло декодировать или воспроизвести аудиофайл</string>
+    <string name="notification_permission_explanation">Разрешите уведомления, чтобы видеть элементы управления воспроизведением вне этого экрана. Воспроизведение останется доступным, если вы откажете.</string>
+    <string name="plugin_description">Воспроизводит аудиофайлы из Проводника AutoJs6 и других приложений Android</string>
+    <string name="unknown_audio">Неизвестное аудио</string>
+</resources>

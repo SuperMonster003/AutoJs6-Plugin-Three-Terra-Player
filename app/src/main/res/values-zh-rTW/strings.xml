@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_back">返回</string>
+    <string name="action_enable_notifications">啟用通知</string>
+    <string name="action_open_external">使用其他應用程式開啟</string>
+    <string name="action_play_audio">播放音訊</string>
+    <string name="app_name">AutoJs6 外掛程式 - 音訊播放器</string>
+    <string name="chooser_open_audio">選擇應用程式開啟音訊</string>
+    <string name="error_cannot_read_file">無法讀取音訊檔案</string>
+    <string name="error_invalid_request">音訊要求無效</string>
+    <string name="error_no_external_app">沒有可用的其他音訊應用程式</string>
+    <string name="error_playback">此應用程式無法解碼或播放音訊檔案</string>
+    <string name="notification_permission_explanation">允許通知以便在此畫面之外查看播放控制項. 拒絕權限後仍可播放.</string>
+    <string name="plugin_description">播放來自 AutoJs6 檔案瀏覽器和其他 Android 應用程式的音訊檔案</string>
+    <string name="unknown_audio">未知音訊</string>
+</resources>

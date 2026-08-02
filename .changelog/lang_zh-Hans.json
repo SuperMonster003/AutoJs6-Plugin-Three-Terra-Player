@@ -1,0 +1,25 @@
+{
+  "changelog_label_hint": "提示",
+  "changelog_label_feature": "新增",
+  "changelog_label_fix": "修复",
+  "changelog_label_improvement": "优化",
+  "changelog_label_dependency": "依赖",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/08/02",
+      "feature": [
+        "音频播放器插件, 插件 ID 为 `audio-player`, 动作 ID 为 `play-audio`, 引擎为 `explorer-action`, 变体为 `default`",
+        "面向宿主现有 18 个音频扩展名的主操作只读文件浏览器动作协议 v2 入口, 文件浏览器 MIME 类型目录为空, 要求 AutoJs6 宿主构建版本 5269",
+        "Media3 ExoPlayer 和 MediaSessionService 播放, 支持音频焦点, 输出设备断开处理, 本地唤醒模式, 后台播放, 系统媒体控制和私有控制界面",
+        "可选的 Android 13+ 通知权限说明, 拒绝权限时不会阻止播放",
+        "面向 `content` URI 音频请求的独立只读 Android ACTION_VIEW 支持, 解码失败时可转交其他兼容应用并防止自循环",
+        "严格验证协议, URI, ClipData, 来源, 名称, MIME, 大小和授权, 不申请存储或网络权限, 仅转发最小读取授权",
+        "纯 JVM 实现且不包含原生库, 通过 `supportedAbis = emptyArray()` 声明 ABI 无限制, 发布单一 ABI 无关 APK",
+        "插件元数据, 界面文本, 使用说明, README 和 CHANGELOG 的多语言资源: 西班牙语/法语/俄语/阿拉伯语/日语/韩语/英语/简体中文/香港繁体/台湾繁体"
+      ],
+      "dependency": [
+        "附加 AndroidX Media3 ExoPlayer, Session 和 UI 版本 1.10.1"
+      ]
+    }
+  }
+}
