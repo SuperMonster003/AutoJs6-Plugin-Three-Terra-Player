@@ -1,0 +1,8 @@
+-keep class io.github.supermonster003.autojs6.plugin.audioplayer.ExplorerActionService { *; }
+-keep class io.github.supermonster003.autojs6.plugin.audioplayer.ExplorerActionActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.audioplayer.ExternalViewActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.audioplayer.AudioPlayerActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.audioplayer.AudioPlaybackService { *; }
+-keep class io.github.supermonster003.autojs6.plugin.audioplayer.WakeActivity { *; }
+-keep class org.autojs.plugin.common.api.PluginInfo { *; }
+-keep class org.autojs.plugin.explorer.api.** { *; }

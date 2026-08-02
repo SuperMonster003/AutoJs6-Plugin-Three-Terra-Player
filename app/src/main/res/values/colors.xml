@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#FF5C6BC0</color>
+    <color name="color_primary_dark">#FF3949AB</color>
+    <color name="color_secondary">#FF26A69A</color>
+    <color name="permission_banner_background">#FFE8EAF6</color>
+    <color name="toolbar_text">#FFFFFFFF</color>
+    <color name="window_background">#FFFFFFFF</color>
+</resources>
