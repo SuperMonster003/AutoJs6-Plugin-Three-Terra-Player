@@ -8,14 +8,15 @@ import org.autojs.plugin.common.api.PluginInfo
 import org.autojs.plugin.explorer.api.ExplorerActionCapabilityKeys
 import org.autojs.plugin.explorer.api.ExplorerActionCatalogKeys
 import org.autojs.plugin.explorer.api.ExplorerActionPluginIds
+import org.autojs.plugin.explorer.api.ExplorerActionProtocol
 import org.autojs.plugin.explorer.api.ExplorerActionValues
 
 internal object AudioPlayerPlugin {
     const val ID = "audio-player"
     const val ACTION_ID = "play-audio"
     const val VARIANT = "default"
-    const val PROTOCOL_VERSION = 2
-    const val PLACEMENT_PRIMARY = 2
+    const val PROTOCOL_VERSION = ExplorerActionProtocol.VERSION
+    const val PLACEMENT_PRIMARY = ExplorerActionValues.PLACEMENT_PRIMARY
     const val REQUIRED_HOST_VERSION = 5269L
     const val LABEL_RESOURCE_NAME = "action_play_audio"
     const val LABEL_FALLBACK = "Play audio"
