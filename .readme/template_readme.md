@@ -2,7 +2,7 @@
 
 <div align="center">
   <p>
-    <img src="{{ repo_url }}/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-audio-player-ic-launcher" border="0" width="128" />
+    <img src="{{ repo_url }}/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
 
   <p>{{ text_plugin_synopsis }}</p>
@@ -84,7 +84,6 @@ Explorer MIME types: {{ explorer_mime_types }}
 Android VIEW action: {{ android_view_action }}
 Android VIEW MIME type: {{ android_view_mime_type }}
 required host build: {{ required_host_build }}
-supported ABIs: {{ supported_abis }}
 ```
 
 {{ p_plugin_scope }}

@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-audio-player-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>為 AutoJs6 檔案瀏覽器提供唯讀音訊播放和 Media3 背景控制</p>
+  <p>檔案管理器外掛程式. 透過應用程式內控制和背景控制播放音訊檔案</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 音訊播放器外掛程式為從 AutoJs6 檔案瀏覽器開啟的檔案提供應用程式內音訊控制介面和私有背景播放服務. 外掛程式也可以接收面向音訊 MIME 類型 content URI 的唯讀 Android ACTION_VIEW 要求.
+音訊播放器為從檔案管理器開啟的音訊檔案提供應用程式內控制介面和私有背景播放服務. 外掛程式也可以接收面向音訊 MIME 類型 content URI 的唯讀 Android ACTION_VIEW 要求.
 
 ******
 
@@ -73,9 +73,9 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-安裝外掛程式後, AutoJs6 檔案瀏覽器會為列出的副檔名顯示主要動作播放音訊. 選擇此動作後, 外掛程式會開啟控制介面, 並使用對所選檔案的暫時唯讀權限啟動私有播放服務.
+安裝外掛程式後, 檔案管理器會為列出的副檔名顯示主要動作播放音訊. 選擇此動作後, 外掛程式會開啟控制介面, 並使用對所選檔案的暫時唯讀權限啟動私有播放服務.
 
-缺少外掛程式時, 此動作不會顯示. AutoJs6 會保留原有的音訊檔案唯讀外部 ACTION_VIEW 流程, 因此其他已安裝的音訊應用程式仍可處理檔案. 如果沒有相容的外部應用程式, 主程式不會取得替代播放介面.
+缺少外掛程式時, 此動作不會顯示. 主程式會保留原有的音訊檔案唯讀外部 ACTION_VIEW 流程, 因此其他已安裝的音訊應用程式仍可處理檔案. 如果沒有相容的外部應用程式, 主程式不會取得替代播放介面.
 
 ******
 
@@ -83,7 +83,7 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-AutoJs6 使用以下識別資訊探索和執行外掛程式:
+主程式使用以下識別資訊探索和執行外掛程式:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -97,12 +97,11 @@ Explorer MIME types: []
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/*
 required host build: 5269
-supported ABIs: []
 ```
 
-版本 1 在 AutoJs6 主檔案瀏覽器中提供單一檔案主要唯讀動作. 檔案瀏覽器目錄只按副檔名比對, 獨立 Android 入口仍接受 `audio/*`.
+版本 1 在主檔案管理器中提供單一檔案主要唯讀動作. 目錄只按副檔名比對, 獨立 Android 入口仍接受 `audio/*`.
 
-外掛程式不包含原生程式庫. 外掛程式宣告 `supportedAbis = emptyArray()`, 並以單一 ABI 無關 APK 發行. 需要 AutoJs6 主程式建置版本 5269 或更新版本.
+需要主程式建置版本 5269 或更新版本.
 
 ******
 
@@ -110,7 +109,7 @@ supported ABIs: []
 
 ******
 
-外掛程式不要求儲存空間或網路權限. 檔案瀏覽器入口受 AutoJs6 簽章權限保護, 並嚴格驗證通訊協定 v2, 目標與上層目錄 content URI, ClipData, 來源介面, 顯示名稱, MIME 類型, 宣告大小和唯讀旗標. 只將目標 URI 和讀取授權轉交給私有播放元件. 公開 Android 入口只接受唯讀 content 音訊要求, 拒絕寫入, 持久和前綴授權, 並且不會轉交呼叫端的任意 extras.
+外掛程式不要求儲存空間或網路權限. 檔案管理器入口受主程式簽章權限保護, 並嚴格驗證通訊協定 v2, 目標與上層目錄 content URI, ClipData, 來源介面, 顯示名稱, MIME 類型, 宣告大小和唯讀旗標. 只將目標 URI 和讀取授權轉交給私有播放元件. 公開 Android 入口只接受唯讀 content 音訊要求, 拒絕寫入, 持久和前綴授權, 並且不會轉交呼叫端的任意 extras.
 
 ******
 
@@ -131,17 +130,23 @@ supported ABIs: []
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修復` 外掛程式中心啟用時出現空服務綁定的問題
+* `優化` 外掛程式名稱, 描述和使用者文件更簡潔自然
+
 # v1.0.0
 
 ###### 2026/08/02
 
 * `新增` 音訊播放器外掛程式, 外掛程式 ID 為 `audio-player`, 動作 ID 為 `play-audio`, 引擎為 `explorer-action`, 變體為 `default`
-* `新增` 適用於主程式現有 18 個音訊副檔名的主要唯讀檔案瀏覽器動作通訊協定 v2 入口, 檔案瀏覽器 MIME 類型目錄為空, 要求 AutoJs6 主程式建置版本 5269
+* `新增` 適用於主程式 18 個音訊副檔名的檔案管理器主要唯讀動作, 要求主程式建置版本 5269 或更新版本
 * `新增` Media3 ExoPlayer 和 MediaSessionService 播放, 支援音訊焦點, 輸出裝置中斷處理, 本地喚醒模式, 背景播放, 系統媒體控制和私有控制介面
 * `新增` 可選的 Android 13+ 通知權限說明, 拒絕權限時不會阻止播放
 * `新增` 面向 `content` URI 音訊要求的獨立唯讀 Android ACTION_VIEW 支援, 解碼失敗時可轉交其他相容應用程式並防止自循環
 * `新增` 嚴格驗證通訊協定, URI, ClipData, 來源, 名稱, MIME, 大小和授權, 不要求儲存空間或網路權限, 只轉交最小讀取授權
-* `新增` 純 JVM 實作且不包含原生程式庫, 透過 `supportedAbis = emptyArray()` 宣告 ABI 無限制, 發行單一 ABI 無關 APK
 * `新增` 外掛程式中繼資料, 介面文字, 使用說明, README 和 CHANGELOG 的多語言資源: 西班牙語/法語/俄語/阿拉伯語/日語/韓語/英語/簡體中文/香港繁體/台灣繁體
 * `相依性` 附加 AndroidX Media3 ExoPlayer, Session 和 UI 版本 1.10.1
 

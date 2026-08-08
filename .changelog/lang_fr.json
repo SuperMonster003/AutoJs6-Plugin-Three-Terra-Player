@@ -1,20 +1,28 @@
 {
-  "changelog_label_hint": "Conseil",
+  "changelog_label_hint": "Note",
   "changelog_label_feature": "Fonctionnalité",
-  "changelog_label_fix": "Correction",
+  "changelog_label_fix": "Correctif",
   "changelog_label_improvement": "Amélioration",
   "changelog_label_dependency": "Dépendance",
   "$data": {
+    "v1.0.1": {
+      "released_date": "2026/08/08",
+      "fix": [
+        "Liaison de service nulle lors de l'activation du plugin dans le centre des plugins"
+      ],
+      "improvement": [
+        "Nom, description et documentation utilisateur plus clairs et concis"
+      ]
+    },
     "v1.0.0": {
       "released_date": "2026/08/02",
       "feature": [
         "Plugin Audio Player avec l'ID de plugin `audio-player`, l'ID d'action `play-audio`, le moteur `explorer-action` et la variante `default`",
-        "Entrée principale en lecture seule du protocole Explorer Action v2 pour les 18 extensions audio existantes de l'hôte, catalogue MIME de l'explorateur vide et version 5269 de l'hôte AutoJs6 requise",
+        "Action principale en lecture seule du gestionnaire de fichiers pour les 18 extensions audio de l'hôte, avec version 5269 ou ultérieure requise",
         "Lecture Media3 ExoPlayer et MediaSessionService avec focus audio, gestion de la déconnexion de sortie, mode de réveil local, arrière-plan, commandes multimédias du système et interface privée",
         "Explication facultative de l'autorisation de notifications Android 13+ sans bloquer la lecture en cas de refus",
         "Prise en charge Android ACTION_VIEW indépendante en lecture seule pour les requêtes audio URI `content` et transfert vers une autre application compatible en cas d'échec du décodeur, avec prévention des boucles",
         "Validation stricte du protocole, des URI, de ClipData, de la source, du nom, du MIME, de la taille et des droits, sans autorisation de stockage ou de réseau et avec transfert minimal en lecture",
-        "Implémentation JVM pure sans bibliothèque native, ABI sans restriction via `supportedAbis = emptyArray()` et un APK indépendant de l'ABI",
         "Métadonnées, textes de l'interface, instructions, fichiers README et historiques localisés en espagnol, français, russe, arabe, japonais, coréen, anglais, chinois simplifié, chinois traditionnel de Hong Kong et chinois traditionnel de Taïwan"
       ],
       "dependency": [

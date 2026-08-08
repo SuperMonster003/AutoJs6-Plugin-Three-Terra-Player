@@ -4,13 +4,13 @@
     <string name="action_enable_notifications">Activer les notifications</string>
     <string name="action_open_external">Ouvrir avec une autre application</string>
     <string name="action_play_audio">Lire l\'audio</string>
-    <string name="app_name">Plugin AutoJs6 - Lecteur audio</string>
+    <string name="app_name">Lecteur audio</string>
     <string name="chooser_open_audio">Ouvrir l\'audio avec</string>
     <string name="error_cannot_read_file">Le fichier audio ne peut pas être lu</string>
     <string name="error_invalid_request">La demande audio n\'est pas valide</string>
     <string name="error_no_external_app">Aucune autre application audio n\'est disponible</string>
     <string name="error_playback">Cette application n\'a pas pu décoder ni lire le fichier audio</string>
     <string name="notification_permission_explanation">Autorisez les notifications pour afficher les commandes de lecture en dehors de cet écran. La lecture reste disponible en cas de refus.</string>
-    <string name="plugin_description">Lit les fichiers audio depuis l\'explorateur AutoJs6 et d\'autres applications Android</string>
+    <string name="plugin_description">Plugin de gestionnaire de fichiers. Lit des fichiers audio avec des commandes intégrées et en arrière-plan</string>
     <string name="unknown_audio">Audio inconnu</string>
 </resources>

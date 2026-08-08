@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-audio-player-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Read-only audio playback for AutoJs6 Explorer with background Media3 controls</p>
+  <p>File manager plugin. Play audio files with in-app and background controls</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
@@ -39,7 +39,7 @@ The current README.md supports the following languages:
 
 ******
 
-The AutoJs6 Audio Player plugin adds an in-app audio controller and a private background playback service for files opened from AutoJs6 Explorer. It can also receive read-only Android ACTION_VIEW requests for content URIs with an audio MIME type.
+Audio Player provides an in-app controller and a private background playback service for audio files opened from the file manager. It can also receive read-only Android ACTION_VIEW requests for content URIs with an audio MIME type.
 
 ******
 
@@ -73,9 +73,9 @@ An extension match does not guarantee decoding. Actual playback depends on Media
 
 ******
 
-When the plugin is installed, AutoJs6 Explorer shows Play audio as a primary action for the listed extensions. Selecting it opens the plugin controller and starts the private playback service with temporary read-only access to the selected file.
+When the plugin is installed, the file manager shows Play audio as a primary action for the listed extensions. Selecting it opens the plugin controller and starts the private playback service with temporary read-only access to the selected file.
 
-When the plugin is absent, this action is not listed. AutoJs6 keeps its existing read-only external ACTION_VIEW flow for audio files, so another installed audio app may handle the file. If no compatible external app is available, the host does not gain a replacement playback interface.
+When the plugin is absent, this action is not listed. The host keeps its existing read-only external ACTION_VIEW flow for audio files, so another installed audio app may handle the file. If no compatible external app is available, the host does not gain a replacement playback interface.
 
 ******
 
@@ -83,7 +83,7 @@ When the plugin is absent, this action is not listed. AutoJs6 keeps its existing
 
 ******
 
-AutoJs6 discovers and executes the plugin with the following identities:
+The host discovers and executes the plugin with the following identities:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -97,12 +97,11 @@ Explorer MIME types: []
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/*
 required host build: 5269
-supported ABIs: []
 ```
 
-Version 1 provides a primary read-only single-file action in the main AutoJs6 Explorer. The Explorer catalog uses extension-only matching, while the independent Android entry point continues to accept `audio/*`.
+Version 1 provides a primary read-only single-file action in the main file manager. The catalog uses extension-only matching, while the independent Android entry point continues to accept `audio/*`.
 
-The plugin contains no native library. It declares `supportedAbis = emptyArray()` and is released as one ABI-independent APK. AutoJs6 host build 5269 or later is required.
+Host build 5269 or later is required.
 
 ******
 
@@ -110,7 +109,7 @@ The plugin contains no native library. It declares `supportedAbis = emptyArray()
 
 ******
 
-The plugin requests no storage or network permission. Its Explorer gateway is protected by the AutoJs6 signature permission and strictly validates protocol v2, the target and parent content URIs, ClipData, source surface, display name, MIME type, declared size, and read-only flags. Only the target URI and a read grant are forwarded to private playback components. The public Android gateway accepts only read-only content audio requests, rejects write, persistable, and prefix grants, and never forwards arbitrary caller extras.
+The plugin requests no storage or network permission. Its file manager gateway is protected by the host signature permission and strictly validates protocol v2, the target and parent content URIs, ClipData, source surface, display name, MIME type, declared size, and read-only flags. Only the target URI and a read grant are forwarded to private playback components. The public Android gateway accepts only read-only content audio requests, rejects write, persistable, and prefix grants, and never forwards arbitrary caller extras.
 
 ******
 
@@ -131,17 +130,23 @@ The plugin requests no storage or network permission. Its Explorer gateway is pr
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Fix` Null service binding when enabling the plugin in Plugin Center
+* `Improvement` Clearer and more concise plugin name, description, and user documentation
+
 # v1.0.0
 
 ###### 2026/08/02
 
 * `Feature` Audio Player plugin with plugin ID `audio-player`, action ID `play-audio`, engine `explorer-action`, and variant `default`
-* `Feature` Primary read-only Explorer Action protocol v2 entry for the host's 18 existing audio extensions, an empty Explorer MIME type catalog, and required AutoJs6 host build 5269
+* `Feature` Primary read-only file manager action for the host's 18 audio extensions, requiring host build 5269 or later
 * `Feature` Media3 ExoPlayer and MediaSessionService playback with audio focus, noisy-output handling, local wake mode, background playback, system media controls, and a private controller interface
 * `Feature` Optional Android 13+ notification permission guidance without blocking playback when permission is denied
 * `Feature` Independent read-only Android ACTION_VIEW support for `content` URI audio requests and decoder-failure transfer to another compatible app with self-loop prevention
 * `Feature` Strict protocol, URI, ClipData, source, name, MIME, size, and grant validation with no storage or network permission and minimum read-only forwarding
-* `Feature` Pure JVM implementation with no native library, unrestricted ABIs declared by `supportedAbis = emptyArray()`, and one ABI-independent APK
 * `Feature` Localized metadata, interface text, usage instructions, README files, and changelogs in Spanish, French, Russian, Arabic, Japanese, Korean, English, Simplified Chinese, Hong Kong Traditional Chinese, and Taiwan Traditional Chinese
 * `Dependency` Added AndroidX Media3 ExoPlayer, Session, and UI version 1.10.1
 

@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-audio-player-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>AutoJs6 Explorer向けの読み取り専用音声再生とMedia3バックグラウンドコントロール</p>
+  <p>ファイルマネージャープラグイン. アプリ内操作とバックグラウンド制御で音声ファイルを再生</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 Audio Playerプラグインは, AutoJs6 Explorerから開いたファイル用のアプリ内音声コントローラーと非公開バックグラウンド再生サービスを追加します. 音声MIMEタイプを持つcontent URIに対する読み取り専用Android ACTION_VIEWリクエストも受け付けます.
+オーディオプレーヤーは, ファイルマネージャーから開いた音声ファイル用のアプリ内コントローラーと非公開バックグラウンド再生サービスを提供します. 音声MIMEタイプを持つcontent URIに対する読み取り専用Android ACTION_VIEWリクエストも受け付けます.
 
 ******
 
@@ -73,9 +73,9 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-プラグインをインストールすると, AutoJs6 Explorerは一覧の拡張子に主要アクションとして音声を再生を表示します. 選択するとプラグインのコントローラーが開き, 選択ファイルへの一時的な読み取り専用アクセスで非公開再生サービスが開始されます.
+プラグインをインストールすると, ファイルマネージャーは一覧の拡張子に主要アクションとして音声を再生を表示します. 選択するとプラグインのコントローラーが開き, 選択ファイルへの一時的な読み取り専用アクセスで非公開再生サービスが開始されます.
 
-プラグインがない場合, このアクションは表示されません. AutoJs6は音声ファイルに対する既存の読み取り専用外部ACTION_VIEWフローを維持するため, インストール済みの別の音声アプリが処理できます. 対応する外部アプリがない場合, ホストに代替再生画面は追加されません.
+プラグインがない場合, このアクションは表示されません. ホストは音声ファイルに対する既存の読み取り専用外部ACTION_VIEWフローを維持するため, インストール済みの別の音声アプリが処理できます. 対応する外部アプリがない場合, ホストに代替再生画面は追加されません.
 
 ******
 
@@ -83,7 +83,7 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-AutoJs6は次の識別子でプラグインを検出して実行します:
+ホストは次の識別子でプラグインを検出して実行します:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -97,12 +97,11 @@ Explorer MIME types: []
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/*
 required host build: 5269
-supported ABIs: []
 ```
 
-バージョン1はAutoJs6のメインExplorerで単一ファイル用の主要な読み取り専用アクションを提供します. Explorerカタログは拡張子だけを使い, 独立したAndroid入口は引き続き `audio/*` を受け付けます.
+バージョン1ではメインのファイルマネージャーで単一ファイル用の主要な読み取り専用アクションを利用できます. カタログは拡張子だけを使い, 独立したAndroid入口は引き続き `audio/*` を受け付けます.
 
-プラグインはネイティブライブラリを含みません. `supportedAbis = emptyArray()` を宣言し, ABIに依存しない単一APKとして公開されます. AutoJs6ホストのビルド5269以降が必要です.
+ホストビルド5269以降が必要です.
 
 ******
 
@@ -110,7 +109,7 @@ supported ABIs: []
 
 ******
 
-プラグインはストレージ権限とネットワーク権限を要求しません. Explorer入口はAutoJs6署名権限で保護され, プロトコルv2, 対象と親のcontent URI, ClipData, ソース画面, 表示名, MIMEタイプ, 宣言サイズ, 読み取り専用フラグを厳密に検証します. 非公開再生コンポーネントへは対象URIと読み取り権限だけを転送します. 公開Android入口は読み取り専用content音声リクエストだけを受け付け, 書き込み, 永続, 接頭辞権限を拒否し, 呼び出し元の任意のextrasを転送しません.
+プラグインはストレージ権限とネットワーク権限を要求しません. ファイルマネージャー入口はホストの署名権限で保護され, プロトコルv2, 対象と親のcontent URI, ClipData, ソース画面, 表示名, MIMEタイプ, 宣言サイズ, 読み取り専用フラグを厳密に検証します. 非公開再生コンポーネントへは対象URIと読み取り権限だけを転送します. 公開Android入口は読み取り専用content音声リクエストだけを受け付け, 書き込み, 永続, 接頭辞権限を拒否し, 呼び出し元の任意のextrasを転送しません.
 
 ******
 
@@ -131,17 +130,23 @@ supported ABIs: []
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修正` プラグインセンターで有効化するとサービスバインディングがnullになる問題
+* `改善` より明確で簡潔なプラグイン名, 説明, ユーザードキュメント
+
 # v1.0.0
 
 ###### 2026/08/02
 
 * `機能` プラグインID `audio-player`, アクションID `play-audio`, エンジン `explorer-action`, バリアント `default` を持つAudio Playerプラグイン
-* `機能` ホスト既存の18個の音声拡張子に対応する主要な読み取り専用Explorer Actionプロトコルv2入口, 空のExplorer MIMEカタログ, 必須AutoJs6ホストビルド5269
+* `機能` ホストの18個の音声拡張子に対応するファイルマネージャーの主要な読み取り専用アクション, 必須ホストビルド5269以降
 * `機能` 音声フォーカス, 出力切断処理, ローカルウェイクモード, バックグラウンド再生, システムメディアコントロール, 非公開コントローラー画面を備えたMedia3 ExoPlayerとMediaSessionService再生
 * `機能` 権限を拒否しても再生を妨げない任意のAndroid 13+通知権限説明
 * `機能` `content` URI音声リクエスト用の独立した読み取り専用Android ACTION_VIEW対応と, デコーダー失敗時の別アプリへの転送および自己ループ防止
 * `機能` プロトコル, URI, ClipData, ソース, 名前, MIME, サイズ, 権限の厳密な検証, ストレージ権限とネットワーク権限は不要, 最小限の読み取り権限だけを転送
-* `機能` ネイティブライブラリを含まない純粋なJVM実装, `supportedAbis = emptyArray()` によるABI無制限の宣言, ABIに依存しない単一APK
 * `機能` スペイン語, フランス語, ロシア語, アラビア語, 日本語, 韓国語, 英語, 簡体字中国語, 香港繁体字中国語, 台湾繁体字中国語のメタデータ, UIテキスト, 使用説明, README, 変更履歴
 * `依存関係` AndroidX Media3 ExoPlayer, Session, UI バージョン 1.10.1 を追加
 

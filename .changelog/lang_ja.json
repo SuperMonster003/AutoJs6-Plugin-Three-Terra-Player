@@ -5,16 +5,24 @@
   "changelog_label_improvement": "改善",
   "changelog_label_dependency": "依存関係",
   "$data": {
+    "v1.0.1": {
+      "released_date": "2026/08/08",
+      "fix": [
+        "プラグインセンターで有効化するとサービスバインディングがnullになる問題"
+      ],
+      "improvement": [
+        "より明確で簡潔なプラグイン名, 説明, ユーザードキュメント"
+      ]
+    },
     "v1.0.0": {
       "released_date": "2026/08/02",
       "feature": [
         "プラグインID `audio-player`, アクションID `play-audio`, エンジン `explorer-action`, バリアント `default` を持つAudio Playerプラグイン",
-        "ホスト既存の18個の音声拡張子に対応する主要な読み取り専用Explorer Actionプロトコルv2入口, 空のExplorer MIMEカタログ, 必須AutoJs6ホストビルド5269",
+        "ホストの18個の音声拡張子に対応するファイルマネージャーの主要な読み取り専用アクション, 必須ホストビルド5269以降",
         "音声フォーカス, 出力切断処理, ローカルウェイクモード, バックグラウンド再生, システムメディアコントロール, 非公開コントローラー画面を備えたMedia3 ExoPlayerとMediaSessionService再生",
         "権限を拒否しても再生を妨げない任意のAndroid 13+通知権限説明",
         "`content` URI音声リクエスト用の独立した読み取り専用Android ACTION_VIEW対応と, デコーダー失敗時の別アプリへの転送および自己ループ防止",
         "プロトコル, URI, ClipData, ソース, 名前, MIME, サイズ, 権限の厳密な検証, ストレージ権限とネットワーク権限は不要, 最小限の読み取り権限だけを転送",
-        "ネイティブライブラリを含まない純粋なJVM実装, `supportedAbis = emptyArray()` によるABI無制限の宣言, ABIに依存しない単一APK",
         "スペイン語, フランス語, ロシア語, アラビア語, 日本語, 韓国語, 英語, 簡体字中国語, 香港繁体字中国語, 台湾繁体字中国語のメタデータ, UIテキスト, 使用説明, README, 変更履歴"
       ],
       "dependency": [

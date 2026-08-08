@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-audio-player-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>AutoJs6 탐색기를 위한 읽기 전용 오디오 재생 및 Media3 백그라운드 제어</p>
+  <p>파일 관리자 플러그인. 앱 내 및 백그라운드 제어로 오디오 파일 재생</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 Audio Player 플러그인은 AutoJs6 탐색기에서 연 파일을 위한 앱 내 오디오 컨트롤러와 비공개 백그라운드 재생 서비스를 추가합니다. 오디오 MIME 유형을 가진 content URI의 읽기 전용 Android ACTION_VIEW 요청도 받을 수 있습니다.
+오디오 플레이어는 파일 관리자에서 연 오디오 파일을 위한 앱 내 컨트롤러와 비공개 백그라운드 재생 서비스를 제공합니다. 오디오 MIME 유형을 가진 content URI의 읽기 전용 Android ACTION_VIEW 요청도 받을 수 있습니다.
 
 ******
 
@@ -73,9 +73,9 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-플러그인이 설치되면 AutoJs6 탐색기는 나열된 확장자에 기본 작업으로 오디오 재생을 표시합니다. 이를 선택하면 플러그인 컨트롤러가 열리고 선택한 파일에 대한 임시 읽기 전용 접근으로 비공개 재생 서비스가 시작됩니다.
+플러그인이 설치되면 파일 관리자는 나열된 확장자에 기본 작업으로 오디오 재생을 표시합니다. 이를 선택하면 플러그인 컨트롤러가 열리고 선택한 파일에 대한 임시 읽기 전용 접근으로 비공개 재생 서비스가 시작됩니다.
 
-플러그인이 없으면 이 작업이 표시되지 않습니다. AutoJs6는 오디오 파일에 대한 기존 읽기 전용 외부 ACTION_VIEW 흐름을 유지하므로 설치된 다른 오디오 앱이 파일을 처리할 수 있습니다. 호환되는 외부 앱이 없으면 호스트에 대체 재생 인터페이스가 추가되지 않습니다.
+플러그인이 없으면 이 작업이 표시되지 않습니다. 호스트는 오디오 파일에 대한 기존 읽기 전용 외부 ACTION_VIEW 흐름을 유지하므로 설치된 다른 오디오 앱이 파일을 처리할 수 있습니다. 호환되는 외부 앱이 없으면 호스트에 대체 재생 인터페이스가 추가되지 않습니다.
 
 ******
 
@@ -83,7 +83,7 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-AutoJs6는 다음 식별자로 플러그인을 검색하고 실행합니다:
+호스트는 다음 식별자로 플러그인을 검색하고 실행합니다:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -97,12 +97,11 @@ Explorer MIME types: []
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/*
 required host build: 5269
-supported ABIs: []
 ```
 
-버전 1은 AutoJs6 기본 탐색기에서 단일 파일용 기본 읽기 전용 작업을 제공합니다. 탐색기 카탈로그는 확장자만 사용하고 독립 Android 진입점은 계속 `audio/*`를 받습니다.
+버전 1은 기본 파일 관리자에서 단일 파일용 기본 읽기 전용 작업을 제공합니다. 카탈로그는 확장자만 사용하고 독립 Android 진입점은 계속 `audio/*`를 받습니다.
 
-플러그인은 네이티브 라이브러리를 포함하지 않습니다. `supportedAbis = emptyArray()`를 선언하고 ABI 독립적인 단일 APK로 배포됩니다. AutoJs6 호스트 빌드 5269 이상이 필요합니다.
+호스트 빌드 5269 이상이 필요합니다.
 
 ******
 
@@ -110,7 +109,7 @@ supported ABIs: []
 
 ******
 
-플러그인은 저장소 또는 네트워크 권한을 요청하지 않습니다. 탐색기 진입점은 AutoJs6 서명 권한으로 보호되며 프로토콜 v2, 대상 및 상위 content URI, ClipData, 원본 화면, 표시 이름, MIME 유형, 선언된 크기 및 읽기 전용 플래그를 엄격하게 검증합니다. 비공개 재생 구성 요소에는 대상 URI와 읽기 권한만 전달합니다. 공개 Android 진입점은 읽기 전용 content 오디오 요청만 받고 쓰기, 영구 및 접두사 권한을 거부하며 호출자의 임의 extras를 전달하지 않습니다.
+플러그인은 저장소 또는 네트워크 권한을 요청하지 않습니다. 파일 관리자 진입점은 호스트 서명 권한으로 보호되며 프로토콜 v2, 대상 및 상위 content URI, ClipData, 원본 화면, 표시 이름, MIME 유형, 선언된 크기 및 읽기 전용 플래그를 엄격하게 검증합니다. 비공개 재생 구성 요소에는 대상 URI와 읽기 권한만 전달합니다. 공개 Android 진입점은 읽기 전용 content 오디오 요청만 받고 쓰기, 영구 및 접두사 권한을 거부하며 호출자의 임의 extras를 전달하지 않습니다.
 
 ******
 
@@ -131,17 +130,23 @@ supported ABIs: []
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `수정` 플러그인 센터에서 활성화할 때 서비스 바인딩이 null이 되는 문제
+* `개선` 더 명확하고 간결한 플러그인 이름, 설명 및 사용자 문서
+
 # v1.0.0
 
 ###### 2026/08/02
 
 * `기능` 플러그인 ID `audio-player`, 작업 ID `play-audio`, 엔진 `explorer-action`, 변형 `default`를 사용하는 Audio Player 플러그인
-* `기능` 호스트의 기존 18개 오디오 확장자를 위한 기본 읽기 전용 Explorer Action 프로토콜 v2 진입점, 빈 탐색기 MIME 카탈로그 및 필수 AutoJs6 호스트 빌드 5269
+* `기능` 호스트의 18개 오디오 확장자를 위한 파일 관리자 기본 읽기 전용 작업, 필수 호스트 빌드 5269 이상
 * `기능` 오디오 포커스, 출력 연결 해제 처리, 로컬 깨우기 모드, 백그라운드 재생, 시스템 미디어 제어 및 비공개 컨트롤러를 포함한 Media3 ExoPlayer와 MediaSessionService 재생
 * `기능` 권한을 거부해도 재생을 차단하지 않는 선택적 Android 13+ 알림 권한 안내
 * `기능` `content` URI 오디오 요청을 위한 독립 읽기 전용 Android ACTION_VIEW 지원과 디코더 실패 시 다른 호환 앱으로 전달하는 자체 반복 방지
 * `기능` 프로토콜, URI, ClipData, 원본, 이름, MIME, 크기 및 권한의 엄격한 검증, 저장소 또는 네트워크 권한 없음, 최소 읽기 권한만 전달
-* `기능` 네이티브 라이브러리가 없는 순수 JVM 구현, `supportedAbis = emptyArray()`를 통한 ABI 무제한 선언 및 ABI 독립적인 단일 APK
 * `기능` 스페인어, 프랑스어, 러시아어, 아랍어, 일본어, 한국어, 영어, 중국어 간체, 홍콩 중국어 번체 및 대만 중국어 번체로 현지화된 메타데이터, UI 텍스트, 사용 안내, README 및 변경 기록
 * `의존성` AndroidX Media3 ExoPlayer, Session 및 UI 버전 1.10.1 추가
 

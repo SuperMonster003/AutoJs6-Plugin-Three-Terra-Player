@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-audio-player-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Reproducción de audio de solo lectura para el Explorador de AutoJs6 con controles Media3 en segundo plano</p>
+  <p>Complemento del gestor de archivos. Reproduce audio con controles integrados y en segundo plano</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
@@ -39,7 +39,7 @@ El README.md actual admite los siguientes idiomas:
 
 ******
 
-El plugin AutoJs6 Audio Player añade un controlador de audio dentro de la aplicación y un servicio privado de reproducción en segundo plano para los archivos abiertos desde el Explorador de AutoJs6. También puede recibir solicitudes Android ACTION_VIEW de solo lectura para content URI con un tipo MIME de audio.
+Audio Player ofrece un controlador dentro de la aplicación y un servicio privado de reproducción en segundo plano para los archivos de audio abiertos desde el gestor de archivos. También puede recibir solicitudes Android ACTION_VIEW de solo lectura para content URI con un tipo MIME de audio.
 
 ******
 
@@ -73,9 +73,9 @@ La coincidencia de una extensión no garantiza la decodificación. La reproducci
 
 ******
 
-Cuando el plugin está instalado, el Explorador de AutoJs6 muestra Reproducir audio como acción principal para las extensiones indicadas. Al seleccionarla, se abre el controlador del plugin y se inicia el servicio privado con acceso temporal de solo lectura al archivo seleccionado.
+Cuando el plugin está instalado, el gestor de archivos muestra Reproducir audio como acción principal para las extensiones indicadas. Al seleccionarla, se abre el controlador del plugin y se inicia el servicio privado con acceso temporal de solo lectura al archivo seleccionado.
 
-Cuando falta el plugin, esta acción no aparece. AutoJs6 conserva su flujo externo ACTION_VIEW de solo lectura para archivos de audio, por lo que otra aplicación de audio instalada puede gestionar el archivo. Si no hay una aplicación externa compatible, el host no obtiene una interfaz de reproducción alternativa.
+Cuando falta el plugin, esta acción no aparece. El host conserva su flujo externo ACTION_VIEW de solo lectura para archivos de audio, por lo que otra aplicación de audio instalada puede gestionar el archivo. Si no hay una aplicación externa compatible, el host no obtiene una interfaz de reproducción alternativa.
 
 ******
 
@@ -83,7 +83,7 @@ Cuando falta el plugin, esta acción no aparece. AutoJs6 conserva su flujo exter
 
 ******
 
-AutoJs6 descubre y ejecuta el plugin con las siguientes identidades:
+El host descubre y ejecuta el plugin con las siguientes identidades:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -97,12 +97,11 @@ Explorer MIME types: []
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/*
 required host build: 5269
-supported ABIs: []
 ```
 
-La versión 1 proporciona una acción principal de solo lectura para un único archivo en el Explorador principal de AutoJs6. El catálogo usa solo las extensiones, mientras que la entrada Android independiente sigue aceptando `audio/*`.
+La versión 1 proporciona una acción principal de solo lectura para un único archivo en el gestor de archivos principal. El catálogo usa solo las extensiones, mientras que la entrada Android independiente sigue aceptando `audio/*`.
 
-El plugin no contiene bibliotecas nativas. Declara `supportedAbis = emptyArray()` y se publica como un único APK independiente de ABI. Requiere la compilación 5269 o posterior del host AutoJs6.
+Se requiere la compilación 5269 o posterior del host.
 
 ******
 
@@ -110,7 +109,7 @@ El plugin no contiene bibliotecas nativas. Declara `supportedAbis = emptyArray()
 
 ******
 
-El plugin no solicita permisos de almacenamiento ni de red. Su entrada del Explorador está protegida por el permiso de firma de AutoJs6 y valida estrictamente el protocolo v2, los content URI de destino y padre, ClipData, la superficie de origen, el nombre visible, el tipo MIME, el tamaño declarado y los indicadores de solo lectura. Solo transfiere el URI de destino y un permiso de lectura a los componentes privados. La entrada Android pública solo acepta solicitudes content de audio de solo lectura, rechaza permisos de escritura, persistentes y de prefijo, y nunca transfiere extras arbitrarios.
+El plugin no solicita permisos de almacenamiento ni de red. Su entrada del gestor de archivos está protegida por el permiso de firma del host y valida estrictamente el protocolo v2, los content URI de destino y padre, ClipData, la superficie de origen, el nombre visible, el tipo MIME, el tamaño declarado y los indicadores de solo lectura. Solo transfiere el URI de destino y un permiso de lectura a los componentes privados. La entrada Android pública solo acepta solicitudes content de audio de solo lectura, rechaza permisos de escritura, persistentes y de prefijo, y nunca transfiere extras arbitrarios.
 
 ******
 
@@ -131,17 +130,23 @@ El plugin no solicita permisos de almacenamiento ni de red. Su entrada del Explo
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Corrección` Enlace de servicio nulo al activar el complemento en el centro de complementos
+* `Mejora` Nombre, descripción y documentación de usuario más claros y concisos
+
 # v1.0.0
 
 ###### 2026/08/02
 
 * `Función` Plugin Audio Player con ID de plugin `audio-player`, ID de acción `play-audio`, motor `explorer-action` y variante `default`
-* `Función` Entrada principal de solo lectura del protocolo Explorer Action v2 para las 18 extensiones de audio existentes del host, catálogo MIME del Explorador vacío y compilación de host AutoJs6 5269 requerida
+* `Función` Acción principal de solo lectura del gestor de archivos para las 18 extensiones de audio del host, con compilación 5269 o posterior requerida
 * `Función` Reproducción mediante Media3 ExoPlayer y MediaSessionService con foco de audio, gestión de desconexión de salida, modo de activación local, segundo plano, controles multimedia del sistema e interfaz privada
 * `Función` Información opcional sobre el permiso de notificaciones de Android 13+ sin bloquear la reproducción si se deniega
 * `Función` Compatibilidad Android ACTION_VIEW independiente y de solo lectura para solicitudes de audio con URI `content` y transferencia a otra aplicación compatible si falla el decodificador, con prevención de bucles
 * `Función` Validación estricta de protocolo, URI, ClipData, origen, nombre, MIME, tamaño y permisos, sin permisos de almacenamiento ni de red y con transferencia mínima de lectura
-* `Función` Implementación JVM pura sin bibliotecas nativas, ABI sin restricciones mediante `supportedAbis = emptyArray()` y un APK independiente de ABI
 * `Función` Metadatos, texto de interfaz, instrucciones, archivos README e historiales localizados en español, francés, ruso, árabe, japonés, coreano, inglés, chino simplificado, chino tradicional de Hong Kong y chino tradicional de Taiwán
 * `Dependencia` Añadido AndroidX Media3 ExoPlayer, Session y UI versión 1.10.1
 

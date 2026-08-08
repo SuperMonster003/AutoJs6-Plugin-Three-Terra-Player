@@ -4,13 +4,13 @@
     <string name="action_enable_notifications">تفعيل الاشعارات</string>
     <string name="action_open_external">فتح باستخدام تطبيق اخر</string>
     <string name="action_play_audio">تشغيل الصوت</string>
-    <string name="app_name">ملحق AutoJs6 - مشغل الصوت</string>
+    <string name="app_name">مشغل الصوت</string>
     <string name="chooser_open_audio">فتح الصوت باستخدام</string>
     <string name="error_cannot_read_file">لا يمكن قراءة ملف الصوت</string>
     <string name="error_invalid_request">طلب الصوت غير صالح</string>
     <string name="error_no_external_app">لا يتوفر تطبيق صوت اخر</string>
     <string name="error_playback">تعذر على هذا التطبيق فك ترميز ملف الصوت او تشغيله</string>
     <string name="notification_permission_explanation">اسمح بالاشعارات لعرض عناصر التحكم بالتشغيل خارج هذه الشاشة. يبقى التشغيل متاحا اذا رفضت.</string>
-    <string name="plugin_description">تشغيل ملفات الصوت من مستكشف AutoJs6 وتطبيقات Android الاخرى</string>
+    <string name="plugin_description">ملحق مدير الملفات. يشغل الملفات الصوتية مع عناصر تحكم داخل التطبيق وفي الخلفية</string>
     <string name="unknown_audio">صوت غير معروف</string>
 </resources>

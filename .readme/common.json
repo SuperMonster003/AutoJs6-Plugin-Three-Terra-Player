@@ -13,6 +13,5 @@
   "android_view_action": "android.intent.action.VIEW",
   "android_view_mime_type": "audio/*",
   "required_host_build": "5269",
-  "supported_abis": "[]",
   "supported_extensions": "aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave"
 }

@@ -4,13 +4,13 @@
     <string name="action_enable_notifications">Enable notifications</string>
     <string name="action_open_external">Open with another app</string>
     <string name="action_play_audio">Play audio</string>
-    <string name="app_name">AutoJs6 Plugin - Audio Player</string>
+    <string name="app_name">Audio Player</string>
     <string name="chooser_open_audio">Open audio with</string>
     <string name="error_cannot_read_file">The audio file cannot be read</string>
     <string name="error_invalid_request">The audio request is invalid</string>
     <string name="error_no_external_app">No other audio app is available</string>
     <string name="error_playback">This app could not decode or play the audio file</string>
     <string name="notification_permission_explanation">Allow notifications to see playback controls outside this screen. Playback remains available if you decline.</string>
-    <string name="plugin_description">Plays audio files from AutoJs6 Explorer and other Android apps</string>
+    <string name="plugin_description">File manager plugin. Play audio files with in-app and background controls</string>
     <string name="unknown_audio">Unknown audio</string>
 </resources>

@@ -3,7 +3,6 @@ package io.github.supermonster003.autojs6.plugin.audioplayer
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import org.autojs.plugin.explorer.api.ExplorerActionPluginActions
 import org.autojs.plugin.explorer.api.IExplorerActionPlugin
 
 class ExplorerActionService : Service() {
@@ -14,6 +13,5 @@ class ExplorerActionService : Service() {
         override fun getActionCatalog() = audioPlayerActionCatalog()
     }
 
-    override fun onBind(intent: Intent?): IBinder? =
-        binder.takeIf { intent?.action == ExplorerActionPluginActions.EXPLORER_ACTION }
+    override fun onBind(intent: Intent?): IBinder = binder
 }
