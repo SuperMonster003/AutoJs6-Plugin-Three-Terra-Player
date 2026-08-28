@@ -56,7 +56,7 @@
     <string name="timer_end_of_track">الإيقاف بعد انتهاء المسار الحالي</string>
     <string name="timer_cancel">إلغاء مؤقت النوم</string>
     <string name="timer_invalid">أدخل مدة من 1 إلى 1440 دقيقة</string>
-    <string name="ab_invalid_end">يجب أن تكون النقطة B بعد النقطة A بنصف ثانية على الأقل</string>
+    <string name="ab_invalid_end">يجب أن تكون النقطة B بعد النقطة A بنصف ثانية على الأقل. اضغط مطولا على A-B لمسح النقطة A.</string>
     <string name="ab_state_off">تكرار A-B متوقف</string>
     <string name="ab_state_start_set">النقطة A عند %1$s؛ عين النقطة B لبدء التكرار</string>
     <string name="ab_state_active">تكرار من %1$s إلى %2$s</string>
@@ -140,7 +140,7 @@
     <plurals name="ignored_update_count"><item quantity="zero">لا إصدارات متجاهلة</item><item quantity="one">إصدار واحد متجاهل</item><item quantity="two">إصداران متجاهلان</item><item quantity="few">%1$d إصدارات متجاهلة</item><item quantity="many">%1$d إصدارا متجاهلا</item><item quantity="other">%1$d إصدار متجاهل</item></plurals>
     <string name="error_no_supported_audio">لا تحتوي الملفات المحددة على ملف صوتي مدعوم وقابل للقراءة</string>
     <string name="some_files_skipped">تمت إضافة %1$d من أصل %2$d من الملفات؛ تم تخطي الملفات غير المدعومة أو غير القابلة للقراءة</string>
-    <string name="ab_start_set_hint">تم تعيين النقطة A عند %1$s. اضغط A-B مجددا عند نقطة النهاية.</string>
+    <string name="ab_start_set_hint">تم تعيين النقطة A عند %1$s. اضغط A-B مجددا عند نقطة النهاية أو اضغط مطولا للإلغاء.</string>
     <string name="ab_loop_started">بدأ تكرار A-B: ‏%1$s–%2$s. اضغط مجددا لمسحه.</string>
     <string name="ab_loop_cleared">تم مسح تكرار A-B</string>
 </resources>

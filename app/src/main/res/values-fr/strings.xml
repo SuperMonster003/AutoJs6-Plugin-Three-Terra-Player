@@ -50,7 +50,7 @@
     <string name="timer_end_of_track">Arrêter après la piste actuelle</string>
     <string name="timer_cancel">Annuler la minuterie</string>
     <string name="timer_invalid">Saisissez une durée de 1 à 1440 minutes</string>
-    <string name="ab_invalid_end">Le point B doit suivre le point A de 0,5 seconde au minimum</string>
+    <string name="ab_invalid_end">Le point B doit suivre le point A de 0,5 seconde au minimum. Appuyez longuement sur A-B pour effacer le point A.</string>
     <string name="ab_state_off">La boucle A-B est désactivée</string>
     <string name="ab_state_start_set">Le point A est %1$s; définissez le point B pour lancer la boucle</string>
     <string name="ab_state_active">Boucle de %1$s à %2$s</string>
@@ -131,7 +131,7 @@
     <plurals name="ignored_update_count"><item quantity="one">%1$d version ignorée</item><item quantity="many">%1$d versions ignorées</item><item quantity="other">%1$d versions ignorées</item></plurals>
     <string name="error_no_supported_audio">Aucun fichier sélectionné n’est un fichier audio compatible et lisible</string>
     <string name="some_files_skipped">%1$d fichiers sur %2$d ont été ajoutés ; les fichiers incompatibles ou illisibles ont été ignorés</string>
-    <string name="ab_start_set_hint">Point A défini à %1$s. Touchez de nouveau A-B au point final.</string>
+    <string name="ab_start_set_hint">Point A défini à %1$s. Touchez de nouveau A-B au point final ou appuyez longuement pour annuler.</string>
     <string name="ab_loop_started">Boucle A-B démarrée : %1$s–%2$s. Touchez de nouveau pour l’effacer.</string>
     <string name="ab_loop_cleared">Boucle A-B effacée</string>
 </resources>

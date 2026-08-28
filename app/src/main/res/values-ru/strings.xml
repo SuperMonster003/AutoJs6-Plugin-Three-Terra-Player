@@ -52,7 +52,7 @@
     <string name="timer_end_of_track">Остановить после текущего трека</string>
     <string name="timer_cancel">Отменить таймер сна</string>
     <string name="timer_invalid">Введите длительность от 1 до 1440 минут</string>
-    <string name="ab_invalid_end">Точка B должна быть минимум на 0,5 секунды позже точки A</string>
+    <string name="ab_invalid_end">Точка B должна быть минимум на 0,5 секунды позже точки A. Удерживайте A-B, чтобы удалить точку A.</string>
     <string name="ab_state_off">Повтор A-B выключен</string>
     <string name="ab_state_start_set">Точка A: %1$s; установите точку B для запуска повтора</string>
     <string name="ab_state_active">Повтор от %1$s до %2$s</string>
@@ -134,7 +134,7 @@
     <plurals name="ignored_update_count"><item quantity="one">Игнорируется %1$d версия</item><item quantity="few">Игнорируются %1$d версии</item><item quantity="many">Игнорируются %1$d версий</item><item quantity="other">Игнорируется %1$d версии</item></plurals>
     <string name="error_no_supported_audio">Среди выбранных файлов нет поддерживаемых и доступных для чтения аудиофайлов</string>
     <string name="some_files_skipped">Добавлено %1$d из %2$d файлов; неподдерживаемые или недоступные файлы пропущены</string>
-    <string name="ab_start_set_hint">Точка A установлена на %1$s. Нажмите A-B ещё раз в конечной точке.</string>
+    <string name="ab_start_set_hint">Точка A установлена на %1$s. Нажмите A-B ещё раз в конечной точке или удерживайте для отмены.</string>
     <string name="ab_loop_started">Цикл A-B запущен: %1$s–%2$s. Нажмите ещё раз, чтобы очистить.</string>
     <string name="ab_loop_cleared">Цикл A-B очищен</string>
 </resources>

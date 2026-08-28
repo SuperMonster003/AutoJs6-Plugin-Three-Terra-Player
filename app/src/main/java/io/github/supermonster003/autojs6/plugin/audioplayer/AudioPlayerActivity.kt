@@ -14,11 +14,13 @@ import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
 import android.text.InputType
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.OptIn as ExperimentalOptIn
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
@@ -30,6 +32,8 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
 import androidx.media3.common.Timeline
+import androidx.media3.common.Tracks
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionCommand
 import androidx.media3.session.SessionResult
@@ -52,6 +56,7 @@ import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemePale
 import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemePicker
 import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemeViewStyler
 import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemedActivity
+import io.github.supermonster003.autojs6.plugin.audioplayer.update.AppUpdateCoordinator
 import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.ceil
@@ -68,6 +73,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     private var queueDialog: BottomSheetDialog? = null
     private var queueSheetBinding: BottomSheetPlaybackQueueBinding? = null
     private var queueAdapter: PlaybackQueueAdapter? = null
+    private var selectedAudioStream: SelectedAudioStream? = null
 
     private val mainHandler = Handler(Looper.getMainLooper())
     private val progressTicker = object : Runnable {
@@ -91,6 +97,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
         }
 
         override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+            selectedAudioStream = null
             renderMetadata(mediaItem?.mediaMetadata)
             renderQueue()
             renderAdjacentControls()
@@ -100,6 +107,11 @@ class AudioPlayerActivity : AudioThemedActivity() {
         override fun onTimelineChanged(timeline: Timeline, reason: Int) {
             renderQueue()
             renderAdjacentControls()
+        }
+
+        override fun onTracksChanged(tracks: Tracks) {
+            selectedAudioStream = selectedAudioStream(tracks)
+            renderMetadata(activeController()?.mediaMetadata)
         }
 
         override fun onIsPlayingChanged(isPlaying: Boolean) {
@@ -212,6 +224,11 @@ class AudioPlayerActivity : AudioThemedActivity() {
         mainHandler.post(progressTicker)
     }
 
+    override fun onResume() {
+        super.onResume()
+        AppUpdateCoordinator.maybeCheckAutomatically(this)
+    }
+
     override fun onStop() {
         mainHandler.removeCallbacks(progressTicker)
         dismissQueue()
@@ -229,7 +246,17 @@ class AudioPlayerActivity : AudioThemedActivity() {
         binding.queueButton.setOnClickListener { showQueue() }
         binding.speedButton.setOnClickListener { showSpeedMenu() }
         binding.sleepTimerButton.setOnClickListener { showSleepTimerMenu() }
-        binding.abLoopButton.setOnClickListener { showAbLoopMenu() }
+        binding.abLoopButton.setOnClickListener { cycleAbLoop() }
+        binding.abLoopButton.setOnLongClickListener {
+            if (toolState.abStartMs == null) {
+                false
+            } else {
+                sendCustomCommand(PlaybackSessionContract.COMMAND_CLEAR_AB_LOOP) {
+                    Toast.makeText(this, R.string.ab_loop_cleared, Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
+        }
         binding.seekBar.max = SEEK_BAR_MAX
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
@@ -359,34 +386,50 @@ class AudioPlayerActivity : AudioThemedActivity() {
         )
     }
 
-    private fun showAbLoopMenu() {
+    private fun cycleAbLoop() {
         val active = activeController() ?: return
         val positionMs = active.currentPosition.coerceAtLeast(0L)
-        val labels = ArrayList<String>()
-        val actions = ArrayList<() -> Unit>()
-        labels += getString(R.string.ab_set_start, formatTime(positionMs))
-        actions += {
-            sendPositionCommand(PlaybackSessionContract.COMMAND_SET_AB_START, positionMs)
-        }
-        labels += getString(R.string.ab_set_end, formatTime(positionMs))
-        actions += {
-            if (!AbLoopPolicy.validEnd(toolState.abStartMs, positionMs, durationMs())) {
-                Toast.makeText(this, R.string.ab_invalid_end, Toast.LENGTH_LONG).show()
-            } else {
-                sendPositionCommand(PlaybackSessionContract.COMMAND_SET_AB_END, positionMs)
+        when {
+            toolState.abStartMs == null -> sendPositionCommand(
+                PlaybackSessionContract.COMMAND_SET_AB_START,
+                positionMs,
+            ) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.ab_start_set_hint, formatTime(positionMs)),
+                    Toast.LENGTH_LONG,
+                ).show()
+            }
+            toolState.abEndMs == null -> {
+                val startMs = requireNotNull(toolState.abStartMs)
+                if (!AbLoopPolicy.validEnd(
+                        startMs,
+                        positionMs,
+                        durationMs(),
+                    )
+                ) {
+                    Toast.makeText(this, R.string.ab_invalid_end, Toast.LENGTH_LONG).show()
+                    return
+                }
+                sendPositionCommand(
+                    PlaybackSessionContract.COMMAND_SET_AB_END,
+                    positionMs,
+                ) {
+                    Toast.makeText(
+                        this,
+                        getString(
+                            R.string.ab_loop_started,
+                            formatTime(startMs),
+                            formatTime(positionMs),
+                        ),
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
+            }
+            else -> sendCustomCommand(PlaybackSessionContract.COMMAND_CLEAR_AB_LOOP) {
+                Toast.makeText(this, R.string.ab_loop_cleared, Toast.LENGTH_SHORT).show()
             }
         }
-        if (toolState.abStartMs != null || toolState.abEndMs != null) {
-            labels += getString(R.string.ab_clear)
-            actions += { sendCustomCommand(PlaybackSessionContract.COMMAND_CLEAR_AB_LOOP) }
-        }
-        MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.ab_loop)
-            .setMessage(abStateDescription())
-            .setItems(labels.toTypedArray()) { _, which -> actions[which]() }
-            .setNegativeButton(android.R.string.cancel, null)
-            .show()
-            .also(::tintDialogButtons)
     }
 
     private fun tintDialogButtons(dialog: AlertDialog) {
@@ -397,14 +440,23 @@ class AudioPlayerActivity : AudioThemedActivity() {
         ).forEach { which -> dialog.getButton(which)?.setTextColor(audioPalette.primary) }
     }
 
-    private fun sendPositionCommand(command: SessionCommand, positionMs: Long) {
+    private fun sendPositionCommand(
+        command: SessionCommand,
+        positionMs: Long,
+        onSuccess: () -> Unit = {},
+    ) {
         sendCustomCommand(
             command,
             Bundle().apply { putLong(PlaybackSessionContract.ARG_POSITION_MS, positionMs) },
+            onSuccess,
         )
     }
 
-    private fun sendCustomCommand(command: SessionCommand, args: Bundle = Bundle.EMPTY) {
+    private fun sendCustomCommand(
+        command: SessionCommand,
+        args: Bundle = Bundle.EMPTY,
+        onSuccess: () -> Unit = {},
+    ) {
         val active = activeController()
         if (active == null || !active.isSessionCommandAvailable(command)) {
             Toast.makeText(this, R.string.error_control_unavailable, Toast.LENGTH_LONG).show()
@@ -414,7 +466,9 @@ class AudioPlayerActivity : AudioThemedActivity() {
         future.addListener(
             {
                 val result = runCatching { future.get() }.getOrNull()
-                if (result?.resultCode != SessionResult.RESULT_SUCCESS) {
+                if (result?.resultCode == SessionResult.RESULT_SUCCESS) {
+                    onSuccess()
+                } else {
                     Toast.makeText(this, R.string.error_control_unavailable, Toast.LENGTH_LONG).show()
                 }
             },
@@ -493,6 +547,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
                     .onSuccess { connected ->
                         controller = connected
                         connected.addListener(playerListener)
+                        selectedAudioStream = selectedAudioStream(connected.currentTracks)
                         toolState = PlaybackSessionContract.stateFrom(connected.sessionExtras)
                         renderMetadata(connected.mediaMetadata)
                         renderControls()
@@ -510,6 +565,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     private fun disconnectController() {
         controller?.removeListener(playerListener)
         controller = null
+        selectedAudioStream = null
         controllerFuture?.let { future -> runCatching { MediaController.releaseFuture(future) } }
         controllerFuture = null
     }
@@ -544,18 +600,22 @@ class AudioPlayerActivity : AudioThemedActivity() {
             sanitizedOrNull(metadata?.albumTitle),
         ).joinToString(SUBTITLE_SEPARATOR)
         binding.subtitleText.text = subtitle
-        binding.subtitleText.isVisible = subtitle.isNotEmpty()
+        binding.subtitleText.visibility = if (subtitle.isNotEmpty()) View.VISIBLE else View.INVISIBLE
 
         val extras = metadata?.extras
         val sourceMimeType = extras?.getString(AudioPlaybackContract.MEDIA_EXTRA_SOURCE_MIME_TYPE)
             ?: request.mimeType
         val info = AudioInfoPolicy.format(
-            extras?.getString(AudioMetadataResolver.EXTRA_MIME_TYPE) ?: sourceMimeType,
-            extras?.getInt(AudioMetadataResolver.EXTRA_SAMPLE_RATE_HZ, 0)?.takeIf { it > 0 },
-            extras?.getInt(AudioMetadataResolver.EXTRA_BITRATE_BPS, 0)?.takeIf { it > 0 },
+            extras?.getString(AudioMetadataResolver.EXTRA_MIME_TYPE)
+                ?: selectedAudioStream?.mimeType
+                ?: sourceMimeType,
+            extras?.getInt(AudioMetadataResolver.EXTRA_SAMPLE_RATE_HZ, 0)?.takeIf { it > 0 }
+                ?: selectedAudioStream?.sampleRateHz,
+            extras?.getInt(AudioMetadataResolver.EXTRA_BITRATE_BPS, 0)?.takeIf { it > 0 }
+                ?: selectedAudioStream?.bitrateBps,
         )
         binding.infoText.text = info
-        binding.infoText.isVisible = info.isNotEmpty()
+        binding.infoText.visibility = if (info.isNotEmpty()) View.VISIBLE else View.INVISIBLE
 
         val sourceUri = extras?.getString(AudioPlaybackContract.MEDIA_EXTRA_SOURCE_URI)
             ?.let(Uri::parse)
@@ -808,6 +868,24 @@ class AudioPlayerActivity : AudioThemedActivity() {
         ?.let(DisplayNamePolicy::sanitize)
         ?.takeIf(String::isNotBlank)
 
+    @ExperimentalOptIn(markerClass = [UnstableApi::class])
+    private fun selectedAudioStream(tracks: Tracks): SelectedAudioStream? {
+        tracks.groups.forEach { group ->
+            if (group.type != C.TRACK_TYPE_AUDIO || !group.isSelected) return@forEach
+            for (index in 0 until group.length) {
+                if (!group.isTrackSelected(index)) continue
+                val format = group.getTrackFormat(index)
+                return SelectedAudioStream(
+                    mimeType = format.sampleMimeType ?: format.containerMimeType,
+                    sampleRateHz = format.sampleRate.takeIf { it > 0 },
+                    bitrateBps = format.averageBitrate.takeIf { it > 0 }
+                        ?: format.peakBitrate.takeIf { it > 0 },
+                )
+            }
+        }
+        return null
+    }
+
     private fun progressToPosition(progress: Int, durationMs: Long): Long =
         (durationMs * progress.coerceIn(0, SEEK_BAR_MAX)) / SEEK_BAR_MAX
 
@@ -846,4 +924,10 @@ class AudioPlayerActivity : AudioThemedActivity() {
         const val MAX_CUSTOM_TIMER_MINUTES = 24L * 60L
         val SPEED_OPTIONS = floatArrayOf(0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f)
     }
+
+    private data class SelectedAudioStream(
+        val mimeType: String?,
+        val sampleRateHz: Int?,
+        val bitrateBps: Int?,
+    )
 }

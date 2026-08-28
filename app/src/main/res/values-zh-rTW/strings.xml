@@ -46,7 +46,7 @@
     <string name="timer_end_of_track">本曲播放完畢後停止</string>
     <string name="timer_cancel">取消睡眠計時器</string>
     <string name="timer_invalid">請輸入 1 到 1440 分鐘</string>
-    <string name="ab_invalid_end">B 點必須至少比 A 點晚 0.5 秒</string>
+    <string name="ab_invalid_end">B 點必須至少比 A 點晚 0.5 秒. 長按 A-B 可清除 A 點.</string>
     <string name="ab_state_off">A-B 循環已關閉</string>
     <string name="ab_state_start_set">A 點為 %1$s; 請設定 B 點以開始循環</string>
     <string name="ab_state_active">正在循環 %1$s 到 %2$s</string>
@@ -125,7 +125,7 @@
     <plurals name="ignored_update_count"><item quantity="other">已忽略 %1$d 個版本</item></plurals>
     <string name="error_no_supported_audio">所選檔案中沒有可讀取且受支援的音訊檔案</string>
     <string name="some_files_skipped">已加入所選 %2$d 個檔案中的 %1$d 個; 不受支援或無法讀取的檔案已略過</string>
-    <string name="ab_start_set_hint">A 點已設為 %1$s. 請在結束位置再次點選 A-B.</string>
+    <string name="ab_start_set_hint">A 點已設為 %1$s. 請在結束位置再次點選 A-B; 長按可取消.</string>
     <string name="ab_loop_started">A-B 循環已開始: %1$s–%2$s. 再次點選即可清除.</string>
     <string name="ab_loop_cleared">A-B 循環已清除</string>
 </resources>

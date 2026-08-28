@@ -46,7 +46,7 @@
     <string name="timer_end_of_track">현재 트랙이 끝나면 중지</string>
     <string name="timer_cancel">취침 타이머 취소</string>
     <string name="timer_invalid">1분에서 1440분 사이로 입력하세요</string>
-    <string name="ab_invalid_end">B 지점은 A 지점보다 최소 0.5초 뒤여야 합니다</string>
+    <string name="ab_invalid_end">B 지점은 A 지점보다 최소 0.5초 뒤여야 합니다. A-B를 길게 눌러 A 지점을 해제할 수 있습니다.</string>
     <string name="ab_state_off">A-B 반복이 꺼져 있습니다</string>
     <string name="ab_state_start_set">A 지점은 %1$s입니다. 반복을 시작하려면 B 지점을 설정하세요</string>
     <string name="ab_state_active">%1$s부터 %2$s까지 반복 중</string>
@@ -125,7 +125,7 @@
     <plurals name="ignored_update_count"><item quantity="other">무시한 버전 %1$d개</item></plurals>
     <string name="error_no_supported_audio">선택한 파일 중 지원되고 읽을 수 있는 오디오 파일이 없습니다</string>
     <string name="some_files_skipped">선택한 %2$d개 중 %1$d개를 추가했습니다. 지원되지 않거나 읽을 수 없는 파일은 건너뛰었습니다</string>
-    <string name="ab_start_set_hint">A 지점을 %1$s에 설정했습니다. 끝 지점에서 A-B를 다시 누르세요.</string>
+    <string name="ab_start_set_hint">A 지점을 %1$s에 설정했습니다. 끝 지점에서 A-B를 다시 누르거나 길게 눌러 취소하세요.</string>
     <string name="ab_loop_started">A-B 반복을 시작했습니다: %1$s–%2$s. 다시 누르면 해제됩니다.</string>
     <string name="ab_loop_cleared">A-B 반복을 해제했습니다</string>
 </resources>

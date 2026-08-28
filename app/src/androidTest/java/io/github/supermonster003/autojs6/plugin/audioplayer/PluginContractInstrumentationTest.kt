@@ -14,6 +14,7 @@ import androidx.test.runner.AndroidJUnit4
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.autojs.plugin.explorer.api.ExplorerActionCatalogKeys
@@ -67,7 +68,30 @@ class PluginContractInstrumentationTest {
                 ExplorerActionValues.ACCESS_READ_ONLY,
                 action.getInt(ExplorerActionCatalogKeys.ACCESS_MODE),
             )
+            assertEquals(
+                listOf("audio/*"),
+                action.getStringArrayList(ExplorerActionCatalogKeys.MIME_TYPES),
+            )
+            assertTrue(
+                action.getStringArrayList(ExplorerActionCatalogKeys.EXTENSIONS).orEmpty().contains("wma"),
+            )
         }
+    }
+
+    @Test
+    fun manifestExposesTheProtectedPluginInfoEntryUsedByHostSettings() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val services = context.packageManager.queryIntentServices(
+            Intent("org.autojs.plugin.INFO").setPackage(context.packageName),
+            0,
+        )
+
+        val service = services.firstOrNull {
+            it.serviceInfo.name == ExplorerActionService::class.java.name
+        }?.serviceInfo
+        assertNotNull(service)
+        assertEquals("org.autojs.permission.PLUGIN", service?.permission)
+        assertTrue(service?.exported == true)
     }
 
     @Test

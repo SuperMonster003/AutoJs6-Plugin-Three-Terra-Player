@@ -109,7 +109,9 @@
             android:layout_marginTop="28dp"
             android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="2"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:minHeight="28dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintBottom_toTopOf="@id/subtitle_text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,10 +126,12 @@
             android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:maxLines="1"
+            android:minHeight="20dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             android:textColor="?android:attr/textColorSecondary"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@id/info_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,15 +146,17 @@
             android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:maxLines="1"
+            android:minHeight="18dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             android:textColor="?android:attr/textColorTertiary"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@id/seek_group"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/subtitle_text"
-            tools:text="FLAC · 44.1 kHz · 987 kbps"
+            tools:text="44.1 kHz · FLAC · 797 kbps"
             tools:visibility="visible" />
 
         <LinearLayout
@@ -206,7 +212,7 @@
             android:id="@+id/transport_row"
             android:layout_width="0dp"
             android:layout_height="64dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="12dp"
             android:baselineAligned="false"
             android:gravity="center"
             android:orientation="horizontal"
@@ -347,6 +353,8 @@
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_show_queue"
+                android:gravity="center"
+                android:includeFontPadding="false"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:minWidth="0dp"
@@ -356,7 +364,7 @@
                 app:icon="@drawable/ic_queue"
                 app:iconGravity="textStart"
                 app:iconPadding="2dp"
-                app:iconSize="20dp" />
+                app:iconSize="22dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/speed_button"
@@ -382,6 +390,8 @@
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_sleep_timer"
+                android:gravity="center"
+                android:includeFontPadding="false"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:minWidth="0dp"
@@ -391,7 +401,7 @@
                 app:icon="@drawable/ic_timer"
                 app:iconGravity="textStart"
                 app:iconPadding="2dp"
-                app:iconSize="18dp" />
+                app:iconSize="22dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/ab_loop_button"

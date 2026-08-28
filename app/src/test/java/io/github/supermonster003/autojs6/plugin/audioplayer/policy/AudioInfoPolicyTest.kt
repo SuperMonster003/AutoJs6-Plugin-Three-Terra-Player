@@ -13,7 +13,8 @@ class AudioInfoPolicyTest {
         assertEquals("AAC", AudioInfoPolicy.codecLabel("audio/mp4a-latm"))
         assertEquals("FLAC", AudioInfoPolicy.codecLabel("audio/flac"))
         assertEquals("FLAC", AudioInfoPolicy.codecLabel("audio/x-flac"))
-        assertEquals("Opus", AudioInfoPolicy.codecLabel("audio/opus"))
+        assertEquals("OPUS", AudioInfoPolicy.codecLabel("audio/opus"))
+        assertEquals("WMA", AudioInfoPolicy.codecLabel("audio/x-ms-wma"))
         assertEquals("WAV", AudioInfoPolicy.codecLabel("audio/x-wav"))
         assertEquals("PCM", AudioInfoPolicy.codecLabel("audio/raw"))
         assertEquals("MKA", AudioInfoPolicy.codecLabel("audio/x-matroska"))
@@ -59,8 +60,20 @@ class AudioInfoPolicyTest {
     @Test
     fun joinsAvailablePartsAndOmitsMissingOnes() {
         assertEquals(
-            "MP3 · 44.1 kHz · 320 kbps",
-            AudioInfoPolicy.format("audio/mpeg", 44_100, 320_000),
+            "44.1 kHz · MP3 · 128 kbps",
+            AudioInfoPolicy.format("audio/mpeg", 44_100, 128_000),
+        )
+        assertEquals(
+            "44.1 kHz · FLAC · 797 kbps",
+            AudioInfoPolicy.format("audio/flac", 44_100, 797_000),
+        )
+        assertEquals(
+            "44.1 kHz · OPUS · 192 kbps",
+            AudioInfoPolicy.format("audio/opus", 44_100, 192_000),
+        )
+        assertEquals(
+            "44.1 kHz · WMA · 112 kbps",
+            AudioInfoPolicy.format("audio/x-ms-wma", 44_100, 112_000),
         )
         assertEquals("MP3 · 320 kbps", AudioInfoPolicy.format("audio/mpeg", null, 320_000))
         assertEquals("44.1 kHz", AudioInfoPolicy.format(null, 44_100, null))

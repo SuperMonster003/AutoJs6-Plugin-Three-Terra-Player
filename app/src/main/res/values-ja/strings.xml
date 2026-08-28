@@ -46,7 +46,7 @@
     <string name="timer_end_of_track">現在の曲が終わったら停止</string>
     <string name="timer_cancel">スリープタイマーを解除</string>
     <string name="timer_invalid">1～1440 分の範囲で入力してください</string>
-    <string name="ab_invalid_end">B 点は A 点より 0.5 秒以上後に設定してください</string>
+    <string name="ab_invalid_end">B 点は A 点より 0.5 秒以上後に設定してください。A-B を長押しすると A 点を解除できます。</string>
     <string name="ab_state_off">A-B リピートはオフです</string>
     <string name="ab_state_start_set">A 点は %1$s です。B 点を設定するとリピートを開始します</string>
     <string name="ab_state_active">%1$s から %2$s をリピート中</string>
@@ -125,7 +125,7 @@
     <plurals name="ignored_update_count"><item quantity="other">無視したバージョン: %1$d</item></plurals>
     <string name="error_no_supported_audio">選択したファイルに、対応する読み取り可能な音声ファイルがありません</string>
     <string name="some_files_skipped">選択した %2$d ファイルのうち %1$d 件を追加しました。非対応または読み取り不能なファイルはスキップしました</string>
-    <string name="ab_start_set_hint">A 点を %1$s に設定しました。終点で A-B をもう一度タップしてください。</string>
+    <string name="ab_start_set_hint">A 点を %1$s に設定しました。終点で A-B をもう一度タップするか、長押しして解除してください。</string>
     <string name="ab_loop_started">A-B リピートを開始しました: %1$s–%2$s。もう一度タップすると解除します。</string>
     <string name="ab_loop_cleared">A-B リピートを解除しました</string>
 </resources>

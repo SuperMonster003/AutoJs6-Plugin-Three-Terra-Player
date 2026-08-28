@@ -29,7 +29,7 @@ internal object AudioPlayerPlugin {
         "io.github.supermonster003.autojs6.plugin.audioplayer.ExplorerActionActivity"
     const val ACTION_PRIORITY = 100
 
-    val MIME_TYPES: Array<String> = emptyArray()
+    val MIME_TYPES: Array<String> = arrayOf("audio/*")
     val EXTENSIONS = AudioMimePolicy.supportedExtensions
 }
 

@@ -50,7 +50,7 @@
     <string name="timer_end_of_track">Detener al terminar la pista actual</string>
     <string name="timer_cancel">Cancelar temporizador</string>
     <string name="timer_invalid">Introduce una duración de 1 a 1440 minutos</string>
-    <string name="ab_invalid_end">El punto B debe estar al menos 0,5 segundos después del punto A</string>
+    <string name="ab_invalid_end">El punto B debe estar al menos 0,5 segundos después del punto A. Mantén pulsado A-B para borrar el punto A.</string>
     <string name="ab_state_off">El bucle A-B está desactivado</string>
     <string name="ab_state_start_set">El punto A es %1$s; fija el punto B para iniciar el bucle</string>
     <string name="ab_state_active">Repetición de %1$s a %2$s</string>
@@ -131,7 +131,7 @@
     <plurals name="ignored_update_count"><item quantity="one">%1$d versión ignorada</item><item quantity="many">%1$d versiones ignoradas</item><item quantity="other">%1$d versiones ignoradas</item></plurals>
     <string name="error_no_supported_audio">Ningún archivo seleccionado es un audio compatible y legible</string>
     <string name="some_files_skipped">Se añadieron %1$d de %2$d archivos; se omitieron los no compatibles o ilegibles</string>
-    <string name="ab_start_set_hint">Punto A fijado en %1$s. Toca A-B de nuevo en el punto final.</string>
+    <string name="ab_start_set_hint">Punto A fijado en %1$s. Toca A-B de nuevo en el punto final o mantén pulsado para cancelar.</string>
     <string name="ab_loop_started">Bucle A-B iniciado: %1$s–%2$s. Toca de nuevo para borrarlo.</string>
     <string name="ab_loop_cleared">Bucle A-B borrado</string>
 </resources>

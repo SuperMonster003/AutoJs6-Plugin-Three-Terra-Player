@@ -31,7 +31,7 @@ internal object AudioInfoPolicy {
         "x-flac" to "FLAC",
         "ogg" to "OGG",
         "vorbis" to "Vorbis",
-        "opus" to "Opus",
+        "opus" to "OPUS",
         "wav" to "WAV",
         "x-wav" to "WAV",
         "vnd.wave" to "WAV",
@@ -45,12 +45,14 @@ internal object AudioInfoPolicy {
         "x-matroska" to "MKA",
         "matroska" to "MKA",
         "midi" to "MIDI",
+        "x-ms-wma" to "WMA",
+        "wma" to "WMA",
     )
 
     fun format(mimeType: String?, sampleRateHz: Int?, bitrateBps: Int?): String =
         listOfNotNull(
-            codecLabel(mimeType),
             sampleRateLabel(sampleRateHz),
+            codecLabel(mimeType),
             bitrateLabel(bitrateBps),
         ).joinToString(SEPARATOR)
 
