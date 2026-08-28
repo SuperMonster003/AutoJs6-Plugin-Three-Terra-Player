@@ -3,6 +3,7 @@ package io.github.supermonster003.autojs6.plugin.audioplayer
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import io.github.supermonster003.autojs6.plugin.audioplayer.policy.AudioMimePolicy
 import org.autojs.plugin.common.api.PluginCapabilityKeys
 import org.autojs.plugin.common.api.PluginInfo
 import org.autojs.plugin.explorer.api.ExplorerActionCapabilityKeys
@@ -14,37 +15,22 @@ import org.autojs.plugin.explorer.api.ExplorerActionValues
 internal object AudioPlayerPlugin {
     const val ID = "audio-player"
     const val ACTION_ID = "play-audio"
+    const val ACTION_SELECTION_ID = "play-audio-selection"
     const val VARIANT = "default"
-    const val PROTOCOL_VERSION = ExplorerActionProtocol.VERSION
+    const val PROTOCOL_VERSION = 12
+    const val MIN_COMPATIBLE_REQUEST_PROTOCOL_VERSION = 4
     const val PLACEMENT_PRIMARY = ExplorerActionValues.PLACEMENT_PRIMARY
-    const val REQUIRED_HOST_VERSION = 5269L
+    const val REQUIRED_HOST_VERSION = 5276L
     const val LABEL_RESOURCE_NAME = "action_play_audio"
     const val LABEL_FALLBACK = "Play audio"
+    const val SELECTION_LABEL_RESOURCE_NAME = "action_play_audio_selection"
+    const val SELECTION_LABEL_FALLBACK = "Play selected audio"
     const val ACTIVITY_CLASS_NAME =
         "io.github.supermonster003.autojs6.plugin.audioplayer.ExplorerActionActivity"
     const val ACTION_PRIORITY = 100
 
     val MIME_TYPES: Array<String> = emptyArray()
-    val EXTENSIONS = arrayOf(
-        "aac",
-        "ac3",
-        "amr",
-        "awb",
-        "flac",
-        "m4a",
-        "m4b",
-        "m4r",
-        "mka",
-        "mp1",
-        "mp2",
-        "mp3",
-        "mpga",
-        "oga",
-        "ogg",
-        "opus",
-        "wav",
-        "wave",
-    )
+    val EXTENSIONS = AudioMimePolicy.supportedExtensions
 }
 
 internal fun Context.audioPlayerPluginInfo(): PluginInfo {
@@ -75,20 +61,56 @@ internal fun Context.audioPlayerPluginInfo(): PluginInfo {
 }
 
 internal fun audioPlayerActionCatalog(): Bundle {
-    val action = Bundle().apply {
-        putString(ExplorerActionCatalogKeys.ID, AudioPlayerPlugin.ACTION_ID)
-        putString(ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME, AudioPlayerPlugin.LABEL_RESOURCE_NAME)
-        putString(ExplorerActionCatalogKeys.LABEL_FALLBACK, AudioPlayerPlugin.LABEL_FALLBACK)
-        putString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME, AudioPlayerPlugin.ACTIVITY_CLASS_NAME)
-        putInt(ExplorerActionCatalogKeys.PRIORITY, AudioPlayerPlugin.ACTION_PRIORITY)
-        putInt(ExplorerActionCatalogKeys.TARGET_KIND, ExplorerActionValues.TARGET_FILE)
-        putInt(ExplorerActionCatalogKeys.ACCESS_MODE, ExplorerActionValues.ACCESS_READ_ONLY)
-        putInt(ExplorerActionCatalogKeys.PLACEMENT, AudioPlayerPlugin.PLACEMENT_PRIMARY)
-        putStringArrayList(ExplorerActionCatalogKeys.MIME_TYPES, ArrayList(AudioPlayerPlugin.MIME_TYPES.asList()))
-        putStringArrayList(ExplorerActionCatalogKeys.EXTENSIONS, ArrayList(AudioPlayerPlugin.EXTENSIONS.asList()))
-    }
     return Bundle().apply {
         putInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION, AudioPlayerPlugin.PROTOCOL_VERSION)
-        putParcelableArrayList(ExplorerActionCatalogKeys.ACTIONS, arrayListOf(action))
+        putParcelableArrayList(
+            ExplorerActionCatalogKeys.ACTIONS,
+            arrayListOf(
+                audioPlayerAction(
+                    id = AudioPlayerPlugin.ACTION_ID,
+                    labelResourceName = AudioPlayerPlugin.LABEL_RESOURCE_NAME,
+                    labelFallback = AudioPlayerPlugin.LABEL_FALLBACK,
+                    cardinality = ExplorerActionValues.CARDINALITY_SINGLE,
+                    placement = AudioPlayerPlugin.PLACEMENT_PRIMARY,
+                    readSiblings = true,
+                ),
+                audioPlayerAction(
+                    id = AudioPlayerPlugin.ACTION_SELECTION_ID,
+                    labelResourceName = AudioPlayerPlugin.SELECTION_LABEL_RESOURCE_NAME,
+                    labelFallback = AudioPlayerPlugin.SELECTION_LABEL_FALLBACK,
+                    cardinality = ExplorerActionValues.CARDINALITY_MULTIPLE,
+                    placement = ExplorerActionValues.PLACEMENT_SELECTION_TOOLBAR,
+                    readSiblings = false,
+                ),
+            ),
+        )
     }
+}
+
+private fun audioPlayerAction(
+    id: String,
+    labelResourceName: String,
+    labelFallback: String,
+    cardinality: Int,
+    placement: Int,
+    readSiblings: Boolean,
+) = Bundle().apply {
+    putString(ExplorerActionCatalogKeys.ID, id)
+    putString(ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME, labelResourceName)
+    putString(ExplorerActionCatalogKeys.LABEL_FALLBACK, labelFallback)
+    putString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME, AudioPlayerPlugin.ACTIVITY_CLASS_NAME)
+    putInt(ExplorerActionCatalogKeys.PRIORITY, AudioPlayerPlugin.ACTION_PRIORITY)
+    putInt(ExplorerActionCatalogKeys.TARGET_KIND, ExplorerActionValues.TARGET_FILE)
+    putInt(ExplorerActionCatalogKeys.CARDINALITY, cardinality)
+    putInt(ExplorerActionCatalogKeys.ACCESS_MODE, ExplorerActionValues.ACCESS_READ_ONLY)
+    putInt(ExplorerActionCatalogKeys.PLACEMENT, placement)
+    if (readSiblings) putBoolean(ExplorerActionCatalogKeys.READ_SIBLINGS, true)
+    putStringArrayList(
+        ExplorerActionCatalogKeys.MIME_TYPES,
+        ArrayList(AudioPlayerPlugin.MIME_TYPES.asList()),
+    )
+    putStringArrayList(
+        ExplorerActionCatalogKeys.EXTENSIONS,
+        ArrayList(AudioPlayerPlugin.EXTENSIONS.asList()),
+    )
 }

@@ -13,17 +13,25 @@ class IntentFlagPolicyTest {
         assertEquals(0x00000002, IntentFlagPolicy.FLAG_GRANT_WRITE_URI_PERMISSION)
         assertEquals(0x00000040, IntentFlagPolicy.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
         assertEquals(0x00000080, IntentFlagPolicy.FLAG_GRANT_PREFIX_URI_PERMISSION)
+        assertEquals(0x00800000, IntentFlagPolicy.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
         assertEquals(0x10000000, IntentFlagPolicy.FLAG_ACTIVITY_NEW_TASK)
     }
 
     @Test
-    fun explorerRequiresReadAndPrefixAndAllowsOptionalNewTask() {
+    fun explorerReadOnlyContractsAllowOnlyKnownNonGrantActivityFlags() {
         val read = IntentFlagPolicy.FLAG_GRANT_READ_URI_PERMISSION
         val prefix = IntentFlagPolicy.FLAG_GRANT_PREFIX_URI_PERMISSION
+        val excludeFromRecents = IntentFlagPolicy.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
         val newTask = IntentFlagPolicy.FLAG_ACTIVITY_NEW_TASK
 
         assertTrue(IntentFlagPolicy.isValidExplorerRequest(read or prefix))
+        assertTrue(IntentFlagPolicy.isValidExplorerRequest(read or prefix or excludeFromRecents))
         assertTrue(IntentFlagPolicy.isValidExplorerRequest(read or prefix or newTask))
+        assertTrue(
+            IntentFlagPolicy.isValidExplorerRequest(
+                read or prefix or excludeFromRecents or newTask,
+            ),
+        )
 
         assertFalse(IntentFlagPolicy.isValidExplorerRequest(0))
         assertFalse(IntentFlagPolicy.isValidExplorerRequest(read))

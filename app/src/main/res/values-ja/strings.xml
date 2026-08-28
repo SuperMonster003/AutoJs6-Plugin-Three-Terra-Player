@@ -3,8 +3,14 @@
     <string name="action_back">戻る</string>
     <string name="action_enable_notifications">通知を有効にする</string>
     <string name="action_open_external">別のアプリで開く</string>
+    <string name="action_pause">一時停止</string>
+    <string name="action_play">再生</string>
     <string name="action_play_audio">音声を再生</string>
+    <string name="action_playback_speed">再生速度</string>
+    <string name="action_seek_backward">10 秒戻す</string>
+    <string name="action_seek_forward">10 秒進める</string>
     <string name="app_name">オーディオプレーヤー</string>
+    <string name="cd_album_artwork">アルバムアート</string>
     <string name="chooser_open_audio">音声を開くアプリ</string>
     <string name="error_cannot_read_file">音声ファイルを読み取れません</string>
     <string name="error_invalid_request">音声リクエストが無効です</string>
@@ -13,4 +19,43 @@
     <string name="notification_permission_explanation">この画面以外でも再生コントロールを表示するには通知を許可してください. 拒否しても再生は利用できます.</string>
     <string name="plugin_description">ファイルマネージャープラグイン. アプリ内操作とバックグラウンド制御で音声ファイルを再生</string>
     <string name="unknown_audio">不明な音声</string>
+    <string name="action_play_audio_selection">選択した音声を再生</string>
+    <string name="action_previous_track">前の曲</string>
+    <string name="action_next_track">次の曲</string>
+    <string name="action_show_queue">再生キューを表示</string>
+    <string name="action_remove_from_queue">キューから削除</string>
+    <string name="action_remove_from_queue_named">%1$s をキューから削除</string>
+    <string name="action_sleep_timer">スリープタイマー</string>
+    <string name="action_ab_loop">A-B リピート</string>
+    <string name="playback_queue">再生キュー</string>
+    <string name="queue_empty">再生キューは空です</string>
+    <string name="queue_item_position">%1$d 曲目</string>
+    <string name="currently_playing">再生中</string>
+    <string name="playback_mode_sequential">順番に再生</string>
+    <string name="playback_mode_shuffle">シャッフル再生</string>
+    <string name="playback_mode_repeat_one">現在の曲をリピート</string>
+    <string name="sleep_timer">スリープタイマー</string>
+    <plurals name="timer_minutes">
+        <item quantity="other">%1$d 分</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="other">スリープタイマー: 残り %1$d 分</item>
+    </plurals>
+    <string name="timer_custom">時間を指定</string>
+    <string name="timer_custom_hint">分 (1–1440)</string>
+    <string name="timer_end_of_track">現在の曲が終わったら停止</string>
+    <string name="timer_cancel">スリープタイマーを解除</string>
+    <string name="timer_invalid">1～1440 分の範囲で入力してください</string>
+    <string name="ab_loop">A-B リピート</string>
+    <string name="ab_set_start">%1$s に A 点を設定</string>
+    <string name="ab_set_end">%1$s に B 点を設定</string>
+    <string name="ab_clear">A-B リピートを解除</string>
+    <string name="ab_invalid_end">B 点は A 点より 0.5 秒以上後に設定してください</string>
+    <string name="ab_state_off">A-B リピートはオフです</string>
+    <string name="ab_state_start_set">A 点は %1$s です。B 点を設定するとリピートを開始します</string>
+    <string name="ab_state_active">%1$s から %2$s をリピート中</string>
+    <string name="error_control_unavailable">この再生操作は一時的に利用できません</string>
+    <plurals name="queue_track_count">
+        <item quantity="other">%1$d 曲</item>
+    </plurals>
 </resources>

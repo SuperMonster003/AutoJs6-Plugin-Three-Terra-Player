@@ -3,8 +3,14 @@
     <string name="action_back">返回</string>
     <string name="action_enable_notifications">啟用通知</string>
     <string name="action_open_external">使用其他應用程式開啟</string>
+    <string name="action_pause">暫停</string>
+    <string name="action_play">播放</string>
     <string name="action_play_audio">播放音訊</string>
+    <string name="action_playback_speed">播放速度</string>
+    <string name="action_seek_backward">快退 10 秒</string>
+    <string name="action_seek_forward">快進 10 秒</string>
     <string name="app_name">音訊播放器</string>
+    <string name="cd_album_artwork">專輯封面</string>
     <string name="chooser_open_audio">選擇應用程式開啟音訊</string>
     <string name="error_cannot_read_file">無法讀取音訊檔案</string>
     <string name="error_invalid_request">音訊要求無效</string>
@@ -13,4 +19,43 @@
     <string name="notification_permission_explanation">允許通知以便在此畫面之外查看播放控制項. 拒絕權限後仍可播放.</string>
     <string name="plugin_description">檔案管理器外掛程式. 透過應用程式內控制和背景控制播放音訊檔案</string>
     <string name="unknown_audio">未知音訊</string>
+    <string name="action_play_audio_selection">播放所選音訊</string>
+    <string name="action_previous_track">上一首</string>
+    <string name="action_next_track">下一首</string>
+    <string name="action_show_queue">顯示播放佇列</string>
+    <string name="action_remove_from_queue">從佇列移除</string>
+    <string name="action_remove_from_queue_named">從佇列移除 %1$s</string>
+    <string name="action_sleep_timer">睡眠計時器</string>
+    <string name="action_ab_loop">A-B 區間循環</string>
+    <string name="playback_queue">播放佇列</string>
+    <string name="queue_empty">播放佇列是空的</string>
+    <string name="queue_item_position">第 %1$d 首</string>
+    <string name="currently_playing">正在播放</string>
+    <string name="playback_mode_sequential">依序播放</string>
+    <string name="playback_mode_shuffle">隨機播放</string>
+    <string name="playback_mode_repeat_one">單曲循環</string>
+    <string name="sleep_timer">睡眠計時器</string>
+    <plurals name="timer_minutes">
+        <item quantity="other">%1$d 分鐘</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="other">睡眠計時器: 剩餘 %1$d 分鐘</item>
+    </plurals>
+    <string name="timer_custom">自訂時間</string>
+    <string name="timer_custom_hint">分鐘 (1–1440)</string>
+    <string name="timer_end_of_track">本曲播放完畢後停止</string>
+    <string name="timer_cancel">取消睡眠計時器</string>
+    <string name="timer_invalid">請輸入 1 到 1440 分鐘</string>
+    <string name="ab_loop">A-B 區間循環</string>
+    <string name="ab_set_start">在 %1$s 設定 A 點</string>
+    <string name="ab_set_end">在 %1$s 設定 B 點</string>
+    <string name="ab_clear">清除 A-B 循環</string>
+    <string name="ab_invalid_end">B 點必須至少比 A 點晚 0.5 秒</string>
+    <string name="ab_state_off">A-B 循環已關閉</string>
+    <string name="ab_state_start_set">A 點為 %1$s; 請設定 B 點以開始循環</string>
+    <string name="ab_state_active">正在循環 %1$s 到 %2$s</string>
+    <string name="error_control_unavailable">此播放控制暫時無法使用</string>
+    <plurals name="queue_track_count">
+        <item quantity="other">%1$d 首</item>
+    </plurals>
 </resources>

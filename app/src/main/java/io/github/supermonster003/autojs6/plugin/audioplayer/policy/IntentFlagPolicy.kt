@@ -12,20 +12,26 @@ internal object IntentFlagPolicy {
     const val FLAG_GRANT_WRITE_URI_PERMISSION = 0x00000002
     const val FLAG_GRANT_PERSISTABLE_URI_PERMISSION = 0x00000040
     const val FLAG_GRANT_PREFIX_URI_PERMISSION = 0x00000080
+    const val FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS = 0x00800000
     const val FLAG_ACTIVITY_NEW_TASK = 0x10000000
 
     private const val EXPLORER_REQUIRED_FLAGS =
         FLAG_GRANT_READ_URI_PERMISSION or FLAG_GRANT_PREFIX_URI_PERMISSION
 
     private const val EXPLORER_ALLOWED_FLAGS =
-        EXPLORER_REQUIRED_FLAGS or FLAG_ACTIVITY_NEW_TASK
+        EXPLORER_REQUIRED_FLAGS or
+            FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS or
+            FLAG_ACTIVITY_NEW_TASK
 
     private const val EXTERNAL_REJECTED_FLAGS =
         FLAG_GRANT_WRITE_URI_PERMISSION or
             FLAG_GRANT_PERSISTABLE_URI_PERMISSION or
             FLAG_GRANT_PREFIX_URI_PERMISSION
 
-    /** Explorer v2 requires read and prefix grants and may launch into a new task. */
+    /**
+     * Explorer read-only launches require read and prefix grants. Android may copy the
+     * exclude-from-recents manifest attribute into the delivered Activity Intent flags.
+     */
     fun isValidExplorerRequest(flags: Int): Boolean =
         flags and EXPLORER_REQUIRED_FLAGS == EXPLORER_REQUIRED_FLAGS &&
             flags and EXPLORER_ALLOWED_FLAGS.inv() == 0

@@ -3,8 +3,14 @@
     <string name="action_back">Назад</string>
     <string name="action_enable_notifications">Включить уведомления</string>
     <string name="action_open_external">Открыть в другом приложении</string>
+    <string name="action_pause">Пауза</string>
+    <string name="action_play">Воспроизвести</string>
     <string name="action_play_audio">Воспроизвести аудио</string>
+    <string name="action_playback_speed">Скорость воспроизведения</string>
+    <string name="action_seek_backward">Назад на 10 секунд</string>
+    <string name="action_seek_forward">Вперед на 10 секунд</string>
     <string name="app_name">Аудиоплеер</string>
+    <string name="cd_album_artwork">Обложка альбома</string>
     <string name="chooser_open_audio">Открыть аудио с помощью</string>
     <string name="error_cannot_read_file">Не удалось прочитать аудиофайл</string>
     <string name="error_invalid_request">Запрос аудио недействителен</string>
@@ -13,4 +19,52 @@
     <string name="notification_permission_explanation">Разрешите уведомления, чтобы видеть элементы управления воспроизведением вне этого экрана. Воспроизведение останется доступным, если вы откажете.</string>
     <string name="plugin_description">Плагин файлового менеджера. Воспроизводит аудио с элементами управления в приложении и фоновом режиме</string>
     <string name="unknown_audio">Неизвестное аудио</string>
+    <string name="action_play_audio_selection">Воспроизвести выбранные аудиофайлы</string>
+    <string name="action_previous_track">Предыдущий трек</string>
+    <string name="action_next_track">Следующий трек</string>
+    <string name="action_show_queue">Показать очередь воспроизведения</string>
+    <string name="action_remove_from_queue">Удалить из очереди</string>
+    <string name="action_remove_from_queue_named">Удалить %1$s из очереди</string>
+    <string name="action_sleep_timer">Таймер сна</string>
+    <string name="action_ab_loop">Повтор A-B</string>
+    <string name="playback_queue">Очередь воспроизведения</string>
+    <string name="queue_empty">Очередь воспроизведения пуста</string>
+    <string name="queue_item_position">Трек %1$d</string>
+    <string name="currently_playing">Сейчас воспроизводится</string>
+    <string name="playback_mode_sequential">Последовательное воспроизведение</string>
+    <string name="playback_mode_shuffle">Случайное воспроизведение</string>
+    <string name="playback_mode_repeat_one">Повтор текущего трека</string>
+    <string name="sleep_timer">Таймер сна</string>
+    <plurals name="timer_minutes">
+        <item quantity="one">%1$d минута</item>
+        <item quantity="few">%1$d минуты</item>
+        <item quantity="many">%1$d минут</item>
+        <item quantity="other">%1$d минуты</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="one">Таймер сна: осталась %1$d минута</item>
+        <item quantity="few">Таймер сна: осталось %1$d минуты</item>
+        <item quantity="many">Таймер сна: осталось %1$d минут</item>
+        <item quantity="other">Таймер сна: осталось %1$d минуты</item>
+    </plurals>
+    <string name="timer_custom">Другая длительность</string>
+    <string name="timer_custom_hint">Минуты (1–1440)</string>
+    <string name="timer_end_of_track">Остановить после текущего трека</string>
+    <string name="timer_cancel">Отменить таймер сна</string>
+    <string name="timer_invalid">Введите длительность от 1 до 1440 минут</string>
+    <string name="ab_loop">Повтор A-B</string>
+    <string name="ab_set_start">Установить точку A на %1$s</string>
+    <string name="ab_set_end">Установить точку B на %1$s</string>
+    <string name="ab_clear">Сбросить повтор A-B</string>
+    <string name="ab_invalid_end">Точка B должна быть минимум на 0,5 секунды позже точки A</string>
+    <string name="ab_state_off">Повтор A-B выключен</string>
+    <string name="ab_state_start_set">Точка A: %1$s; установите точку B для запуска повтора</string>
+    <string name="ab_state_active">Повтор от %1$s до %2$s</string>
+    <string name="error_control_unavailable">Этот элемент управления временно недоступен</string>
+    <plurals name="queue_track_count">
+        <item quantity="one">%1$d трек</item>
+        <item quantity="few">%1$d трека</item>
+        <item quantity="many">%1$d треков</item>
+        <item quantity="other">%1$d трека</item>
+    </plurals>
 </resources>

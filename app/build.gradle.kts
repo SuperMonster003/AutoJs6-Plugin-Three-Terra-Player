@@ -131,11 +131,12 @@ dependencies {
 
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
     implementation(libs.core.ktx)
     implementation(libs.material)
     implementation(libs.media3.exoplayer)
     implementation(libs.media3.session)
-    implementation(libs.media3.ui)
+    implementation(libs.recyclerview)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.test.ext.junit)

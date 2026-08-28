@@ -3,8 +3,14 @@
     <string name="action_back">Retour</string>
     <string name="action_enable_notifications">Activer les notifications</string>
     <string name="action_open_external">Ouvrir avec une autre application</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_play">Lecture</string>
     <string name="action_play_audio">Lire l\'audio</string>
+    <string name="action_playback_speed">Vitesse de lecture</string>
+    <string name="action_seek_backward">Reculer de 10 secondes</string>
+    <string name="action_seek_forward">Avancer de 10 secondes</string>
     <string name="app_name">Lecteur audio</string>
+    <string name="cd_album_artwork">Pochette d\'album</string>
     <string name="chooser_open_audio">Ouvrir l\'audio avec</string>
     <string name="error_cannot_read_file">Le fichier audio ne peut pas être lu</string>
     <string name="error_invalid_request">La demande audio n\'est pas valide</string>
@@ -13,4 +19,49 @@
     <string name="notification_permission_explanation">Autorisez les notifications pour afficher les commandes de lecture en dehors de cet écran. La lecture reste disponible en cas de refus.</string>
     <string name="plugin_description">Plugin de gestionnaire de fichiers. Lit des fichiers audio avec des commandes intégrées et en arrière-plan</string>
     <string name="unknown_audio">Audio inconnu</string>
+    <string name="action_play_audio_selection">Lire les fichiers audio sélectionnés</string>
+    <string name="action_previous_track">Piste précédente</string>
+    <string name="action_next_track">Piste suivante</string>
+    <string name="action_show_queue">Afficher la file de lecture</string>
+    <string name="action_remove_from_queue">Retirer de la file</string>
+    <string name="action_remove_from_queue_named">Retirer %1$s de la file</string>
+    <string name="action_sleep_timer">Minuterie de veille</string>
+    <string name="action_ab_loop">Boucle A-B</string>
+    <string name="playback_queue">File de lecture</string>
+    <string name="queue_empty">La file de lecture est vide</string>
+    <string name="queue_item_position">Piste %1$d</string>
+    <string name="currently_playing">Lecture en cours</string>
+    <string name="playback_mode_sequential">Lecture séquentielle</string>
+    <string name="playback_mode_shuffle">Lecture aléatoire</string>
+    <string name="playback_mode_repeat_one">Répéter la piste actuelle</string>
+    <string name="sleep_timer">Minuterie de veille</string>
+    <plurals name="timer_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="many">%1$d minutes</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="one">Minuterie: %1$d minute restante</item>
+        <item quantity="many">Minuterie: %1$d minutes restantes</item>
+        <item quantity="other">Minuterie: %1$d minutes restantes</item>
+    </plurals>
+    <string name="timer_custom">Durée personnalisée</string>
+    <string name="timer_custom_hint">Minutes (1–1440)</string>
+    <string name="timer_end_of_track">Arrêter après la piste actuelle</string>
+    <string name="timer_cancel">Annuler la minuterie</string>
+    <string name="timer_invalid">Saisissez une durée de 1 à 1440 minutes</string>
+    <string name="ab_loop">Boucle A-B</string>
+    <string name="ab_set_start">Définir le point A à %1$s</string>
+    <string name="ab_set_end">Définir le point B à %1$s</string>
+    <string name="ab_clear">Effacer la boucle A-B</string>
+    <string name="ab_invalid_end">Le point B doit suivre le point A de 0,5 seconde au minimum</string>
+    <string name="ab_state_off">La boucle A-B est désactivée</string>
+    <string name="ab_state_start_set">Le point A est %1$s; définissez le point B pour lancer la boucle</string>
+    <string name="ab_state_active">Boucle de %1$s à %2$s</string>
+    <string name="error_control_unavailable">Cette commande de lecture est temporairement indisponible</string>
+    <plurals name="queue_track_count">
+        <item quantity="one">%1$d piste</item>
+        <item quantity="many">%1$d pistes</item>
+        <item quantity="other">%1$d pistes</item>
+    </plurals>
 </resources>

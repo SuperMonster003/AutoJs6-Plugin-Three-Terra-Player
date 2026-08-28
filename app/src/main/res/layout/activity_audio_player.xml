@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme.Toolbar"
         app:navigationContentDescription="@string/action_back"
         app:navigationIcon="@drawable/ic_arrow_back"
-        tools:title="@string/app_name" />
+        app:title="@string/app_name" />
 
     <LinearLayout
         android:id="@+id/notification_permission_banner"
@@ -46,50 +46,395 @@
 
     </LinearLayout>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
 
-        <androidx.media3.ui.PlayerView
-            android:id="@+id/player_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:auto_show="true"
-            app:show_buffering="when_playing"
-            app:show_timeout="0"
-            app:surface_type="none"
-            app:use_artwork="true"
-            app:use_controller="true" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/artwork_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/artwork_placeholder_background"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toTopOf="@id/title_text"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="320dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_max="320dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/artwork_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_album_artwork"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_audio_placeholder"
+                    app:tint="@color/artwork_placeholder_icon" />
+
+                <ProgressBar
+                    android:id="@+id/buffering_indicator"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </FrameLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintBottom_toTopOf="@id/subtitle_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artwork_card"
+            tools:text="Track title" />
+
+        <TextView
+            android:id="@+id/subtitle_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:attr/textColorSecondary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/info_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text"
+            tools:text="Artist · Album"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="?android:attr/textColorTertiary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/seek_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle_text"
+            tools:text="FLAC · 44.1 kHz · 987 kbps"
+            tools:visibility="visible" />
 
         <LinearLayout
-            android:id="@+id/error_panel"
-            android:layout_width="wrap_content"
+            android:id="@+id/seek_group"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:visibility="gone"
-            tools:visibility="visible">
+            app:layout_constraintBottom_toTopOf="@id/transport_row"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/error_text"
-                android:layout_width="wrap_content"
+            <SeekBar
+                android:id="@+id/seek_bar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/error_playback"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                android:enabled="false"
+                android:max="1000"
+                android:paddingVertical="10dp"
+                android:progressTint="?attr/colorSecondary"
+                android:thumbTint="?attr/colorSecondary" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/open_external_button"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/action_open_external" />
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp">
+
+                <TextView
+                    android:id="@+id/position_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    tools:text="1:23" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/duration_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    tools:text="4:56" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </FrameLayout>
+        <LinearLayout
+            android:id="@+id/transport_row"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/secondary_controls_row"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/previous_button"
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/action_previous_track"
+                android:enabled="false"
+                android:scaleType="fitCenter"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_previous"
+                app:tint="?attr/colorControlNormal" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/seek_backward_button"
+                    android:layout_width="48dp"
+                    android:layout_height="52dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/action_seek_backward"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_seek_backward"
+                    app:tint="?attr/colorControlNormal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:importantForAccessibility="no"
+                    android:text="@string/seek_increment_seconds"
+                    android:textColor="?attr/colorControlNormal"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp" />
+
+            </FrameLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/play_pause_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:contentDescription="@string/action_play"
+                app:fabCustomSize="64dp"
+                app:maxImageSize="32dp"
+                app:srcCompat="@drawable/ic_play" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/seek_forward_button"
+                    android:layout_width="48dp"
+                    android:layout_height="52dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/action_seek_forward"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_seek_forward"
+                    app:tint="?attr/colorControlNormal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:importantForAccessibility="no"
+                    android:text="@string/seek_increment_seconds"
+                    android:textColor="?attr/colorControlNormal"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp" />
+
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/next_button"
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/action_next_track"
+                android:enabled="false"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_next"
+                app:tint="?attr/colorControlNormal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/secondary_controls_row"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/playback_mode_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/playback_mode_sequential"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_sequence"
+                app:tint="?attr/colorControlNormal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/queue_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:contentDescription="@string/action_show_queue"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="56dp"
+                android:text=""
+                android:textSize="13sp"
+                app:icon="@drawable/ic_queue"
+                app:iconGravity="textStart"
+                app:iconPadding="2dp"
+                app:iconSize="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/speed_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:contentDescription="@string/action_playback_speed"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="56dp"
+                android:text="@string/speed_default"
+                android:textSize="14sp"
+                tools:text="1×" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sleep_timer_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:contentDescription="@string/action_sleep_timer"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="56dp"
+                android:text=""
+                android:textSize="12sp"
+                app:icon="@drawable/ic_timer"
+                app:iconGravity="textStart"
+                app:iconPadding="2dp"
+                app:iconSize="18dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ab_loop_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:contentDescription="@string/action_ab_loop"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="52dp"
+                android:text="@string/ab_short"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/error_panel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:id="@+id/error_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/error_playback"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+                <TextView
+                    android:id="@+id/error_detail_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:visibility="gone"
+                    tools:text="ERROR_CODE_DECODING_FAILED"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/open_external_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/action_open_external" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

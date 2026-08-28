@@ -3,8 +3,14 @@
     <string name="action_back">Volver</string>
     <string name="action_enable_notifications">Activar notificaciones</string>
     <string name="action_open_external">Abrir con otra aplicación</string>
+    <string name="action_pause">Pausar</string>
+    <string name="action_play">Reproducir</string>
     <string name="action_play_audio">Reproducir audio</string>
+    <string name="action_playback_speed">Velocidad de reproducción</string>
+    <string name="action_seek_backward">Retroceder 10 segundos</string>
+    <string name="action_seek_forward">Avanzar 10 segundos</string>
     <string name="app_name">Reproductor de audio</string>
+    <string name="cd_album_artwork">Carátula del álbum</string>
     <string name="chooser_open_audio">Abrir audio con</string>
     <string name="error_cannot_read_file">No se puede leer el archivo de audio</string>
     <string name="error_invalid_request">La solicitud de audio no es válida</string>
@@ -13,4 +19,49 @@
     <string name="notification_permission_explanation">Permite las notificaciones para ver los controles de reproducción fuera de esta pantalla. La reproducción seguirá disponible si las rechazas.</string>
     <string name="plugin_description">Complemento del gestor de archivos. Reproduce audio con controles integrados y en segundo plano</string>
     <string name="unknown_audio">Audio desconocido</string>
+    <string name="action_play_audio_selection">Reproducir audios seleccionados</string>
+    <string name="action_previous_track">Pista anterior</string>
+    <string name="action_next_track">Pista siguiente</string>
+    <string name="action_show_queue">Mostrar cola de reproducción</string>
+    <string name="action_remove_from_queue">Quitar de la cola</string>
+    <string name="action_remove_from_queue_named">Quitar %1$s de la cola</string>
+    <string name="action_sleep_timer">Temporizador de apagado</string>
+    <string name="action_ab_loop">Bucle A-B</string>
+    <string name="playback_queue">Cola de reproducción</string>
+    <string name="queue_empty">La cola está vacía</string>
+    <string name="queue_item_position">Pista %1$d</string>
+    <string name="currently_playing">En reproducción</string>
+    <string name="playback_mode_sequential">Reproducción secuencial</string>
+    <string name="playback_mode_shuffle">Reproducción aleatoria</string>
+    <string name="playback_mode_repeat_one">Repetir pista actual</string>
+    <string name="sleep_timer">Temporizador de apagado</string>
+    <plurals name="timer_minutes">
+        <item quantity="one">%1$d minuto</item>
+        <item quantity="many">%1$d minutos</item>
+        <item quantity="other">%1$d minutos</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="one">Temporizador: queda %1$d minuto</item>
+        <item quantity="many">Temporizador: quedan %1$d minutos</item>
+        <item quantity="other">Temporizador: quedan %1$d minutos</item>
+    </plurals>
+    <string name="timer_custom">Duración personalizada</string>
+    <string name="timer_custom_hint">Minutos (1–1440)</string>
+    <string name="timer_end_of_track">Detener al terminar la pista actual</string>
+    <string name="timer_cancel">Cancelar temporizador</string>
+    <string name="timer_invalid">Introduce una duración de 1 a 1440 minutos</string>
+    <string name="ab_loop">Bucle A-B</string>
+    <string name="ab_set_start">Fijar punto A en %1$s</string>
+    <string name="ab_set_end">Fijar punto B en %1$s</string>
+    <string name="ab_clear">Borrar bucle A-B</string>
+    <string name="ab_invalid_end">El punto B debe estar al menos 0,5 segundos después del punto A</string>
+    <string name="ab_state_off">El bucle A-B está desactivado</string>
+    <string name="ab_state_start_set">El punto A es %1$s; fija el punto B para iniciar el bucle</string>
+    <string name="ab_state_active">Repetición de %1$s a %2$s</string>
+    <string name="error_control_unavailable">Este control de reproducción no está disponible temporalmente</string>
+    <plurals name="queue_track_count">
+        <item quantity="one">%1$d pista</item>
+        <item quantity="many">%1$d pistas</item>
+        <item quantity="other">%1$d pistas</item>
+    </plurals>
 </resources>
