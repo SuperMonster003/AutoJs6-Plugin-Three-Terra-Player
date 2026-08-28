@@ -47,11 +47,15 @@ Audio Player provides an in-app controller and a private background playback ser
 
 ******
 
-- Registers the primary read-only Explorer action `play-audio` through Explorer Action protocol v2 for the 18 audio filename extensions already recognized by the host.
+- Registers both the single-file `play-audio` action and ordered multi-selection `play-audio-selection` action through Explorer Action protocol v12 for the 18 audio filename extensions recognized by the host.
 - Plays audio with Media3 ExoPlayer and MediaSessionService, including audio focus, noisy-output handling, a local wake mode, background playback, and system media controls.
-- Provides a controller screen with title metadata, transport controls, optional Android 13+ notification permission guidance, and playback error feedback.
+- Provides a full player screen with album artwork, media tags, technical info, seek dragging, 10-second jumps, sequential / shuffle / repeat-one modes, and 0.5x to 2x speed control.
+- Plays up to 128 explicitly selected audio files in their host-provided order, with previous / next controls and a queue sheet for jumping to or removing tracks.
+- Includes a service-owned sleep timer with presets, a custom duration, stop-after-current, final five-second fade-out, and an A-B loop for listening practice.
+- Remembers playback positions per track and mirrors current tag titles, artwork, previous / next, and 10-second seek controls into system media surfaces.
 - Accepts independent Android ACTION_VIEW requests for read-only `content` URIs with `audio/*`, while discarding caller extras and broad URI grants.
 - Offers a decoder-failure fallback that opens the file in another compatible app and excludes this plugin to prevent a self-loop.
+- A single-file Explorer launch discovers a naturally ordered, bounded queue of readable audio siblings through a request-scoped Host Session; explicit multi-selection keeps the user's host order.
 
 ******
 
@@ -73,7 +77,7 @@ An extension match does not guarantee decoding. Actual playback depends on Media
 
 ******
 
-When the plugin is installed, the file manager shows Play audio as a primary action for the listed extensions. Selecting it opens the plugin controller and starts the private playback service with temporary read-only access to the selected file.
+When the plugin is installed, the file manager shows Play audio as a primary action for one file and Play selected audio in the selection toolbar for multiple files. A single-file launch starts from that track and may discover readable direct audio siblings in natural order; explicit multi-selection preserves the host's selected order.
 
 When the plugin is absent, this action is not listed. The host keeps its existing read-only external ACTION_VIEW flow for audio files, so another installed audio app may handle the file. If no compatible external app is available, the host does not gain a replacement playback interface.
 
@@ -91,17 +95,17 @@ execute action: org.autojs.plugin.EXPLORER_ACTION_EXECUTE
 plugin id: audio-player
 engine: explorer-action
 variant: default
-Explorer action id: play-audio
-Explorer protocol version: 2
+Explorer action ids: play-audio (single) / play-audio-selection (multiple, up to 128)
+Explorer protocol version: 4
 Explorer MIME types: []
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/*
-required host build: 5269
+required host build: 5276
 ```
 
-Version 1 provides a primary read-only single-file action in the main file manager. The catalog uses extension-only matching, while the independent Android entry point continues to accept `audio/*`.
+Version 1.2.1 provides a protocol v12 primary read-only action that may receive a request-scoped direct-sibling capability, plus an ordered read-only multi-selection action. The independent Android entry remains single-file and accepts `audio/*`. Hosts without the optional Host Session keep selected-file-only playback.
 
-Host build 5269 or later is required.
+AutoJs6 6.8.0 build 5276 or later and Explorer Action v12 are required for same-folder discovery; this requirement will not be raised for later plugin capabilities.
 
 ******
 
@@ -109,7 +113,7 @@ Host build 5269 or later is required.
 
 ******
 
-The plugin requests no storage or network permission. Its file manager gateway is protected by the host signature permission and strictly validates protocol v2, the target and parent content URIs, ClipData, source surface, display name, MIME type, declared size, and read-only flags. Only the target URI and a read grant are forwarded to private playback components. The public Android gateway accepts only read-only content audio requests, rejects write, persistable, and prefix grants, and never forwards arbitrary caller extras.
+The plugin requests no storage or Internet access permission. Its signature-protected gateway strictly validates protocol v12, ordered TARGETS and ClipData, identifiers, parent relationship, metadata, and read-only flags. An optional Host Session is pinned by the host to the plugin UID and can only list the selected file's direct parent and open the selected file or a readable direct sibling; playback components receive opaque synthetic routes, never filesystem paths. The public Android gateway remains read-only and single-file.
 
 ******
 
@@ -117,9 +121,10 @@ The plugin requests no storage or network permission. Its file manager gateway i
 
 ******
 
-- One target file per Explorer action.
+- The single action starts from exactly one selected file and may form a bounded queue of readable direct audio siblings; the selection action accepts 1 to 128 unique files and preserves their order.
 - Explorer requests with a declared size above 8 TiB are rejected.
 - The Explorer action is selected by filename extension only and still validates an audio MIME type when executed.
+- Sibling discovery is non-recursive and available only through the host-owned request-scoped session; the plugin never guesses a sibling URI or receives a filesystem path.
 - The public Android entry point requires ACTION_VIEW, a `content` URI, `audio/*`, and a read grant.
 - Notification permission is optional. Denial hides notification-drawer controls but does not block playback.
 - Playback ends safely on completion or decoder error. The external fallback transfers only a fresh read grant and excludes this plugin.
@@ -130,25 +135,39 @@ The plugin requests no storage or network permission. Its file manager gateway i
 
 ******
 
-# v1.0.1
+# v1.2.2
 
-###### 2026/08/08
+###### 2026/08/27
 
-* `Fix` Null service binding when enabling the plugin in Plugin Center
-* `Improvement` Clearer and more concise plugin name, description, and user documentation
+* `Fix` Explorer playback no longer fails after a plugin upgrade when the running AutoJs6 file manager still sends a cached protocol v4 action; the gateway accepts the compatible read-only v4–v12 envelope while continuing to advertise v12
+* `Fix` Advertised audio extensions are no longer rejected when an Android or OEM MIME table reports a wildcard or application MIME type; the extension allow-list now supplies a stable canonical audio MIME type
+* `Improvement` Rejected Explorer requests now log a privacy-safe reason code without file names, display paths, or URIs so future contract mismatches can be diagnosed directly
 
-# v1.0.0
+# v1.2.1
 
-###### 2026/08/02
+###### 2026/08/27
 
-* `Feature` Audio Player plugin with plugin ID `audio-player`, action ID `play-audio`, engine `explorer-action`, and variant `default`
-* `Feature` Primary read-only file manager action for the host's 18 audio extensions, requiring host build 5269 or later
-* `Feature` Media3 ExoPlayer and MediaSessionService playback with audio focus, noisy-output handling, local wake mode, background playback, system media controls, and a private controller interface
-* `Feature` Optional Android 13+ notification permission guidance without blocking playback when permission is denied
-* `Feature` Independent read-only Android ACTION_VIEW support for `content` URI audio requests and decoder-failure transfer to another compatible app with self-loop prevention
-* `Feature` Strict protocol, URI, ClipData, source, name, MIME, size, and grant validation with no storage or network permission and minimum read-only forwarding
-* `Feature` Localized metadata, interface text, usage instructions, README files, and changelogs in Spanish, French, Russian, Arabic, Japanese, Korean, English, Simplified Chinese, Hong Kong Traditional Chinese, and Taiwan Traditional Chinese
-* `Dependency` Added AndroidX Media3 ExoPlayer, Session, and UI version 1.10.1
+* `Feature` A single Play audio action can now discover up to 128 readable audio files in the same folder through Explorer Action v12 and build a naturally ordered queue starting at the selected track
+* `Fix` API 24 no longer rejects a valid Explorer launch when Android adds the non-permission FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS flag from the gateway activity manifest
+* `Fix` Automatically advancing to a sibling track no longer crashes while rebuilding the MediaSession return intent; the originally granted target remains the Host Session anchor independently of the active queue item
+* `Improvement` The selected track keeps its original content URI while sibling tracks stream only through request-scoped Host Session file descriptors; no sibling URI is guessed and no recursive, write, storage, or persistent access is added
+* `Improvement` Audio extension filtering keeps same-named .mp4 video files out of queues containing .m4a audio, while the existing explicit multi-selection queue remains unchanged
+* `Improvement` Host Session ownership now transfers to the background playback service and closes on queue replacement, startup failure, completion, or service destruction
+* `Dependency` Upgraded the bundled Explorer Action API from protocol v4 to the backward-compatible v12 sibling-read extension while retaining minimum host build 5276
+
+# v1.2.0
+
+###### 2026/08/27
+
+* `Feature` Explorer Action protocol v4 support with a new ordered multi-selection action that builds a playback queue from up to 128 explicitly selected audio files
+* `Feature` Native Media3 playlist with previous / next controls, a queue sheet for jumping to or removing tracks, and sequential / shuffle / repeat-one modes
+* `Feature` Service-owned sleep timer with 15 / 30 / 60 minute presets, a custom duration, stop-after-current, and a final five-second fade-out
+* `Feature` A-B interval loop for repeating a selected section
+* `Improvement` System media controls now expose previous, next, and 10-second rewind / fast-forward commands, while metadata and resume positions follow the current queue item
+* `Improvement` Explorer request validation now covers ordered TARGETS and ClipData, unique request and target identifiers, host session descriptors, and every selected file without broadening read-only grants
+* `Improvement` Documented that the host FileProvider parent URI cannot enumerate children; automatic sibling discovery and URI guessing stay disabled, with explicit multi-selection as the safe queue path
+* `Dependency` Upgraded the bundled Explorer Action API from protocol v2 to v4 and raised the required host build to 5276
+* `Dependency` Added AndroidX RecyclerView version 1.4.0
 
 ##### For more releases
 

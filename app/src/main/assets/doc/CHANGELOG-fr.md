@@ -4,6 +4,53 @@
 
 ******
 
+# v1.2.2
+
+###### 2026/08/27
+
+* `Correctif` La lecture depuis l’explorateur n’échoue plus après une mise à niveau du plugin lorsque le gestionnaire de fichiers AutoJs6 en cours d’exécution envoie encore une action de protocole v4 mise en cache ; la passerelle accepte l’enveloppe compatible en lecture seule v4–v12 tout en continuant d’annoncer v12
+* `Correctif` Les extensions audio annoncées ne sont plus rejetées lorsqu’une table MIME Android ou constructeur renvoie un joker ou un type application ; la liste d’extensions autorisées fournit désormais un type MIME audio canonique stable
+* `Amélioration` Les requêtes Explorer rejetées consignent désormais un code de motif respectueux de la vie privée, sans nom de fichier, chemin affiché ni URI, afin de diagnostiquer directement les futurs écarts de contrat
+
+# v1.2.1
+
+###### 2026/08/27
+
+* `Fonctionnalité` L'action Lire l'audio sur un seul fichier peut maintenant découvrir jusqu'à 128 fichiers audio lisibles dans le même dossier via Explorer Action v12 et créer une file triée naturellement à partir de la piste sélectionnée
+* `Correctif` API 24 ne rejette plus une requête Explorer valide lorsqu'Android ajoute depuis le manifeste de l'activité passerelle l'indicateur sans permission FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+* `Correctif` Le passage automatique à une piste sœur ne plante plus lors de la reconstruction de l'Intent de retour MediaSession ; la cible autorisée à l'origine reste l'ancre de la Host Session indépendamment de la piste active
+* `Amélioration` La piste sélectionnée conserve son content URI d'origine tandis que les pistes sœurs sont diffusées uniquement via les descripteurs d'une Host Session limitée à la requête ; aucun URI voisin n'est deviné et aucun accès récursif, en écriture, au stockage ou persistant n'est ajouté
+* `Amélioration` Le filtrage des extensions audio exclut de la file les vidéos .mp4 portant le même nom que des fichiers audio .m4a, tandis que la file multisélection explicite existante reste inchangée
+* `Amélioration` La propriété de la Host Session est transférée au service de lecture en arrière-plan, puis fermée lors du remplacement de la file, d'un échec de démarrage, de la fin de lecture ou de la destruction du service
+* `Dépendance` Mise à niveau de l'API Explorer Action intégrée du protocole v4 vers l'extension rétrocompatible v12 de lecture des fichiers frères, tout en conservant la version hôte minimale 5276
+
+# v1.2.0
+
+###### 2026/08/27
+
+* `Fonctionnalité` Prise en charge du protocole Explorer Action v4 et nouvelle action de sélection multiple ordonnée créant une file avec jusqu'à 128 fichiers audio explicitement choisis
+* `Fonctionnalité` Liste Media3 native avec précédent / suivant, panneau pour choisir ou retirer des titres et modes séquentiel / aléatoire / répétition d'un titre
+* `Fonctionnalité` Minuterie gérée par le service avec 15 / 30 / 60 minutes, durée personnalisée, arrêt après le titre courant et fondu des cinq dernières secondes
+* `Fonctionnalité` Boucle d'intervalle A-B pour répéter une section sélectionnée
+* `Amélioration` Les commandes multimédias système affichent désormais précédent, suivant et les sauts de 10 secondes; métadonnées et reprise suivent le titre courant
+* `Amélioration` La validation Explorer couvre TARGETS et ClipData ordonnés, identifiants uniques, session hôte et chaque fichier choisi sans élargir les droits de lecture
+* `Amélioration` Documentation de l'impossibilité d'énumérer les enfants via l'URI parent FileProvider; découverte des voisins et déduction d'URI restent désactivées, la sélection multiple étant la voie sûre
+* `Dépendance` API Explorer Action intégrée mise à niveau de v2 à v4 et version hôte minimale portée à 5276
+* `Dépendance` Ajout d'AndroidX RecyclerView 1.4.0
+
+# v1.1.0
+
+###### 2026/08/27
+
+* `Fonctionnalité` Écran de lecture repensé avec pochette d'album, étiquettes titre / artiste / album, barre de progression déplaçable et affichage des temps de lecture
+* `Fonctionnalité` Commandes de lecture enrichies : recul et avance de 10 secondes, lecture en boucle et vitesse de 0,5x à 2x
+* `Fonctionnalité` Extraction automatique des étiquettes intégrées, de la pochette et des propriétés techniques (codec / fréquence d'échantillonnage / débit), synchronisées avec les notifications multimédias du système
+* `Fonctionnalité` Mémorisation de la position de lecture : la réouverture du même fichier reprend à la dernière position et une lecture terminée efface l'enregistrement
+* `Amélioration` La lecture peut être relancée directement depuis l'écran du lecteur après une fin de lecture ou un échec de décodage, sans revenir au gestionnaire de fichiers
+* `Amélioration` Le retour d'erreur de lecture inclut désormais le code d'erreur précis pour faciliter les signalements
+* `Dépendance` Ajout d'AndroidX ConstraintLayout version 2.2.1
+* `Dépendance` Suppression de la dépendance AndroidX Media3 UI inutilisée
+
 # v1.0.1
 
 ###### 2026/08/08
@@ -20,6 +67,6 @@
 * `Fonctionnalité` Lecture Media3 ExoPlayer et MediaSessionService avec focus audio, gestion de la déconnexion de sortie, mode de réveil local, arrière-plan, commandes multimédias du système et interface privée
 * `Fonctionnalité` Explication facultative de l'autorisation de notifications Android 13+ sans bloquer la lecture en cas de refus
 * `Fonctionnalité` Prise en charge Android ACTION_VIEW indépendante en lecture seule pour les requêtes audio URI `content` et transfert vers une autre application compatible en cas d'échec du décodeur, avec prévention des boucles
-* `Fonctionnalité` Validation stricte du protocole, des URI, de ClipData, de la source, du nom, du MIME, de la taille et des droits, sans autorisation de stockage ou de réseau et avec transfert minimal en lecture
+* `Fonctionnalité` Validation stricte du protocole, des URI, de ClipData, de la source, du nom, du MIME, de la taille et des droits, sans autorisation de stockage ou d'accès à Internet et avec transfert minimal en lecture
 * `Fonctionnalité` Métadonnées, textes de l'interface, instructions, fichiers README et historiques localisés en espagnol, français, russe, arabe, japonais, coréen, anglais, chinois simplifié, chinois traditionnel de Hong Kong et chinois traditionnel de Taïwan
 * `Dépendance` Ajout de AndroidX Media3 ExoPlayer, Session et UI version 1.10.1

@@ -5,6 +5,69 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.2.2": {
+      "released_date": "2026/08/27",
+      "fix": [
+        "La reproducción desde el explorador ya no falla tras actualizar el complemento cuando el gestor de archivos AutoJs6 en ejecución aún envía una acción de protocolo v4 almacenada en caché; la puerta de enlace acepta la envolvente compatible de solo lectura v4–v12 y sigue anunciando v12",
+        "Las extensiones de audio anunciadas ya no se rechazan cuando una tabla MIME de Android o del fabricante devuelve un comodín o un tipo application; la lista permitida de extensiones proporciona ahora un tipo MIME de audio canónico y estable"
+      ],
+      "improvement": [
+        "Las solicitudes del explorador rechazadas registran ahora un código de motivo respetuoso con la privacidad, sin nombres de archivo, rutas visibles ni URI, para diagnosticar directamente futuras diferencias de contrato"
+      ]
+    },
+    "v1.2.1": {
+      "released_date": "2026/08/27",
+      "feature": [
+        "La acción Reproducir audio para un solo archivo ahora puede descubrir hasta 128 archivos de audio legibles en la misma carpeta mediante Explorer Action v12 y crear una cola con orden natural que comienza en la pista seleccionada"
+      ],
+      "fix": [
+        "API 24 ya no rechaza una solicitud válida de Explorer cuando Android añade desde el manifiesto de la actividad puente la marca sin permisos FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS",
+        "El avance automático a una pista hermana ya no se bloquea al reconstruir el Intent de retorno de MediaSession; el objetivo autorizado originalmente permanece como ancla de la Host Session independientemente de la pista activa"
+      ],
+      "improvement": [
+        "La pista seleccionada conserva su content URI original y las pistas hermanas solo se transmiten mediante descriptores de archivo de una Host Session limitada a la solicitud; no se adivinan URI ni se añade acceso recursivo, de escritura, almacenamiento o persistente",
+        "El filtro de extensiones de audio excluye de la cola los vídeos .mp4 con el mismo nombre que audios .m4a, mientras la cola de selección múltiple explícita existente no cambia",
+        "La propiedad de la Host Session se transfiere al servicio de reproducción en segundo plano y se cierra al sustituir la cola, fallar el inicio, terminar la reproducción o destruir el servicio"
+      ],
+      "dependency": [
+        "Se actualizó la API Explorer Action incluida del protocolo v4 a la extensión de lectura de hermanos v12 retrocompatible, manteniendo la compilación mínima 5276 del host"
+      ]
+    },
+    "v1.2.0": {
+      "released_date": "2026/08/27",
+      "feature": [
+        "Compatibilidad con Explorer Action v4 y una nueva acción multiselección ordenada que crea una cola con hasta 128 archivos de audio elegidos explícitamente",
+        "Lista nativa de Media3 con anterior / siguiente, panel para saltar o eliminar pistas y modos secuencial / aleatorio / repetir una",
+        "Temporizador gestionado por el servicio con 15 / 30 / 60 minutos, duración personalizada, detener tras la pista actual y fundido final de cinco segundos",
+        "Bucle de intervalo A-B para repetir una sección seleccionada"
+      ],
+      "improvement": [
+        "Los controles multimedia del sistema ahora muestran anterior, siguiente y saltos de 10 segundos, mientras metadatos y reanudación siguen la pista actual",
+        "La validación del Explorador cubre TARGETS y ClipData ordenados, identificadores únicos, sesión del host y cada archivo seleccionado sin ampliar permisos de lectura",
+        "Se documenta que el URI padre FileProvider no enumera hijos; la búsqueda de archivos hermanos y la conjetura de URI siguen desactivadas y la multiselección es la vía segura"
+      ],
+      "dependency": [
+        "API Explorer Action integrada actualizada de v2 a v4 y compilación mínima del host elevada a 5276",
+        "Añadido AndroidX RecyclerView 1.4.0"
+      ]
+    },
+    "v1.1.0": {
+      "released_date": "2026/08/27",
+      "feature": [
+        "Pantalla de reproducción rediseñada con carátula del álbum, etiquetas de título / artista / álbum, barra de progreso arrastrable y tiempos de reproducción",
+        "Controles de reproducción mejorados: retroceso y avance de 10 segundos, repetición de pista y velocidad de 0,5x a 2x",
+        "Extracción automática de etiquetas integradas, carátula y propiedades técnicas (códec / frecuencia de muestreo / tasa de bits), sincronizadas con las notificaciones multimedia del sistema",
+        "Memoria de posición de reproducción: al reabrir el mismo archivo se reanuda desde la última posición y la reproducción completada borra el registro"
+      ],
+      "improvement": [
+        "La reproducción puede reiniciarse directamente en la pantalla del reproductor tras finalizar o fallar la decodificación, sin volver al gestor de archivos",
+        "Los avisos de error de reproducción ahora incluyen el código de error específico para facilitar los reportes"
+      ],
+      "dependency": [
+        "Se añade AndroidX ConstraintLayout versión 2.2.1",
+        "Se elimina la dependencia AndroidX Media3 UI sin uso"
+      ]
+    },
     "v1.0.1": {
       "released_date": "2026/08/08",
       "fix": [
@@ -22,7 +85,7 @@
         "Reproducción mediante Media3 ExoPlayer y MediaSessionService con foco de audio, gestión de desconexión de salida, modo de activación local, segundo plano, controles multimedia del sistema e interfaz privada",
         "Información opcional sobre el permiso de notificaciones de Android 13+ sin bloquear la reproducción si se deniega",
         "Compatibilidad Android ACTION_VIEW independiente y de solo lectura para solicitudes de audio con URI `content` y transferencia a otra aplicación compatible si falla el decodificador, con prevención de bucles",
-        "Validación estricta de protocolo, URI, ClipData, origen, nombre, MIME, tamaño y permisos, sin permisos de almacenamiento ni de red y con transferencia mínima de lectura",
+        "Validación estricta de protocolo, URI, ClipData, origen, nombre, MIME, tamaño y permisos, sin permisos de almacenamiento ni de acceso a Internet y con transferencia mínima de lectura",
         "Metadatos, texto de interfaz, instrucciones, archivos README e historiales localizados en español, francés, ruso, árabe, japonés, coreano, inglés, chino simplificado, chino tradicional de Hong Kong y chino tradicional de Taiwán"
       ],
       "dependency": [

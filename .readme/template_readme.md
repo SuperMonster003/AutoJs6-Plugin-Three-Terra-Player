@@ -78,7 +78,7 @@ execute action: {{ plugin_execute_action }}
 plugin id: {{ plugin_id }}
 engine: {{ plugin_engine }}
 variant: {{ plugin_variant }}
-Explorer action id: {{ explorer_action_id }}
+Explorer action ids: {{ explorer_action_ids }}
 Explorer protocol version: {{ explorer_protocol_version }}
 Explorer MIME types: {{ explorer_mime_types }}
 Android VIEW action: {{ android_view_action }}
