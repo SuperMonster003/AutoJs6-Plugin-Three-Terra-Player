@@ -56,6 +56,7 @@ Audio Player provides an in-app controller and a private background playback ser
 - Accepts independent Android ACTION_VIEW requests for read-only `content` URIs with `audio/*`, while discarding caller extras and broad URI grants.
 - Offers a decoder-failure fallback that opens the file in another compatible app and excludes this plugin to prevent a self-loop.
 - A single-file Explorer launch discovers a naturally ordered, bounded queue of readable audio siblings through a request-scoped Host Session; explicit multi-selection keeps the user's host order.
+- Builds an accessible light and dark palette from one source color, follows AutoJs6 by default, and offers 19 localized Material 500 presets plus live-preview custom RGB colors.
 
 ******
 

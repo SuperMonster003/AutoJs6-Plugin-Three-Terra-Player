@@ -56,6 +56,7 @@ Audio Player fournit un contrôleur intégré et un service privé de lecture en
 - Accepte des requêtes Android ACTION_VIEW indépendantes pour des URI `content` en lecture seule avec `audio/*`, tout en supprimant les extras de l'appelant et les autorisations URI étendues.
 - Propose un recours en cas d'échec du décodeur qui ouvre le fichier dans une autre application compatible et exclut ce plugin afin d'éviter une boucle.
 - L'ouverture d'un fichier depuis l'explorateur découvre, via une Host Session par requête, une file bornée et naturellement triée des fichiers audio frères lisibles ; la sélection multiple explicite conserve l'ordre de l'hôte.
+- Génère une palette claire et sombre lisible depuis une couleur source, suit AutoJs6 par défaut et propose 19 préréglages Material 500 localisés ainsi que des couleurs RGB personnalisées avec aperçu en direct.
 
 ******
 
