@@ -47,16 +47,16 @@ Audio Player ofrece un controlador dentro de la aplicación y un servicio privad
 
 ******
 
-- Registra la acción de archivo único `play-audio` y la acción multiselección ordenada `play-audio-selection` mediante el protocolo Explorer Action v12 para las 18 extensiones de audio reconocidas por el host.
+- Registra las acciones `play-audio` y `play-audio-selection` mediante Explorer Action v12 para todos los tipos MIME de audio reconocidos por el host y 19 extensiones conocidas.
 - Reproduce audio con Media3 ExoPlayer y MediaSessionService, con foco de audio, gestión de desconexión de salida, modo de activación local, reproducción en segundo plano y controles multimedia del sistema.
 - Proporciona una pantalla completa con carátula, etiquetas, información técnica, arrastre de progreso, saltos de 10 segundos, modos secuencial / aleatorio / repetir una y velocidad de 0,5x a 2x.
 - Reproduce hasta 128 archivos de audio seleccionados explícitamente en el orden proporcionado por el host, con anterior / siguiente y una cola para saltar o eliminar pistas.
 - Incluye un temporizador gestionado por el servicio con valores predefinidos, duración personalizada, detener tras la pista actual, fundido final de cinco segundos y bucle A-B.
-- Recuerda la posición de cada pista y refleja en las superficies multimedia del sistema el título, la carátula, anterior / siguiente y los saltos de 10 segundos.
-- Acepta solicitudes Android ACTION_VIEW independientes para URI `content` de solo lectura con `audio/*` y descarta los extras del llamador y los permisos URI amplios.
+- Recuerda solo el último archivo abierto y su posición, sustituye el registro al abrir otro y refleja los metadatos y controles actuales en el sistema.
+- Ofrece un lanzador para seleccionar hasta 128 documentos y acepta URI `content` ACTION_VIEW de solo lectura, incluidos alias MIME antiguos de WMA.
 - Ofrece una alternativa ante errores de decodificación que abre el archivo en otra aplicación compatible y excluye este plugin para evitar un bucle.
 - Al abrir un único archivo desde el Explorador descubre, mediante una Host Session por solicitud, una cola acotada y ordenada de forma natural de audios hermanos legibles; la multiselección explícita conserva el orden del host.
-- Genera una paleta clara y oscura accesible a partir de un color de origen, sigue AutoJs6 de forma predeterminada y ofrece 19 preajustes Material 500 localizados más colores RGB personalizados con vista previa en vivo.
+- Genera una paleta clara y oscura accesible a partir de un color de origen, sigue AutoJs6 de forma predeterminada y ofrece 19 preajustes Material 500 y colores RGB personalizados; los ajustes propios incluyen idioma, noche, reanudación, actualizaciones, historial e información.
 
 ******
 
@@ -64,10 +64,10 @@ Audio Player ofrece un controlador dentro de la aplicación y un servicio privad
 
 ******
 
-El catálogo del Explorador solo coincide intencionadamente con estas extensiones y declara una lista de tipos MIME vacía:
+El catálogo anuncia `audio/*` y usa también estas extensiones para tablas MIME antiguas o incompletas:
 
 ```text
-aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave
+aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
 ```
 
 La coincidencia de una extensión no garantiza la decodificación. La reproducción real depende de Media3, la plataforma Android, los codecs del dispositivo y el contenido del archivo.
@@ -78,7 +78,7 @@ La coincidencia de una extensión no garantiza la decodificación. La reproducci
 
 ******
 
-Cuando el plugin está instalado, el gestor muestra Reproducir audio para un archivo y Reproducir audio seleccionado en la barra de multiselección. La apertura individual comienza en esa pista y puede descubrir audios hermanos directos legibles en orden natural; la multiselección explícita conserva el orden del host.
+Cuando el plugin está instalado y activado en AutoJs6, el gestor muestra Reproducir audio para un archivo y Reproducir audio seleccionado en la barra de multiselección. La apertura individual comienza en esa pista y puede descubrir audios hermanos directos legibles en orden natural; la multiselección explícita conserva el orden del host.
 
 Cuando falta el plugin, esta acción no aparece. El host conserva su flujo externo ACTION_VIEW de solo lectura para archivos de audio, por lo que otra aplicación de audio instalada puede gestionar el archivo. Si no hay una aplicación externa compatible, el host no obtiene una interfaz de reproducción alternativa.
 
@@ -97,14 +97,14 @@ plugin id: audio-player
 engine: explorer-action
 variant: default
 Explorer action ids: play-audio (single) / play-audio-selection (multiple, up to 128)
-Explorer protocol version: 4
-Explorer MIME types: []
+Explorer protocol version: 12 (accepts compatible read-only v4–v12 requests)
+Explorer MIME types: [audio/*]
 Android VIEW action: android.intent.action.VIEW
-Android VIEW MIME type: audio/*
+Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-La versión 1.2.1 proporciona una acción principal de solo lectura con protocolo v12 que puede recibir una capacidad por solicitud para hermanos directos, además de una acción multiselección ordenada de solo lectura. La entrada Android independiente sigue siendo de un archivo y acepta `audio/*`. Los hosts sin la Host Session opcional conservan la reproducción del archivo seleccionado.
+La versión 1.3.0 ofrece acciones v12 de solo lectura, acceso limitado a hermanos, selector independiente de documentos y entradas Android de audio / WMA. Los hosts sin Host Session opcional reproducen solo el archivo seleccionado.
 
 El descubrimiento en la misma carpeta requiere AutoJs6 6.8.0 build 5276 o posterior y Explorer Action v12; este requisito no aumentará con capacidades futuras del plugin.
 
@@ -114,7 +114,7 @@ El descubrimiento en la misma carpeta requiere AutoJs6 6.8.0 build 5276 o poster
 
 ******
 
-El plugin no solicita permisos de almacenamiento ni de acceso a Internet. Su entrada protegida por firma valida estrictamente el protocolo v12, TARGETS y ClipData ordenados, identificadores, relación con el padre, metadatos y flags de solo lectura. Una Host Session opcional queda vinculada por el host al UID del plugin y solo puede listar el padre directo del archivo seleccionado y abrir este o un hermano directo legible; los componentes de reproducción reciben rutas sintéticas opacas, nunca rutas del sistema de archivos. La entrada Android pública sigue siendo de un archivo y solo lectura.
+El plugin no solicita almacenamiento ni escribe archivos. Internet se usa solo para comprobaciones de versiones de GitHub manuales o diarias. La entrada firmada valida estrictamente v12, TARGETS, ClipData, metadatos y lectura; Host Session permanece vinculada al UID y no recursiva, y las entradas públicas conservan permisos de solo lectura.
 
 ******
 
@@ -124,9 +124,9 @@ El plugin no solicita permisos de almacenamiento ni de acceso a Internet. Su ent
 
 - La acción individual parte exactamente de un archivo seleccionado y puede formar una cola acotada de audios hermanos directos legibles; la acción de selección acepta de 1 a 128 archivos únicos y conserva su orden.
 - Se rechazan las solicitudes del Explorador con un tamaño declarado superior a 8 TiB.
-- La acción del Explorador se selecciona solo por la extensión y valida un tipo MIME de audio al ejecutarse.
+- Las acciones coinciden por MIME de audio reconocido o por la lista de extensiones y normalizan y validan cada objetivo.
 - El descubrimiento de hermanos no es recursivo y solo está disponible mediante la sesión por solicitud del host; el plugin nunca adivina un URI hermano ni recibe una ruta del sistema de archivos.
-- La entrada Android pública requiere ACTION_VIEW, un URI `content`, `audio/*` y permiso de lectura.
+- La entrada Android pública requiere ACTION_VIEW, un URI `content`, un MIME de audio o WMA compatible y permiso de lectura.
 - El permiso de notificaciones es opcional. Si se deniega, se ocultan los controles de la bandeja de notificaciones pero no se bloquea la reproducción.
 - La reproducción finaliza de forma segura al completarse o producirse un error de decodificación. La alternativa externa transfiere solo un nuevo permiso de lectura y excluye este plugin.
 
@@ -135,6 +135,19 @@ El plugin no solicita permisos de almacenamiento ni de acceso a Internet. Su ent
 ### Historial de versiones
 
 ******
+
+# v1.3.0
+
+###### 2026/08/29
+
+* `Función` Se añadió una pantalla de inicio y un reproductor independiente para varios archivos, además de ajustes propios de idioma, modo nocturno, color, reanudación, actualizaciones, historial e información de la aplicación y el desarrollador
+* `Función` El idioma, el modo nocturno y el color siguen AutoJs6 de forma predeterminada mediante su contrato oficial de solo lectura; si el host no está disponible, las opciones siguen visibles pero deshabilitadas y usan los valores predeterminados
+* `Función` Se añadieron comprobaciones manuales y automáticas diarias, gestión de versiones ignoradas e historial localizado integrado
+* `Corrección` Se corrigió el aviso permanente Host color unavailable al exponer la entrada protegida de información del plugin que requiere el proveedor de ajustes del host
+* `Corrección` Las acciones del Explorador anuncian tipos MIME de audio además de 19 extensiones conocidas, incluida WMA, para abrir directamente en el plugin todo audio reconocido por el host
+* `Mejora` La reanudación recuerda exactamente el último archivo abierto, descarta de inmediato el anterior al abrir otro y nunca conserva una reproducción terminada
+* `Mejora` El área de metadatos reserva tres líneas estables y completa frecuencia y tasa de bits con la pista seleccionada, en el orden 44.1 kHz · MP3 · 128 kbps
+* `Mejora` A-B usa ahora un ciclo claro de tres pulsaciones para fijar A, fijar B y borrar; los controles inferiores tienen más espacio e iconos centrados y del mismo tamaño
 
 # v1.2.2
 
@@ -155,20 +168,6 @@ El plugin no solicita permisos de almacenamiento ni de acceso a Internet. Su ent
 * `Mejora` El filtro de extensiones de audio excluye de la cola los vídeos .mp4 con el mismo nombre que audios .m4a, mientras la cola de selección múltiple explícita existente no cambia
 * `Mejora` La propiedad de la Host Session se transfiere al servicio de reproducción en segundo plano y se cierra al sustituir la cola, fallar el inicio, terminar la reproducción o destruir el servicio
 * `Dependencia` Se actualizó la API Explorer Action incluida del protocolo v4 a la extensión de lectura de hermanos v12 retrocompatible, manteniendo la compilación mínima 5276 del host
-
-# v1.2.0
-
-###### 2026/08/27
-
-* `Función` Compatibilidad con Explorer Action v4 y una nueva acción multiselección ordenada que crea una cola con hasta 128 archivos de audio elegidos explícitamente
-* `Función` Lista nativa de Media3 con anterior / siguiente, panel para saltar o eliminar pistas y modos secuencial / aleatorio / repetir una
-* `Función` Temporizador gestionado por el servicio con 15 / 30 / 60 minutos, duración personalizada, detener tras la pista actual y fundido final de cinco segundos
-* `Función` Bucle de intervalo A-B para repetir una sección seleccionada
-* `Mejora` Los controles multimedia del sistema ahora muestran anterior, siguiente y saltos de 10 segundos, mientras metadatos y reanudación siguen la pista actual
-* `Mejora` La validación del Explorador cubre TARGETS y ClipData ordenados, identificadores únicos, sesión del host y cada archivo seleccionado sin ampliar permisos de lectura
-* `Mejora` Se documenta que el URI padre FileProvider no enumera hijos; la búsqueda de archivos hermanos y la conjetura de URI siguen desactivadas y la multiselección es la vía segura
-* `Dependencia` API Explorer Action integrada actualizada de v2 a v4 y compilación mínima del host elevada a 5276
-* `Dependencia` Añadido AndroidX RecyclerView 1.4.0
 
 ##### Para consultar más versiones
 

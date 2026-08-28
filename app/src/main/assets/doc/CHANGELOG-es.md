@@ -4,6 +4,19 @@
 
 ******
 
+# v1.3.0
+
+###### 2026/08/29
+
+* `Función` Se añadió una pantalla de inicio y un reproductor independiente para varios archivos, además de ajustes propios de idioma, modo nocturno, color, reanudación, actualizaciones, historial e información de la aplicación y el desarrollador
+* `Función` El idioma, el modo nocturno y el color siguen AutoJs6 de forma predeterminada mediante su contrato oficial de solo lectura; si el host no está disponible, las opciones siguen visibles pero deshabilitadas y usan los valores predeterminados
+* `Función` Se añadieron comprobaciones manuales y automáticas diarias, gestión de versiones ignoradas e historial localizado integrado
+* `Corrección` Se corrigió el aviso permanente Host color unavailable al exponer la entrada protegida de información del plugin que requiere el proveedor de ajustes del host
+* `Corrección` Las acciones del Explorador anuncian tipos MIME de audio además de 19 extensiones conocidas, incluida WMA, para abrir directamente en el plugin todo audio reconocido por el host
+* `Mejora` La reanudación recuerda exactamente el último archivo abierto, descarta de inmediato el anterior al abrir otro y nunca conserva una reproducción terminada
+* `Mejora` El área de metadatos reserva tres líneas estables y completa frecuencia y tasa de bits con la pista seleccionada, en el orden 44.1 kHz · MP3 · 128 kbps
+* `Mejora` A-B usa ahora un ciclo claro de tres pulsaciones para fijar A, fijar B y borrar; los controles inferiores tienen más espacio e iconos centrados y del mismo tamaño
+
 # v1.2.2
 
 ###### 2026/08/27

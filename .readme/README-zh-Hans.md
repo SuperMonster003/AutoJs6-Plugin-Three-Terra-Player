@@ -5,7 +5,7 @@
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>文件管理器插件. 通过应用内控制和后台控制播放音频文件</p>
+  <p>AutoJs6 插件与独立应用. 通过专注的应用内控制和后台控制播放音频</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-音频播放器为从文件管理器打开的音频文件提供应用内控制界面和私有后台播放服务. 插件也可以接收面向音频 MIME 类型 content URI 的只读 Android ACTION_VIEW 请求.
+音频播放器既是 AutoJs6 文件管理器插件, 也是支持多文件的独立简易播放器, 提供应用内控制界面和私有后台播放服务, 同时接受只读 Android ACTION_VIEW content URI.
 
 ******
 
@@ -47,16 +47,17 @@
 
 ******
 
-- 通过文件浏览器动作协议 v12, 为宿主已识别的 18 个音频扩展名同时注册单文件动作 `play-audio` 与有序多选动作 `play-audio-selection`.
+- 通过文件浏览器动作协议 v12, 为宿主已识别的所有音频 MIME 及 19 个已知扩展名同时注册单文件动作 `play-audio` 与有序多选动作 `play-audio-selection`.
 - 使用 Media3 ExoPlayer 和 MediaSessionService 播放音频, 支持音频焦点, 输出设备断开处理, 本地唤醒模式, 后台播放和系统媒体控制.
 - 提供包含专辑封面, 媒体标签, 技术信息, 进度拖动, 快退快进 10 秒, 顺序 / 随机 / 单曲循环模式和 0.5 至 2 倍变速的完整播放界面.
 - 按宿主给定顺序播放最多 128 个显式选中的音频文件, 支持上一曲 / 下一曲和可点选跳转或移除曲目的队列面板.
 - 提供由播放服务持有的预设 / 自定义睡眠定时器, 播完本曲后停止, 最后 5 秒淡出以及适合听力练习的 A-B 区间循环.
-- 逐曲记忆播放进度, 并向系统媒体界面同步当前标签标题, 封面, 上一曲 / 下一曲及快退快进 10 秒控制.
-- 独立接收面向 `audio/*` 的只读 `content` URI Android ACTION_VIEW 请求, 丢弃调用方 extras 和宽泛 URI 授权.
+- 只记忆最近打开的一个文件及其播放位置, 打开其他文件时立即替换, 并向系统媒体界面同步当前元数据和播放控制.
+- 提供可一次选择最多 128 个文档的启动页面, 并独立接收只读 Android ACTION_VIEW `content` URI, 包括旧式 WMA MIME 别名.
 - 解码失败时可使用其他兼容应用打开文件, 并排除本插件以防止自循环.
 - 从文件浏览器打开单曲时, 通过请求级 Host Session 自动发现可读的直接同级音频并自然排序为有界队列; 显式多选仍保持宿主选择顺序.
 - 由一个色源生成兼顾可读性的亮色与暗色配色, 默认跟随 AutoJs6, 并提供 19 个本地化 Material 500 预置色及带实时预览的自定义 RGB 颜色.
+- 提供独立设置页面, 可配置跟随宿主的语言 / 夜间模式 / 颜色、续播、手动与自动更新、已忽略版本、发行历史及应用信息.
 
 ******
 
@@ -64,10 +65,10 @@
 
 ******
 
-文件浏览器目录有意仅匹配以下扩展名, MIME 类型列表为空:
+文件浏览器目录声明 `audio/*`, 并同时通过以下扩展名兼容稀疏或旧式 Android MIME 表:
 
 ```text
-aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave
+aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
 ```
 
 扩展名匹配不保证能够解码. 实际播放能力取决于 Media3, Android 平台, 设备编解码器和文件内容.
@@ -78,7 +79,7 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-安装插件后, 文件管理器会为单个文件显示主操作播放音频, 并在多选工具栏显示播放所选音频. 单文件入口从所选曲目开始, 可按自然顺序发现可读直接同级音频; 显式多选保持宿主给定的选择顺序.
+安装插件并在 AutoJs6 插件中心启用后, 文件管理器会为单个文件显示主操作播放音频, 并在多选工具栏显示播放所选音频. 单文件入口从所选曲目开始, 可按自然顺序发现可读直接同级音频; 显式多选保持宿主给定的选择顺序.
 
 缺少插件时, 此动作不会显示. 宿主会保留原有的音频文件只读外部 ACTION_VIEW 流程, 因此其他已安装的音频应用仍可处理文件. 如果没有兼容的外部应用, 宿主不会获得替代播放界面.
 
@@ -97,14 +98,14 @@ plugin id: audio-player
 engine: explorer-action
 variant: default
 Explorer action ids: play-audio (single) / play-audio-selection (multiple, up to 128)
-Explorer protocol version: 4
-Explorer MIME types: []
+Explorer protocol version: 12 (accepts compatible read-only v4–v12 requests)
+Explorer MIME types: [audio/*]
 Android VIEW action: android.intent.action.VIEW
-Android VIEW MIME type: audio/*
+Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-版本 1.2.1 提供协议 v12 单文件只读主动作, 可接收请求级直接同级读取能力, 并保留有序多选只读动作. 独立 Android 入口仍为单文件并接受 `audio/*`. 不提供可选 Host Session 的宿主继续仅播放所选文件.
+版本 1.3.0 提供协议 v12 单文件与有序多选只读动作、请求级直接同级读取能力、独立文档选择器以及公开只读 Android 音频 / WMA 入口. 不提供可选 Host Session 的宿主继续仅播放所选文件.
 
 同目录发现需要 AutoJs6 6.8.0 build 5276 或更高版本及 Explorer Action v12; 后续插件能力不会提高此要求.
 
@@ -114,7 +115,7 @@ required host build: 5276
 
 ******
 
-插件不请求存储或互联网访问权限. 受签名权限保护的入口严格验证协议 v12, 有序 TARGETS 与 ClipData, 标识符, 父子关系, 元数据和只读标志. 可选 Host Session 由宿主绑定到插件 UID, 仅能列出所选文件的直接父目录并打开所选文件或可读直接同级文件; 播放组件只接收不透明合成路由, 不接收文件系统路径. 公共 Android 入口保持只读单文件.
+应用不请求存储权限且永不写入源文件. 互联网权限仅用于用户主动触发或每日一次的 GitHub 发行版检查. 受签名权限保护的入口严格验证协议 v12、有序 TARGETS 与 ClipData、标识符、父子关系、元数据和只读标志; Host Session 仍绑定 UID 且不递归, 公开与独立文档入口只保留读取授权.
 
 ******
 
@@ -124,9 +125,9 @@ required host build: 5276
 
 - 单文件动作从恰好 1 个所选文件开始, 可构建可读直接同级音频的有界队列; 多选动作接受 1 至 128 个不重复文件并保持其顺序.
 - 声明大小超过 8 TiB 的文件浏览器请求将被拒绝.
-- 文件浏览器动作仅按文件名扩展名选择, 执行时仍会验证音频 MIME 类型.
+- 文件浏览器动作按宿主识别的音频 MIME 或明确扩展名列表匹配, 执行时仍会规范化并验证每个目标.
 - 同级发现仅可通过宿主管理的请求级会话且不递归; 插件绝不猜测同级 URI, 也不接收文件系统路径.
-- 公共 Android 入口要求 ACTION_VIEW, `content` URI, `audio/*` 和读取授权.
+- 公共 Android 入口要求 ACTION_VIEW、`content` URI、受支持的音频或旧式 WMA MIME 类型及读取授权.
 - 通知权限是可选权限. 拒绝权限会隐藏通知栏控制, 但不会阻止播放.
 - 播放完成或解码错误时会安全结束. 外部降级仅转交新的读取授权, 并排除本插件.
 
@@ -135,6 +136,19 @@ required host build: 5276
 ### 版本历史
 
 ******
+
+# v1.3.0
+
+###### 2026/08/29
+
+* `新增` 新增启动页面与独立多文件播放器模式, 并提供独立设置页面, 包含语言、夜间模式、主题色、续播、更新、发行历史及应用与开发者信息
+* `新增` 语言、夜间模式和色源默认通过 AutoJs6 官方只读设置契约跟随宿主; 宿主不可用时仍显示但禁用对应选项, 并回退至应用默认值
+* `新增` 新增手动与每日自动检查更新、已忽略版本管理及本地化内置发行历史
+* `修复` 修复跟随 AutoJs6 始终显示 Host color unavailable 的问题; 插件现已公开宿主设置提供器要求的受保护插件信息服务入口
+* `修复` Explorer 动作在 19 个已知扩展名之外同时声明音频 MIME 支持并新增 WMA, 使宿主识别的所有音频条目均可直接调用插件
+* `优化` 续播现在只记忆最近打开的一个文件, 打开其他文件时立即丢弃旧记录, 播放完毕永不保留位置
+* `优化` 固定保留三行元数据区域, 并结合实际选中音轨补足采样率与码率, 按 44.1 kHz · MP3 · 128 kbps 的顺序显示
+* `优化` A-B 改为依次设置 A 点、B 点和清除的三次点击循环; 底部控制区增加间距, 图标统一大小并严格垂直居中
 
 # v1.2.2
 
@@ -155,20 +169,6 @@ required host build: 5276
 * `优化` 音频扩展名筛选会将与 .m4a 同名的 .mp4 视频排除在队列外, 既有显式多选队列行为保持不变
 * `优化` Host Session 所有权会转交后台播放服务, 并在替换队列, 启动失败, 播放完成或服务销毁时关闭
 * `依赖` 将内置 Explorer Action API 从协议 v4 升级到向后兼容的 v12 同级读取扩展, 最低宿主构建版本仍为 5276
-
-# v1.2.0
-
-###### 2026/08/27
-
-* `新增` 适配文件浏览器动作协议 v4, 新增有序多选动作, 可将最多 128 个显式选中的音频文件构建为播放队列
-* `新增` 新增原生 Media3 播放列表, 上一曲 / 下一曲控制, 可跳转或移除曲目的队列面板及顺序 / 随机 / 单曲循环模式
-* `新增` 新增由服务持有的睡眠定时器, 支持 15 / 30 / 60 分钟, 自定义时长, 播完本曲后停止和最后 5 秒淡出
-* `新增` 新增 A-B 区间循环, 可重复播放选定片段
-* `优化` 系统媒体控制新增上一曲, 下一曲及快退 / 快进 10 秒命令, 元数据与续播位置随当前队列曲目切换
-* `优化` 文件浏览器请求验证扩展至有序 TARGETS 与 ClipData, 唯一请求和目标标识符, 宿主会话描述符及每个选中文件, 且不扩大只读授权
-* `优化` 明确记录宿主 FileProvider 父目录 URI 无法枚举子项; 继续禁用同级文件自动发现和 URI 猜测, 以显式多选作为安全队列路径
-* `依赖` 内置文件浏览器动作 API 从协议 v2 升级至 v4, 最低宿主构建版本提升至 5276
-* `依赖` 新增 AndroidX RecyclerView 1.4.0
 
 ##### 查看更多版本
 

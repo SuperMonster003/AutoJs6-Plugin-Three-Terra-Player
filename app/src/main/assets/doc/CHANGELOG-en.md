@@ -4,6 +4,19 @@
 
 ******
 
+# v1.3.0
+
+###### 2026/08/29
+
+* `Feature` Added a launcher and standalone multi-file player mode, plus a dedicated settings screen for language, night mode, theme color, resume behavior, updates, release history, and app/developer information
+* `Feature` Language, night mode, and source color now follow AutoJs6 by default through its official read-only settings contract; unavailable host choices remain visible but disabled and fall back to app defaults
+* `Feature` Added manual and daily automatic update checks, ignored-version management, and localized bundled release history
+* `Fix` Fixed Follow AutoJs6 reporting Host color unavailable by exposing the protected plugin-info service entry required by the host settings provider
+* `Fix` Explorer actions now advertise audio MIME support in addition to 19 known extensions, including WMA, so every host-recognized audio item routes directly to the plugin
+* `Improvement` Resume playback now remembers exactly one most recently opened file, immediately discards it when another file opens, and never keeps completed playback
+* `Improvement` Reserved a stable three-line metadata area and supplemented tags with selected-stream sample rate and bitrate in the order 44.1 kHz · MP3 · 128 kbps
+* `Improvement` A-B is now a discoverable three-tap cycle to set A, set B, and clear; bottom controls gained spacing and precisely centered, consistently sized icons
+
 # v1.2.2
 
 ###### 2026/08/27

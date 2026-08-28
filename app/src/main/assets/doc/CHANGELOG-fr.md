@@ -4,6 +4,19 @@
 
 ******
 
+# v1.3.0
+
+###### 2026/08/29
+
+* `Fonctionnalité` Ajout d’un écran de lancement et d’un lecteur autonome multifichier, ainsi que de paramètres dédiés à la langue, au mode nuit, à la couleur, à la reprise, aux mises à jour, à l’historique et aux informations sur l’application et le développeur
+* `Fonctionnalité` La langue, le mode nuit et la couleur suivent AutoJs6 par défaut via son contrat officiel en lecture seule ; si l’hôte est indisponible, les choix restent visibles mais désactivés et reviennent aux valeurs par défaut
+* `Fonctionnalité` Ajout de la vérification manuelle et automatique quotidienne, de la gestion des versions ignorées et d’un historique localisé intégré
+* `Correctif` Correction du message permanent Host color unavailable en exposant l’entrée protégée d’informations du plugin requise par le fournisseur de paramètres de l’hôte
+* `Correctif` Les actions de l’explorateur annoncent les types MIME audio en plus de 19 extensions connues, dont WMA, afin que tout audio reconnu par l’hôte s’ouvre directement dans le plugin
+* `Amélioration` La reprise mémorise exactement le dernier fichier ouvert, efface immédiatement l’ancien à l’ouverture d’un autre et ne conserve jamais une lecture terminée
+* `Amélioration` La zone de métadonnées réserve trois lignes stables et complète fréquence et débit depuis la piste sélectionnée, dans l’ordre 44.1 kHz · MP3 · 128 kbps
+* `Amélioration` A-B suit désormais un cycle clair en trois pressions pour définir A, définir B et effacer ; les commandes inférieures sont espacées et leurs icônes centrées et uniformes
+
 # v1.2.2
 
 ###### 2026/08/27
