@@ -64,4 +64,17 @@
         <item quantity="many">%1$d pistas</item>
         <item quantity="other">%1$d pistas</item>
     </plurals>
+    <string name="action_choose_theme">Elegir color del tema</string>
+    <string name="theme_custom">Color personalizado</string>
+    <string name="theme_custom_error">Introduce un color RGB hexadecimal de seis dígitos</string>
+    <string name="theme_custom_title">Color de origen personalizado</string>
+    <string name="theme_palette_preview">Vista previa de la paleta generada</string>
+    <string name="theme_picker_description">Un color de origen genera funciones accesibles para controles, superficies, contornos y apariencia clara u oscura.</string>
+    <string name="theme_picker_title">Color del tema</string>
+    <string name="theme_preset_accessibility">%1$s, %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s, %2$s, seleccionado</string>
+    <string name="theme_presets">Preajustes Material 500</string>
+    <string name="theme_source_autojs6">Seguir AutoJs6</string>
+    <string name="theme_source_autojs6_available">Color actual del anfitrión · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">Color del anfitrión no disponible · alternativo %1$s</string>
 </resources>

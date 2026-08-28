@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_preset_names">
+        <item>レッド</item><item>ピンク</item><item>パープル</item><item>ディープパープル</item>
+        <item>インディゴ</item><item>ブルー</item><item>ライトブルー</item><item>シアン</item>
+        <item>ティール</item><item>グリーン</item><item>ライトグリーン</item><item>ライム</item>
+        <item>イエロー</item><item>アンバー</item><item>オレンジ</item><item>ディープオレンジ</item>
+        <item>ブラウン</item><item>グレー</item><item>ブルーグレー</item>
+    </string-array>
+</resources>

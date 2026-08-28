@@ -58,4 +58,17 @@
     <plurals name="queue_track_count">
         <item quantity="other">%1$d개 트랙</item>
     </plurals>
+    <string name="action_choose_theme">테마 색상 선택</string>
+    <string name="theme_custom">사용자 지정 색상</string>
+    <string name="theme_custom_error">6자리 RGB 16진수 색상을 입력하세요</string>
+    <string name="theme_custom_title">사용자 지정 원본 색상</string>
+    <string name="theme_palette_preview">생성된 팔레트 미리보기</string>
+    <string name="theme_picker_description">하나의 원본 색상으로 컨트롤, 표면, 윤곽선과 밝거나 어두운 화면에 읽기 쉬운 역할 색상을 생성합니다.</string>
+    <string name="theme_picker_title">테마 색상</string>
+    <string name="theme_preset_accessibility">%1$s, %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s, %2$s, 선택됨</string>
+    <string name="theme_presets">Material 500 사전 설정</string>
+    <string name="theme_source_autojs6">AutoJs6 따르기</string>
+    <string name="theme_source_autojs6_available">호스트 실시간 색상 · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">호스트 색상 사용 불가 · 대체 %1$s</string>
 </resources>

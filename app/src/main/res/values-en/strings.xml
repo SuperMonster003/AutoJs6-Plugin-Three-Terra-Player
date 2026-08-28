@@ -61,4 +61,17 @@
         <item quantity="one">%1$d track</item>
         <item quantity="other">%1$d tracks</item>
     </plurals>
+    <string name="action_choose_theme">Choose theme color</string>
+    <string name="theme_custom">Custom color</string>
+    <string name="theme_custom_error">Enter a six-digit RGB hexadecimal color</string>
+    <string name="theme_custom_title">Custom source color</string>
+    <string name="theme_palette_preview">Generated palette preview</string>
+    <string name="theme_picker_description">One source color generates accessible roles for controls, surfaces, outlines, and light or dark appearance.</string>
+    <string name="theme_picker_title">Theme color</string>
+    <string name="theme_preset_accessibility">%1$s, %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s, %2$s, selected</string>
+    <string name="theme_presets">Material 500 presets</string>
+    <string name="theme_source_autojs6">Follow AutoJs6</string>
+    <string name="theme_source_autojs6_available">Live host color · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">Host color unavailable · fallback %1$s</string>
 </resources>

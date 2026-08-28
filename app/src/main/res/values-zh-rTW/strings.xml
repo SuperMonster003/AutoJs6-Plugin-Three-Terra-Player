@@ -58,4 +58,17 @@
     <plurals name="queue_track_count">
         <item quantity="other">%1$d 首</item>
     </plurals>
+    <string name="action_choose_theme">選擇主題顏色</string>
+    <string name="theme_custom">自訂顏色</string>
+    <string name="theme_custom_error">請輸入六位 RGB 十六進位顏色</string>
+    <string name="theme_custom_title">自訂色彩來源</string>
+    <string name="theme_palette_preview">產生的配色預覽</string>
+    <string name="theme_picker_description">由一個色彩來源自動產生適用於控制項、表面、輪廓及淺色或深色外觀的高可讀性語意色彩。</string>
+    <string name="theme_picker_title">主題顏色</string>
+    <string name="theme_preset_accessibility">%1$s，%2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s，%2$s，已選取</string>
+    <string name="theme_presets">Material 500 預設顏色</string>
+    <string name="theme_source_autojs6">跟隨 AutoJs6</string>
+    <string name="theme_source_autojs6_available">主程式即時顏色 · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">無法讀取主程式顏色 · 改用 %1$s</string>
 </resources>

@@ -73,4 +73,17 @@
         <item quantity="many">%1$d مسارا</item>
         <item quantity="other">%1$d مسارات</item>
     </plurals>
+    <string name="action_choose_theme">اختيار لون السمة</string>
+    <string name="theme_custom">لون مخصص</string>
+    <string name="theme_custom_error">أدخل لون RGB سداسيا من ست خانات</string>
+    <string name="theme_custom_title">لون مصدر مخصص</string>
+    <string name="theme_palette_preview">معاينة لوحة الألوان المنشأة</string>
+    <string name="theme_picker_description">ينشئ لون مصدر واحد أدوارا واضحة لعناصر التحكم والأسطح والحدود والمظهر الفاتح أو الداكن.</string>
+    <string name="theme_picker_title">لون السمة</string>
+    <string name="theme_preset_accessibility">%1$s، %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s، %2$s، محدد</string>
+    <string name="theme_presets">ألوان Material 500 المسبقة</string>
+    <string name="theme_source_autojs6">اتباع AutoJs6</string>
+    <string name="theme_source_autojs6_available">لون المضيف المباشر · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">لون المضيف غير متاح · البديل %1$s</string>
 </resources>

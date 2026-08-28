@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_preset_names">
+        <item>Rouge</item><item>Rose</item><item>Violet</item><item>Violet foncé</item>
+        <item>Indigo</item><item>Bleu</item><item>Bleu clair</item><item>Cyan</item>
+        <item>Sarcelle</item><item>Vert</item><item>Vert clair</item><item>Citron vert</item>
+        <item>Jaune</item><item>Ambre</item><item>Orange</item><item>Orange foncé</item>
+        <item>Marron</item><item>Gris</item><item>Bleu-gris</item>
+    </string-array>
+</resources>

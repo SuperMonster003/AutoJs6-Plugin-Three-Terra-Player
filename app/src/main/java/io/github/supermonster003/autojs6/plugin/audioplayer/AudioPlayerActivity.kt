@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -18,7 +19,7 @@ import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -47,12 +48,16 @@ import io.github.supermonster003.autojs6.plugin.audioplayer.policy.MimeTypePolic
 import io.github.supermonster003.autojs6.plugin.audioplayer.policy.PlaybackMode
 import io.github.supermonster003.autojs6.plugin.audioplayer.policy.PlaybackModePolicy
 import io.github.supermonster003.autojs6.plugin.audioplayer.policy.SleepTimerPolicy
+import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemePaletteGenerator
+import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemePicker
+import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemeViewStyler
+import io.github.supermonster003.autojs6.plugin.audioplayer.theme.AudioThemedActivity
 import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.ceil
 
 /** Controller UI for the private MediaSessionService. */
-class AudioPlayerActivity : AppCompatActivity() {
+class AudioPlayerActivity : AudioThemedActivity() {
 
     private lateinit var binding: ActivityAudioPlayerBinding
     private lateinit var request: AudioPlaybackRequest
@@ -167,7 +172,17 @@ class AudioPlayerActivity : AppCompatActivity() {
         }
         binding = ActivityAudioPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AudioThemeViewStyler.applyPlayer(this, binding)
         binding.toolbar.setNavigationOnClickListener { finishAfterTransition() }
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_choose_theme -> {
+                    AudioThemePicker(this) { recreate() }.show()
+                    true
+                }
+                else -> false
+            }
+        }
         binding.notificationPermissionButton.setOnClickListener { requestNotificationPermission() }
         binding.openExternalButton.setOnClickListener { openWithAnotherApp() }
         bindTransportControls()
@@ -303,6 +318,7 @@ class AudioPlayerActivity : AppCompatActivity() {
             .setItems(labels.toTypedArray()) { _, which -> actions[which]() }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+            .also(::tintDialogButtons)
     }
 
     private fun showCustomSleepTimerDialog() {
@@ -311,6 +327,9 @@ class AudioPlayerActivity : AppCompatActivity() {
             hint = getString(R.string.timer_custom_hint)
             setText(String.format(Locale.getDefault(), "%d", CUSTOM_TIMER_DEFAULT_MINUTES))
             setSelectAllOnFocus(true)
+            setTextColor(audioPalette.onSurface)
+            setHintTextColor(audioPalette.onSurfaceVariant)
+            backgroundTintList = ColorStateList.valueOf(audioPalette.primary)
         }
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.timer_custom)
@@ -325,6 +344,7 @@ class AudioPlayerActivity : AppCompatActivity() {
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+            .also(::tintDialogButtons)
     }
 
     private fun setSleepTimer(minutes: Long) {
@@ -366,6 +386,15 @@ class AudioPlayerActivity : AppCompatActivity() {
             .setItems(labels.toTypedArray()) { _, which -> actions[which]() }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+            .also(::tintDialogButtons)
+    }
+
+    private fun tintDialogButtons(dialog: AlertDialog) {
+        listOf(
+            AlertDialog.BUTTON_POSITIVE,
+            AlertDialog.BUTTON_NEGATIVE,
+            AlertDialog.BUTTON_NEUTRAL,
+        ).forEach { which -> dialog.getButton(which)?.setTextColor(audioPalette.primary) }
     }
 
     private fun sendPositionCommand(command: SessionCommand, positionMs: Long) {
@@ -399,6 +428,7 @@ class AudioPlayerActivity : AppCompatActivity() {
         dismissQueue()
         val sheetBinding = BottomSheetPlaybackQueueBinding.inflate(layoutInflater)
         val adapter = PlaybackQueueAdapter(
+            palette = audioPalette,
             onSelect = { index ->
                 activeController()?.takeIf { index in 0 until it.mediaItemCount }?.let { controller ->
                     controller.seekToDefaultPosition(index)
@@ -409,6 +439,7 @@ class AudioPlayerActivity : AppCompatActivity() {
                 activeController()?.takeIf { index in 0 until it.mediaItemCount }?.removeMediaItem(index)
             },
         )
+        AudioThemeViewStyler.applyQueue(sheetBinding, audioPalette)
         sheetBinding.queueList.layoutManager = LinearLayoutManager(this)
         sheetBinding.queueList.adapter = adapter
         val dialog = BottomSheetDialog(this).apply {
@@ -419,6 +450,7 @@ class AudioPlayerActivity : AppCompatActivity() {
                 queueDialog = null
                 queueSheetBinding = null
                 queueAdapter = null
+                binding.queueButton.isActivated = false
             }
         }
         queueDialog = dialog
@@ -426,6 +458,7 @@ class AudioPlayerActivity : AppCompatActivity() {
         queueAdapter = adapter
         renderQueue()
         dialog.show()
+        binding.queueButton.isActivated = true
     }
 
     private fun dismissQueue() {
@@ -434,6 +467,7 @@ class AudioPlayerActivity : AppCompatActivity() {
         queueDialog = null
         queueSheetBinding = null
         queueAdapter = null
+        if (::binding.isInitialized) binding.queueButton.isActivated = false
     }
 
     private fun startPlayback() {
@@ -540,8 +574,12 @@ class AudioPlayerActivity : AppCompatActivity() {
             binding.artworkImage.setImageBitmap(bitmap)
         } else {
             binding.artworkImage.scaleType = ImageView.ScaleType.CENTER_INSIDE
-            binding.artworkImage.imageTintList =
-                ContextCompat.getColorStateList(this, R.color.artwork_placeholder_icon)
+            binding.artworkImage.imageTintList = ColorStateList.valueOf(
+                AudioThemePaletteGenerator.withAlpha(
+                    audioPalette.onPrimaryContainer,
+                    PLACEHOLDER_ICON_ALPHA,
+                ),
+            )
             binding.artworkImage.setImageResource(R.drawable.ic_audio_placeholder)
         }
     }
@@ -573,23 +611,28 @@ class AudioPlayerActivity : AppCompatActivity() {
             PlaybackMode.SHUFFLE -> R.drawable.ic_shuffle to R.string.playback_mode_shuffle
             PlaybackMode.REPEAT_ONE -> R.drawable.ic_repeat_one to R.string.playback_mode_repeat_one
         }
-        binding.playbackModeButton.setImageResource(icon)
+        binding.playbackModeButton.setIconResource(icon)
         binding.playbackModeButton.contentDescription = getString(label)
-        binding.playbackModeButton.alpha = if (active == null) INACTIVE_CONTROL_ALPHA else 1f
+        binding.playbackModeButton.isEnabled = active != null
+        binding.playbackModeButton.isActivated = active != null && mode != PlaybackMode.SEQUENTIAL
     }
 
     private fun renderSpeed() {
         val speed = activeController()?.playbackParameters?.speed ?: 1f
         binding.speedButton.text = formatSpeed(speed)
+        binding.speedButton.isEnabled = activeController() != null
+        binding.speedButton.isActivated = activeController() != null && speed != 1f
     }
 
     private fun renderAdjacentControls() {
         val active = activeController()
         val hasQueue = (active?.mediaItemCount ?: 0) > 1
+        binding.seekBackwardButton.isEnabled = active != null
+        binding.seekForwardButton.isEnabled = active != null
         binding.previousButton.isEnabled = hasQueue && active?.hasPreviousMediaItem() == true
         binding.nextButton.isEnabled = hasQueue && active?.hasNextMediaItem() == true
-        binding.previousButton.alpha = if (binding.previousButton.isEnabled) 1f else INACTIVE_CONTROL_ALPHA
-        binding.nextButton.alpha = if (binding.nextButton.isEnabled) 1f else INACTIVE_CONTROL_ALPHA
+        binding.previousButton.alpha = 1f
+        binding.nextButton.alpha = 1f
     }
 
     private fun renderQueue() {
@@ -597,6 +640,7 @@ class AudioPlayerActivity : AppCompatActivity() {
         val count = active?.mediaItemCount ?: 0
         binding.queueButton.text = NumberFormat.getIntegerInstance().format(count.coerceAtLeast(0))
         binding.queueButton.isEnabled = count > 0
+        binding.queueButton.isActivated = queueDialog?.isShowing == true
         binding.queueButton.contentDescription = resources.getQuantityString(
             R.plurals.queue_track_count,
             count,
@@ -635,7 +679,8 @@ class AudioPlayerActivity : AppCompatActivity() {
 
     private fun renderSleepTimer() {
         val active = toolState.sleepMode != PlaybackSessionContract.SLEEP_MODE_OFF
-        binding.sleepTimerButton.alpha = if (active) 1f else INACTIVE_CONTROL_ALPHA
+        binding.sleepTimerButton.isEnabled = activeController() != null
+        binding.sleepTimerButton.alpha = 1f
         binding.sleepTimerButton.isActivated = active
         when (toolState.sleepMode) {
             PlaybackSessionContract.SLEEP_MODE_DEADLINE -> {
@@ -666,8 +711,9 @@ class AudioPlayerActivity : AppCompatActivity() {
         val start = toolState.abStartMs
         val end = toolState.abEndMs
         val active = start != null && end != null
-        binding.abLoopButton.alpha = if (active || start != null) 1f else INACTIVE_CONTROL_ALPHA
-        binding.abLoopButton.isActivated = active
+        binding.abLoopButton.isEnabled = activeController() != null
+        binding.abLoopButton.alpha = 1f
+        binding.abLoopButton.isActivated = active || start != null
         binding.abLoopButton.text = when {
             active -> getString(R.string.ab_short_active)
             start != null -> getString(R.string.ab_short_start_set)
@@ -790,7 +836,7 @@ class AudioPlayerActivity : AppCompatActivity() {
     private companion object {
         const val SEEK_BAR_MAX = 1000
         const val PROGRESS_TICK_MS = 500L
-        const val INACTIVE_CONTROL_ALPHA = 0.4f
+        const val PLACEHOLDER_ICON_ALPHA = 0xB8
         const val TIME_PLACEHOLDER = "--:--"
         const val SUBTITLE_SEPARATOR = " · "
         const val SPEED_SUFFIX = "×"

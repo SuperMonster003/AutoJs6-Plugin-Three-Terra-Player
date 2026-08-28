@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_preset_names">
+        <item>Красный</item><item>Розовый</item><item>Фиолетовый</item><item>Тёмно-фиолетовый</item>
+        <item>Индиго</item><item>Синий</item><item>Голубой</item><item>Бирюзовый</item>
+        <item>Сине-зелёный</item><item>Зелёный</item><item>Светло-зелёный</item><item>Лаймовый</item>
+        <item>Жёлтый</item><item>Янтарный</item><item>Оранжевый</item><item>Тёмно-оранжевый</item>
+        <item>Коричневый</item><item>Серый</item><item>Серо-синий</item>
+    </string-array>
+</resources>

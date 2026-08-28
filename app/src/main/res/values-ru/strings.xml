@@ -67,4 +67,17 @@
         <item quantity="many">%1$d треков</item>
         <item quantity="other">%1$d трека</item>
     </plurals>
+    <string name="action_choose_theme">Выбрать цвет темы</string>
+    <string name="theme_custom">Свой цвет</string>
+    <string name="theme_custom_error">Введите шестизначный шестнадцатеричный цвет RGB</string>
+    <string name="theme_custom_title">Свой исходный цвет</string>
+    <string name="theme_palette_preview">Предпросмотр созданной палитры</string>
+    <string name="theme_picker_description">Один исходный цвет создаёт контрастные роли для элементов управления, поверхностей, границ и светлого или тёмного оформления.</string>
+    <string name="theme_picker_title">Цвет темы</string>
+    <string name="theme_preset_accessibility">%1$s, %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s, %2$s, выбрано</string>
+    <string name="theme_presets">Предустановки Material 500</string>
+    <string name="theme_source_autojs6">Как в AutoJs6</string>
+    <string name="theme_source_autojs6_available">Текущий цвет хоста · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">Цвет хоста недоступен · резервный %1$s</string>
 </resources>

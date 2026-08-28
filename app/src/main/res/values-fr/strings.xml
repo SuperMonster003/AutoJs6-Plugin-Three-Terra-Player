@@ -64,4 +64,17 @@
         <item quantity="many">%1$d pistes</item>
         <item quantity="other">%1$d pistes</item>
     </plurals>
+    <string name="action_choose_theme">Choisir la couleur du thème</string>
+    <string name="theme_custom">Couleur personnalisée</string>
+    <string name="theme_custom_error">Saisissez une couleur RGB hexadécimale à six chiffres</string>
+    <string name="theme_custom_title">Couleur source personnalisée</string>
+    <string name="theme_palette_preview">Aperçu de la palette générée</string>
+    <string name="theme_picker_description">Une couleur source génère des rôles lisibles pour les commandes, surfaces, contours et apparences claire ou sombre.</string>
+    <string name="theme_picker_title">Couleur du thème</string>
+    <string name="theme_preset_accessibility">%1$s, %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s, %2$s, sélectionné</string>
+    <string name="theme_presets">Préréglages Material 500</string>
+    <string name="theme_source_autojs6">Suivre AutoJs6</string>
+    <string name="theme_source_autojs6_available">Couleur active de l’hôte · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">Couleur de l’hôte indisponible · repli %1$s</string>
 </resources>

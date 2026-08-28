@@ -58,4 +58,17 @@
     <plurals name="queue_track_count">
         <item quantity="other">%1$d 曲</item>
     </plurals>
+    <string name="action_choose_theme">テーマカラーを選択</string>
+    <string name="theme_custom">カスタムカラー</string>
+    <string name="theme_custom_error">6 桁の RGB 16 進カラーを入力してください</string>
+    <string name="theme_custom_title">カスタムソースカラー</string>
+    <string name="theme_palette_preview">生成パレットのプレビュー</string>
+    <string name="theme_picker_description">1 つのソースカラーから、コントロール、サーフェス、輪郭、ライトまたはダーク表示用の読みやすい役割色を生成します。</string>
+    <string name="theme_picker_title">テーマカラー</string>
+    <string name="theme_preset_accessibility">%1$s、%2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s、%2$s、選択済み</string>
+    <string name="theme_presets">Material 500 プリセット</string>
+    <string name="theme_source_autojs6">AutoJs6 に合わせる</string>
+    <string name="theme_source_autojs6_available">ホストの現在色 · %1$s</string>
+    <string name="theme_source_autojs6_unavailable">ホスト色を取得できません · 代替 %1$s</string>
 </resources>
