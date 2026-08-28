@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settings_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.Toolbar"
+        app:navigationContentDescription="@string/action_back"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/settings_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/settings_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/appearance_section"
+                style="@style/SettingsSectionTitle"
+                android:text="@string/settings_section_appearance" />
+
+            <LinearLayout
+                android:id="@+id/language_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/language_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_language" />
+
+                <TextView
+                    android:id="@+id/language_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/night_mode_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/night_mode_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_night_mode" />
+
+                <TextView
+                    android:id="@+id/night_mode_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/theme_color_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/theme_color_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_theme_color" />
+
+                <TextView
+                    android:id="@+id/theme_color_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/playback_section"
+                style="@style/SettingsSectionTitle"
+                android:text="@string/settings_section_playback" />
+
+            <LinearLayout
+                android:id="@+id/remember_position_setting"
+                style="@style/SettingsSwitchRow">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/remember_position_title"
+                        style="@style/SettingsRowTitle"
+                        android:text="@string/setting_resume_playback" />
+
+                    <TextView
+                        android:id="@+id/remember_position_summary"
+                        style="@style/SettingsRowSummary"
+                        android:text="@string/setting_resume_playback_summary" />
+
+                </LinearLayout>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/remember_position_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:textOff=""
+                    android:textOn=""
+                    app:showText="false" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/updates_section"
+                style="@style/SettingsSectionTitle"
+                android:text="@string/settings_section_updates" />
+
+            <LinearLayout
+                android:id="@+id/check_update_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/check_update_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_check_updates" />
+
+                <TextView
+                    android:id="@+id/check_update_summary"
+                    style="@style/SettingsRowSummary"
+                    android:text="@string/setting_check_updates_summary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auto_update_setting"
+                style="@style/SettingsSwitchRow">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/auto_update_title"
+                        style="@style/SettingsRowTitle"
+                        android:text="@string/setting_auto_check_updates" />
+
+                    <TextView
+                        android:id="@+id/auto_update_summary"
+                        style="@style/SettingsRowSummary"
+                        android:text="@string/setting_auto_check_updates_summary" />
+
+                </LinearLayout>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/auto_update_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:textOff=""
+                    android:textOn=""
+                    app:showText="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ignored_updates_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/ignored_updates_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_manage_ignored_updates" />
+
+                <TextView
+                    android:id="@+id/ignored_updates_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/release_history_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/release_history_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_release_history" />
+
+                <TextView
+                    android:id="@+id/release_history_summary"
+                    style="@style/SettingsRowSummary"
+                    android:text="@string/setting_release_history_summary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/about_section"
+                style="@style/SettingsSectionTitle"
+                android:text="@string/settings_section_about" />
+
+            <LinearLayout
+                android:id="@+id/about_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/about_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_about" />
+
+                <TextView
+                    android:id="@+id/about_summary"
+                    style="@style/SettingsRowSummary"
+                    android:text="@string/setting_about_summary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

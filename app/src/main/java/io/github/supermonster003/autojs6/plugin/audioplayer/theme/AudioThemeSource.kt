@@ -140,7 +140,10 @@ internal data class AutoJs6AppearanceSnapshot(
     val themeColorPrimary: Int,
     val themeColorPrimaryDark: Int,
     val themeColorAccent: Int,
+    val darkModePolicy: String,
     val darkModeActive: Boolean,
+    val languageTag: String,
+    val resolvedLanguageTag: String,
 )
 
 internal data class AutoJs6AppearanceResult(
@@ -183,6 +186,10 @@ internal object AutoJs6AppearanceClient {
             require(response.containsKey(HostContract.KEY_THEME_COLOR_PRIMARY))
             require(response.containsKey(HostContract.KEY_THEME_COLOR_PRIMARY_DARK))
             require(response.containsKey(HostContract.KEY_THEME_COLOR_ACCENT))
+            require(response.containsKey(HostContract.KEY_DARK_MODE_POLICY))
+            require(response.containsKey(HostContract.KEY_DARK_MODE_ACTIVE))
+            require(response.containsKey(HostContract.KEY_LANGUAGE_TAG))
+            require(response.containsKey(HostContract.KEY_RESOLVED_LANGUAGE_TAG))
             AutoJs6AppearanceSnapshot(
                 hostVersionCode = response.getLong(HostContract.KEY_HOST_VERSION_CODE, 0L),
                 hostVersionName = response.getString(HostContract.KEY_HOST_VERSION_NAME).orEmpty(),
@@ -195,7 +202,14 @@ internal object AutoJs6AppearanceClient {
                 themeColorAccent = AudioThemePaletteGenerator.opaque(
                     response.getInt(HostContract.KEY_THEME_COLOR_ACCENT),
                 ),
+                darkModePolicy = requireNotNull(
+                    response.getString(HostContract.KEY_DARK_MODE_POLICY),
+                ),
                 darkModeActive = response.getBoolean(HostContract.KEY_DARK_MODE_ACTIVE),
+                languageTag = requireNotNull(response.getString(HostContract.KEY_LANGUAGE_TAG)),
+                resolvedLanguageTag = requireNotNull(
+                    response.getString(HostContract.KEY_RESOLVED_LANGUAGE_TAG),
+                ),
             )
         }.getOrNull() ?: return AutoJs6AppearanceResult(
             AutoJs6HostAvailability.CONTRACT_UNAVAILABLE,

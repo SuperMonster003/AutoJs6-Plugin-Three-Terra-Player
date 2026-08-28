@@ -9,7 +9,6 @@ import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
 import androidx.annotation.OptIn as ExperimentalOptIn
-import androidx.core.content.ContextCompat
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
@@ -32,6 +31,7 @@ import com.google.common.util.concurrent.ListenableFuture
 import io.github.supermonster003.autojs6.plugin.audioplayer.policy.AbLoopPolicy
 import io.github.supermonster003.autojs6.plugin.audioplayer.policy.DisplayNamePolicy
 import io.github.supermonster003.autojs6.plugin.audioplayer.policy.SleepTimerPolicy
+import io.github.supermonster003.autojs6.plugin.audioplayer.settings.AppPreferenceStore
 import java.nio.charset.StandardCharsets.UTF_8
 import java.util.UUID
 import kotlin.math.min
@@ -50,6 +50,7 @@ class AudioPlaybackService : MediaSessionService() {
     private lateinit var player: ExoPlayer
     private lateinit var mediaSession: MediaSession
     private lateinit var positionStore: PlaybackPositionStore
+    private lateinit var appPreferenceStore: AppPreferenceStore
     private val sourceRouter = ExplorerAudioSourceRouter()
 
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -213,6 +214,8 @@ class AudioPlaybackService : MediaSessionService() {
     override fun onCreate() {
         super.onCreate()
         positionStore = PlaybackPositionStore(this)
+        appPreferenceStore = AppPreferenceStore(this)
+        if (!appPreferenceStore.rememberPlaybackPosition) positionStore.clearAll()
         val attributes = AudioAttributes.Builder()
             .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
             .setUsage(C.USAGE_MEDIA)
@@ -282,10 +285,15 @@ class AudioPlaybackService : MediaSessionService() {
             }
             val currentMediaId = mediaItems[request.startIndex].mediaId
             val currentTrack = requireNotNull(newTracksByMediaId[currentMediaId])
-            val resumePositionMs = positionStore.resumePositionMs(
-                positionKey(currentTrack, request.hostTargetId),
-                System.currentTimeMillis(),
-            ) ?: 0L
+            val resumePositionMs = if (appPreferenceStore.rememberPlaybackPosition) {
+                positionStore.resumePositionMs(
+                    positionKey(currentTrack, request.hostTargetId),
+                    System.currentTimeMillis(),
+                )
+            } else {
+                positionStore.clearAll()
+                null
+            } ?: 0L
 
             replacingQueue = true
             try {
@@ -417,7 +425,7 @@ class AudioPlaybackService : MediaSessionService() {
         activeMediaId = mediaId
         activePositionKey = positionKey(track)
         activeCompleted = false
-        if (applyRememberedPosition) {
+        if (applyRememberedPosition && appPreferenceStore.rememberPlaybackPosition) {
             positionStore.resumePositionMs(positionKey(track), System.currentTimeMillis())
                 ?.takeIf { it > RESUME_SEEK_TOLERANCE_MS }
                 ?.let { player.seekTo(it) }
@@ -447,11 +455,19 @@ class AudioPlaybackService : MediaSessionService() {
     }
 
     private fun persistPosition(mediaId: String, positionMs: Long, durationMs: Long) {
+        // Media3 may deliver the discontinuity callback after the transition callback. Never let
+        // a late callback for the previous item recreate its record after the new item invalidated
+        // it under the single-most-recent-file contract.
+        if (mediaId != activeMediaId) return
         val track = tracksByMediaId[mediaId] ?: return
         val safePositionMs = positionMs.coerceAtLeast(0L)
         val safeDurationMs = durationMs.coerceAtLeast(0L)
         lastPositionsByMediaId[mediaId] = safePositionMs
         durationsByMediaId[mediaId] = safeDurationMs
+        if (!appPreferenceStore.rememberPlaybackPosition) {
+            positionStore.clearAll()
+            return
+        }
         positionStore.save(
             positionKey(track),
             safePositionMs,
@@ -728,10 +744,11 @@ class AudioPlaybackService : MediaSessionService() {
         private const val MIN_TOOL_POLL_MS = 25L
 
         internal fun startPlayback(context: Context, request: AudioPlaybackRequest): Boolean = runCatching {
-            ContextCompat.startForegroundService(
-                context,
-                AudioPlaybackContract.serviceIntent(context, request),
-            )
+            // Every playback ingress first opens AudioPlayerActivity, so this call is made while the
+            // app is foreground-visible. MediaSessionService promotes itself once playback starts.
+            // A normal started service also lets a decoder/source failure remain visible briefly
+            // without violating the startForegroundService notification deadline.
+            context.startService(AudioPlaybackContract.serviceIntent(context, request))
             true
         }.getOrDefault(false)
     }

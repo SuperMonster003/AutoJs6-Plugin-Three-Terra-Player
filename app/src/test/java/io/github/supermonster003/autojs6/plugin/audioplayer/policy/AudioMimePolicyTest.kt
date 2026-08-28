@@ -12,7 +12,7 @@ class AudioMimePolicyTest {
         assertArrayEquals(
             arrayOf(
                 "aac", "ac3", "amr", "awb", "flac", "m4a", "m4b", "m4r", "mka",
-                "mp1", "mp2", "mp3", "mpga", "oga", "ogg", "opus", "wav", "wave",
+                "mp1", "mp2", "mp3", "mpga", "oga", "ogg", "opus", "wav", "wave", "wma",
             ),
             AudioMimePolicy.supportedExtensions,
         )
@@ -35,6 +35,7 @@ class AudioMimePolicyTest {
             "track.ogg" to "audio/ogg",
             "voice.opus" to "audio/ogg",
             "sample.wave" to "audio/wav",
+            "legacy.wma" to "audio/x-ms-wma",
         )
 
         cases.forEach { (displayName, expected) ->
@@ -45,6 +46,14 @@ class AudioMimePolicyTest {
             }
             assertEquals(expected, AudioMimePolicy.resolve(platformValue, displayName))
         }
+    }
+
+    @Test
+    fun recognizesAudioAndLegacyApplicationMimeTypesForPublicRouting() {
+        assertEquals(true, AudioMimePolicy.isPotentialAudioMimeType("audio/x-ms-wma"))
+        assertEquals(true, AudioMimePolicy.isPotentialAudioMimeType("application/x-ms-wma"))
+        assertEquals(true, AudioMimePolicy.isPotentialAudioMimeType("video/x-ms-asf"))
+        assertEquals(false, AudioMimePolicy.isPotentialAudioMimeType("application/pdf"))
     }
 
     @Test

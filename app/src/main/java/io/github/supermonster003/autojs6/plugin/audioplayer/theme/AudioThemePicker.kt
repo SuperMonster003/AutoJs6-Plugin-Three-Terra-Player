@@ -63,11 +63,15 @@ internal class AudioThemePicker(
             binding.followAutojs6Check,
             followsHost,
         )
+        binding.followAutojs6Card.isEnabled = hostResult.available
+        binding.followAutojs6Card.alpha = if (hostResult.available) 1f else DISABLED_SOURCE_ALPHA
         binding.followAutojs6Card.setOnClickListener {
-            applySelection(
-                preference.copy(mode = ThemeSourceMode.AUTOJS6, presetKey = null),
-                dialog,
-            )
+            if (hostResult.available) {
+                applySelection(
+                    preference.copy(mode = ThemeSourceMode.AUTOJS6, presetKey = null),
+                    dialog,
+                )
+            }
         }
 
         val names = activity.resources.getStringArray(R.array.theme_preset_names).toList()
@@ -245,6 +249,7 @@ internal class AudioThemePicker(
     private companion object {
         const val RIPPLE_ALPHA = 0x24
         const val INVALID_PREVIEW_ALPHA = 0.28f
+        const val DISABLED_SOURCE_ALPHA = 0.5f
         const val MIN_PRESET_COLUMNS = 4
         const val MAX_PRESET_COLUMNS = 6
         const val PRESET_CELL_WIDTH_DP = 82

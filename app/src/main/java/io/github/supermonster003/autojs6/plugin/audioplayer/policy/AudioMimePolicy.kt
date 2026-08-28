@@ -32,10 +32,22 @@ internal object AudioMimePolicy {
         "opus" to "audio/ogg",
         "wav" to "audio/wav",
         "wave" to "audio/wav",
+        "wma" to "audio/x-ms-wma",
+    )
+
+    private val supportedApplicationMimeTypes = setOf(
+        "application/x-ms-wma",
+        "application/vnd.ms-wma",
+        "video/x-ms-asf",
     )
 
     val supportedExtensions: Array<String>
         get() = canonicalMimeByExtension.keys.toTypedArray()
+
+    fun isPotentialAudioMimeType(value: String?): Boolean {
+        val normalized = normalizeDeclaredMimeType(value) ?: return false
+        return normalized.startsWith(AUDIO_PREFIX) || normalized in supportedApplicationMimeTypes
+    }
 
     /** Returns a normalized audio MIME type, or null when neither MIME nor extension is valid. */
     fun resolve(declaredMimeType: String?, displayName: String): String? {

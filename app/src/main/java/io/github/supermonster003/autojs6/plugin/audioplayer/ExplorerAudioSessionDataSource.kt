@@ -46,9 +46,12 @@ internal class ExplorerAudioSourceRouter : DataSource.Factory {
         configuration = null
     }
 
-    override fun createDataSource(): DataSource = ExplorerAudioSessionDataSource(
-        configuration ?: throw IllegalStateException("Explorer audio session is not configured"),
-    )
+    /*
+     * DefaultDataSource creates its base data source eagerly, even when it will ultimately route a
+     * content:// URI to ContentDataSource. Keep construction side-effect free and require the Host
+     * Session only if Media3 actually opens one of our synthetic explorer routes.
+     */
+    override fun createDataSource(): DataSource = ExplorerAudioSessionDataSource(configuration)
 
     private fun isHostTrack(track: AudioTrackRequest): Boolean =
         track.uri.scheme == AudioPlaybackContract.HOST_SOURCE_SCHEME
@@ -62,7 +65,7 @@ internal class ExplorerAudioSourceRouter : DataSource.Factory {
 
 /** One read-only descriptor at a time; Media3 creates a separate instance per loading stream. */
 private class ExplorerAudioSessionDataSource(
-    private val configuration: ExplorerAudioSourceRouter.Configuration,
+    private val configuration: ExplorerAudioSourceRouter.Configuration?,
 ) : BaseDataSource(false) {
 
     private var openedUri: Uri? = null
@@ -74,6 +77,8 @@ private class ExplorerAudioSessionDataSource(
     override fun open(dataSpec: DataSpec): Long {
         check(input == null) { "Explorer audio session data source is already open" }
         transferInitializing(dataSpec)
+        val configuration = configuration
+            ?: throw IOException("Explorer audio session is not configured")
         val relativePath = configuration.relativePathsByUri[dataSpec.uri.toString()]
             ?: throw IOException("Explorer audio route is unknown")
         val descriptor = try {

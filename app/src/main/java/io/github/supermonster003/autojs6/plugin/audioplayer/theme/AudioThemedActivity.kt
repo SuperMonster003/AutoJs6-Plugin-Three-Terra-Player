@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import io.github.supermonster003.autojs6.plugin.audioplayer.settings.AppAppearanceController
+import io.github.supermonster003.autojs6.plugin.audioplayer.settings.AppLanguageMode
+import io.github.supermonster003.autojs6.plugin.audioplayer.settings.AppNightMode
+import io.github.supermonster003.autojs6.plugin.audioplayer.settings.AppPreferenceStore
 
 /** AppCompat host that refreshes when either the local seed choice or followed AutoJs6 color changes. */
 abstract class AudioThemedActivity : AppCompatActivity() {
@@ -16,14 +20,22 @@ abstract class AudioThemedActivity : AppCompatActivity() {
         get() = resolvedAudioTheme.palette
 
     private var appliedPreferenceRevision = Long.MIN_VALUE
+    private var appliedAppearanceRevision = Long.MIN_VALUE
     private var appliedHostSignature: Int? = null
     private var recreationRequested = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // A cold Application can run before AutoJs6's provider is ready. Resolve once more at the
+        // Activity boundary so host-following locale and night mode are in place before AppCompat
+        // creates delegates or inflates any resources.
+        AppAppearanceController.apply(this)
         super.onCreate(savedInstanceState)
         resolvedAudioTheme = AudioThemeResolver.resolve(this)
         appliedPreferenceRevision = ThemePreferenceStore(this).revision()
+        val appStore = AppPreferenceStore(this)
+        appliedAppearanceRevision = appStore.appearanceRevision()
         appliedHostSignature = resolvedAudioTheme.hostResult?.hashCode()
+            ?: hostResultIfFollowed(appStore)?.hashCode()
         applyWindowPalette(audioPalette)
     }
 
@@ -32,16 +44,16 @@ abstract class AudioThemedActivity : AppCompatActivity() {
         if (recreationRequested) return
         val store = ThemePreferenceStore(this)
         val preference = store.load()
-        val hostSignature = if (preference.mode == ThemeSourceMode.AUTOJS6) {
-            AutoJs6AppearanceClient.query(this).hashCode()
-        } else {
-            null
-        }
+        val appStore = AppPreferenceStore(this)
+        val hostResult = if (followsHost(preference, appStore)) AutoJs6AppearanceClient.query(this) else null
+        val hostSignature = hostResult?.hashCode()
         if (
             store.revision() != appliedPreferenceRevision ||
+            appStore.appearanceRevision() != appliedAppearanceRevision ||
             hostSignature != appliedHostSignature
         ) {
             recreationRequested = true
+            hostResult?.let { result -> AppAppearanceController.apply(this, result) }
             recreate()
         }
     }
@@ -65,6 +77,23 @@ abstract class AudioThemedActivity : AppCompatActivity() {
     }
 
     internal fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
+
+    private fun hostResultIfFollowed(store: AppPreferenceStore): AutoJs6AppearanceResult? =
+        if (
+            store.language().mode == AppLanguageMode.AUTOJS6 ||
+            store.nightMode() == AppNightMode.AUTOJS6
+        ) {
+            AutoJs6AppearanceClient.query(this)
+        } else {
+            null
+        }
+
+    private fun followsHost(
+        themePreference: ThemeSourcePreference,
+        store: AppPreferenceStore,
+    ): Boolean = themePreference.mode == ThemeSourceMode.AUTOJS6 ||
+        store.language().mode == AppLanguageMode.AUTOJS6 ||
+        store.nightMode() == AppNightMode.AUTOJS6
 
     private fun applySystemBarIconAppearance(
         decorView: View,
