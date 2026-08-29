@@ -27,7 +27,7 @@
   "p_host_missing": "Lorsque le plugin est absent, cette action ne figure pas dans la liste. L'hôte conserve son flux ACTION_VIEW externe en lecture seule pour les fichiers audio, de sorte qu'une autre application audio installée peut traiter le fichier. Sans application externe compatible, l'hôte ne dispose pas d'une interface de lecture de remplacement.",
   "h3_plugin_interface": "Interface du plugin",
   "p_plugin_interface": "L'hôte découvre et exécute le plugin avec les identités suivantes",
-  "p_plugin_scope": "La version 1.3.0 fournit des actions v12 en lecture seule, un accès limité aux frères, un sélecteur autonome de documents et des entrées Android audio / WMA. Sans Host Session facultative, seul le fichier choisi est lu.",
+  "p_plugin_scope": "La version 1.4.0 fournit des actions v12 en lecture seule, un accès limité aux frères, un sélecteur autonome de documents et des entrées Android audio / WMA. Sans Host Session facultative, seul le fichier choisi est lu.",
   "p_plugin_packaging": "La découverte dans le même dossier nécessite AutoJs6 6.8.0 build 5276 ou ultérieur et Explorer Action v12 ; cette exigence ne sera pas relevée par les capacités futures du plugin.",
   "h3_security": "Sécurité",
   "p_security": "Le plugin ne demande aucun stockage et n’écrit jamais les fichiers sources. Internet sert uniquement aux vérifications manuelles ou quotidiennes des versions GitHub. L’entrée signée valide strictement v12, TARGETS, ClipData, les métadonnées et la lecture ; la Host Session reste liée à l’UID et non récursive, et les entrées publiques restent en lecture seule.",

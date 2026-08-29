@@ -106,7 +106,7 @@ Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-La versión 1.3.0 ofrece acciones v12 de solo lectura, acceso limitado a hermanos, selector independiente de documentos y entradas Android de audio / WMA. Los hosts sin Host Session opcional reproducen solo el archivo seleccionado.
+La versión 1.4.0 ofrece acciones v12 de solo lectura, acceso limitado a hermanos, selector independiente de documentos y entradas Android de audio / WMA. Los hosts sin Host Session opcional reproducen solo el archivo seleccionado.
 
 El descubrimiento en la misma carpeta requiere AutoJs6 6.8.0 build 5276 o posterior y Explorer Action v12; este requisito no aumentará con capacidades futuras del plugin.
 
@@ -138,6 +138,17 @@ El plugin no solicita almacenamiento ni escribe archivos. Internet se usa solo p
 
 ******
 
+# v1.4.0
+
+###### 2026/08/29
+
+* `Función` Las notificaciones multimedia ahora usan acciones dedicadas para anterior, siguiente, alternar aleatorio y salir, además del icono monocromático transparente de la aplicación; la iluminación de aleatorio se mantiene sincronizada con la reproducción
+* `Corrección` AutoJs6 ya no marca ni desactiva el plugin como erróneo al descubrir la información del plugin y Explorer Action, porque los dos protocolos Binder ahora usan servicios independientes
+* `Corrección` Vaciar la cola ahora elimina los metadatos obsoletos y la sesión en segundo plano, desactiva reproducción, búsqueda, cola, velocidad, temporizador y A-B, y muestra un estado vacío explícito en vez de aceptar pulsaciones sin efecto
+* `Corrección` La sombra del botón principal ya no queda recortada por la zona inferior y el estado desactivado usa colores claramente atenuados; los controles de radio, selección múltiple, progreso y botones de los diálogos ahora siguen el tema dinámico
+* `Mejora` La aplicación y el plugin pasan a llamarse con el texto no traducible 3-Terra Player, y los espacios de nombres y símbolos del código usan las formas three / Three, mientras se conserva el ID de aplicación publicado para actualizaciones y ajustes existentes
+* `Mejora` El acceso directo de paleta de la barra del reproductor se sustituyó por un menú de tres puntos con solo Ajustes, manteniendo el espaciado establecido bajo los controles de reproducción
+
 # v1.3.0
 
 ###### 2026/08/29
@@ -158,18 +169,6 @@ El plugin no solicita almacenamiento ni escribe archivos. Internet se usa solo p
 * `Corrección` La reproducción desde el explorador ya no falla tras actualizar el complemento cuando el gestor de archivos AutoJs6 en ejecución aún envía una acción de protocolo v4 almacenada en caché; la puerta de enlace acepta la envolvente compatible de solo lectura v4–v12 y sigue anunciando v12
 * `Corrección` Las extensiones de audio anunciadas ya no se rechazan cuando una tabla MIME de Android o del fabricante devuelve un comodín o un tipo application; la lista permitida de extensiones proporciona ahora un tipo MIME de audio canónico y estable
 * `Mejora` Las solicitudes del explorador rechazadas registran ahora un código de motivo respetuoso con la privacidad, sin nombres de archivo, rutas visibles ni URI, para diagnosticar directamente futuras diferencias de contrato
-
-# v1.2.1
-
-###### 2026/08/27
-
-* `Función` La acción Reproducir audio para un solo archivo ahora puede descubrir hasta 128 archivos de audio legibles en la misma carpeta mediante Explorer Action v12 y crear una cola con orden natural que comienza en la pista seleccionada
-* `Corrección` API 24 ya no rechaza una solicitud válida de Explorer cuando Android añade desde el manifiesto de la actividad puente la marca sin permisos FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-* `Corrección` El avance automático a una pista hermana ya no se bloquea al reconstruir el Intent de retorno de MediaSession; el objetivo autorizado originalmente permanece como ancla de la Host Session independientemente de la pista activa
-* `Mejora` La pista seleccionada conserva su content URI original y las pistas hermanas solo se transmiten mediante descriptores de archivo de una Host Session limitada a la solicitud; no se adivinan URI ni se añade acceso recursivo, de escritura, almacenamiento o persistente
-* `Mejora` El filtro de extensiones de audio excluye de la cola los vídeos .mp4 con el mismo nombre que audios .m4a, mientras la cola de selección múltiple explícita existente no cambia
-* `Mejora` La propiedad de la Host Session se transfiere al servicio de reproducción en segundo plano y se cierra al sustituir la cola, fallar el inicio, terminar la reproducción o destruir el servicio
-* `Dependencia` Se actualizó la API Explorer Action incluida del protocolo v4 a la extensión de lectura de hermanos v12 retrocompatible, manteniendo la compilación mínima 5276 del host
 
 ##### Para consultar más versiones
 

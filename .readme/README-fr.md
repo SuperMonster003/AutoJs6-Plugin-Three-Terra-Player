@@ -106,7 +106,7 @@ Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-La version 1.3.0 fournit des actions v12 en lecture seule, un accès limité aux frères, un sélecteur autonome de documents et des entrées Android audio / WMA. Sans Host Session facultative, seul le fichier choisi est lu.
+La version 1.4.0 fournit des actions v12 en lecture seule, un accès limité aux frères, un sélecteur autonome de documents et des entrées Android audio / WMA. Sans Host Session facultative, seul le fichier choisi est lu.
 
 La découverte dans le même dossier nécessite AutoJs6 6.8.0 build 5276 ou ultérieur et Explorer Action v12 ; cette exigence ne sera pas relevée par les capacités futures du plugin.
 
@@ -138,6 +138,17 @@ Le plugin ne demande aucun stockage et n’écrit jamais les fichiers sources. I
 
 ******
 
+# v1.4.0
+
+###### 2026/08/29
+
+* `Fonctionnalité` Les notifications multimédias utilisent désormais des actions dédiées précédent, suivant, activation du mode aléatoire et quitter, ainsi que l'icône monochrome transparente de l'application; l'état lumineux du mode aléatoire reste synchronisé avec la lecture
+* `Correctif` AutoJs6 ne marque et ne désactive plus le plugin comme erroné lors de la découverte des informations du plugin et d'Explorer Action, car les deux protocoles Binder utilisent désormais des services distincts
+* `Correctif` Vider la file efface maintenant les anciennes métadonnées et la session en arrière-plan, désactive la lecture, la recherche, la file, la vitesse, le minuteur et A-B, puis affiche un état vide explicite au lieu d'accepter des appuis sans effet
+* `Correctif` L'ombre du bouton principal n'est plus coupée par la zone inférieure et son état désactivé utilise des couleurs clairement atténuées; les boutons radio, choix multiples, progressions et boutons des dialogues suivent désormais le thème dynamique
+* `Amélioration` L'application et le plugin portent désormais le nom non traduisible 3-Terra Player, avec les espaces de noms et symboles source migrés vers les formes three / Three, tout en conservant l'ID d'application publié pour les mises à niveau et réglages existants
+* `Amélioration` Le raccourci de palette de la barre du lecteur est remplacé par un menu à trois points contenant uniquement Paramètres, sans modifier l'espacement établi sous les commandes de lecture
+
 # v1.3.0
 
 ###### 2026/08/29
@@ -158,18 +169,6 @@ Le plugin ne demande aucun stockage et n’écrit jamais les fichiers sources. I
 * `Correctif` La lecture depuis l’explorateur n’échoue plus après une mise à niveau du plugin lorsque le gestionnaire de fichiers AutoJs6 en cours d’exécution envoie encore une action de protocole v4 mise en cache ; la passerelle accepte l’enveloppe compatible en lecture seule v4–v12 tout en continuant d’annoncer v12
 * `Correctif` Les extensions audio annoncées ne sont plus rejetées lorsqu’une table MIME Android ou constructeur renvoie un joker ou un type application ; la liste d’extensions autorisées fournit désormais un type MIME audio canonique stable
 * `Amélioration` Les requêtes Explorer rejetées consignent désormais un code de motif respectueux de la vie privée, sans nom de fichier, chemin affiché ni URI, afin de diagnostiquer directement les futurs écarts de contrat
-
-# v1.2.1
-
-###### 2026/08/27
-
-* `Fonctionnalité` L'action Lire l'audio sur un seul fichier peut maintenant découvrir jusqu'à 128 fichiers audio lisibles dans le même dossier via Explorer Action v12 et créer une file triée naturellement à partir de la piste sélectionnée
-* `Correctif` API 24 ne rejette plus une requête Explorer valide lorsqu'Android ajoute depuis le manifeste de l'activité passerelle l'indicateur sans permission FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-* `Correctif` Le passage automatique à une piste sœur ne plante plus lors de la reconstruction de l'Intent de retour MediaSession ; la cible autorisée à l'origine reste l'ancre de la Host Session indépendamment de la piste active
-* `Amélioration` La piste sélectionnée conserve son content URI d'origine tandis que les pistes sœurs sont diffusées uniquement via les descripteurs d'une Host Session limitée à la requête ; aucun URI voisin n'est deviné et aucun accès récursif, en écriture, au stockage ou persistant n'est ajouté
-* `Amélioration` Le filtrage des extensions audio exclut de la file les vidéos .mp4 portant le même nom que des fichiers audio .m4a, tandis que la file multisélection explicite existante reste inchangée
-* `Amélioration` La propriété de la Host Session est transférée au service de lecture en arrière-plan, puis fermée lors du remplacement de la file, d'un échec de démarrage, de la fin de lecture ou de la destruction du service
-* `Dépendance` Mise à niveau de l'API Explorer Action intégrée du protocole v4 vers l'extension rétrocompatible v12 de lecture des fichiers frères, tout en conservant la version hôte minimale 5276
 
 ##### Pour consulter davantage de versions
 

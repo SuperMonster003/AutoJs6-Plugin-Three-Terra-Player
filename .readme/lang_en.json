@@ -28,7 +28,7 @@
   "p_host_missing": "When the plugin is absent, this action is not listed. The host keeps its existing read-only external ACTION_VIEW flow for audio files, so another installed audio app may handle the file. If no compatible external app is available, the host does not gain a replacement playback interface.",
   "h3_plugin_interface": "Plugin interface",
   "p_plugin_interface": "The host discovers and executes the plugin with the following identities",
-  "p_plugin_scope": "Version 1.3.0 provides protocol v12 read-only single and ordered multi-selection actions, a request-scoped direct-sibling capability, a standalone document picker, and public read-only Android audio / WMA entries. Hosts without the optional Host Session keep selected-file-only playback.",
+  "p_plugin_scope": "Version 1.4.0 provides protocol v12 read-only single and ordered multi-selection actions, a request-scoped direct-sibling capability, a standalone document picker, and public read-only Android audio / WMA entries. Hosts without the optional Host Session keep selected-file-only playback.",
   "p_plugin_packaging": "AutoJs6 6.8.0 build 5276 or later and Explorer Action v12 are required for same-folder discovery; this requirement will not be raised for later plugin capabilities.",
   "h3_security": "Security",
   "p_security": "The app requests no storage permission and never writes source files. Internet access is used only for user-controlled or daily GitHub release checks. Its signature-protected gateway strictly validates protocol v12, ordered TARGETS and ClipData, identifiers, parent relationship, metadata, and read-only flags. Host Session access remains UID-bound and non-recursive; public and standalone document entries retain read-only URI grants.",

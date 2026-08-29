@@ -27,7 +27,7 @@
   "p_host_missing": "Cuando falta el plugin, esta acción no aparece. El host conserva su flujo externo ACTION_VIEW de solo lectura para archivos de audio, por lo que otra aplicación de audio instalada puede gestionar el archivo. Si no hay una aplicación externa compatible, el host no obtiene una interfaz de reproducción alternativa.",
   "h3_plugin_interface": "Interfaz del plugin",
   "p_plugin_interface": "El host descubre y ejecuta el plugin con las siguientes identidades",
-  "p_plugin_scope": "La versión 1.3.0 ofrece acciones v12 de solo lectura, acceso limitado a hermanos, selector independiente de documentos y entradas Android de audio / WMA. Los hosts sin Host Session opcional reproducen solo el archivo seleccionado.",
+  "p_plugin_scope": "La versión 1.4.0 ofrece acciones v12 de solo lectura, acceso limitado a hermanos, selector independiente de documentos y entradas Android de audio / WMA. Los hosts sin Host Session opcional reproducen solo el archivo seleccionado.",
   "p_plugin_packaging": "El descubrimiento en la misma carpeta requiere AutoJs6 6.8.0 build 5276 o posterior y Explorer Action v12; este requisito no aumentará con capacidades futuras del plugin.",
   "h3_security": "Seguridad",
   "p_security": "El plugin no solicita almacenamiento ni escribe archivos. Internet se usa solo para comprobaciones de versiones de GitHub manuales o diarias. La entrada firmada valida estrictamente v12, TARGETS, ClipData, metadatos y lectura; Host Session permanece vinculada al UID y no recursiva, y las entradas públicas conservan permisos de solo lectura.",

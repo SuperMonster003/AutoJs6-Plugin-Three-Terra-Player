@@ -27,7 +27,7 @@
   "p_host_missing": "플러그인이 없으면 이 작업이 표시되지 않습니다. 호스트는 오디오 파일에 대한 기존 읽기 전용 외부 ACTION_VIEW 흐름을 유지하므로 설치된 다른 오디오 앱이 파일을 처리할 수 있습니다. 호환되는 외부 앱이 없으면 호스트에 대체 재생 인터페이스가 추가되지 않습니다.",
   "h3_plugin_interface": "플러그인 인터페이스",
   "p_plugin_interface": "호스트는 다음 식별자로 플러그인을 검색하고 실행합니다",
-  "p_plugin_scope": "버전 1.3.0은 v12 읽기 전용 작업, 제한된 형제 접근, 독립 문서 선택기 및 Android 오디오 / WMA 진입점을 제공합니다. 선택적 Host Session이 없으면 선택 파일만 재생합니다.",
+  "p_plugin_scope": "버전 1.4.0은 v12 읽기 전용 작업, 제한된 형제 접근, 독립 문서 선택기 및 Android 오디오 / WMA 진입점을 제공합니다. 선택적 Host Session이 없으면 선택 파일만 재생합니다.",
   "p_plugin_packaging": "같은 폴더 검색에는 AutoJs6 6.8.0 build 5276 이상과 Explorer Action v12가 필요하며 이후 플러그인 기능에서도 이 요구 사항을 높이지 않습니다.",
   "h3_security": "보안",
   "p_security": "저장소 권한을 요청하지 않고 원본 파일을 쓰지 않습니다. 인터넷은 수동 또는 일일 GitHub 릴리스 확인에만 사용합니다. 서명 진입점은 v12, TARGETS, ClipData, 메타데이터와 읽기를 엄격히 검증하고 Host Session은 UID 고정 및 비재귀이며 공개 진입점은 읽기 전용입니다.",

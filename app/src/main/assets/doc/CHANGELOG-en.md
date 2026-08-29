@@ -4,6 +4,17 @@
 
 ******
 
+# v1.4.0
+
+###### 2026/08/29
+
+* `Feature` System media notifications now use dedicated previous, next, shuffle-toggle, and exit actions plus the app's transparent monochrome icon; shuffle illumination stays synchronized with playback
+* `Fix` AutoJs6 no longer marks and disables the plugin as erroneous when plugin-info and Explorer Action discovery occur, because the two Binder protocols now use separate service endpoints
+* `Fix` Clearing the queue now removes stale track metadata and the background session, disables play, seeking, queue, speed, timer, and A-B controls, and presents an explicit empty state instead of accepting ineffective taps
+* `Fix` The primary play-button shadow is no longer clipped by the bottom region and uses a clear low-emphasis disabled palette; radio, multi-choice, progress, and button controls in settings and update dialogs now follow the dynamic theme
+* `Improvement` Renamed both the app and plugin to the non-translatable 3-Terra Player and migrated source namespaces and symbols to three / Three forms, while retaining the published application ID for in-place upgrades and existing settings
+* `Improvement` Replaced the player toolbar palette shortcut with a single Settings item in the overflow menu and preserved the established gap below the playback controls
+
 # v1.3.0
 
 ###### 2026/08/29

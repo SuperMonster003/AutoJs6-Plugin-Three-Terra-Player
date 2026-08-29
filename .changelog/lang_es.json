@@ -5,6 +5,21 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.4.0": {
+      "released_date": "2026/08/29",
+      "feature": [
+        "Las notificaciones multimedia ahora usan acciones dedicadas para anterior, siguiente, alternar aleatorio y salir, además del icono monocromático transparente de la aplicación; la iluminación de aleatorio se mantiene sincronizada con la reproducción"
+      ],
+      "fix": [
+        "AutoJs6 ya no marca ni desactiva el plugin como erróneo al descubrir la información del plugin y Explorer Action, porque los dos protocolos Binder ahora usan servicios independientes",
+        "Vaciar la cola ahora elimina los metadatos obsoletos y la sesión en segundo plano, desactiva reproducción, búsqueda, cola, velocidad, temporizador y A-B, y muestra un estado vacío explícito en vez de aceptar pulsaciones sin efecto",
+        "La sombra del botón principal ya no queda recortada por la zona inferior y el estado desactivado usa colores claramente atenuados; los controles de radio, selección múltiple, progreso y botones de los diálogos ahora siguen el tema dinámico"
+      ],
+      "improvement": [
+        "La aplicación y el plugin pasan a llamarse con el texto no traducible 3-Terra Player, y los espacios de nombres y símbolos del código usan las formas three / Three, mientras se conserva el ID de aplicación publicado para actualizaciones y ajustes existentes",
+        "El acceso directo de paleta de la barra del reproductor se sustituyó por un menú de tres puntos con solo Ajustes, manteniendo el espaciado establecido bajo los controles de reproducción"
+      ]
+    },
     "v1.3.0": {
       "released_date": "2026/08/29",
       "feature": [

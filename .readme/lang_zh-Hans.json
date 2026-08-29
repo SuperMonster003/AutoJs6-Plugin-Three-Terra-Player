@@ -28,7 +28,7 @@
   "p_host_missing": "缺少插件时, 此动作不会显示. 宿主会保留原有的音频文件只读外部 ACTION_VIEW 流程, 因此其他已安装的音频应用仍可处理文件. 如果没有兼容的外部应用, 宿主不会获得替代播放界面.",
   "h3_plugin_interface": "插件接口",
   "p_plugin_interface": "宿主使用以下标识发现并执行插件",
-  "p_plugin_scope": "版本 1.3.0 提供协议 v12 单文件与有序多选只读动作、请求级直接同级读取能力、独立文档选择器以及公开只读 Android 音频 / WMA 入口. 不提供可选 Host Session 的宿主继续仅播放所选文件.",
+  "p_plugin_scope": "版本 1.4.0 提供协议 v12 单文件与有序多选只读动作、请求级直接同级读取能力、独立文档选择器以及公开只读 Android 音频 / WMA 入口. 不提供可选 Host Session 的宿主继续仅播放所选文件.",
   "p_plugin_packaging": "同目录发现需要 AutoJs6 6.8.0 build 5276 或更高版本及 Explorer Action v12; 后续插件能力不会提高此要求.",
   "h3_security": "安全性",
   "p_security": "应用不请求存储权限且永不写入源文件. 互联网权限仅用于用户主动触发或每日一次的 GitHub 发行版检查. 受签名权限保护的入口严格验证协议 v12、有序 TARGETS 与 ClipData、标识符、父子关系、元数据和只读标志; Host Session 仍绑定 UID 且不递归, 公开与独立文档入口只保留读取授权.",

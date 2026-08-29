@@ -107,7 +107,7 @@ Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-Version 1.3.0 provides protocol v12 read-only single and ordered multi-selection actions, a request-scoped direct-sibling capability, a standalone document picker, and public read-only Android audio / WMA entries. Hosts without the optional Host Session keep selected-file-only playback.
+Version 1.4.0 provides protocol v12 read-only single and ordered multi-selection actions, a request-scoped direct-sibling capability, a standalone document picker, and public read-only Android audio / WMA entries. Hosts without the optional Host Session keep selected-file-only playback.
 
 AutoJs6 6.8.0 build 5276 or later and Explorer Action v12 are required for same-folder discovery; this requirement will not be raised for later plugin capabilities.
 
@@ -139,6 +139,17 @@ The app requests no storage permission and never writes source files. Internet a
 
 ******
 
+# v1.4.0
+
+###### 2026/08/29
+
+* `Feature` System media notifications now use dedicated previous, next, shuffle-toggle, and exit actions plus the app's transparent monochrome icon; shuffle illumination stays synchronized with playback
+* `Fix` AutoJs6 no longer marks and disables the plugin as erroneous when plugin-info and Explorer Action discovery occur, because the two Binder protocols now use separate service endpoints
+* `Fix` Clearing the queue now removes stale track metadata and the background session, disables play, seeking, queue, speed, timer, and A-B controls, and presents an explicit empty state instead of accepting ineffective taps
+* `Fix` The primary play-button shadow is no longer clipped by the bottom region and uses a clear low-emphasis disabled palette; radio, multi-choice, progress, and button controls in settings and update dialogs now follow the dynamic theme
+* `Improvement` Renamed both the app and plugin to the non-translatable 3-Terra Player and migrated source namespaces and symbols to three / Three forms, while retaining the published application ID for in-place upgrades and existing settings
+* `Improvement` Replaced the player toolbar palette shortcut with a single Settings item in the overflow menu and preserved the established gap below the playback controls
+
 # v1.3.0
 
 ###### 2026/08/29
@@ -159,18 +170,6 @@ The app requests no storage permission and never writes source files. Internet a
 * `Fix` Explorer playback no longer fails after a plugin upgrade when the running AutoJs6 file manager still sends a cached protocol v4 action; the gateway accepts the compatible read-only v4–v12 envelope while continuing to advertise v12
 * `Fix` Advertised audio extensions are no longer rejected when an Android or OEM MIME table reports a wildcard or application MIME type; the extension allow-list now supplies a stable canonical audio MIME type
 * `Improvement` Rejected Explorer requests now log a privacy-safe reason code without file names, display paths, or URIs so future contract mismatches can be diagnosed directly
-
-# v1.2.1
-
-###### 2026/08/27
-
-* `Feature` A single Play audio action can now discover up to 128 readable audio files in the same folder through Explorer Action v12 and build a naturally ordered queue starting at the selected track
-* `Fix` API 24 no longer rejects a valid Explorer launch when Android adds the non-permission FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS flag from the gateway activity manifest
-* `Fix` Automatically advancing to a sibling track no longer crashes while rebuilding the MediaSession return intent; the originally granted target remains the Host Session anchor independently of the active queue item
-* `Improvement` The selected track keeps its original content URI while sibling tracks stream only through request-scoped Host Session file descriptors; no sibling URI is guessed and no recursive, write, storage, or persistent access is added
-* `Improvement` Audio extension filtering keeps same-named .mp4 video files out of queues containing .m4a audio, while the existing explicit multi-selection queue remains unchanged
-* `Improvement` Host Session ownership now transfers to the background playback service and closes on queue replacement, startup failure, completion, or service destruction
-* `Dependency` Upgraded the bundled Explorer Action API from protocol v4 to the backward-compatible v12 sibling-read extension while retaining minimum host build 5276
 
 ##### For more releases
 

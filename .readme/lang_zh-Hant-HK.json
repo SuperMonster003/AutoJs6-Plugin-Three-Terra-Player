@@ -27,7 +27,7 @@
   "p_host_missing": "缺少外掛程式時, 此動作不會顯示. 主程式會保留原有的音訊檔案唯讀外部 ACTION_VIEW 流程, 因此其他已安裝的音訊應用程式仍可處理檔案. 如果沒有相容的外部應用程式, 主程式不會取得替代播放介面.",
   "h3_plugin_interface": "外掛程式介面",
   "p_plugin_interface": "主程式使用以下識別資料探索和執行外掛程式",
-  "p_plugin_scope": "版本 1.3.0 提供 v12 唯讀動作、有限同級存取、獨立文件選擇器及 Android 音訊 / WMA 入口. 沒有可選 Host Session 時只播放所選檔案.",
+  "p_plugin_scope": "版本 1.4.0 提供 v12 唯讀動作、有限同級存取、獨立文件選擇器及 Android 音訊 / WMA 入口. 沒有可選 Host Session 時只播放所選檔案.",
   "p_plugin_packaging": "同目錄尋找需要 AutoJs6 6.8.0 build 5276 或更新版本及 Explorer Action v12; 後續外掛程式能力不會提高此要求.",
   "h3_security": "安全性",
   "p_security": "外掛程式不要求儲存權限且不會寫入來源檔案. 互聯網只用於手動或每日 GitHub 發行版檢查. 簽章入口嚴格驗證 v12、TARGETS、ClipData、元資料和唯讀授權; Host Session 綁定 UID 且不遞迴, 公開入口保持唯讀.",

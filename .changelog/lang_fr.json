@@ -5,6 +5,21 @@
   "changelog_label_improvement": "Amélioration",
   "changelog_label_dependency": "Dépendance",
   "$data": {
+    "v1.4.0": {
+      "released_date": "2026/08/29",
+      "feature": [
+        "Les notifications multimédias utilisent désormais des actions dédiées précédent, suivant, activation du mode aléatoire et quitter, ainsi que l'icône monochrome transparente de l'application; l'état lumineux du mode aléatoire reste synchronisé avec la lecture"
+      ],
+      "fix": [
+        "AutoJs6 ne marque et ne désactive plus le plugin comme erroné lors de la découverte des informations du plugin et d'Explorer Action, car les deux protocoles Binder utilisent désormais des services distincts",
+        "Vider la file efface maintenant les anciennes métadonnées et la session en arrière-plan, désactive la lecture, la recherche, la file, la vitesse, le minuteur et A-B, puis affiche un état vide explicite au lieu d'accepter des appuis sans effet",
+        "L'ombre du bouton principal n'est plus coupée par la zone inférieure et son état désactivé utilise des couleurs clairement atténuées; les boutons radio, choix multiples, progressions et boutons des dialogues suivent désormais le thème dynamique"
+      ],
+      "improvement": [
+        "L'application et le plugin portent désormais le nom non traduisible 3-Terra Player, avec les espaces de noms et symboles source migrés vers les formes three / Three, tout en conservant l'ID d'application publié pour les mises à niveau et réglages existants",
+        "Le raccourci de palette de la barre du lecteur est remplacé par un menu à trois points contenant uniquement Paramètres, sans modifier l'espacement établi sous les commandes de lecture"
+      ]
+    },
     "v1.3.0": {
       "released_date": "2026/08/29",
       "feature": [
