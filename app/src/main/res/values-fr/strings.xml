@@ -21,6 +21,9 @@
     <string name="action_play_audio_selection">Lire les fichiers audio sélectionnés</string>
     <string name="action_previous_track">Piste précédente</string>
     <string name="action_next_track">Piste suivante</string>
+    <string name="action_enable_shuffle">Activer la lecture aléatoire</string>
+    <string name="action_disable_shuffle">Désactiver la lecture aléatoire</string>
+    <string name="action_exit_player">Quitter le lecteur</string>
     <string name="action_show_queue">Afficher la file de lecture</string>
     <string name="action_remove_from_queue">Retirer de la file</string>
     <string name="action_remove_from_queue_named">Retirer %1$s de la file</string>

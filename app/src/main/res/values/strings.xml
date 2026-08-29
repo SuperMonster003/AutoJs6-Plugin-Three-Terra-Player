@@ -10,6 +10,9 @@
     <string name="action_play_audio_selection" tools:ignore="UnusedResources">Play selected audio</string>
     <string name="action_previous_track">Previous track</string>
     <string name="action_next_track">Next track</string>
+    <string name="action_enable_shuffle">Enable shuffle</string>
+    <string name="action_disable_shuffle">Disable shuffle</string>
+    <string name="action_exit_player">Exit player</string>
     <string name="action_playback_speed">Playback speed</string>
     <string name="action_show_queue">Show playback queue</string>
     <string name="action_remove_from_queue">Remove from queue</string>

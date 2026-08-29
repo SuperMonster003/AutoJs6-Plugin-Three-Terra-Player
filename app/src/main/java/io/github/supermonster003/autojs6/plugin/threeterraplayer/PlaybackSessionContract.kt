@@ -26,6 +26,9 @@ internal object PlaybackSessionContract {
     val COMMAND_SET_AB_START = command("SET_AB_START")
     val COMMAND_SET_AB_END = command("SET_AB_END")
     val COMMAND_CLEAR_AB_LOOP = command("CLEAR_AB_LOOP")
+    val COMMAND_ENABLE_SHUFFLE = command("ENABLE_SHUFFLE")
+    val COMMAND_DISABLE_SHUFFLE = command("DISABLE_SHUFFLE")
+    val COMMAND_EXIT_PLAYBACK = command("EXIT_PLAYBACK")
 
     val CUSTOM_COMMANDS = listOf(
         COMMAND_SET_SLEEP_TIMER,
@@ -34,6 +37,13 @@ internal object PlaybackSessionContract {
         COMMAND_SET_AB_START,
         COMMAND_SET_AB_END,
         COMMAND_CLEAR_AB_LOOP,
+    )
+
+    /** Commands exposed only to Media3's notification controller. */
+    val MEDIA_NOTIFICATION_COMMANDS = listOf(
+        COMMAND_ENABLE_SHUFFLE,
+        COMMAND_DISABLE_SHUFFLE,
+        COMMAND_EXIT_PLAYBACK,
     )
 
     fun stateBundle(state: PlaybackToolState): Bundle = Bundle().apply {

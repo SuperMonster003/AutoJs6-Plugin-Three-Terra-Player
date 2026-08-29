@@ -21,6 +21,9 @@
     <string name="action_play_audio_selection">تشغيل الملفات الصوتية المحددة</string>
     <string name="action_previous_track">المسار السابق</string>
     <string name="action_next_track">المسار التالي</string>
+    <string name="action_enable_shuffle">تفعيل التشغيل العشوائي</string>
+    <string name="action_disable_shuffle">إيقاف التشغيل العشوائي</string>
+    <string name="action_exit_player">الخروج من المشغل</string>
     <string name="action_show_queue">عرض قائمة التشغيل</string>
     <string name="action_remove_from_queue">إزالة من القائمة</string>
     <string name="action_remove_from_queue_named">إزالة %1$s من القائمة</string>

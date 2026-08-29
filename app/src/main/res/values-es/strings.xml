@@ -21,6 +21,9 @@
     <string name="action_play_audio_selection">Reproducir audios seleccionados</string>
     <string name="action_previous_track">Pista anterior</string>
     <string name="action_next_track">Pista siguiente</string>
+    <string name="action_enable_shuffle">Activar reproducción aleatoria</string>
+    <string name="action_disable_shuffle">Desactivar reproducción aleatoria</string>
+    <string name="action_exit_player">Salir del reproductor</string>
     <string name="action_show_queue">Mostrar cola de reproducción</string>
     <string name="action_remove_from_queue">Quitar de la cola</string>
     <string name="action_remove_from_queue_named">Quitar %1$s de la cola</string>

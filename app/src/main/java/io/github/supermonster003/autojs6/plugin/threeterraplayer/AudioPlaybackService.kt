@@ -21,6 +21,7 @@ import androidx.media3.datasource.DefaultDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.session.CommandButton
+import androidx.media3.session.DefaultMediaNotificationProvider
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import androidx.media3.session.SessionCommand
@@ -180,6 +181,12 @@ class AudioPlaybackService : MediaSessionService() {
             }
         }
 
+        override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {
+            if (::mediaSession.isInitialized) {
+                mediaSession.setMediaButtonPreferences(mediaButtonPreferences())
+            }
+        }
+
         override fun onPlayerError(error: PlaybackException) {
             persistActivePosition()
             stopForeground(STOP_FOREGROUND_REMOVE)
@@ -195,10 +202,19 @@ class AudioPlaybackService : MediaSessionService() {
             controller: MediaSession.ControllerInfo,
         ): MediaSession.ConnectionResult {
             val builder = MediaSession.ConnectionResult.AcceptedResultBuilder(session)
-            if (controller.packageName == packageName) {
+            val isAppController = controller.packageName == packageName
+            val isNotificationController = session.isMediaNotificationController(controller)
+            if (isAppController || isNotificationController) {
                 val commands = MediaSession.ConnectionResult.DEFAULT_SESSION_COMMANDS
                     .buildUpon()
-                    .apply { PlaybackSessionContract.CUSTOM_COMMANDS.forEach(::add) }
+                    .apply {
+                        if (isAppController) {
+                            PlaybackSessionContract.CUSTOM_COMMANDS.forEach(::add)
+                        }
+                        if (isNotificationController) {
+                            PlaybackSessionContract.MEDIA_NOTIFICATION_COMMANDS.forEach(::add)
+                        }
+                    }
                     .build()
                 builder.setAvailableSessionCommands(commands)
             }
@@ -211,7 +227,11 @@ class AudioPlaybackService : MediaSessionService() {
             customCommand: SessionCommand,
             args: Bundle,
         ): ListenableFuture<SessionResult> {
-            if (controller.packageName != packageName) {
+            val isAppController = controller.packageName == packageName
+            val isNotificationController = session.isMediaNotificationController(controller)
+            val isNotificationCommand = customCommand in
+                PlaybackSessionContract.MEDIA_NOTIFICATION_COMMANDS
+            if (!isAppController && !(isNotificationController && isNotificationCommand)) {
                 return Futures.immediateFuture(
                     SessionResult(SessionError.ERROR_PERMISSION_DENIED),
                 )
@@ -243,6 +263,10 @@ class AudioPlaybackService : MediaSessionService() {
                 setWakeMode(C.WAKE_MODE_LOCAL)
                 addListener(playerListener)
             }
+        DefaultMediaNotificationProvider.Builder(this)
+            .build()
+            .apply { setSmallIcon(R.mipmap.ic_launcher_monochrome) }
+            .also(::setMediaNotificationProvider)
         mediaSession = MediaSession.Builder(this, player)
             .setCallback(sessionCallback)
             .setMediaButtonPreferences(mediaButtonPreferences())
@@ -493,7 +517,25 @@ class AudioPlaybackService : MediaSessionService() {
         PlaybackSessionContract.COMMAND_SET_AB_START -> setAbStart(args)
         PlaybackSessionContract.COMMAND_SET_AB_END -> setAbEnd(args)
         PlaybackSessionContract.COMMAND_CLEAR_AB_LOOP -> clearAbLoop()
+        PlaybackSessionContract.COMMAND_ENABLE_SHUFFLE -> setShuffleEnabled(true)
+        PlaybackSessionContract.COMMAND_DISABLE_SHUFFLE -> setShuffleEnabled(false)
+        PlaybackSessionContract.COMMAND_EXIT_PLAYBACK -> exitPlayback()
         else -> SessionResult(SessionError.ERROR_NOT_SUPPORTED)
+    }
+
+    private fun setShuffleEnabled(enabled: Boolean): SessionResult {
+        if (player.mediaItemCount == 0) return badValueResult()
+        player.shuffleModeEnabled = enabled
+        return successResult()
+    }
+
+    private fun exitPlayback(): SessionResult {
+        persistActivePosition()
+        player.pause()
+        player.clearMediaItems()
+        releaseActiveHostSession()
+        stopPlaybackService()
+        return successResult()
     }
 
     private fun setSleepTimer(args: Bundle): SessionResult {
@@ -688,22 +730,43 @@ class AudioPlaybackService : MediaSessionService() {
         CommandButton.Builder(CommandButton.ICON_PREVIOUS)
             .setPlayerCommand(Player.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM)
             .setDisplayName(getString(R.string.action_previous_track))
-            .setSlots(CommandButton.SLOT_BACK_SECONDARY)
-            .build(),
-        CommandButton.Builder(CommandButton.ICON_REWIND)
-            .setPlayerCommand(Player.COMMAND_SEEK_BACK)
-            .setDisplayName(getString(R.string.action_seek_backward))
             .setSlots(CommandButton.SLOT_BACK)
-            .build(),
-        CommandButton.Builder(CommandButton.ICON_FAST_FORWARD)
-            .setPlayerCommand(Player.COMMAND_SEEK_FORWARD)
-            .setDisplayName(getString(R.string.action_seek_forward))
-            .setSlots(CommandButton.SLOT_FORWARD)
             .build(),
         CommandButton.Builder(CommandButton.ICON_NEXT)
             .setPlayerCommand(Player.COMMAND_SEEK_TO_NEXT_MEDIA_ITEM)
             .setDisplayName(getString(R.string.action_next_track))
-            .setSlots(CommandButton.SLOT_FORWARD_SECONDARY)
+            .setSlots(CommandButton.SLOT_FORWARD)
+            .build(),
+        CommandButton.Builder(
+            if (player.shuffleModeEnabled) {
+                CommandButton.ICON_SHUFFLE_ON
+            } else {
+                CommandButton.ICON_SHUFFLE_OFF
+            },
+        )
+            .setSessionCommand(
+                if (player.shuffleModeEnabled) {
+                    PlaybackSessionContract.COMMAND_DISABLE_SHUFFLE
+                } else {
+                    PlaybackSessionContract.COMMAND_ENABLE_SHUFFLE
+                },
+            )
+            .setDisplayName(
+                getString(
+                    if (player.shuffleModeEnabled) {
+                        R.string.action_disable_shuffle
+                    } else {
+                        R.string.action_enable_shuffle
+                    },
+                ),
+            )
+            .setSlots(CommandButton.SLOT_FORWARD_SECONDARY, CommandButton.SLOT_OVERFLOW)
+            .build(),
+        CommandButton.Builder(CommandButton.ICON_UNDEFINED)
+            .setCustomIconResId(R.drawable.ic_exit)
+            .setSessionCommand(PlaybackSessionContract.COMMAND_EXIT_PLAYBACK)
+            .setDisplayName(getString(R.string.action_exit_player))
+            .setSlots(CommandButton.SLOT_OVERFLOW)
             .build(),
     )
 

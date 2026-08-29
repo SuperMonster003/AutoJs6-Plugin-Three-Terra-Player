@@ -21,6 +21,9 @@
     <string name="action_play_audio_selection">選択した音声を再生</string>
     <string name="action_previous_track">前の曲</string>
     <string name="action_next_track">次の曲</string>
+    <string name="action_enable_shuffle">シャッフルを有効にする</string>
+    <string name="action_disable_shuffle">シャッフルを無効にする</string>
+    <string name="action_exit_player">プレーヤーを終了</string>
     <string name="action_show_queue">再生キューを表示</string>
     <string name="action_remove_from_queue">キューから削除</string>
     <string name="action_remove_from_queue_named">%1$s をキューから削除</string>

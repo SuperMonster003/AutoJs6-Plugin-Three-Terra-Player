@@ -21,6 +21,9 @@
     <string name="action_play_audio_selection">播放所选音频</string>
     <string name="action_previous_track">上一曲</string>
     <string name="action_next_track">下一曲</string>
+    <string name="action_enable_shuffle">开启随机播放</string>
+    <string name="action_disable_shuffle">关闭随机播放</string>
+    <string name="action_exit_player">退出播放器</string>
     <string name="action_show_queue">显示播放队列</string>
     <string name="action_remove_from_queue">从队列中移除</string>
     <string name="action_remove_from_queue_named">将 %1$s 从队列中移除</string>

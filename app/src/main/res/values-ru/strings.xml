@@ -21,6 +21,9 @@
     <string name="action_play_audio_selection">Воспроизвести выбранные аудиофайлы</string>
     <string name="action_previous_track">Предыдущий трек</string>
     <string name="action_next_track">Следующий трек</string>
+    <string name="action_enable_shuffle">Включить перемешивание</string>
+    <string name="action_disable_shuffle">Выключить перемешивание</string>
+    <string name="action_exit_player">Выйти из проигрывателя</string>
     <string name="action_show_queue">Показать очередь воспроизведения</string>
     <string name="action_remove_from_queue">Удалить из очереди</string>
     <string name="action_remove_from_queue_named">Удалить %1$s из очереди</string>
