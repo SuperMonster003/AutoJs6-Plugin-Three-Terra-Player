@@ -16,6 +16,7 @@ import io.github.supermonster003.autojs6.plugin.threeterraplayer.PlaybackPositio
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.R
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivitySettingsBinding
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePaletteGenerator
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeDialogStyler
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePicker
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AutoJs6AppearanceClient
@@ -298,10 +299,7 @@ class SettingsActivity : AudioThemedActivity() {
     }
 
     private fun showTinted(dialog: AlertDialog) {
-        dialog.setOnShowListener {
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(audioPalette.primary)
-        }
-        dialog.show()
+        AudioThemeDialogStyler.show(dialog, audioPalette)
     }
 
     private fun Drawable.tinted(color: Int): Drawable = DrawableCompat.wrap(mutate()).also {
@@ -316,14 +314,11 @@ class SettingsActivity : AudioThemedActivity() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View =
             super.getView(position, convertView, parent).also { row ->
-                row.alpha = if (isEnabled(position)) 1f else DISABLED_ALPHA
+                AudioThemeDialogStyler.styleChoiceRow(row, audioPalette, isEnabled(position))
                 (row as? TextView)?.setTextColor(
                     if (isEnabled(position)) audioPalette.onSurface else audioPalette.onSurfaceVariant,
                 )
             }
     }
 
-    private companion object {
-        const val DISABLED_ALPHA = 0.5f
-    }
 }

@@ -185,9 +185,8 @@ internal class AudioThemePicker(
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(android.R.string.ok, null)
             .create()
-        dialog.setOnShowListener {
-            tintDialogButtons(dialog)
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+        AudioThemeDialogStyler.show(dialog, palette) { shown ->
+            shown.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                 val color = AudioThemePaletteGenerator.parseOpaqueColor(
                     binding.customThemeInput.text?.toString().orEmpty(),
                 )
@@ -197,7 +196,7 @@ internal class AudioThemePicker(
                     )
                     return@setOnClickListener
                 }
-                dialog.dismiss()
+                shown.dismiss()
                 applySelection(
                     preference.copy(
                         mode = ThemeSourceMode.CUSTOM,
@@ -208,15 +207,6 @@ internal class AudioThemePicker(
                 )
             }
         }
-        dialog.show()
-    }
-
-    private fun tintDialogButtons(dialog: AlertDialog) {
-        listOf(
-            AlertDialog.BUTTON_POSITIVE,
-            AlertDialog.BUTTON_NEGATIVE,
-            AlertDialog.BUTTON_NEUTRAL,
-        ).forEach { which -> dialog.getButton(which)?.setTextColor(palette.primary) }
     }
 
     private fun applySelection(selection: ThemeSourcePreference, dialog: BottomSheetDialog) {

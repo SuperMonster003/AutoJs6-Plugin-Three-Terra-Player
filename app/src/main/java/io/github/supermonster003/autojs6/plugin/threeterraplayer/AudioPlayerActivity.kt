@@ -54,6 +54,7 @@ import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.Playback
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackModePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.SleepTimerPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePaletteGenerator
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeDialogStyler
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.SettingsActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeViewStyler
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
@@ -456,11 +457,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun tintDialogButtons(dialog: AlertDialog) {
-        listOf(
-            AlertDialog.BUTTON_POSITIVE,
-            AlertDialog.BUTTON_NEGATIVE,
-            AlertDialog.BUTTON_NEUTRAL,
-        ).forEach { which -> dialog.getButton(which)?.setTextColor(audioPalette.primary) }
+        AudioThemeDialogStyler.apply(dialog, audioPalette)
     }
 
     private fun sendPositionCommand(

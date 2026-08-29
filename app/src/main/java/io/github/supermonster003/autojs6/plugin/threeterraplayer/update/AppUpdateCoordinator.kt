@@ -9,6 +9,7 @@ import io.github.supermonster003.autojs6.plugin.threeterraplayer.BuildConfig
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.R
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppPreferenceStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeDialogStyler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -47,14 +48,12 @@ internal object AppUpdateCoordinator {
                 .onFailure { showCheckFailure(activity) }
         }
         progress.setOnCancelListener { job.cancel() }
-        progress.setOnShowListener {
-            tintButtons(activity, progress)
-            progress.getButton(AlertDialog.BUTTON_NEGATIVE)?.setOnClickListener {
+        AudioThemeDialogStyler.show(progress, activity.audioPalette) { shown ->
+            shown.getButton(AlertDialog.BUTTON_NEGATIVE)?.setOnClickListener {
                 job.cancel()
-                progress.dismiss()
+                shown.dismiss()
             }
         }
-        progress.show()
     }
 
     fun manageIgnoredUpdates(activity: AudioThemedActivity, onChanged: () -> Unit = {}) {
@@ -164,16 +163,7 @@ internal object AppUpdateCoordinator {
     }
 
     private fun showTinted(activity: AudioThemedActivity, dialog: AlertDialog) {
-        dialog.setOnShowListener { tintButtons(activity, dialog) }
-        dialog.show()
-    }
-
-    private fun tintButtons(activity: AudioThemedActivity, dialog: AlertDialog) {
-        listOf(
-            AlertDialog.BUTTON_POSITIVE,
-            AlertDialog.BUTTON_NEGATIVE,
-            AlertDialog.BUTTON_NEUTRAL,
-        ).forEach { which -> dialog.getButton(which)?.setTextColor(activity.audioPalette.primary) }
+        AudioThemeDialogStyler.show(dialog, activity.audioPalette)
     }
 
     private const val AUTOMATIC_CHECK_INTERVAL_MS = 24L * 60L * 60L * 1000L
