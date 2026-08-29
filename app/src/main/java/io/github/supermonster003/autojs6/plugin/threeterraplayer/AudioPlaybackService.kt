@@ -164,6 +164,16 @@ class AudioPlaybackService : MediaSessionService() {
         override fun onTimelineChanged(timeline: Timeline, reason: Int) {
             if (replacingQueue) return
             if (timeline.isEmpty) {
+                activeMediaId = null
+                activePositionKey = null
+                activeCompleted = false
+                tracksByMediaId.clear()
+                lastPositionsByMediaId.clear()
+                durationsByMediaId.clear()
+                clearAbLoopState()
+                clearSleepTimerState(restoreVolume = true)
+                publishToolState()
+                releaseActiveHostSession()
                 stopPlaybackService()
             } else {
                 updateSessionActivity()
@@ -517,6 +527,7 @@ class AudioPlaybackService : MediaSessionService() {
     }
 
     private fun setAbStart(args: Bundle): SessionResult {
+        if (player.mediaItemCount == 0) return badValueResult()
         val positionMs = commandPosition(args) ?: return badValueResult()
         if (!AbLoopPolicy.validPoint(positionMs, knownDurationMs())) return badValueResult()
         abStartMs = positionMs
@@ -529,6 +540,7 @@ class AudioPlaybackService : MediaSessionService() {
     }
 
     private fun setAbEnd(args: Bundle): SessionResult {
+        if (player.mediaItemCount == 0) return badValueResult()
         val positionMs = commandPosition(args) ?: return badValueResult()
         if (!AbLoopPolicy.validEnd(abStartMs, positionMs, knownDurationMs())) return badValueResult()
         abEndMs = positionMs

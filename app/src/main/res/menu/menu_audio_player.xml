@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_choose_theme"
-        android:icon="@drawable/ic_palette"
-        android:title="@string/action_choose_theme"
-        app:showAsAction="always" />
+        android:id="@+id/action_settings"
+        android:title="@string/settings_title"
+        app:showAsAction="never" />
 
 </menu>

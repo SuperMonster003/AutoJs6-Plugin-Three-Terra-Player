@@ -49,11 +49,12 @@ import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.AbLoopPo
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.AudioInfoPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.DisplayNamePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.MimeTypePolicy
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackControlPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackMode
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackModePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.SleepTimerPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePaletteGenerator
-import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePicker
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.SettingsActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeViewStyler
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.update.AppUpdateCoordinator
@@ -74,6 +75,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     private var queueSheetBinding: BottomSheetPlaybackQueueBinding? = null
     private var queueAdapter: PlaybackQueueAdapter? = null
     private var selectedAudioStream: SelectedAudioStream? = null
+    private var pendingPlaybackTarget = true
 
     private val mainHandler = Handler(Looper.getMainLooper())
     private val progressTicker = object : Runnable {
@@ -92,26 +94,43 @@ class AudioPlayerActivity : AudioThemedActivity() {
 
     private val playerListener = object : Player.Listener {
         override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
-            renderMetadata(mediaMetadata)
+            renderMetadataForCurrentQueue(mediaMetadata)
             renderQueue()
         }
 
         override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
             selectedAudioStream = null
-            renderMetadata(mediaItem?.mediaMetadata)
+            if (mediaItem == null) {
+                pendingPlaybackTarget = false
+                toolState = PlaybackToolState()
+                renderEmptyQueueMetadata()
+            } else {
+                pendingPlaybackTarget = true
+                renderMetadata(mediaItem.mediaMetadata)
+            }
             renderQueue()
             renderAdjacentControls()
+            renderPlaybackTools()
+            renderPlayPause()
             hidePlaybackError()
         }
 
         override fun onTimelineChanged(timeline: Timeline, reason: Int) {
-            renderQueue()
-            renderAdjacentControls()
+            pendingPlaybackTarget = !timeline.isEmpty
+            if (timeline.isEmpty) {
+                selectedAudioStream = null
+                toolState = PlaybackToolState()
+                renderEmptyQueueMetadata()
+                hidePlaybackError()
+            } else {
+                renderMetadata(activeController()?.mediaMetadata)
+            }
+            renderControls()
         }
 
         override fun onTracksChanged(tracks: Tracks) {
             selectedAudioStream = selectedAudioStream(tracks)
-            renderMetadata(activeController()?.mediaMetadata)
+            renderMetadataForCurrentQueue(activeController()?.mediaMetadata)
         }
 
         override fun onIsPlayingChanged(isPlaying: Boolean) {
@@ -149,8 +168,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
         }
 
         override fun onAvailableCommandsChanged(availableCommands: Player.Commands) {
-            renderAdjacentControls()
-            renderQueue()
+            renderControls()
         }
 
         override fun onPlayerError(error: PlaybackException) {
@@ -188,8 +206,8 @@ class AudioPlayerActivity : AudioThemedActivity() {
         binding.toolbar.setNavigationOnClickListener { finishAfterTransition() }
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.action_choose_theme -> {
-                    AudioThemePicker(this) { recreate() }.show()
+                R.id.action_settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
                 else -> false
@@ -212,6 +230,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
         val nextRequest = AudioPlaybackContract.resolvePlayerIntent(intent) ?: return
         setIntent(intent)
         request = nextRequest
+        pendingPlaybackTarget = true
         renderMetadata(null)
         hidePlaybackError()
         if (intent.action == AudioPlaybackContract.ACTION_START_PLAYBACK) startPlayback()
@@ -248,7 +267,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
         binding.sleepTimerButton.setOnClickListener { showSleepTimerMenu() }
         binding.abLoopButton.setOnClickListener { cycleAbLoop() }
         binding.abLoopButton.setOnLongClickListener {
-            if (toolState.abStartMs == null) {
+            if (!controlAvailability().playbackTools || toolState.abStartMs == null) {
                 false
             } else {
                 sendCustomCommand(PlaybackSessionContract.COMMAND_CLEAR_AB_LOOP) {
@@ -279,6 +298,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun onPlayPauseClicked() {
+        if (!controlAvailability().playPause) return
         val active = activeController()
         when {
             active == null -> startPlayback()
@@ -297,6 +317,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun cyclePlaybackMode() {
+        if (!controlAvailability().playbackTools) return
         val active = activeController() ?: return
         val current = PlaybackModePolicy.current(active.shuffleModeEnabled, active.repeatMode)
         val state = PlaybackModePolicy.state(PlaybackModePolicy.next(current))
@@ -306,6 +327,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun showSpeedMenu() {
+        if (!controlAvailability().playbackTools) return
         val active = activeController() ?: return
         val menu = PopupMenu(this, binding.speedButton)
         SPEED_OPTIONS.forEachIndexed { index, speed ->
@@ -321,7 +343,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun showSleepTimerMenu() {
-        if (activeController() == null) return
+        if (!controlAvailability().playbackTools) return
         val labels = ArrayList<String>()
         val actions = ArrayList<() -> Unit>()
         listOf(15, 30, 60).forEach { minutes ->
@@ -387,6 +409,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun cycleAbLoop() {
+        if (!controlAvailability().playbackTools) return
         val active = activeController() ?: return
         val positionMs = active.currentPosition.coerceAtLeast(0L)
         when {
@@ -547,9 +570,10 @@ class AudioPlayerActivity : AudioThemedActivity() {
                     .onSuccess { connected ->
                         controller = connected
                         connected.addListener(playerListener)
+                        pendingPlaybackTarget = connected.mediaItemCount > 0
                         selectedAudioStream = selectedAudioStream(connected.currentTracks)
                         toolState = PlaybackSessionContract.stateFrom(connected.sessionExtras)
-                        renderMetadata(connected.mediaMetadata)
+                        renderMetadataForCurrentQueue(connected.mediaMetadata)
                         renderControls()
                         if (connected.playerError == null) hidePlaybackError() else showPlaybackError(connected.playerError)
                     }
@@ -572,7 +596,16 @@ class AudioPlayerActivity : AudioThemedActivity() {
 
     private fun activeController(): MediaController? = controller?.takeIf(MediaController::isConnected)
 
+    private fun controlAvailability() = activeController().let { active ->
+        PlaybackControlPolicy.resolve(
+            controllerConnected = active != null,
+            mediaItemCount = active?.mediaItemCount ?: 0,
+            pendingPlaybackTarget = pendingPlaybackTarget,
+        )
+    }
+
     private fun durationMs(): Long? = activeController()
+        ?.takeIf { it.mediaItemCount > 0 }
         ?.duration
         ?.takeIf { it != C.TIME_UNSET && it > 0L }
 
@@ -626,6 +659,24 @@ class AudioPlayerActivity : AudioThemedActivity() {
         renderArtwork(metadata?.artworkData)
     }
 
+    private fun renderMetadataForCurrentQueue(metadata: MediaMetadata?) {
+        if (controlAvailability().mediaActions) {
+            renderMetadata(metadata)
+        } else {
+            renderEmptyQueueMetadata()
+        }
+    }
+
+    private fun renderEmptyQueueMetadata() {
+        binding.titleText.setText(R.string.queue_empty)
+        binding.subtitleText.text = ""
+        binding.subtitleText.visibility = View.INVISIBLE
+        binding.infoText.text = ""
+        binding.infoText.visibility = View.INVISIBLE
+        binding.openExternalButton.isVisible = false
+        renderArtwork(null)
+    }
+
     private fun renderArtwork(artworkData: ByteArray?) {
         val bitmap = artworkData?.let(::decodeArtwork)
         if (bitmap != null) {
@@ -653,6 +704,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
         binding.playPauseButton.setImageResource(if (showPause) R.drawable.ic_pause else R.drawable.ic_play)
         binding.playPauseButton.contentDescription =
             getString(if (showPause) R.string.action_pause else R.string.action_play)
+        binding.playPauseButton.isEnabled = controlAvailability().playPause
     }
 
     private fun renderBuffering() {
@@ -673,24 +725,27 @@ class AudioPlayerActivity : AudioThemedActivity() {
         }
         binding.playbackModeButton.setIconResource(icon)
         binding.playbackModeButton.contentDescription = getString(label)
-        binding.playbackModeButton.isEnabled = active != null
-        binding.playbackModeButton.isActivated = active != null && mode != PlaybackMode.SEQUENTIAL
+        val enabled = controlAvailability().playbackTools
+        binding.playbackModeButton.isEnabled = enabled
+        binding.playbackModeButton.isActivated = enabled && mode != PlaybackMode.SEQUENTIAL
     }
 
     private fun renderSpeed() {
         val speed = activeController()?.playbackParameters?.speed ?: 1f
         binding.speedButton.text = formatSpeed(speed)
-        binding.speedButton.isEnabled = activeController() != null
-        binding.speedButton.isActivated = activeController() != null && speed != 1f
+        val enabled = controlAvailability().playbackTools
+        binding.speedButton.isEnabled = enabled
+        binding.speedButton.isActivated = enabled && speed != 1f
     }
 
     private fun renderAdjacentControls() {
         val active = activeController()
+        val mediaActionsEnabled = controlAvailability().mediaActions
         val hasQueue = (active?.mediaItemCount ?: 0) > 1
-        binding.seekBackwardButton.isEnabled = active != null
-        binding.seekForwardButton.isEnabled = active != null
-        binding.previousButton.isEnabled = hasQueue && active?.hasPreviousMediaItem() == true
-        binding.nextButton.isEnabled = hasQueue && active?.hasNextMediaItem() == true
+        binding.seekBackwardButton.isEnabled = mediaActionsEnabled
+        binding.seekForwardButton.isEnabled = mediaActionsEnabled
+        binding.previousButton.isEnabled = mediaActionsEnabled && hasQueue && active?.hasPreviousMediaItem() == true
+        binding.nextButton.isEnabled = mediaActionsEnabled && hasQueue && active?.hasNextMediaItem() == true
         binding.previousButton.alpha = 1f
         binding.nextButton.alpha = 1f
     }
@@ -739,7 +794,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
 
     private fun renderSleepTimer() {
         val active = toolState.sleepMode != PlaybackSessionContract.SLEEP_MODE_OFF
-        binding.sleepTimerButton.isEnabled = activeController() != null
+        binding.sleepTimerButton.isEnabled = controlAvailability().playbackTools
         binding.sleepTimerButton.alpha = 1f
         binding.sleepTimerButton.isActivated = active
         when (toolState.sleepMode) {
@@ -771,7 +826,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
         val start = toolState.abStartMs
         val end = toolState.abEndMs
         val active = start != null && end != null
-        binding.abLoopButton.isEnabled = activeController() != null
+        binding.abLoopButton.isEnabled = controlAvailability().playbackTools
         binding.abLoopButton.alpha = 1f
         binding.abLoopButton.isActivated = active || start != null
         binding.abLoopButton.text = when {
@@ -801,7 +856,11 @@ class AudioPlayerActivity : AudioThemedActivity() {
         val position = active?.currentPosition?.coerceAtLeast(0L) ?: 0L
         binding.durationText.text = duration?.let(::formatTime) ?: TIME_PLACEHOLDER
         if (isSeekBarTracking) return
-        binding.positionText.text = if (active != null) formatTime(position) else TIME_PLACEHOLDER
+        binding.positionText.text = if (controlAvailability().mediaActions) {
+            formatTime(position)
+        } else {
+            TIME_PLACEHOLDER
+        }
         binding.seekBar.isEnabled = duration != null
         binding.seekBar.progress = if (duration != null) {
             ((position * SEEK_BAR_MAX) / duration).toInt().coerceIn(0, SEEK_BAR_MAX)
