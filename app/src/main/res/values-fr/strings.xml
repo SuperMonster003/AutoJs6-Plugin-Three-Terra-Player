@@ -9,7 +9,6 @@
     <string name="action_playback_speed">Vitesse de lecture</string>
     <string name="action_seek_backward">Reculer de 10 secondes</string>
     <string name="action_seek_forward">Avancer de 10 secondes</string>
-    <string name="app_name">Lecteur audio</string>
     <string name="cd_album_artwork">Pochette d\'album</string>
     <string name="chooser_open_audio">Ouvrir l\'audio avec</string>
     <string name="error_cannot_read_file">Le fichier audio ne peut pas être lu</string>
@@ -74,7 +73,7 @@
     <string name="theme_source_autojs6_available">Couleur active de l’hôte · %1$s</string>
     <string name="theme_source_autojs6_unavailable">Couleur de l’hôte indisponible · repli %1$s</string>
     <string name="standalone_title">Votre lecteur audio simple</string>
-    <string name="standalone_description">Choisissez un ou plusieurs fichiers audio à lire ici, ou utilisez Audio Player directement depuis le gestionnaire de fichiers AutoJs6.</string>
+    <string name="standalone_description">Choisissez un ou plusieurs fichiers audio à lire ici, ou utilisez 3-Terra Player directement depuis le gestionnaire de fichiers AutoJs6.</string>
     <string name="action_open_audio_files">Ouvrir des fichiers audio</string>
     <string name="settings_title">Paramètres</string>
     <string name="settings_section_appearance">Apparence</string>

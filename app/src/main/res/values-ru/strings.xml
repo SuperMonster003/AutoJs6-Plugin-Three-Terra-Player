@@ -9,7 +9,6 @@
     <string name="action_playback_speed">Скорость воспроизведения</string>
     <string name="action_seek_backward">Назад на 10 секунд</string>
     <string name="action_seek_forward">Вперед на 10 секунд</string>
-    <string name="app_name">Аудиоплеер</string>
     <string name="cd_album_artwork">Обложка альбома</string>
     <string name="chooser_open_audio">Открыть аудио с помощью</string>
     <string name="error_cannot_read_file">Не удалось прочитать аудиофайл</string>
@@ -77,7 +76,7 @@
     <string name="theme_source_autojs6_available">Текущий цвет хоста · %1$s</string>
     <string name="theme_source_autojs6_unavailable">Цвет хоста недоступен · резервный %1$s</string>
     <string name="standalone_title">Простой аудиоплеер</string>
-    <string name="standalone_description">Выберите один или несколько аудиофайлов для воспроизведения здесь либо запускайте Audio Player прямо из файлового менеджера AutoJs6.</string>
+    <string name="standalone_description">Выберите один или несколько аудиофайлов для воспроизведения здесь либо запускайте 3-Terra Player прямо из файлового менеджера AutoJs6.</string>
     <string name="action_open_audio_files">Открыть аудиофайлы</string>
     <string name="settings_title">Настройки</string>
     <string name="settings_section_appearance">Оформление</string>

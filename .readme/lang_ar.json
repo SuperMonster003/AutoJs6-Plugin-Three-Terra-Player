@@ -5,7 +5,7 @@
   "h3_languages_with_ascii": "اللغات (Languages)",
   "p_languages_all_supported_for_readme": "يدعم ملف README.md الحالي اللغات التالية",
   "h3_introduction": "مقدمة",
-  "p_introduction": "يوفر Audio Player وحدة تحكم داخل التطبيق وخدمة خاصة للتشغيل في الخلفية للملفات الصوتية المفتوحة من مدير الملفات. ويمكنه ايضا استقبال طلبات Android ACTION_VIEW للقراءة فقط لعناوين content URI ذات نوع MIME صوتي.",
+  "p_introduction": "يوفر 3-Terra Player وحدة تحكم داخل التطبيق وخدمة خاصة للتشغيل في الخلفية للملفات الصوتية المفتوحة من مدير الملفات. ويمكنه ايضا استقبال طلبات Android ACTION_VIEW للقراءة فقط لعناوين content URI ذات نوع MIME صوتي.",
   "h3_functions": "الميزات",
   "features": [
     "يسجل `play-audio` و`play-audio-selection` عبر Explorer Action v12 لكل انواع MIME الصوتية التي يعرفها المضيف و19 امتدادا معروفا.",

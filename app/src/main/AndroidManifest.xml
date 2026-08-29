@@ -28,7 +28,7 @@
     </queries>
 
     <application
-        android:name=".AudioPlayerApplication"
+        android:name="io.github.supermonster003.autojs6.plugin.threeterraplayer.ThreeTerraPlayerApplication"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="false"

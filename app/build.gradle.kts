@@ -11,17 +11,21 @@ plugins {
     id("com.android.application")
 }
 
-val globalApplicationId = "io.github.supermonster003.autojs6.plugin.audioplayer"
+val sourceNamespace = "io.github.supermonster003.autojs6.plugin.threeterraplayer"
+
+// Keep the published application ID stable so existing installations, AutoJs6's official
+// catalog entry and per-package authorization upgrade in place after the product rename.
+val stableApplicationId = "io.github.supermonster003.autojs6.plugin.audioplayer"
 
 val buildTypeDebug = "debug"
 val buildTypeRelease = "release"
 
 android {
-    namespace = globalApplicationId
+    namespace = sourceNamespace
     compileSdk = versions.sdkVersionCompile
 
     defaultConfig {
-        applicationId = globalApplicationId
+        applicationId = stableApplicationId
         minSdk = versions.sdkVersionMin
         targetSdk = versions.sdkVersionTarget
         versionCode = versions.appVersionCode

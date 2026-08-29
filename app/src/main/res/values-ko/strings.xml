@@ -9,7 +9,6 @@
     <string name="action_playback_speed">재생 속도</string>
     <string name="action_seek_backward">10초 되감기</string>
     <string name="action_seek_forward">10초 빨리 감기</string>
-    <string name="app_name">오디오 플레이어</string>
     <string name="cd_album_artwork">앨범 아트</string>
     <string name="chooser_open_audio">오디오를 열 앱</string>
     <string name="error_cannot_read_file">오디오 파일을 읽을 수 없습니다</string>
@@ -68,7 +67,7 @@
     <string name="theme_source_autojs6_available">호스트 실시간 색상 · %1$s</string>
     <string name="theme_source_autojs6_unavailable">호스트 색상 사용 불가 · 대체 %1$s</string>
     <string name="standalone_title">간편한 오디오 플레이어</string>
-    <string name="standalone_description">하나 이상의 오디오 파일을 선택해 여기서 재생하거나 AutoJs6 파일 관리자에서 Audio Player를 바로 사용할 수 있습니다.</string>
+    <string name="standalone_description">하나 이상의 오디오 파일을 선택해 여기서 재생하거나 AutoJs6 파일 관리자에서 3-Terra Player를 바로 사용할 수 있습니다.</string>
     <string name="action_open_audio_files">오디오 파일 열기</string>
     <string name="settings_title">설정</string>
     <string name="settings_section_appearance">모양</string>

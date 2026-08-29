@@ -75,7 +75,7 @@
 
 ###### 2026/08/02
 
-* `Fonctionnalité` Plugin Audio Player avec l'ID de plugin `audio-player`, l'ID d'action `play-audio`, le moteur `explorer-action` et la variante `default`
+* `Fonctionnalité` Plugin 3-Terra Player avec l'ID de plugin `audio-player`, l'ID d'action `play-audio`, le moteur `explorer-action` et la variante `default`
 * `Fonctionnalité` Action principale en lecture seule du gestionnaire de fichiers pour les 18 extensions audio de l'hôte, avec version 5269 ou ultérieure requise
 * `Fonctionnalité` Lecture Media3 ExoPlayer et MediaSessionService avec focus audio, gestion de la déconnexion de sortie, mode de réveil local, arrière-plan, commandes multimédias du système et interface privée
 * `Fonctionnalité` Explication facultative de l'autorisation de notifications Android 13+ sans bloquer la lecture en cas de refus

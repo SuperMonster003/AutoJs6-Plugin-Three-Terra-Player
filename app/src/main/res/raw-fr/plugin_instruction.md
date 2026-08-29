@@ -1,4 +1,4 @@
-# Lecteur audio
+# 3-Terra Player
 
 Le Lecteur audio fonctionne à la fois comme plugin AutoJs6 et comme application autonome. Il ajoute un contrôleur et une lecture en arrière-plan pour tous les types MIME audio reconnus par le gestionnaire, avec une couverture explicite des extensions suivantes:
 

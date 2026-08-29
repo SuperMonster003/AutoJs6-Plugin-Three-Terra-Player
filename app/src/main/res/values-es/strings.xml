@@ -9,7 +9,6 @@
     <string name="action_playback_speed">Velocidad de reproducción</string>
     <string name="action_seek_backward">Retroceder 10 segundos</string>
     <string name="action_seek_forward">Avanzar 10 segundos</string>
-    <string name="app_name">Reproductor de audio</string>
     <string name="cd_album_artwork">Carátula del álbum</string>
     <string name="chooser_open_audio">Abrir audio con</string>
     <string name="error_cannot_read_file">No se puede leer el archivo de audio</string>
@@ -74,7 +73,7 @@
     <string name="theme_source_autojs6_available">Color actual del anfitrión · %1$s</string>
     <string name="theme_source_autojs6_unavailable">Color del anfitrión no disponible · alternativo %1$s</string>
     <string name="standalone_title">Tu reproductor de audio sencillo</string>
-    <string name="standalone_description">Elige uno o varios archivos de audio para reproducirlos aquí, o usa Audio Player directamente desde el gestor de archivos de AutoJs6.</string>
+    <string name="standalone_description">Elige uno o varios archivos de audio para reproducirlos aquí, o usa 3-Terra Player directamente desde el gestor de archivos de AutoJs6.</string>
     <string name="action_open_audio_files">Abrir archivos de audio</string>
     <string name="settings_title">Ajustes</string>
     <string name="settings_section_appearance">Apariencia</string>

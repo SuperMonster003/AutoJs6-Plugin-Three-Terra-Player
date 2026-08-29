@@ -5,7 +5,7 @@
   "h3_languages_with_ascii": "Языки (Languages)",
   "p_languages_all_supported_for_readme": "Текущий README.md поддерживает следующие языки",
   "h3_introduction": "Введение",
-  "p_introduction": "Audio Player предоставляет встроенный контроллер и частную службу фонового воспроизведения для аудиофайлов, открытых из файлового менеджера. Он также принимает запросы Android ACTION_VIEW только для чтения для content URI с аудио MIME-типом.",
+  "p_introduction": "3-Terra Player предоставляет встроенный контроллер и частную службу фонового воспроизведения для аудиофайлов, открытых из файлового менеджера. Он также принимает запросы Android ACTION_VIEW только для чтения для content URI с аудио MIME-типом.",
   "h3_functions": "Возможности",
   "features": [
     "Регистрирует действия `play-audio` и `play-audio-selection` через Explorer Action v12 для всех распознанных хостом аудио MIME-типов и 19 известных расширений.",

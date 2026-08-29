@@ -1,4 +1,4 @@
-# Reproductor de audio
+# 3-Terra Player
 
 El Reproductor de audio funciona como plugin de AutoJs6 y como aplicación independiente. Añade un controlador y reproducción en segundo plano para todos los tipos MIME de audio que reconoce el gestor, con cobertura explícita de estas extensiones:
 

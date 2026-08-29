@@ -9,7 +9,6 @@
     <string name="action_playback_speed">播放速度</string>
     <string name="action_seek_backward">快退 10 秒</string>
     <string name="action_seek_forward">快進 10 秒</string>
-    <string name="app_name">音訊播放器</string>
     <string name="cd_album_artwork">專輯封面</string>
     <string name="chooser_open_audio">選擇應用程式開啟音訊</string>
     <string name="error_cannot_read_file">無法讀取音訊檔案</string>

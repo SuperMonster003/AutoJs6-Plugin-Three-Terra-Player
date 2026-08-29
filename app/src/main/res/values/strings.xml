@@ -18,9 +18,9 @@
     <string name="action_ab_loop">A-B loop</string>
     <string name="action_seek_backward">Rewind 10 seconds</string>
     <string name="action_seek_forward">Fast-forward 10 seconds</string>
-    <string name="app_name">Audio Player</string>
+    <string name="app_name" translatable="false">3-Terra Player</string>
     <string name="standalone_title">Your simple audio player</string>
-    <string name="standalone_description">Choose one or more audio files to play them here, or use Audio Player directly from the AutoJs6 file manager.</string>
+    <string name="standalone_description">Choose one or more audio files to play them here, or use 3-Terra Player directly from the AutoJs6 file manager.</string>
     <string name="action_open_audio_files">Open audio files</string>
     <string name="settings_title">Settings</string>
     <string name="settings_section_appearance">Appearance</string>

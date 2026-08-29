@@ -1,6 +1,6 @@
-# Audio Player
+# 3-Terra Player
 
-Audio Player works both as an AutoJs6 plugin and as a standalone app. It adds an in-app controller and background playback for every audio MIME type recognized by the file manager, with explicit extension coverage for:
+3-Terra Player works both as an AutoJs6 plugin and as a standalone app. It adds an in-app controller and background playback for every audio MIME type recognized by the file manager, with explicit extension coverage for:
 
 `aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma`
 

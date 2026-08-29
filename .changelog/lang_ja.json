@@ -97,7 +97,7 @@
     "v1.0.0": {
       "released_date": "2026/08/02",
       "feature": [
-        "プラグインID `audio-player`, アクションID `play-audio`, エンジン `explorer-action`, バリアント `default` を持つAudio Playerプラグイン",
+        "プラグインID `audio-player`, アクションID `play-audio`, エンジン `explorer-action`, バリアント `default` を持つ3-Terra Playerプラグイン",
         "ホストの18個の音声拡張子に対応するファイルマネージャーの主要な読み取り専用アクション, 必須ホストビルド5269以降",
         "音声フォーカス, 出力切断処理, ローカルウェイクモード, バックグラウンド再生, システムメディアコントロール, 非公開コントローラー画面を備えたMedia3 ExoPlayerとMediaSessionService再生",
         "権限を拒否しても再生を妨げない任意のAndroid 13+通知権限説明",

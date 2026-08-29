@@ -75,7 +75,7 @@
 
 ###### 2026/08/02
 
-* `Feature` Audio Player plugin with plugin ID `audio-player`, action ID `play-audio`, engine `explorer-action`, and variant `default`
+* `Feature` 3-Terra Player plugin with plugin ID `audio-player`, action ID `play-audio`, engine `explorer-action`, and variant `default`
 * `Feature` Primary read-only file manager action for the host's 18 audio extensions, requiring host build 5269 or later
 * `Feature` Media3 ExoPlayer and MediaSessionService playback with audio focus, noisy-output handling, local wake mode, background playback, system media controls, and a private controller interface
 * `Feature` Optional Android 13+ notification permission guidance without blocking playback when permission is denied

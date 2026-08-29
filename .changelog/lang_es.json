@@ -97,7 +97,7 @@
     "v1.0.0": {
       "released_date": "2026/08/02",
       "feature": [
-        "Plugin Audio Player con ID de plugin `audio-player`, ID de acción `play-audio`, motor `explorer-action` y variante `default`",
+        "Plugin 3-Terra Player con ID de plugin `audio-player`, ID de acción `play-audio`, motor `explorer-action` y variante `default`",
         "Acción principal de solo lectura del gestor de archivos para las 18 extensiones de audio del host, con compilación 5269 o posterior requerida",
         "Reproducción mediante Media3 ExoPlayer y MediaSessionService con foco de audio, gestión de desconexión de salida, modo de activación local, segundo plano, controles multimedia del sistema e interfaz privada",
         "Información opcional sobre el permiso de notificaciones de Android 13+ sin bloquear la reproducción si se deniega",

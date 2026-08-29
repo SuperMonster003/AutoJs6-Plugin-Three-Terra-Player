@@ -5,7 +5,7 @@
   "h3_languages_with_ascii": "Idiomas (Languages)",
   "p_languages_all_supported_for_readme": "El README.md actual admite los siguientes idiomas",
   "h3_introduction": "Introducción",
-  "p_introduction": "Audio Player ofrece un controlador dentro de la aplicación y un servicio privado de reproducción en segundo plano para los archivos de audio abiertos desde el gestor de archivos. También puede recibir solicitudes Android ACTION_VIEW de solo lectura para content URI con un tipo MIME de audio.",
+  "p_introduction": "3-Terra Player ofrece un controlador dentro de la aplicación y un servicio privado de reproducción en segundo plano para los archivos de audio abiertos desde el gestor de archivos. También puede recibir solicitudes Android ACTION_VIEW de solo lectura para content URI con un tipo MIME de audio.",
   "h3_functions": "Funciones",
   "features": [
     "Registra las acciones `play-audio` y `play-audio-selection` mediante Explorer Action v12 para todos los tipos MIME de audio reconocidos por el host y 19 extensiones conocidas.",

@@ -1,8 +1,9 @@
--keep class io.github.supermonster003.autojs6.plugin.audioplayer.ExplorerActionService { *; }
--keep class io.github.supermonster003.autojs6.plugin.audioplayer.ExplorerActionActivity { *; }
--keep class io.github.supermonster003.autojs6.plugin.audioplayer.ExternalViewActivity { *; }
--keep class io.github.supermonster003.autojs6.plugin.audioplayer.AudioPlayerActivity { *; }
--keep class io.github.supermonster003.autojs6.plugin.audioplayer.AudioPlaybackService { *; }
--keep class io.github.supermonster003.autojs6.plugin.audioplayer.WakeActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.ExplorerActionService { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.PluginInfoService { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.ExplorerActionActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.ExternalViewActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.AudioPlayerActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.AudioPlaybackService { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.WakeActivity { *; }
 -keep class org.autojs.plugin.common.api.PluginInfo { *; }
 -keep class org.autojs.plugin.explorer.api.** { *; }

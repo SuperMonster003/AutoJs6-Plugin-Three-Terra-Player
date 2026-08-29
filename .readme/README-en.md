@@ -1,6 +1,8 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
+  <h1>3-Terra Player</h1>
+
   <p>
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
   </p>
@@ -39,7 +41,7 @@ The current README.md supports the following languages:
 
 ******
 
-Audio Player is both an AutoJs6 file-manager plugin and a standalone multi-file audio player with an in-app controller and private background playback service. It also accepts read-only Android ACTION_VIEW content URIs.
+3-Terra Player is both an AutoJs6 file-manager plugin and a standalone multi-file audio player with an in-app controller and private background playback service. It also accepts read-only Android ACTION_VIEW content URIs.
 
 ******
 

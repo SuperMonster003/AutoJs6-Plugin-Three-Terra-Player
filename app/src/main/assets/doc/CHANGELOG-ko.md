@@ -75,7 +75,7 @@
 
 ###### 2026/08/02
 
-* `기능` 플러그인 ID `audio-player`, 작업 ID `play-audio`, 엔진 `explorer-action`, 변형 `default`를 사용하는 Audio Player 플러그인
+* `기능` 플러그인 ID `audio-player`, 작업 ID `play-audio`, 엔진 `explorer-action`, 변형 `default`를 사용하는 3-Terra Player 플러그인
 * `기능` 호스트의 18개 오디오 확장자를 위한 파일 관리자 기본 읽기 전용 작업, 필수 호스트 빌드 5269 이상
 * `기능` 오디오 포커스, 출력 연결 해제 처리, 로컬 깨우기 모드, 백그라운드 재생, 시스템 미디어 제어 및 비공개 컨트롤러를 포함한 Media3 ExoPlayer와 MediaSessionService 재생
 * `기능` 권한을 거부해도 재생을 차단하지 않는 선택적 Android 13+ 알림 권한 안내

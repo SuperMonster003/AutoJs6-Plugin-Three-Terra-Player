@@ -9,7 +9,6 @@
     <string name="action_playback_speed">再生速度</string>
     <string name="action_seek_backward">10 秒戻す</string>
     <string name="action_seek_forward">10 秒進める</string>
-    <string name="app_name">オーディオプレーヤー</string>
     <string name="cd_album_artwork">アルバムアート</string>
     <string name="chooser_open_audio">音声を開くアプリ</string>
     <string name="error_cannot_read_file">音声ファイルを読み取れません</string>
@@ -68,7 +67,7 @@
     <string name="theme_source_autojs6_available">ホストの現在色 · %1$s</string>
     <string name="theme_source_autojs6_unavailable">ホスト色を取得できません · 代替 %1$s</string>
     <string name="standalone_title">シンプルなオーディオプレーヤー</string>
-    <string name="standalone_description">1 つ以上の音声ファイルを選んでここで再生するか、AutoJs6 のファイルマネージャーから Audio Player を直接使用できます。</string>
+    <string name="standalone_description">1 つ以上の音声ファイルを選んでここで再生するか、AutoJs6 のファイルマネージャーから 3-Terra Player を直接使用できます。</string>
     <string name="action_open_audio_files">音声ファイルを開く</string>
     <string name="settings_title">設定</string>
     <string name="settings_section_appearance">外観</string>

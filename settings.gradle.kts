@@ -1,6 +1,6 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "autojs6-plugin-audio-player"
+rootProject.name = "autojs6-plugin-three-terra-player"
 
 pluginManagement {
     repositories {
