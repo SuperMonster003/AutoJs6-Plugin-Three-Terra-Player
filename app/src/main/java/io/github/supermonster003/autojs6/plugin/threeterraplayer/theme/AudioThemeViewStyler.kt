@@ -72,8 +72,17 @@ internal object AudioThemeViewStyler {
             binding.nextButton,
         ).forEach { button -> styleTransportButton(button, transportTint) }
 
-        binding.playPauseButton.backgroundTintList = ColorStateList.valueOf(palette.primary)
-        binding.playPauseButton.imageTintList = ColorStateList.valueOf(palette.onPrimary)
+        binding.playPauseButton.backgroundTintList = enabledTintList(
+            enabled = palette.primary,
+            disabled = palette.surfaceContainerLow,
+        )
+        binding.playPauseButton.imageTintList = enabledTintList(
+            enabled = palette.onPrimary,
+            disabled = AudioThemePaletteGenerator.withAlpha(
+                palette.onSurfaceVariant,
+                DISABLED_ALPHA,
+            ),
+        )
         binding.playPauseButton.rippleColor =
             AudioThemePaletteGenerator.withAlpha(palette.onPrimary, RIPPLE_ALPHA)
 
