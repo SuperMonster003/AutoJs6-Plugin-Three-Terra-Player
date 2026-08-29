@@ -161,6 +161,14 @@
             android:permission="org.autojs.permission.PLUGIN">
             <intent-filter>
                 <action android:name="org.autojs.plugin.EXPLORER_ACTION" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".PluginInfoService"
+            android:exported="true"
+            android:permission="org.autojs.permission.PLUGIN">
+            <intent-filter>
                 <action android:name="org.autojs.plugin.INFO" />
             </intent-filter>
         </service>

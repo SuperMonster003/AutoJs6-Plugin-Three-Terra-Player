@@ -17,8 +17,10 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.autojs.plugin.common.api.IPluginInfoProvider
 import org.autojs.plugin.explorer.api.ExplorerActionCatalogKeys
 import org.autojs.plugin.explorer.api.ExplorerActionValues
+import org.autojs.plugin.explorer.api.IExplorerActionPlugin
 import org.autojs.plugin.explorer.api.IExplorerActionHostSession
 
 @RunWith(AndroidJUnit4::class)
@@ -29,7 +31,10 @@ class PluginContractInstrumentationTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val intent = Intent().setComponent(ComponentName(context, ExplorerActionService::class.java))
 
-        assertNotNull(ExplorerActionService().onBind(intent))
+        assertEquals(
+            IExplorerActionPlugin::class.java.name,
+            ExplorerActionService().onBind(intent).interfaceDescriptor,
+        )
     }
 
     @Test
@@ -86,12 +91,16 @@ class PluginContractInstrumentationTest {
             0,
         )
 
-        val service = services.firstOrNull {
-            it.serviceInfo.name == ExplorerActionService::class.java.name
+        val service = services.singleOrNull {
+            it.serviceInfo.name == PluginInfoService::class.java.name
         }?.serviceInfo
         assertNotNull(service)
         assertEquals("org.autojs.permission.PLUGIN", service?.permission)
         assertTrue(service?.exported == true)
+        assertEquals(
+            IPluginInfoProvider::class.java.name,
+            PluginInfoService().onBind(Intent()).interfaceDescriptor,
+        )
     }
 
     @Test
