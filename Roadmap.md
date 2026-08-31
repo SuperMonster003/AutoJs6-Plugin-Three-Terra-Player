@@ -47,7 +47,7 @@
 
 | 里程碑 | 目标版本 | 主题 | 状态 |
 |---|---|---|---|
-| M5 | v1.4.x | 质量收尾: 实机验证, 在线发布, 文档链路 CI 化 | 进行中 (4/6) |
+| M5 | v1.4.x | 质量收尾: 实机验证, 在线发布, 文档链路 CI 化 | 进行中 (5/6; 仅余 v1.4.1 实机复测) |
 | M6 | v1.5.0 | 视觉与体验精进: 动态取色, 沉浸式, 高级设置 | 未开始 |
 | M7 | v2.0.0 | 进阶能力: 歌词, 均衡器, 详情页, 性能基线 | 未开始 |
 | 持续 | - | 工程与质量守则 | 进行中 |
@@ -62,7 +62,7 @@
 
 - [ ] **v1.4.0 实机抽样验证**: 2026/08/31 用户完成 v1.4.0 实机走查, 除右上角更多菜单白底白字外暂未发现问题; v1.4.1 已修复该问题, API 29 / 33 菜单对比度测试与 API 33 R8 冷启动会话恢复通过, 详见 [回归记录](docs/v1.4.1-regression.md). — 验收: 将 v1.4.1 R8 包安装到真实设备, 复测更多菜单与独立会话恢复后方可勾选.
 - [x] **耳机与蓝牙按键适配验证**: 2026/08/31 用户确认有线耳机与无线耳机的单击 / 双击 / 三击全部正常, 记录见 [v1.4.1 回归记录](docs/v1.4.1-regression.md). — 验收: 至少各一台真实设备的验证记录留档.
-- [ ] **在线发布补齐**: 发布授权已于 2026/08/31 取得; 为 v1.2.1 / v1.2.2 / v1.3.0 / v1.4.0 / v1.4.1 创建 GitHub Release 并同步宿主插件中心元数据. — 验收: Releases 页面条目与 `releases/` 本地归档的文件名, 大小与摘要一致.
+- [x] **在线发布补齐**: 2026/08/31 已创建公开仓库 [SuperMonster003/AutoJs6-Plugin-Three-Terra-Player](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player), 补发 [v1.2.1–v1.4.1 五个 GitHub Release](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases), 并在 [官方插件索引提交 `abbefcd`](https://github.com/SuperMonster003/AutoJs6-Official-Plugins-Index/commit/abbefcd196e29947e0d9acd56fec0317f5339952) 中上线 v1.4.1/build 13 元数据. — 验收: GitHub API 逐项确认五个 Release 均非草稿 / 非预发布且各含唯一 APK, 文件名, 大小与 SHA-256 全部匹配本地归档; 线上 raw 索引回读确认包名, 引擎, 插件 ID, 版本与下载摘要正确.
 - [x] **文档链路 CI 化**: `:checkMarkdown` 已接入 Android `preBuild`, GitHub Actions 同步运行回归测试与 `py .python/generate_markdown.py --check`; Gradle 属性 `markdownPythonCommand` 可覆盖平台默认 Python 命令. — 验收: 4 个门禁测试覆盖当前 / 过期 / 缺失 / 孤儿产物; 临时孤儿产物实测使 Gradle 构建以退出码 1 失败, 清理后 `:app:testDebugUnitTest` 与 `:app:assembleDebug` 通过.
 - [x] **十语言翻译人工复核**: README / CHANGELOG / 插件说明十语言均完成基础人工抽查与术语修订; 逐语言记录见 [v1.4.1 十语言复核](docs/localization-review-v1.4.1.md). — 验收: 十次 `LANG_OK`, Android 占位符一致, 未发现非目标文字混入, `MARKDOWN_OK languages=10 artifacts=36 mode=check`.
 - [x] **无障碍与 RTL 完整验证**: 2026/08/31 用户确认 TalkBack 全流程功能与语音播报符合预期, 阿拉伯语 RTL 布局正常; 记录见 [v1.4.1 回归记录](docs/v1.4.1-regression.md). — 验收: 验证清单留档, 问题清零.
