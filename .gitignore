@@ -35,6 +35,7 @@ __pycache__/
 /captures/
 /release/
 /releases/
+/app/release/
 /tools/*
 !/tools/nodejs/
 !/tools/nodejs/**

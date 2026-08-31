@@ -4,7 +4,10 @@
   <h1>{{ product_name }}</h1>
 
   <p>
-    <img src="{{ repo_url }}/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
+    <picture>
+      <source srcset="{{ repo_url }}/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
+      <img src="{{ repo_url }}/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="{{ icon_alt }}" border="0" width="128" />
+    </picture>
   </p>
 
   <p>{{ text_plugin_synopsis }}</p>
@@ -12,7 +15,8 @@
   <p>
     <a href="{{ repo_url }}/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/{{ repo_slug }}?label=Release"/></a>
     <a href="{{ repo_url }}/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/{{ repo_slug }}?color=A24232&label=Issues"/></a>
-    <a href="{{ repo_url }}/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/{{ repo_slug }}?color=534BAE&label=License"/></a>
+    <a href="{{ repo_url }}/commit/{{ created_commit_hash }}"><img alt="Created" src="https://img.shields.io/date/{{ created_epoch }}?color=2e7d32&label=Created"/></a>
+    <a href="{{ license_url }}"><img alt="GitHub License" src="https://img.shields.io/github/license/{{ repo_slug }}?color=534BAE&label=License"/></a>
   </p>
 </div>
 
@@ -32,15 +36,27 @@
 
 ******
 
-{{ p_introduction }}
+{{ p_introduction_what }}
+
+{{ p_introduction_how }}
 
 ******
 
-### {{ h3_functions }}
+### {{ h3_features }}
 
 ******
 
 {{ placeholder_features }}
+
+******
+
+### {{ h3_usage }}
+
+******
+
+{{ placeholder_usage_steps }}
+
+> {{ p_usage_note }}
 
 ******
 
@@ -54,17 +70,27 @@
 {{ supported_extensions }}
 ```
 
-{{ p_decoder_support }}.
+{{ p_decoder_support }}
 
 ******
 
-### {{ h3_host_behavior }}
+### {{ h3_faq }}
 
 ******
 
-{{ p_host_installed }}
+{{ placeholder_faq }}
 
-{{ p_host_missing }}
+******
+
+### {{ h3_security }}
+
+******
+
+{{ p_security_intro }}
+
+{{ placeholder_security_points }}
+
+{{ p_security_permission }}
 
 ******
 
@@ -75,6 +101,7 @@
 {{ p_plugin_interface }}:
 
 ```text
+application id: {{ application_id }}
 service action: {{ plugin_action }}
 execute action: {{ plugin_execute_action }}
 plugin id: {{ plugin_id }}
@@ -94,19 +121,13 @@ required host build: {{ required_host_build }}
 
 ******
 
-### {{ h3_security }}
+### {{ h3_roadmap }}
 
 ******
 
-{{ p_security }}
+{{ p_roadmap }}
 
-******
-
-### {{ h3_security_limits }}
-
-******
-
-{{ placeholder_security_limits }}
+- [{{ text_link_roadmap }}]({{ roadmap_url }})
 
 ******
 
@@ -126,17 +147,23 @@ required host build: {{ required_host_build }}
 
 ******
 
+{{ p_build_intro }}
+
+{{ p_build_debug }}:
+
 ```powershell
 .\gradlew.bat :app:assembleDebug
 ```
 
-{{ text_release_build }}:
+{{ p_build_release }}:
 
 ```powershell
 .\gradlew.bat :app:assembleRelease
 ```
 
-{{ p_build_params }}.
+{{ p_build_artifacts }}
+
+{{ p_build_params }}
 
 ******
 
@@ -145,15 +172,27 @@ required host build: {{ required_host_build }}
 ******
 
 ```text
+.readme/common.json
 .readme/lang_*.json
+.readme/template_readme.md
+.readme/template_plugin_instruction.md
 .changelog/lang_*.json
+.changelog/template_changelog.md
 .python/generate_markdown.py
 app/src/main/assets/doc/CHANGELOG-*.md
 app/src/main/res/values-*/strings.xml
 app/src/main/res/raw-*/plugin_instruction.md
 ```
 
-{{ p_resource_layout }}.
+{{ p_resource_layout }}
+
+******
+
+### {{ h3_license }}
+
+******
+
+{{ p_license }}
 
 ******
 

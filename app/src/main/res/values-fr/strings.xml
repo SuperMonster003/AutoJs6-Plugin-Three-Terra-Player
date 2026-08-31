@@ -16,7 +16,7 @@
     <string name="error_no_external_app">Aucune autre application audio n\'est disponible</string>
     <string name="error_playback">Cette application n\'a pas pu décoder ni lire le fichier audio</string>
     <string name="notification_permission_explanation">Autorisez les notifications pour afficher les commandes de lecture en dehors de cet écran. La lecture reste disponible en cas de refus.</string>
-    <string name="plugin_description">Plugin de gestionnaire de fichiers. Lit des fichiers audio avec des commandes intégrées et en arrière-plan</string>
+    <string name="plugin_description">Plugin de lecture audio et application autonome. Lisez vos fichiers audio d\'un simple appui depuis le gestionnaire de fichiers AutoJs6 ou de manière indépendante, avec lecture en arrière-plan</string>
     <string name="unknown_audio">Audio inconnu</string>
     <string name="action_play_audio_selection">Lire les fichiers audio sélectionnés</string>
     <string name="action_previous_track">Piste précédente</string>
@@ -73,8 +73,6 @@
     <string name="theme_preset_selected_accessibility">%1$s, %2$s, sélectionné</string>
     <string name="theme_presets">Préréglages Material 500</string>
     <string name="theme_source_autojs6">Suivre AutoJs6</string>
-    <string name="theme_source_autojs6_available">Couleur active de l’hôte · %1$s</string>
-    <string name="theme_source_autojs6_unavailable">Couleur de l’hôte indisponible · repli %1$s</string>
     <string name="standalone_title">Votre lecteur audio simple</string>
     <string name="standalone_description">Choisissez un ou plusieurs fichiers audio à lire ici, ou utilisez 3-Terra Player directement depuis le gestionnaire de fichiers AutoJs6.</string>
     <string name="action_open_audio_files">Ouvrir des fichiers audio</string>
@@ -87,7 +85,7 @@
     <string name="setting_night_mode">Mode nuit</string>
     <string name="setting_theme_color">Couleur du thème</string>
     <string name="setting_resume_playback">Reprendre la lecture</string>
-    <string name="setting_resume_playback_summary">Mémoriser uniquement la position du fichier ouvert le plus récemment</string>
+    <string name="setting_resume_playback_summary">Restaurer la dernière file d’attente autonome, le morceau actuel et sa position à l’ouverture de l’application</string>
     <string name="setting_check_updates">Rechercher des mises à jour</string>
     <string name="setting_check_updates_summary">Vérifier maintenant la dernière version publiée</string>
     <string name="setting_auto_check_updates">Rechercher automatiquement les mises à jour</string>

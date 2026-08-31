@@ -4,15 +4,19 @@
   <h1>3-Terra Player</h1>
 
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
+    <picture>
+      <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
+      <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="three-terra-player-ic-launcher" border="0" width="128" />
+    </picture>
   </p>
 
-  <p>Plugin de gestionnaire de fichiers. Lit des fichiers audio avec des commandes intégrées et en arrière-plan</p>
+  <p>Plugin de lecture audio et application autonome. Lisez vos fichiers audio d'un simple appui depuis le gestionnaire de fichiers AutoJs6 ou de manière indépendante, avec lecture en arrière-plan</p>
 
   <p>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Audio-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Audio-Player?color=534BAE&label=License"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/ff025baf3ad619805b2ebec12c738a32861e524b"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
 
@@ -24,16 +28,16 @@
 
 Le fichier README.md actuel prend en charge les langues suivantes:
 
-- [简体中文 [zh-Hans]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hans.md)
-- [繁體中文 (香港) [zh-Hant-HK]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hant-HK.md)
-- [繁體中文 (台灣) [zh-Hant-TW]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hant-TW.md)
-- [English [en]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-en.md)
+- [简体中文 [zh-Hans]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hans.md)
+- [繁體中文 (香港) [zh-Hant-HK]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hant-HK.md)
+- [繁體中文 (台灣) [zh-Hant-TW]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hant-TW.md)
+- [English [en]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-en.md)
 - Français [fr] # actuel
-- [Español [es]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-es.md)
-- [日本語 [ja]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ja.md)
-- [한국어 [ko]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ko.md)
-- [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ru.md)
-- [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ar.md)
+- [Español [es]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-es.md)
+- [日本語 [ja]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ja.md)
+- [한국어 [ko]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ko.md)
+- [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ru.md)
+- [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ar.md)
 
 ******
 
@@ -41,48 +45,111 @@ Le fichier README.md actuel prend en charge les langues suivantes:
 
 ******
 
-3-Terra Player fournit un contrôleur intégré et un service privé de lecture en arrière-plan pour les fichiers audio ouverts depuis le gestionnaire de fichiers. Il peut également recevoir des requêtes Android ACTION_VIEW en lecture seule pour des content URI avec un type MIME audio.
+3-Terra Player (anciennement Audio Player) est à la fois un plugin de lecture audio pour le gestionnaire de fichiers AutoJs6 et un lecteur audio autonome et épuré. Une fois installé et activé, il suffit de toucher un fichier audio dans le gestionnaire de fichiers AutoJs6 pour le lire directement, sans passer par un lecteur tiers; il peut aussi s'ouvrir depuis l'écran d'accueil comme une application ordinaire, pour choisir plusieurs fichiers audio et les lire à la suite.
+
+Une fois installé, le plugin est détecté automatiquement par AutoJs6, sans aucune configuration. La lecture repose sur Media3 (ExoPlayer), le framework multimédia officiel d'Android, avec lecture en arrière-plan et commandes dans la notification multimédia du système; l'accès aux fichiers audio est strictement en lecture seule, aucune autorisation de stockage n'est demandée et les fichiers sources ne sont jamais modifiés ni supprimés.
 
 ******
 
-### Fonctionnalités
+### Points forts
 
 ******
 
-- Enregistre `play-audio` et `play-audio-selection` via Explorer Action v12 pour tous les types MIME audio reconnus par l’hôte et 19 extensions connues.
-- Lit les fichiers avec Media3 ExoPlayer et MediaSessionService, avec gestion du focus audio, de la déconnexion de sortie, du mode de réveil local, de la lecture en arrière-plan et des commandes multimédias du système.
-- Fournit un écran complet avec pochette, étiquettes, informations techniques, déplacement de la progression, sauts de 10 secondes, modes séquentiel / aléatoire / répétition d'un titre et vitesse de 0,5x à 2x.
-- Lit jusqu'à 128 fichiers audio explicitement sélectionnés dans l'ordre fourni par l'hôte, avec précédent / suivant et une file permettant de choisir ou retirer un titre.
-- Inclut une minuterie gérée par le service avec préréglages, durée personnalisée, arrêt après le titre courant, fondu des cinq dernières secondes et boucle A-B.
-- Mémorise uniquement le dernier fichier ouvert et sa position, remplace l’ancienne entrée à l’ouverture d’un autre et synchronise métadonnées et commandes avec le système.
-- Fournit un lanceur permettant de choisir jusqu’à 128 documents et accepte des URI `content` ACTION_VIEW en lecture seule, y compris les anciens alias MIME WMA.
-- Propose un recours en cas d'échec du décodeur qui ouvre le fichier dans une autre application compatible et exclut ce plugin afin d'éviter une boucle.
-- L'ouverture d'un fichier depuis l'explorateur découvre, via une Host Session par requête, une file bornée et naturellement triée des fichiers audio frères lisibles ; la sélection multiple explicite conserve l'ordre de l'hôte.
-- Génère une palette claire et sombre lisible depuis une couleur source, suit AutoJs6 par défaut et propose 19 couleurs Material 500 et des RGB personnalisées ; les paramètres couvrent langue, nuit, reprise, mises à jour, historique et informations.
+- Lecture en un appui depuis le gestionnaire de fichiers: touchez n'importe quel fichier audio dans le gestionnaire de fichiers AutoJs6 pour lancer la lecture.
+- Enchaînement automatique dans le même dossier: à l'ouverture d'un titre, les autres fichiers audio du dossier sont détectés et lus à la suite dans l'ordre naturel des noms de fichiers (jusqu'à 128 titres, à partir du titre choisi).
+- File multisélection: cochez jusqu'à 128 fichiers audio dans le gestionnaire de fichiers et lisez-les d'un seul appui, exactement dans l'ordre de sélection.
+- Écran de lecture complet: pochette d'album, étiquettes titre / artiste / album, informations techniques comme la fréquence d'échantillonnage et le débit, et une barre de progression déplaçable.
+- Toutes les commandes du quotidien: précédent / suivant, recul et avance de 10 secondes, modes séquentiel / aléatoire / répétition d'un titre, et vitesse de lecture de 0,5x à 2x.
+- Panneau de file de lecture: consultez à tout moment les titres à venir, touchez pour y sauter ou les retirer, avec le titre en cours clairement indiqué.
+- Minuterie de veille: préréglages de 15 / 30 / 60 minutes ou durée personnalisée, avec arrêt possible après le titre en cours et fondu du volume sur les 5 dernières secondes.
+- Boucle A-B: réécoutez un passage en boucle, idéal pour travailler la compréhension orale ou relever un morceau à l'oreille.
+- Lecture en arrière-plan: la lecture continue après avoir quitté l'écran ou verrouillé l'appareil, avec commandes dans la notification multimédia du système et sur l'écran de verrouillage.
+- Restauration de session: rouvrir l'application autonome depuis le lanceur restaure la dernière file, la piste active, la position d'arrêt, l'état répétition / aléatoire et la vitesse; la session restaurée reste en pause.
+- Mode application autonome: utilisable sans AutoJs6; choisissez jusqu'à 128 fichiers audio depuis l'écran de démarrage et lisez-les.
+- Apparence personnalisable: la langue / le mode nuit / la couleur du thème suivent AutoJs6 par défaut, avec au choix 19 couleurs prédéfinies ou une couleur RGB personnalisée.
 
 ******
 
-### Extensions de l'explorateur
+### Utilisation
 
 ******
 
-Le catalogue annonce `audio/*` et utilise aussi ces extensions pour les tables MIME anciennes ou incomplètes:
+1. Téléchargez le dernier APK du plugin depuis la page [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) et installez-le sur l'appareil qui exécute AutoJs6.
+2. Ouvrez le centre des plugins d'AutoJs6 et vérifiez que `3-Terra Player` est bien reconnu et activé.
+3. Dans le gestionnaire de fichiers AutoJs6, touchez un fichier audio et choisissez `Lire l'audio`; ou faites un appui long pour en sélectionner plusieurs, puis choisissez `Lire les fichiers audio sélectionnés` dans la barre d'outils.
+4. Vous pouvez aussi ouvrir `3-Terra Player` directement depuis l'écran d'accueil et choisir plusieurs fichiers audio via le bouton de sélection de fichiers pour lancer la lecture.
+
+> Si le plugin n'apparaît pas dans le centre des plugins, mettez d'abord AutoJs6 à niveau vers 6.8.0 (code de version 5276) ou une version ultérieure. Le plugin lui-même prend en charge Android 7.0 (API 24) et versions ultérieures, et le mode application autonome ne dépend pas d'AutoJs6.
+
+******
+
+### Formats audio pris en charge
+
+******
+
+L'entrée du gestionnaire de fichiers déclare le type audio générique `audio/*` et couvre explicitement les 19 extensions suivantes, pour rester compatible avec les tables MIME incomplètes ou anciennes de certains appareils:
 
 ```text
 aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
 ```
 
-Une extension reconnue ne garantit pas le décodage. La lecture dépend de Media3, de la plateforme Android, des codecs de l'appareil et du contenu du fichier.
+Une extension prise en charge ne garantit pas le décodage: la lecture réelle dépend de Media3, de la version d'Android, des codecs de l'appareil et du contenu du fichier. Si un fichier ne peut pas être lu, le panneau d'erreur propose de l'ouvrir avec une autre application.
 
 ******
 
-### Comportement de l'hôte
+### Questions fréquentes
 
 ******
 
-Lorsque le plugin est installé et activé dans AutoJs6, le gestionnaire affiche Lire l'audio pour un fichier et Lire les fichiers audio sélectionnés dans la barre de sélection multiple. L'ouverture simple démarre sur cette piste et peut découvrir les fichiers audio frères directs lisibles dans l'ordre naturel ; la sélection multiple explicite conserve l'ordre de l'hôte.
+#### Le bouton `Lire l'audio` n'apparaît pas dans le gestionnaire de fichiers?
 
-Lorsque le plugin est absent, cette action ne figure pas dans la liste. L'hôte conserve son flux ACTION_VIEW externe en lecture seule pour les fichiers audio, de sorte qu'une autre application audio installée peut traiter le fichier. Sans application externe compatible, l'hôte ne dispose pas d'une interface de lecture de remplacement.
+Vérifiez trois points dans l'ordre: le plugin est installé; il est activé dans le centre des plugins d'AutoJs6; et AutoJs6 est en version 6.8.0 (code de version 5276) ou ultérieure. Une fois ces trois conditions réunies, l'action de lecture apparaît sur les fichiers audio du gestionnaire de fichiers.
+
+#### Je n'ai ouvert qu'un seul titre, pourquoi d'autres morceaux du même dossier apparaissent-ils dans la file?
+
+C'est l'enchaînement automatique dans le même dossier: à l'ouverture d'un seul fichier audio, le plugin découvre les autres fichiers audio du dossier via une session gérée par l'hôte et les place dans la file dans l'ordre naturel des noms de fichiers, pour une écoute continue. La découverte est strictement en lecture seule et n'entre jamais dans les sous-dossiers; si la version de l'hôte ne prend pas en charge cette capacité, seul le titre choisi est lu.
+
+#### Dans quel ordre la lecture multisélection se fait-elle?
+
+Exactement dans l'ordre de sélection. Pour écouter dans un ordre précis, cochez les fichiers dans cet ordre; une fois dans le lecteur, vous pouvez aussi sauter vers un titre ou le retirer depuis le panneau de file.
+
+#### La lecture continue-t-elle après avoir quitté l'écran ou verrouillé l'appareil?
+
+Oui. La lecture est portée par un service en arrière-plan et se contrôle depuis la notification multimédia du système et l'écran de verrouillage. Sur Android 13 et ultérieur, l'autorisation de notifications est facultative: la refuser masque seulement les commandes de notification, sans affecter la lecture elle-même.
+
+#### Le plugin peut-il modifier mes fichiers audio ou les envoyer en ligne?
+
+Non. Le plugin ne demande aucune autorisation de stockage et n'accède aux fichiers audio qu'en lecture seule; la connexion réseau sert uniquement à vérifier les nouvelles versions sur GitHub (déclenchée manuellement ou au plus une fois par jour), et rien n'est envoyé, ni fichiers ni données personnelles.
+
+#### Pourquoi certains fichiers restent-ils muets ou signalent-ils une erreur de décodage?
+
+Une extension prise en charge ne signifie pas que l'appareil sait forcément décoder le fichier; certains codecs rares ou des fichiers endommagés peuvent échouer. En cas d'erreur, le panneau d'erreur affiche le code exact et propose d'ouvrir le fichier avec une autre application (ce plugin est automatiquement exclu pour éviter une boucle).
+
+#### Comment faire suivre au plugin la langue et le thème d'AutoJs6?
+
+C'est le comportement par défaut: la langue, le mode nuit et la couleur du thème se synchronisent automatiquement via l'interface officielle de paramètres en lecture seule d'AutoJs6. Vous pouvez aussi fixer une langue ou choisir vos propres couleurs dans les paramètres; sans AutoJs6 installé, le plugin revient à l'apparence du système et aux valeurs par défaut intégrées.
+
+#### Où se trouvent la minuterie de veille et la boucle A-B?
+
+Toutes deux se trouvent dans la barre d'outils en bas de l'écran de lecture. L'icône de minuterie propose des préréglages ou une durée personnalisée; le bouton A-B suit le cycle 'définir le point A, définir le point B, effacer' au fil des appuis pour poser ou annuler la boucle.
+
+******
+
+### Autorisations et sécurité
+
+******
+
+Les fichiers audio peuvent provenir de sources non fiables, aussi le flux de lecture est-il protégé dès la conception par plusieurs lignes de défense:
+
+- Zéro autorisation de stockage: le plugin ne demande pas (et ne peut pas obtenir) l'accès en lecture ou en écriture au stockage de l'appareil; il n'accède qu'aux fichiers individuels explicitement accordés par l'hôte ou le système.
+- Jamais d'écriture: les fichiers audio sont ouverts en lecture seule et ne sont jamais modifiés, déplacés ni supprimés.
+- Validation stricte: l'entrée du gestionnaire de fichiers est protégée par l'autorisation de signature d'AutoJs6, et chaque requête de lecture est vérifiée point par point, y compris la version du protocole, la liste des cibles et les droits en lecture seule; toute requête non conforme est rejetée d'emblée.
+- Découverte bornée: l'enchaînement dans le même dossier lit uniquement via une session gérée par l'hôte et limitée à la requête, sans récursion dans les sous-dossiers ni adresse de fichier devinée, et la session se ferme à la fin de la lecture.
+- Session locale uniquement: lorsque la reprise de lecture est activée, le stockage privé de l'application conserve seulement la dernière file autonome du sélecteur et son état de lecture; seuls les URI du sélecteur système avec un accès durable sont admis, les routes Host Session ne sont jamais enregistrées et désactiver ce réglage efface aussitôt l'enregistrement.
+- Réseau minimal: l'autorisation Internet ne sert qu'aux vérifications de versions GitHub déclenchées par l'utilisateur ou une fois par jour, jamais au contenu audio ni aux données d'usage.
+- Notifications facultatives: sur Android 13+, l'autorisation de notifications est facultative; la refuser masque seulement les commandes de notification et la lecture n'est pas affectée.
+
+Installez le plugin uniquement depuis la page officielle [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) ou d'autres canaux de confiance; un paquet d'origine inconnue peut avoir été altéré, même si son nom et sa version semblent identiques.
 
 ******
 
@@ -90,47 +157,36 @@ Lorsque le plugin est absent, cette action ne figure pas dans la liste. L'hôte 
 
 ******
 
-L'hôte découvre et exécute le plugin avec les identités suivantes:
+Les informations suivantes s'adressent aux développeurs de l'hôte AutoJs6 et de plugins; l'hôte utilise ces identifiants pour découvrir le plugin et négocier les capacités:
 
 ```text
+application id: io.github.supermonster003.autojs6.plugin.audioplayer
 service action: org.autojs.plugin.EXPLORER_ACTION
 execute action: org.autojs.plugin.EXPLORER_ACTION_EXECUTE
 plugin id: audio-player
 engine: explorer-action
 variant: default
 Explorer action ids: play-audio (single) / play-audio-selection (multiple, up to 128)
-Explorer protocol version: 12 (accepts compatible read-only v4–v12 requests)
+Explorer protocol version: 12 (accepts compatible read-only v4-v12 requests)
 Explorer MIME types: [audio/*]
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-La version 1.4.0 fournit des actions v12 en lecture seule, un accès limité aux frères, un sélecteur autonome de documents et des entrées Android audio / WMA. Sans Host Session facultative, seul le fichier choisi est lu.
+La version actuelle fournit les actions en lecture seule du protocole v12 pour un fichier unique et pour la multisélection ordonnée, la découverte dans le même dossier limitée à la requête, un sélecteur de documents autonome et une entrée audio Android publique en lecture seule (y compris les anciens alias MIME WMA). Les hôtes sans la capacité facultative Host Session continuent de lire uniquement le fichier choisi.
 
-La découverte dans le même dossier nécessite AutoJs6 6.8.0 build 5276 ou ultérieur et Explorer Action v12 ; cette exigence ne sera pas relevée par les capacités futures du plugin.
-
-******
-
-### Sécurité
+La découverte dans le même dossier nécessite AutoJs6 6.8.0 (code de version 5276) ou ultérieur avec Explorer Action v12; les capacités futures du plugin ne relèveront pas cette exigence. Depuis la v1.4.0, le produit s'appelle 3-Terra Player tandis que l'ID d'application reste `io.github.supermonster003.autojs6.plugin.audioplayer`, de sorte que la mise à niveau s'installe par-dessus la version existante.
 
 ******
 
-Le plugin ne demande aucun stockage et n’écrit jamais les fichiers sources. Internet sert uniquement aux vérifications manuelles ou quotidiennes des versions GitHub. L’entrée signée valide strictement v12, TARGETS, ClipData, les métadonnées et la lecture ; la Host Session reste liée à l’UID et non récursive, et les entrées publiques restent en lecture seule.
+### Feuille de route
 
 ******
 
-### Limites de sécurité
+Les capacités prévues et leur avancement sont tenus à jour sous forme de liste cochable dans Roadmap.md, organisée par jalons avec des critères d'acceptation, couvrant les paroles, un égaliseur, des couleurs tirées de la pochette, une interface bord à bord et la qualité d'ingénierie. Les éléments non cochés sont des intentions et non des capacités de la version actuelle; n'hésitez pas à rejoindre la discussion via les Issues.
 
-******
-
-- L'action individuelle part exactement d'un fichier sélectionné et peut former une file bornée de fichiers audio frères directs lisibles ; l'action de sélection accepte de 1 à 128 fichiers uniques et conserve leur ordre.
-- Les requêtes de l'explorateur dont la taille déclarée dépasse 8 TiB sont refusées.
-- Les actions correspondent au MIME audio reconnu ou à la liste d’extensions, puis normalisent et valident chaque cible.
-- La découverte des frères n'est pas récursive et n'est disponible que via la session par requête gérée par l'hôte ; le plugin ne devine jamais un URI frère et ne reçoit aucun chemin de système de fichiers.
-- L’entrée Android publique exige ACTION_VIEW, un URI `content`, un MIME audio ou WMA pris en charge et un droit de lecture.
-- L'autorisation de notifications est facultative. Son refus masque les commandes dans le volet de notifications mais ne bloque pas la lecture.
-- La lecture se termine correctement à la fin du fichier ou en cas d'erreur de décodage. Le recours externe transmet uniquement un nouveau droit de lecture et exclut ce plugin.
+- [Voir Roadmap.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/Roadmap.md)
 
 ******
 
@@ -138,41 +194,42 @@ Le plugin ne demande aucun stockage et n’écrit jamais les fichiers sources. I
 
 ******
 
-# v1.4.0
+#### v1.4.1
 
-###### 2026/08/29
+_2026/08/31_
 
-* `Fonctionnalité` Les notifications multimédias utilisent désormais des actions dédiées précédent, suivant, activation du mode aléatoire et quitter, ainsi que l'icône monochrome transparente de l'application; l'état lumineux du mode aléatoire reste synchronisé avec la lecture
-* `Correctif` AutoJs6 ne marque et ne désactive plus le plugin comme erroné lors de la découverte des informations du plugin et d'Explorer Action, car les deux protocoles Binder utilisent désormais des services distincts
-* `Correctif` Vider la file efface maintenant les anciennes métadonnées et la session en arrière-plan, désactive la lecture, la recherche, la file, la vitesse, le minuteur et A-B, puis affiche un état vide explicite au lieu d'accepter des appuis sans effet
-* `Correctif` L'ombre du bouton principal n'est plus coupée par la zone inférieure et son état désactivé utilise des couleurs clairement atténuées; les boutons radio, choix multiples, progressions et boutons des dialogues suivent désormais le thème dynamique
-* `Amélioration` L'application et le plugin portent désormais le nom non traduisible 3-Terra Player, avec les espaces de noms et symboles source migrés vers les formes three / Three, tout en conservant l'ID d'application publié pour les mises à niveau et réglages existants
-* `Amélioration` Le raccourci de palette de la barre du lecteur est remplacé par un menu à trois points contenant uniquement Paramètres, sans modifier l'espacement établi sous les commandes de lecture
+- `Fonctionnalité` L'application autonome restaure désormais, lorsqu'elle est rouverte depuis le lanceur, la dernière file d'attente, la piste active, la position d'arrêt, le mode de répétition, l'état aléatoire et la vitesse; la session restaurée reste en pause et seules les files du sélecteur système disposant d'un accès en lecture durable sont enregistrées
+- `Correctif` Correction du menu supplémentaire en haut à droite du lecteur qui affichait, avec certains thèmes, du texte blanc sur fond blanc et rendait l'entrée Paramètres illisible
+- `Amélioration` La source AutoJs6 du réglage de couleur du thème porte désormais partout le libellé `Suivre AutoJs6`; le sélecteur affiche directement la valeur HEX de la couleur de l'hôte
+- `Amélioration` Révision manuelle de base achevée pour les dix traductions du README, du CHANGELOG et des instructions du plugin, avec migration des liens du projet et de mise à jour intégrée vers le dépôt officiel 3-Terra Player
 
-# v1.3.0
+#### v1.4.0
 
-###### 2026/08/29
+_2026/08/29_
 
-* `Fonctionnalité` Ajout d’un écran de lancement et d’un lecteur autonome multifichier, ainsi que de paramètres dédiés à la langue, au mode nuit, à la couleur, à la reprise, aux mises à jour, à l’historique et aux informations sur l’application et le développeur
-* `Fonctionnalité` La langue, le mode nuit et la couleur suivent AutoJs6 par défaut via son contrat officiel en lecture seule ; si l’hôte est indisponible, les choix restent visibles mais désactivés et reviennent aux valeurs par défaut
-* `Fonctionnalité` Ajout de la vérification manuelle et automatique quotidienne, de la gestion des versions ignorées et d’un historique localisé intégré
-* `Correctif` Correction du message permanent Host color unavailable en exposant l’entrée protégée d’informations du plugin requise par le fournisseur de paramètres de l’hôte
-* `Correctif` Les actions de l’explorateur annoncent les types MIME audio en plus de 19 extensions connues, dont WMA, afin que tout audio reconnu par l’hôte s’ouvre directement dans le plugin
-* `Amélioration` La reprise mémorise exactement le dernier fichier ouvert, efface immédiatement l’ancien à l’ouverture d’un autre et ne conserve jamais une lecture terminée
-* `Amélioration` La zone de métadonnées réserve trois lignes stables et complète fréquence et débit depuis la piste sélectionnée, dans l’ordre 44.1 kHz · MP3 · 128 kbps
-* `Amélioration` A-B suit désormais un cycle clair en trois pressions pour définir A, définir B et effacer ; les commandes inférieures sont espacées et leurs icônes centrées et uniformes
+- `Fonctionnalité` Notification multimédia du système entièrement revue: nouveaux boutons précédent / suivant / mode aléatoire / quitter, icône monochrome propre à l'application, et état du mode aléatoire synchronisé en temps réel avec le lecteur
+- `Correctif` Correction du plugin parfois marqué automatiquement comme défectueux et désactivé par le centre des plugins d'AutoJs6: les informations du plugin et l'action du gestionnaire de fichiers utilisent désormais des points de terminaison de service distincts
+- `Correctif` Vider la file de lecture ne laisse plus d'informations obsolètes: l'écran passe dans un état vide explicite et les commandes de lecture, de saut, de vitesse, de minuterie et A-B sont désactivées ensemble
+- `Correctif` Correction de l'ombre du bouton de lecture coupée par la zone inférieure; les boutons radio, cases à cocher, barres de progression et boutons des dialogues de paramètres et de mise à jour suivent désormais la couleur du thème
+- `Amélioration` L'application et le plugin sont officiellement renommés 3-Terra Player: l'ID d'application reste inchangé, la mise à niveau s'installe directement par-dessus et les réglages existants sont conservés
+- `Amélioration` Le menu en haut à droite du lecteur est allégé pour ne garder que l'entrée Paramètres; le bouton de palette, redondant avec la page des paramètres, est supprimé
 
-# v1.2.2
+#### v1.3.0
 
-###### 2026/08/27
+_2026/08/29_
 
-* `Correctif` La lecture depuis l’explorateur n’échoue plus après une mise à niveau du plugin lorsque le gestionnaire de fichiers AutoJs6 en cours d’exécution envoie encore une action de protocole v4 mise en cache ; la passerelle accepte l’enveloppe compatible en lecture seule v4–v12 tout en continuant d’annoncer v12
-* `Correctif` Les extensions audio annoncées ne sont plus rejetées lorsqu’une table MIME Android ou constructeur renvoie un joker ou un type application ; la liste d’extensions autorisées fournit désormais un type MIME audio canonique stable
-* `Amélioration` Les requêtes Explorer rejetées consignent désormais un code de motif respectueux de la vie privée, sans nom de fichier, chemin affiché ni URI, afin de diagnostiquer directement les futurs écarts de contrat
+- `Fonctionnalité` Ajout d'un mode application autonome: sans AutoJs6, choisissez jusqu'à 128 fichiers audio depuis l'écran de démarrage et lisez-les à la suite
+- `Fonctionnalité` Ajout d'une page de paramètres: langue, mode nuit, couleur du thème, reprise de lecture, recherche de mises à jour, historique des versions et informations sur l'application réunis au même endroit; la langue et l'apparence suivent AutoJs6 par défaut et reviennent aux valeurs intégrées quand l'hôte est indisponible
+- `Fonctionnalité` Ajout de la recherche de mises à jour manuelle et automatique quotidienne, avec possibilité d'ignorer une version donnée et un historique des versions multilingue intégré
+- `Correctif` Correction de la couleur du thème signalant toujours la couleur de l'hôte comme indisponible en mode Suivre AutoJs6
+- `Correctif` Tous les éléments reconnus comme audio par l'hôte dans le gestionnaire de fichiers (WMA inclus désormais) peuvent maintenant être lus directement par ce plugin
+- `Amélioration` La reprise de lecture ne mémorise que le dernier fichier ouvert: ouvrir un autre fichier ou terminer la lecture efface automatiquement l'ancien enregistrement
+- `Amélioration` L'écran de lecture conserve une zone d'informations fixe de trois lignes et complète la fréquence d'échantillonnage et le débit; la mise en page ne bouge plus au changement de titre ni pendant le chargement des étiquettes
+- `Amélioration` La boucle A-B devient un cycle de trois appuis pour définir le point A, définir le point B puis effacer; l'espacement et l'alignement des icônes des commandes du bas sont également peaufinés
 
-##### Pour consulter davantage de versions
+##### Pour un historique des versions plus complet, voir
 
-* [CHANGELOG-fr.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/assets/doc/CHANGELOG-fr.md)
+* [CHANGELOG.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/assets/doc/CHANGELOG-fr.md)
 
 ******
 
@@ -180,34 +237,52 @@ Le plugin ne demande aucun stockage et n’écrit jamais les fichiers sources. I
 
 ******
 
+Cette section s'adresse aux développeurs qui souhaitent compiler le plugin depuis les sources.
+
+Compiler un APK debug:
+
 ```powershell
 .\gradlew.bat :app:assembleDebug
 ```
 
-Compilation Release:
+Compiler un APK release (signé automatiquement une fois la signature configurée dans le fichier non versionné `sign.properties`):
 
 ```powershell
 .\gradlew.bat :app:assembleRelease
 ```
 
-Les paramètres de compilation proviennent de `version.properties`. Le SDK minimal actuel est 24 et le SDK cible est 36.
+Pour l'archivage des publications, exécutez la tâche `:app:appendDigestToReleasedFiles`, qui copie les APK signés dans `releases/` en ajoutant au nom de fichier la version et une somme de contrôle CRC32.
+
+Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 36, version actuelle 1.4.1.
 
 ******
 
-### Structure des ressources
+### Localisation et génération des documents
 
 ******
 
 ```text
+.readme/common.json
 .readme/lang_*.json
+.readme/template_readme.md
+.readme/template_plugin_instruction.md
 .changelog/lang_*.json
+.changelog/template_changelog.md
 .python/generate_markdown.py
 app/src/main/assets/doc/CHANGELOG-*.md
 app/src/main/res/values-*/strings.xml
 app/src/main/res/raw-*/plugin_instruction.md
 ```
 
-`strings.xml` localise les métadonnées du plugin et le texte de l'interface. `plugin_instruction.md` fournit les instructions visibles depuis l'hôte. `.python/generate_markdown.py` génère les fichiers README et les historiques localisés depuis les sources JSON.
+`strings.xml` localise les métadonnées du plugin et le texte de l'interface, et `plugin_instruction.md` fournit les instructions affichées dans le centre des plugins de l'hôte. Le README, le journal des modifications et les instructions sont tous générés depuis des sources JSON: modifiez les sources sous `.readme/` et `.changelog/`, puis exécutez `py .python/generate_markdown.py` pour régénérer tous les artefacts (ne modifiez jamais les fichiers générés à la main); exécutez `py .python/generate_markdown.py --check` pour vérifier que sources et artefacts sont synchronisés.
+
+******
+
+### Licence
+
+******
+
+Le code du projet est open source sous [Mozilla Public License 2.0](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE). La lecture audio repose sur [AndroidX Media3](https://developer.android.com/media/media3) (Apache License 2.0).
 
 ******
 

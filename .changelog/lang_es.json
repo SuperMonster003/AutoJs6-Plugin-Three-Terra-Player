@@ -5,123 +5,132 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.4.1": {
+      "released_date": "2026/08/31",
+      "feature": [
+        "La aplicación independiente ahora restaura la última cola, la pista actual, la posición de parada, el modo de repetición, el estado aleatorio y la velocidad al volver a abrirla desde el lanzador; la sesión restaurada permanece en pausa y solo se guardan colas del selector del sistema con acceso de lectura duradero"
+      ],
+      "fix": [
+        "Se corrigió el menú adicional de la esquina superior derecha del reproductor, que con algunos temas mostraba texto blanco sobre fondo blanco e impedía leer la opción Ajustes"
+      ],
+      "improvement": [
+        "La fuente AutoJs6 del ajuste de color del tema ahora se denomina siempre `Seguir AutoJs6`; el selector muestra directamente el valor HEX del color del host",
+        "Se completó una revisión manual básica de las diez traducciones del README, CHANGELOG e instrucciones del complemento, y se migraron los enlaces del proyecto y de actualización integrada al repositorio oficial de 3-Terra Player"
+      ]
+    },
     "v1.4.0": {
       "released_date": "2026/08/29",
       "feature": [
-        "Las notificaciones multimedia ahora usan acciones dedicadas para anterior, siguiente, alternar aleatorio y salir, además del icono monocromático transparente de la aplicación; la iluminación de aleatorio se mantiene sincronizada con la reproducción"
+        "Notificación multimedia del sistema renovada por completo: nuevos botones de anterior / siguiente / alternar aleatorio y salir, con el icono monocromo propio de la aplicación, y el estado de aleatorio sincronizado en tiempo real con el reproductor"
       ],
       "fix": [
-        "AutoJs6 ya no marca ni desactiva el plugin como erróneo al descubrir la información del plugin y Explorer Action, porque los dos protocolos Binder ahora usan servicios independientes",
-        "Vaciar la cola ahora elimina los metadatos obsoletos y la sesión en segundo plano, desactiva reproducción, búsqueda, cola, velocidad, temporizador y A-B, y muestra un estado vacío explícito en vez de aceptar pulsaciones sin efecto",
-        "La sombra del botón principal ya no queda recortada por la zona inferior y el estado desactivado usa colores claramente atenuados; los controles de radio, selección múltiple, progreso y botones de los diálogos ahora siguen el tema dinámico"
+        "Corregido que el complemento pudiera marcarse automáticamente como defectuoso y desactivarse en el centro de complementos de AutoJs6: la información del complemento y la acción del gestor de archivos ahora usan servicios independientes",
+        "Vaciar la cola de reproducción ya no deja información obsoleta: la pantalla pasa a un estado vacío explícito y los controles de reproducción, búsqueda, velocidad, temporizador y A-B se desactivan a la vez",
+        "Corregido el recorte de la sombra del botón de reproducción por la zona inferior; los botones de opción, las casillas, las barras de progreso y los botones de los diálogos de ajustes y de actualización ahora siguen el color del tema"
       ],
       "improvement": [
-        "La aplicación y el plugin pasan a llamarse con el texto no traducible 3-Terra Player, y los espacios de nombres y símbolos del código usan las formas three / Three, mientras se conserva el ID de aplicación publicado para actualizaciones y ajustes existentes",
-        "El acceso directo de paleta de la barra del reproductor se sustituyó por un menú de tres puntos con solo Ajustes, manteniendo el espaciado establecido bajo los controles de reproducción"
+        "La aplicación y el complemento pasan a llamarse oficialmente 3-Terra Player: el ID de aplicación no cambia, la actualización se instala directamente sobre la versión anterior y los ajustes existentes se conservan",
+        "El menú de la esquina superior derecha del reproductor se reduce a una sola entrada de Ajustes, eliminando el botón de paleta que duplicaba la página de ajustes"
       ]
     },
     "v1.3.0": {
       "released_date": "2026/08/29",
       "feature": [
-        "Se añadió una pantalla de inicio y un reproductor independiente para varios archivos, además de ajustes propios de idioma, modo nocturno, color, reanudación, actualizaciones, historial e información de la aplicación y el desarrollador",
-        "El idioma, el modo nocturno y el color siguen AutoJs6 de forma predeterminada mediante su contrato oficial de solo lectura; si el host no está disponible, las opciones siguen visibles pero deshabilitadas y usan los valores predeterminados",
-        "Se añadieron comprobaciones manuales y automáticas diarias, gestión de versiones ignoradas e historial localizado integrado"
+        "Nuevo modo de aplicación independiente: sin necesidad de AutoJs6, elige de una vez hasta 128 archivos de audio desde la pantalla de inicio y reprodúcelos seguidos",
+        "Nueva página de ajustes: idioma, modo nocturno, color del tema, reanudación de la reproducción, comprobación de actualizaciones, historial de versiones e información de la aplicación en un solo lugar; el idioma y la apariencia siguen a AutoJs6 de forma predeterminada y recurren a los valores integrados cuando el host no está disponible",
+        "Nuevas comprobaciones de actualizaciones manuales y automáticas una vez al día, con opción de ignorar versiones concretas y un historial de versiones multilingüe integrado"
       ],
       "fix": [
-        "Se corrigió el aviso permanente Host color unavailable al exponer la entrada protegida de información del plugin que requiere el proveedor de ajustes del host",
-        "Las acciones del Explorador anuncian tipos MIME de audio además de 19 extensiones conocidas, incluida WMA, para abrir directamente en el plugin todo audio reconocido por el host"
+        "Corregido que, al seguir el color del tema de AutoJs6, siempre se indicara que el color del host no estaba disponible",
+        "Todos los elementos que el host reconoce como audio en el gestor de archivos (ahora también WMA) pueden reproducirse directamente con este complemento"
       ],
       "improvement": [
-        "La reanudación recuerda exactamente el último archivo abierto, descarta de inmediato el anterior al abrir otro y nunca conserva una reproducción terminada",
-        "El área de metadatos reserva tres líneas estables y completa frecuencia y tasa de bits con la pista seleccionada, en el orden 44.1 kHz · MP3 · 128 kbps",
-        "A-B usa ahora un ciclo claro de tres pulsaciones para fijar A, fijar B y borrar; los controles inferiores tienen más espacio e iconos centrados y del mismo tamaño"
+        "La reanudación de la reproducción recuerda solo el último archivo abierto: al abrir otro archivo o terminar la reproducción, el registro anterior se borra automáticamente",
+        "La pantalla de reproducción reserva un área fija de tres líneas de información y completa la frecuencia de muestreo y la tasa de bits, de modo que el diseño ya no salta al cambiar de pista ni durante la carga asíncrona",
+        "El bucle A-B ahora se completa con tres toques sucesivos: fijar punto A, fijar punto B y borrar; también se mejoran el espaciado y la alineación de los iconos de los controles inferiores"
       ]
     },
     "v1.2.2": {
       "released_date": "2026/08/27",
       "fix": [
-        "La reproducción desde el explorador ya no falla tras actualizar el complemento cuando el gestor de archivos AutoJs6 en ejecución aún envía una acción de protocolo v4 almacenada en caché; la puerta de enlace acepta la envolvente compatible de solo lectura v4–v12 y sigue anunciando v12",
-        "Las extensiones de audio anunciadas ya no se rechazan cuando una tabla MIME de Android o del fabricante devuelve un comodín o un tipo application; la lista permitida de extensiones proporciona ahora un tipo MIME de audio canónico y estable"
+        "Corregido que, tras actualizar el complemento sobre la versión anterior, todos los audios del gestor de archivos indicaran una solicitud de audio no válida: la entrada ahora acepta las solicitudes antiguas de solo lectura almacenadas en caché por un host en ejecución",
+        "Corregido el rechazo indebido de extensiones compatibles como `ogg` y `opus` en dispositivos con tablas MIME defectuosas: la lista de extensiones permitidas proporciona ahora tipos de audio canónicos y estables"
       ],
       "improvement": [
-        "Las solicitudes del explorador rechazadas registran ahora un código de motivo respetuoso con la privacidad, sin nombres de archivo, rutas visibles ni URI, para diagnosticar directamente futuras diferencias de contrato"
+        "Las solicitudes rechazadas registran ahora un código de motivo respetuoso con la privacidad (sin nombres de archivo, rutas ni URI), lo que facilita informar y localizar problemas"
       ]
     },
     "v1.2.1": {
       "released_date": "2026/08/27",
       "feature": [
-        "La acción Reproducir audio para un solo archivo ahora puede descubrir hasta 128 archivos de audio legibles en la misma carpeta mediante Explorer Action v12 y crear una cola con orden natural que comienza en la pista seleccionada"
+        "Al abrir una canción desde el gestor de archivos, se descubren automáticamente los demás audios de la misma carpeta y se reproducen seguidos por orden natural de nombre de archivo: hasta 128 pistas, empezando por la seleccionada"
       ],
       "fix": [
-        "API 24 ya no rechaza una solicitud válida de Explorer cuando Android añade desde el manifiesto de la actividad puente la marca sin permisos FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS",
-        "El avance automático a una pista hermana ya no se bloquea al reconstruir el Intent de retorno de MediaSession; el objetivo autorizado originalmente permanece como ancla de la Host Session independientemente de la pista activa"
+        "Corregido el rechazo indebido de solicitudes de reproducción legítimas en dispositivos con Android 7.0 debido a una marca de ventana que el sistema añade automáticamente",
+        "Corregido un posible cierre inesperado al pasar automáticamente a una pista de la misma carpeta"
       ],
       "improvement": [
-        "La pista seleccionada conserva su content URI original y las pistas hermanas solo se transmiten mediante descriptores de archivo de una Host Session limitada a la solicitud; no se adivinan URI ni se añade acceso recursivo, de escritura, almacenamiento o persistente",
-        "El filtro de extensiones de audio excluye de la cola los vídeos .mp4 con el mismo nombre que audios .m4a, mientras la cola de selección múltiple explícita existente no cambia",
-        "La propiedad de la Host Session se transfiere al servicio de reproducción en segundo plano y se cierra al sustituir la cola, fallar el inicio, terminar la reproducción o destruir el servicio"
+        "El descubrimiento en la misma carpeta es siempre de solo lectura y acotado: sin recursión en subcarpetas, sin adivinar ubicaciones de archivos, sin permiso de almacenamiento, y los vídeos con el mismo nombre que un audio nunca entran en la cola",
+        "La sesión de lectura de la misma carpeta pasa a manos del servicio de reproducción en segundo plano y se cierra automáticamente al sustituir la cola, terminar la reproducción o destruirse el servicio"
       ],
       "dependency": [
-        "Se actualizó la API Explorer Action incluida del protocolo v4 a la extensión de lectura de hermanos v12 retrocompatible, manteniendo la compilación mínima 5276 del host"
+        "La interfaz de acciones del gestor de archivos integrada se actualiza a la v12 retrocompatible; la versión mínima del host se mantiene en build 5276"
       ]
     },
     "v1.2.0": {
       "released_date": "2026/08/27",
       "feature": [
-        "Compatibilidad con Explorer Action v4 y una nueva acción multiselección ordenada que crea una cola con hasta 128 archivos de audio elegidos explícitamente",
-        "Lista nativa de Media3 con anterior / siguiente, panel para saltar o eliminar pistas y modos secuencial / aleatorio / repetir una",
-        "Temporizador gestionado por el servicio con 15 / 30 / 60 minutos, duración personalizada, detener tras la pista actual y fundido final de cinco segundos",
-        "Bucle de intervalo A-B para repetir una sección seleccionada"
+        "Nueva reproducción con selección múltiple: marca hasta 128 audios en el gestor de archivos y añádelos a la cola con un toque, manteniendo estrictamente el orden en que se marcaron",
+        "Nuevos controles de anterior / siguiente, un panel de cola para saltar a pistas o quitarlas, y modos secuencial / aleatorio / repetir una",
+        "Nuevo temporizador de apagado: valores predefinidos de 15 / 30 / 60 minutos o duración personalizada, con opción de detenerse al terminar la pista actual y fundido en los últimos 5 segundos",
+        "Nuevo bucle de intervalo A-B para escuchar repetidamente un fragmento elegido"
       ],
       "improvement": [
-        "Los controles multimedia del sistema ahora muestran anterior, siguiente y saltos de 10 segundos, mientras metadatos y reanudación siguen la pista actual",
-        "La validación del Explorador cubre TARGETS y ClipData ordenados, identificadores únicos, sesión del host y cada archivo seleccionado sin ampliar permisos de lectura",
-        "Se documenta que el URI padre FileProvider no enumera hijos; la búsqueda de archivos hermanos y la conjetura de URI siguen desactivadas y la multiselección es la vía segura"
+        "Los controles multimedia del sistema añaden los comandos de anterior, siguiente y retroceso / avance de 10 segundos, y los metadatos de la notificación se actualizan en tiempo real al avanzar la cola",
+        "La validación de solicitudes del gestor de archivos se extiende a los destinos de selección múltiple ordenada, manteniendo autorizaciones mínimas de solo lectura"
       ],
       "dependency": [
-        "API Explorer Action integrada actualizada de v2 a v4 y compilación mínima del host elevada a 5276",
-        "Añadido AndroidX RecyclerView 1.4.0"
+        "La interfaz de acciones del gestor de archivos se actualiza de v2 a v4; la versión mínima del host sube a build 5276",
+        "Se añade AndroidX RecyclerView 1.4.0"
       ]
     },
     "v1.1.0": {
       "released_date": "2026/08/27",
       "feature": [
-        "Pantalla de reproducción rediseñada con carátula del álbum, etiquetas de título / artista / álbum, barra de progreso arrastrable y tiempos de reproducción",
-        "Controles de reproducción mejorados: retroceso y avance de 10 segundos, repetición de pista y velocidad de 0,5x a 2x",
-        "Extracción automática de etiquetas integradas, carátula y propiedades técnicas (códec / frecuencia de muestreo / tasa de bits), sincronizadas con las notificaciones multimedia del sistema",
-        "Memoria de posición de reproducción: al reabrir el mismo archivo se reanuda desde la última posición y la reproducción completada borra el registro"
+        "Pantalla de reproducción totalmente nueva: carátula del álbum, etiquetas de título / artista / álbum, información técnica y barra de progreso arrastrable",
+        "Se añaden el retroceso y avance de 10 segundos, un interruptor de repetir la pista actual y velocidad de reproducción de 0,5x a 2x",
+        "Las etiquetas y la carátula integradas en el audio se leen automáticamente y se sincronizan con la notificación multimedia del sistema",
+        "Nueva reanudación de la reproducción: al reabrir el mismo archivo se continúa desde la última posición, y el registro se borra automáticamente al completarse la reproducción"
       ],
       "improvement": [
-        "La reproducción puede reiniciarse directamente en la pantalla del reproductor tras finalizar o fallar la decodificación, sin volver al gestor de archivos",
-        "Los avisos de error de reproducción ahora incluyen el código de error específico para facilitar los reportes"
+        "Tras terminar la reproducción o fallar la decodificación, la pista puede reiniciarse directamente en la pantalla del reproductor, sin volver al gestor de archivos",
+        "Los avisos de error de reproducción incluyen el código de error concreto, lo que facilita diagnosticar e informar"
       ],
       "dependency": [
-        "Se añade AndroidX ConstraintLayout versión 2.2.1",
-        "Se elimina la dependencia AndroidX Media3 UI sin uso"
+        "Se añade AndroidX ConstraintLayout 2.2.1",
+        "Se elimina la dependencia AndroidX Media3 UI, que ya no se usa"
       ]
     },
     "v1.0.1": {
       "released_date": "2026/08/08",
       "fix": [
-        "Enlace de servicio nulo al activar el complemento en el centro de complementos"
+        "Corregido un enlace de servicio vacío al activar el complemento en el centro de complementos"
       ],
       "improvement": [
-        "Nombre, descripción y documentación de usuario más claros y concisos"
+        "El nombre, la descripción y las instrucciones del complemento son ahora más concisos y naturales"
       ]
     },
     "v1.0.0": {
       "released_date": "2026/08/02",
       "feature": [
-        "Plugin 3-Terra Player con ID de plugin `audio-player`, ID de acción `play-audio`, motor `explorer-action` y variante `default`",
-        "Acción principal de solo lectura del gestor de archivos para las 18 extensiones de audio del host, con compilación 5269 o posterior requerida",
-        "Reproducción mediante Media3 ExoPlayer y MediaSessionService con foco de audio, gestión de desconexión de salida, modo de activación local, segundo plano, controles multimedia del sistema e interfaz privada",
-        "Información opcional sobre el permiso de notificaciones de Android 13+ sin bloquear la reproducción si se deniega",
-        "Compatibilidad Android ACTION_VIEW independiente y de solo lectura para solicitudes de audio con URI `content` y transferencia a otra aplicación compatible si falla el decodificador, con prevención de bucles",
-        "Validación estricta de protocolo, URI, ClipData, origen, nombre, MIME, tamaño y permisos, sin permisos de almacenamiento ni de acceso a Internet y con transferencia mínima de lectura",
-        "Metadatos, texto de interfaz, instrucciones, archivos README e historiales localizados en español, francés, ruso, árabe, japonés, coreano, inglés, chino simplificado, chino tradicional de Hong Kong y chino tradicional de Taiwán"
+        "Primera versión estable: la acción Reproducir audio para el gestor de archivos de AutoJs6, con 18 extensiones de audio comunes y reproducción con un solo toque",
+        "Reproducción sólida basada en Media3 ExoPlayer y MediaSessionService: reproducción en segundo plano, gestión del foco de audio, pausa automática al desconectarse el dispositivo de salida y controles multimedia del sistema",
+        "Acepta solicitudes de solo lectura de otras aplicaciones para abrir audio; si falla la decodificación, el archivo puede pasarse a otra aplicación compatible evitando bucles",
+        "Base de seguridad estricta: sin permisos de almacenamiento ni de Internet, aceptando y transmitiendo solo autorizaciones mínimas de solo lectura",
+        "Información del complemento, instrucciones, README e historial de cambios disponibles en 10 idiomas"
       ],
       "dependency": [
-        "Añadido AndroidX Media3 ExoPlayer, Session y UI versión 1.10.1"
+        "Se añaden AndroidX Media3 ExoPlayer, Session y UI 1.10.1"
       ]
     }
   }

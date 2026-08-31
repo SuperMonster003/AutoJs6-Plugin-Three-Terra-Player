@@ -56,12 +56,12 @@ internal object AppUpdateRepository {
         )
     }
 
-    const val REPOSITORY = "SuperMonster003/AutoJs6-Plugin-Audio-Player"
+    const val REPOSITORY = "SuperMonster003/AutoJs6-Plugin-Three-Terra-Player"
     const val RELEASES_URL = "https://github.com/$REPOSITORY/releases"
     const val PROJECT_URL = "https://github.com/$REPOSITORY"
 
     private const val LATEST_RELEASE_API = "https://api.github.com/repos/$REPOSITORY/releases/latest"
-    private const val USER_AGENT = "AutoJs6-Plugin-Audio-Player-UpdateChecker"
+    private const val USER_AGENT = "AutoJs6-Plugin-Three-Terra-Player-UpdateChecker"
     private const val CONNECT_TIMEOUT_MS = 10_000
     private const val READ_TIMEOUT_MS = 15_000
     private const val RESPONSE_BUFFER_SIZE = 4_096

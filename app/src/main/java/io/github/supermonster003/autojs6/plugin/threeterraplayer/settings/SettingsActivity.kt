@@ -13,6 +13,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.PlaybackPositionStore
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.PlaybackSessionStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.R
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivitySettingsBinding
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePaletteGenerator
@@ -66,7 +67,10 @@ class SettingsActivity : AudioThemedActivity() {
             val enabled = !binding.rememberPositionSwitch.isChecked
             preferenceStore.rememberPlaybackPosition = enabled
             binding.rememberPositionSwitch.isChecked = enabled
-            if (!enabled) PlaybackPositionStore(this).clearAll()
+            if (!enabled) {
+                PlaybackPositionStore(this).clearAll()
+                PlaybackSessionStore(this).clear()
+            }
         }
         binding.checkUpdateSetting.setOnClickListener {
             AppUpdateCoordinator.checkManually(this)
@@ -204,14 +208,11 @@ class SettingsActivity : AudioThemedActivity() {
             ThemeSourceMode.AUTOJS6 -> {
                 val color = hostResult.snapshot?.themeColorPrimary
                     ?: AudioThemePaletteGenerator.AUTOJS6_FALLBACK_SOURCE
-                getString(
-                    if (hostResult.available) {
-                        R.string.theme_source_autojs6_available
-                    } else {
-                        R.string.theme_source_autojs6_unavailable
-                    },
-                    AudioThemePaletteGenerator.colorHex(color),
-                )
+                if (hostResult.available) {
+                    getString(R.string.follow_autojs6)
+                } else {
+                    unavailableFollowSummary(AudioThemePaletteGenerator.colorHex(color))
+                }
             }
             ThemeSourceMode.PRESET -> {
                 val index = ThemePresetCatalog.colors.indexOfFirst { preset -> preset.key == preference.presetKey }

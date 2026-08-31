@@ -16,7 +16,7 @@
     <string name="error_no_external_app">لا يتوفر تطبيق صوت اخر</string>
     <string name="error_playback">تعذر على هذا التطبيق فك ترميز ملف الصوت او تشغيله</string>
     <string name="notification_permission_explanation">اسمح بالاشعارات لعرض عناصر التحكم بالتشغيل خارج هذه الشاشة. يبقى التشغيل متاحا اذا رفضت.</string>
-    <string name="plugin_description">ملحق مدير الملفات. يشغل الملفات الصوتية مع عناصر تحكم داخل التطبيق وفي الخلفية</string>
+    <string name="plugin_description">ملحق لتشغيل الصوت وتطبيق مستقل. يشغل الصوت بنقرة واحدة من مدير ملفات AutoJs6 ويعمل بشكل مستقل أيضا, مع دعم التشغيل في الخلفية</string>
     <string name="unknown_audio">صوت غير معروف</string>
     <string name="action_play_audio_selection">تشغيل الملفات الصوتية المحددة</string>
     <string name="action_previous_track">المسار السابق</string>
@@ -82,8 +82,6 @@
     <string name="theme_preset_selected_accessibility">%1$s، %2$s، محدد</string>
     <string name="theme_presets">ألوان Material 500 المسبقة</string>
     <string name="theme_source_autojs6">اتباع AutoJs6</string>
-    <string name="theme_source_autojs6_available">لون المضيف المباشر · %1$s</string>
-    <string name="theme_source_autojs6_unavailable">لون المضيف غير متاح · البديل %1$s</string>
     <string name="standalone_title">مشغل صوت بسيط</string>
     <string name="standalone_description">اختر ملفا صوتيا واحدا أو أكثر لتشغيله هنا، أو استخدم 3-Terra Player مباشرة من مدير ملفات AutoJs6.</string>
     <string name="action_open_audio_files">فتح ملفات صوتية</string>
@@ -96,7 +94,7 @@
     <string name="setting_night_mode">الوضع الليلي</string>
     <string name="setting_theme_color">لون السمة</string>
     <string name="setting_resume_playback">متابعة التشغيل</string>
-    <string name="setting_resume_playback_summary">تذكر موضع آخر ملف تم فتحه فقط</string>
+    <string name="setting_resume_playback_summary">استعادة آخر قائمة تشغيل مستقلة والمسار الحالي والموضع عند فتح التطبيق</string>
     <string name="setting_check_updates">التحقق من التحديثات</string>
     <string name="setting_check_updates_summary">التحقق الآن من أحدث إصدار منشور</string>
     <string name="setting_auto_check_updates">التحقق تلقائيا من التحديثات</string>

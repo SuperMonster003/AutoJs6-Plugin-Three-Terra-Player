@@ -16,7 +16,7 @@
     <string name="error_no_external_app">没有可用的其他音频应用</string>
     <string name="error_playback">此应用无法解码或播放音频文件</string>
     <string name="notification_permission_explanation">允许通知以便在此界面之外查看播放控件. 拒绝权限后仍可播放.</string>
-    <string name="plugin_description">文件管理器插件. 通过应用内控制和后台控制播放音频文件</string>
+    <string name="plugin_description">音频播放插件与独立应用. 从 AutoJs6 文件管理器一键播放音频, 也可独立使用, 支持后台播放</string>
     <string name="unknown_audio">未知音频</string>
     <string name="action_play_audio_selection">播放所选音频</string>
     <string name="action_previous_track">上一曲</string>
@@ -67,8 +67,6 @@
     <string name="theme_preset_selected_accessibility">%1$s，%2$s，已选择</string>
     <string name="theme_presets">Material 500 预置颜色</string>
     <string name="theme_source_autojs6">跟随 AutoJs6</string>
-    <string name="theme_source_autojs6_available">宿主实时颜色 · %1$s</string>
-    <string name="theme_source_autojs6_unavailable">无法读取宿主颜色 · 回退至 %1$s</string>
     <string name="standalone_title">简易音频播放器</string>
     <string name="standalone_description">选择一个或多个音频文件在此播放, 也可以直接从 AutoJs6 文件管理器调用音频播放器.</string>
     <string name="action_open_audio_files">打开音频文件</string>
@@ -81,7 +79,7 @@
     <string name="setting_night_mode">夜间模式</string>
     <string name="setting_theme_color">主题色</string>
     <string name="setting_resume_playback">续播</string>
-    <string name="setting_resume_playback_summary">仅记忆最近打开的一个文件及其播放位置</string>
+    <string name="setting_resume_playback_summary">从启动器打开时恢复上次独立播放的队列、当前曲目及位置</string>
     <string name="setting_check_updates">检查更新</string>
     <string name="setting_check_updates_summary">立即检查最新发行版本</string>
     <string name="setting_auto_check_updates">自动检查更新</string>

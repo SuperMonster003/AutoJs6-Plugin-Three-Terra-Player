@@ -17,6 +17,8 @@
         <item name="android:textColorPrimary">@color/toolbar_text</item>
     </style>
 
+    <style name="AppTheme.Toolbar.Popup" parent="ThemeOverlay.MaterialComponents.Light" />
+
     <style name="GatewayTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>

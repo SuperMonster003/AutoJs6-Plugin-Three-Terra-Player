@@ -4,15 +4,19 @@
   <h1>3-Terra Player</h1>
 
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
+    <picture>
+      <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
+      <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="three-terra-player-ic-launcher" border="0" width="128" />
+    </picture>
   </p>
 
-  <p>檔案管理器外掛程式. 透過應用程式內控制和背景控制播放音訊檔案</p>
+  <p>音訊播放外掛程式與獨立應用程式. 從 AutoJs6 檔案管理器一鍵播放音訊, 亦可獨立使用, 支援背景播放</p>
 
   <p>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Audio-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Audio-Player?color=534BAE&label=License"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/ff025baf3ad619805b2ebec12c738a32861e524b"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
 
@@ -24,16 +28,16 @@
 
 目前 README.md 支援以下語言:
 
-- [简体中文 [zh-Hans]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hans.md)
+- [简体中文 [zh-Hans]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hans.md)
 - 繁體中文 (香港) [zh-Hant-HK] # 目前
-- [繁體中文 (台灣) [zh-Hant-TW]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hant-TW.md)
-- [English [en]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-en.md)
-- [Français [fr]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-fr.md)
-- [Español [es]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-es.md)
-- [日本語 [ja]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ja.md)
-- [한국어 [ko]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ko.md)
-- [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ru.md)
-- [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ar.md)
+- [繁體中文 (台灣) [zh-Hant-TW]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hant-TW.md)
+- [English [en]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-en.md)
+- [Français [fr]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-fr.md)
+- [Español [es]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-es.md)
+- [日本語 [ja]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ja.md)
+- [한국어 [ko]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ko.md)
+- [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ru.md)
+- [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ar.md)
 
 ******
 
@@ -41,48 +45,111 @@
 
 ******
 
-音訊播放器為從檔案管理器開啟的音訊檔案提供應用程式內控制介面和私有背景播放服務. 外掛程式也可以接收面向音訊 MIME 類型 content URI 的唯讀 Android ACTION_VIEW 要求.
+3-Terra Player (前稱 Audio Player) 既是 AutoJs6 檔案管理器的音訊播放外掛程式, 也是一款可獨立使用的簡潔音訊播放器. 安裝並啟用後, 在 AutoJs6 檔案管理器中點按任何音訊檔案即可直接播放, 無需再依賴第三方播放器; 也可以像普通應用程式一樣從主畫面開啟, 一次選擇多個音訊檔案連續播放.
+
+外掛程式安裝後由 AutoJs6 自動辨識, 無需任何設定. 播放基於 Android 官方媒體框架 Media3 (ExoPlayer), 支援背景播放與系統媒體通知控制; 全程以唯讀方式存取音訊檔案, 不要求儲存權限, 也永遠不會修改或刪除來源檔案.
 
 ******
 
-### 功能
+### 功能亮點
 
 ******
 
-- 透過 Explorer Action v12, 為主程式已辨識的所有音訊 MIME 及 19 個已知副檔名註冊 `play-audio` 與 `play-audio-selection`.
-- 使用 Media3 ExoPlayer 和 MediaSessionService 播放音訊, 支援音訊焦點, 輸出裝置中斷處理, 本地喚醒模式, 背景播放和系統媒體控制.
-- 提供包含專輯封面, 媒體標籤, 技術資訊, 進度拖曳, 快退快進 10 秒, 順序 / 隨機 / 單曲循環模式和 0.5 至 2 倍變速的完整播放介面.
-- 按主程式提供的次序播放最多 128 個明確選取的音訊檔案, 支援上一首 / 下一首及可跳轉或移除曲目的播放佇列面板.
-- 提供由播放服務持有的預設 / 自訂睡眠計時器, 播完本曲後停止, 最後 5 秒淡出及適合聽力練習的 A-B 區間循環.
-- 只記住最近開啟的一個檔案及其位置, 開啟其他檔案時立即取代, 並向系統同步目前元資料和控制.
-- 提供可選取最多 128 個文件的啟動頁面, 並接收唯讀 Android ACTION_VIEW `content` URI, 包括舊式 WMA MIME 別名.
-- 解碼失敗時可使用其他相容應用程式開啟檔案, 並排除本外掛程式以防止自循環.
-- 從檔案瀏覽器開啟單曲時, 透過要求級 Host Session 自動尋找可讀直接同級音訊並按自然次序建立有界佇列; 明確多選仍保持主程式選取次序.
-- 由單一色源產生清晰配色並跟隨 AutoJs6, 提供 19 個 Material 500 色及自訂 RGB; 設定亦涵蓋語言、夜間、接續播放、更新、記錄及應用程式資訊.
+- 檔案管理器一鍵播放: 在 AutoJs6 檔案管理器中點按任何音訊檔案即可開始播放.
+- 同資料夾自動連播: 開啟一首歌時自動尋找同一資料夾中的其他音訊, 按檔案名稱自然排序連續播放 (最多 128 首, 從所選曲目開始).
+- 多選佇列播放: 在檔案管理器中勾選最多 128 個音訊後一鍵播放, 嚴格保持勾選次序.
+- 完整播放介面: 專輯封面, 標題 / 藝人 / 專輯標籤, 取樣率與位元率等技術資訊, 以及可拖曳的進度列.
+- 常用控制齊全: 上一首 / 下一首, 快退快進 10 秒, 順序 / 隨機 / 單曲循環, 0.5 至 2 倍變速播放.
+- 播放佇列面板: 隨時查看待播清單, 點選跳轉或移除曲目, 目前曲目一目了然.
+- 睡眠計時器: 15 / 30 / 60 分鐘預設或自訂時長, 支援播完本曲再停止, 結束前 5 秒音量淡出.
+- A-B 區間循環: 反覆聆聽任何片段, 適合聽力練習與樂器練習.
+- 背景播放: 離開介面或關閉螢幕後播放不中斷, 可在系統媒體通知與鎖定畫面上直接控制.
+- 工作階段還原: 從啟動器再次開啟獨立應用程式時, 還原上次佇列, 目前曲目, 停止位置, 循環 / 隨機及倍速; 還原後維持暫停.
+- 獨立應用程式模式: 沒有安裝 AutoJs6 也能使用, 從啟動頁面一次選擇最多 128 個音訊檔案播放.
+- 外觀個人化: 語言 / 夜間模式 / 主題色彩預設跟隨 AutoJs6, 也可從 19 種內置顏色或自訂 RGB 中自選.
 
 ******
 
-### 檔案瀏覽器副檔名
+### 使用方法
 
 ******
 
-Explorer 目錄宣告 `audio/*`, 並透過以下副檔名兼容舊式或不完整 MIME 表:
+1. 從 [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) 頁面下載最新外掛程式 APK, 安裝到執行 AutoJs6 的裝置上.
+2. 開啟 AutoJs6 的外掛程式中心, 確認 `3-Terra Player` 已被辨識並處於啟用狀態.
+3. 在 AutoJs6 檔案管理器中點按任何音訊檔案並選擇 `播放音訊`; 或長按多選後在工具列選擇 `播放所選音訊`.
+4. 也可以直接從主畫面開啟 `3-Terra Player`, 透過檔案選擇按鈕一次選取多個音訊開始播放.
+
+> 若外掛程式中心未顯示此外掛程式, 請先將 AutoJs6 升級到 6.8.0 (組建版本 5276) 或更新版本. 外掛程式本身支援 Android 7.0 (API 24) 及以上的裝置, 獨立應用程式模式不依賴 AutoJs6.
+
+******
+
+### 支援的音訊格式
+
+******
+
+檔案管理器入口宣告通用音訊類型 `audio/*`, 並明確涵蓋以下 19 種副檔名, 以兼容部分裝置殘缺或舊式的 MIME 類型表:
 
 ```text
 aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
 ```
 
-副檔名比對不保證可以解碼. 實際播放能力取決於 Media3, Android 平台, 裝置編解碼器和檔案內容.
+副檔名受支援不代表一定能夠解碼: 實際播放能力取決於 Media3, Android 系統版本, 裝置解碼器與檔案內容. 遇到無法播放的檔案時, 可在錯誤面板中選擇使用其他應用程式開啟.
 
 ******
 
-### 主程式行為
+### 常見問題
 
 ******
 
-安裝外掛程式並在 AutoJs6 外掛中心啟用後, 檔案管理器會為單一檔案顯示主要動作播放音訊, 並在多選工具列顯示播放所選音訊. 單一檔案入口從所選曲目開始, 可按自然次序尋找可讀直接同級音訊; 明確多選保持主程式提供的選取次序.
+#### 檔案管理器中沒有出現 `播放音訊` 按鈕?
 
-缺少外掛程式時, 此動作不會顯示. 主程式會保留原有的音訊檔案唯讀外部 ACTION_VIEW 流程, 因此其他已安裝的音訊應用程式仍可處理檔案. 如果沒有相容的外部應用程式, 主程式不會取得替代播放介面.
+請依次檢查三點: 外掛程式是否已安裝; AutoJs6 外掛程式中心是否已啟用本外掛程式; AutoJs6 是否為 6.8.0 (組建版本 5276) 或更新版本. 三者齊備後, 檔案管理器中的音訊檔案便會出現播放入口.
+
+#### 我只點了一首歌, 佇列中為甚麼出現了同一資料夾的其他歌曲?
+
+這是同資料夾自動連播特性: 開啟單個音訊時, 外掛程式會透過主程式管理的工作階段尋找同一資料夾的其他音訊, 並按檔案名稱自然排序排入佇列, 方便順序聆聽. 尋找過程完全唯讀且不會進入子資料夾; 若主程式版本不支援此能力, 則只播放所選的一首.
+
+#### 多選播放時的次序是怎樣的?
+
+嚴格按照勾選次序播放. 想按特定次序聆聽時, 按目標次序逐一勾選即可; 進入播放器後也可在佇列面板中點選跳轉或移除曲目.
+
+#### 離開介面或關閉螢幕後還會繼續播放嗎?
+
+會. 播放由背景服務承載, 可透過系統媒體通知與鎖定畫面控制項控制. Android 13 及以上系統的通知權限為可選項: 拒絕後只會隱藏通知欄控制項, 不影響播放本身.
+
+#### 外掛程式會修改或上載我的音訊檔案嗎?
+
+不會. 外掛程式不要求儲存權限, 對音訊檔案只有唯讀存取; 網絡連線只用於檢查 GitHub 上的新版本 (由用戶手動觸發或每日最多一次), 不會上載任何檔案或個人資料.
+
+#### 為甚麼有些檔案播不出聲音或提示解碼失敗?
+
+副檔名受支援不等於裝置一定能解碼, 部分小眾編碼或損壞的檔案可能無法播放. 出錯時錯誤面板會顯示具體錯誤代碼, 並提供使用其他應用程式開啟的入口 (會自動排除本外掛程式以避免自循環).
+
+#### 如何讓外掛程式介面跟隨 AutoJs6 的語言和主題?
+
+預設便會跟隨: 語言, 夜間模式與主題色彩會透過 AutoJs6 的官方唯讀設定介面自動同步. 也可在設定頁改為固定語言或自選顏色; 未安裝 AutoJs6 時自動改用系統外觀與內置預設值.
+
+#### 睡眠計時器和 A-B 循環在哪裏?
+
+都在播放介面底部工具列. 計時器圖示可選擇預設或自訂時長; A-B 按鈕按 '設 A 點, 設 B 點, 清除' 的次序循環點按即可設定或取消區間循環.
+
+******
+
+### 權限與安全
+
+******
+
+音訊檔案可能來自不可信的來源, 外掛程式在設計上為播放流程設置了多道防線:
+
+- 零儲存權限: 外掛程式不會要求也無法取得裝置儲存空間的讀寫權限, 只能存取主程式或系統明確授權的個別檔案.
+- 永不寫入: 對音訊檔案只有唯讀存取, 不會修改, 移動或刪除任何來源檔案.
+- 嚴格驗證: 檔案管理器入口受 AutoJs6 簽章權限保護, 每個播放要求的通訊協定版本, 目標清單與唯讀授權都會逐項驗證, 不合規的要求會直接拒絕.
+- 有界尋找: 同資料夾連播只透過主程式管理的要求級工作階段讀取, 不遞迴子資料夾, 不猜測檔案位置, 工作階段隨播放結束關閉.
+- 本機工作階段: 啟用接續播放後, 應用程式私人儲存空間只會儲存最近一個獨立檔案佇列及其播放狀態; 只接受仍有長期唯讀授權的系統檔案選擇器 URI, 絕不儲存 Host Session 路徑, 關閉此設定會立即清除記錄.
+- 最少網絡存取: 互聯網權限只用於用戶觸發或每日一次的 GitHub 版本檢查, 不涉及任何音訊內容與使用資料.
+- 可選通知: Android 13+ 的通知權限為可選項, 拒絕後只會隱藏通知欄控制項, 播放不受影響.
+
+請只從官方 [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) 頁面或其他可信渠道取得外掛程式安裝套件; 來源不明的安裝套件即使名稱與版本號相同, 也可能已被竄改.
 
 ******
 
@@ -90,47 +157,36 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-主程式使用以下識別資料探索和執行外掛程式:
+以下資訊面向 AutoJs6 主程式與外掛程式開發者, 主程式透過這些識別資料探索外掛程式並完成能力協商:
 
 ```text
+application id: io.github.supermonster003.autojs6.plugin.audioplayer
 service action: org.autojs.plugin.EXPLORER_ACTION
 execute action: org.autojs.plugin.EXPLORER_ACTION_EXECUTE
 plugin id: audio-player
 engine: explorer-action
 variant: default
 Explorer action ids: play-audio (single) / play-audio-selection (multiple, up to 128)
-Explorer protocol version: 12 (accepts compatible read-only v4–v12 requests)
+Explorer protocol version: 12 (accepts compatible read-only v4-v12 requests)
 Explorer MIME types: [audio/*]
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-版本 1.4.0 提供 v12 唯讀動作、有限同級存取、獨立文件選擇器及 Android 音訊 / WMA 入口. 沒有可選 Host Session 時只播放所選檔案.
+目前版本提供通訊協定 v12 的單檔案與有序多選唯讀動作, 要求級同目錄尋找能力, 獨立文件選擇器以及公開的唯讀 Android 音訊入口 (含舊式 WMA MIME 別名). 不提供可選 Host Session 能力的主程式繼續只播放所選檔案.
 
-同目錄尋找需要 AutoJs6 6.8.0 build 5276 或更新版本及 Explorer Action v12; 後續外掛程式能力不會提高此要求.
-
-******
-
-### 安全性
+同目錄尋找需要 AutoJs6 6.8.0 (組建版本 5276) 或更新版本並支援 Explorer Action v12; 後續外掛程式能力不會提高此要求. 產品自 v1.4.0 起更名為 3-Terra Player, 應用程式 ID 保持 `io.github.supermonster003.autojs6.plugin.audioplayer` 不變, 可覆蓋安裝升級.
 
 ******
 
-外掛程式不要求儲存權限且不會寫入來源檔案. 互聯網只用於手動或每日 GitHub 發行版檢查. 簽章入口嚴格驗證 v12、TARGETS、ClipData、元資料和唯讀授權; Host Session 綁定 UID 且不遞迴, 公開入口保持唯讀.
+### 開發路線圖
 
 ******
 
-### 安全限制
+外掛程式的能力規劃與完成情況以可勾選清單維護在 Roadmap.md 中, 按里程碑組織並附有驗收標準, 涵蓋歌詞, 均衡器, 封面取色, 沉浸式介面與工程質素等方向. 未勾選的條目表示規劃意向而非目前版本能力, 歡迎透過 Issues 參與討論.
 
-******
-
-- 單一檔案動作從剛好 1 個所選檔案開始, 可建立可讀直接同級音訊的有界佇列; 多選動作接受 1 至 128 個不重複檔案並保持次序.
-- 宣告大小超過 8 TiB 的檔案瀏覽器要求會被拒絕.
-- 動作按已辨識音訊 MIME 或明確副檔名清單比對, 並規範化及驗證每個目標.
-- 同級尋找只可透過主程式管理的要求級工作階段且不遞迴; 外掛程式絕不猜測同級 URI, 亦不接收檔案系統路徑.
-- 公開 Android 入口要求 ACTION_VIEW、`content` URI、支援的音訊或 WMA MIME 及讀取授權.
-- 通知權限是可選權限. 拒絕權限會隱藏通知欄控制, 但不會阻止播放.
-- 播放完成或解碼錯誤時會安全結束. 外部降級只轉交新的讀取授權, 並排除本外掛程式.
+- [查看 Roadmap.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/Roadmap.md)
 
 ******
 
@@ -138,41 +194,42 @@ required host build: 5276
 
 ******
 
-# v1.4.0
+#### v1.4.1
 
-###### 2026/08/29
+_2026/08/31_
 
-* `新增` 系統媒體通知採用專用上一首、下一首、隨機播放開關及退出動作, 並使用應用程式的單色透明圖示; 隨機播放的亮暗狀態會與播放器即時同步
-* `修復` 修復外掛程式資訊與 Explorer Action 共用同一 Service 時因 Binder 描述符不符而被 AutoJs6 自動標記為錯誤並停用的問題; 兩套協定現使用獨立端點
-* `修復` 播放佇列清空後會立即清除過期曲目資訊及背景工作階段, 停用播放、跳轉、佇列、速度、計時器及 A-B 控件, 並以明確空狀態取代無效點擊
-* `修復` 播放主按鈕的陰影不再被底部區域裁切, 停用時會使用清晰的低強調配色; 設定及更新對話框的單選、多選、進度及按鈕控件現統一跟隨動態主題色
-* `優化` 應用程式與外掛程式統一更名為不可翻譯的 3-Terra Player, 原始碼命名空間及符號同步採用 three / Three 形式, 同時保留已發佈應用程式 ID 以兼容覆蓋升級及現有設定
-* `優化` 播放器右上角改為只包含「設定」的更多選單, 移除與設定頁重複的獨立調色板入口, 並保持播放控制區的既有間距
+- `新增` 獨立應用程式現在會在從啟動器再次開啟時還原上次佇列, 目前曲目, 停止位置, 循環模式, 隨機狀態及倍速; 還原後維持暫停, 且只儲存仍有長期唯讀授權的系統檔案選擇器佇列
+- `修復` 修正播放器右上角更多選單在部分主題下出現白底白字, 無法辨認設定選單項目的問題
+- `優化` 主題色設定中的 AutoJs6 來源統一表述為 `跟隨 AutoJs6`; 顏色選擇面板直接顯示宿主顏色的 HEX 值
+- `優化` 完成十語言 README, CHANGELOG 及外掛程式說明的基本人工覆核, 並將專案主頁與應用程式內更新地址遷移至 3-Terra Player 正式儲存庫
 
-# v1.3.0
+#### v1.4.0
 
-###### 2026/08/29
+_2026/08/29_
 
-* `新增` 新增啟動頁面與獨立多檔案播放器模式, 並提供獨立設定頁面, 包含語言、夜間模式、主題色彩、接續播放、更新、發行記錄及應用程式與開發者資訊
-* `新增` 語言、夜間模式和色源預設透過 AutoJs6 官方唯讀設定契約跟隨主程式; 主程式不可用時仍顯示但停用相應選項, 並使用應用程式預設值
-* `新增` 新增手動與每日自動檢查更新、已忽略版本管理及本地化內置發行記錄
-* `修復` 修正跟隨 AutoJs6 一直顯示 Host color unavailable 的問題; 外掛程式現已公開主程式設定提供者要求的受保護外掛程式資訊服務入口
-* `修復` Explorer 動作除 19 個已知副檔名外亦宣告音訊 MIME 支援並新增 WMA, 讓主程式辨識的所有音訊項目均可直接使用外掛程式
-* `優化` 接續播放現在只記住最近開啟的一個檔案, 開啟其他檔案時立即捨棄舊記錄, 播放完畢不會保留位置
-* `優化` 固定保留三行元資料區域, 並結合實際選取音軌補充取樣率與位元率, 按 44.1 kHz · MP3 · 128 kbps 的次序顯示
-* `優化` A-B 改為依次設定 A 點、B 點和清除的三次點按循環; 底部控制區增加間距, 圖示統一大小並嚴格垂直置中
+- `新增` 系統媒體通知全面升級: 新增上一首 / 下一首 / 隨機播放開關與結束按鈕, 使用應用程式專屬的單色小圖示, 隨機狀態與播放器即時同步
+- `修復` 修復外掛程式可能被 AutoJs6 外掛程式中心自動標記為錯誤並停用的問題: 外掛程式資訊與檔案管理器動作現在使用各自獨立的服務端點
+- `修復` 清空播放佇列後不再殘留過期資訊: 介面進入明確的空狀態, 播放, 跳轉, 變速, 計時器與 A-B 等控制項同步停用
+- `修復` 修復播放按鈕陰影被底部區域裁切的問題; 設定與更新對話框中的單選, 多選, 進度列與按鈕統一跟隨主題色彩
+- `優化` 應用程式與外掛程式正式更名為 3-Terra Player: 應用程式 ID 保持不變, 可直接覆蓋安裝升級, 既有設定不受影響
+- `優化` 播放器右上角選單精簡為只保留設定入口, 移除與設定頁重複的調色盤按鈕
 
-# v1.2.2
+#### v1.3.0
 
-###### 2026/08/27
+_2026/08/29_
 
-* `修復` 修復覆蓋安裝插件後, 運行中的 AutoJs6 文件管理器仍傳送已快取的協議 v4 動作, 令所有音訊立即顯示「音訊要求無效」的問題; 網關現兼容唯讀 v4–v12 要求, 對外仍聲明 v12
-* `修復` 修復部分 Android / OEM MIME 表將已聲明支援的音訊副檔名標記為通配符或 application 類型時被誤拒的問題; 現由副檔名白名單提供穩定的規範音訊 MIME 類型
-* `優化` Explorer 要求拒絕日誌新增不含檔案名稱, 顯示路徑或 URI 的私隱安全原因碼, 日後可直接定位契約差異
+- `新增` 新增獨立應用程式模式: 無需 AutoJs6 即可從啟動頁面一次選擇最多 128 個音訊檔案連續播放
+- `新增` 新增設定頁面: 語言, 夜間模式, 主題色彩, 接續播放, 檢查更新, 發行記錄與應用程式資訊集中管理; 語言與外觀預設跟隨 AutoJs6, 主程式不可用時自動改用內置預設值
+- `新增` 新增手動與每日自動檢查更新, 支援忽略指定版本, 並內置多語言發行記錄
+- `修復` 修復主題色彩跟隨 AutoJs6 時一直提示主程式顏色不可用的問題
+- `修復` 檔案管理器中所有被主程式辨識為音訊的項目 (新增 WMA) 現在都可以直接使用本外掛程式播放
+- `優化` 接續播放只記住最近開啟的一個檔案: 開啟其他檔案或播放完畢後自動清除舊記錄
+- `優化` 播放介面固定保留三行資訊區域並補足取樣率與位元率顯示, 切歌與非同步載入時版面不再跳動
+- `優化` A-B 循環改為三次點按依次完成設 A 點, 設 B 點與清除; 底部控制區的間距與圖示對齊同步優化
 
-##### 查看更多版本
+##### 更多版本記錄可參閱
 
-* [CHANGELOG-zh-Hant-HK.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/assets/doc/CHANGELOG-zh-Hant-HK.md)
+* [CHANGELOG.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/assets/doc/CHANGELOG-zh-Hant-HK.md)
 
 ******
 
@@ -180,38 +237,56 @@ required host build: 5276
 
 ******
 
+本節面向希望從原始碼建置外掛程式的開發者.
+
+建置 debug APK:
+
 ```powershell
 .\gradlew.bat :app:assembleDebug
 ```
 
-發佈建置:
+建置 release APK (在不納入版本控制的 `sign.properties` 中設定簽章後自動簽署):
 
 ```powershell
 .\gradlew.bat :app:assembleRelease
 ```
 
-建置參數來自 `version.properties`. 目前最低 SDK 為 24, 目標 SDK 為 36.
+如需封存發行檔案, 可執行 `:app:appendDigestToReleasedFiles` 任務, 將已簽署的 APK 複製到 `releases/` 並在檔案名稱中附加版本號與 CRC32 摘要.
+
+建置參數集中於 `version.properties`: 最低 SDK 24 (Android 7.0), 目標 SDK 36, 目前版本 1.4.1.
 
 ******
 
-### 資源配置
+### 本地化與文件產生
 
 ******
 
 ```text
+.readme/common.json
 .readme/lang_*.json
+.readme/template_readme.md
+.readme/template_plugin_instruction.md
 .changelog/lang_*.json
+.changelog/template_changelog.md
 .python/generate_markdown.py
 app/src/main/assets/doc/CHANGELOG-*.md
 app/src/main/res/values-*/strings.xml
 app/src/main/res/raw-*/plugin_instruction.md
 ```
 
-`strings.xml` 為外掛程式中繼資料和介面文字提供本地化. `plugin_instruction.md` 提供主程式顯示的說明. `.python/generate_markdown.py` 根據 JSON 來源檔案產生多語言 README 和更新記錄.
+`strings.xml` 為外掛程式中繼資料與介面文字提供本地化, `plugin_instruction.md` 提供主程式外掛程式中心顯示的使用說明. README, 更新記錄與使用說明均由 JSON 來源產生: 修改 `.readme/` 與 `.changelog/` 下的來源檔案後執行 `py .python/generate_markdown.py` 重新產生全部產物, 產生的檔案不應手動編輯; 執行 `py .python/generate_markdown.py --check` 可檢查來源與產物是否同步.
 
 ******
 
-### 連結
+### 授權條款
+
+******
+
+專案程式碼以 [Mozilla Public License 2.0](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE) 開放原始碼. 音訊播放能力基於 [AndroidX Media3](https://developer.android.com/media/media3) (Apache License 2.0).
+
+******
+
+### 相關連結
 
 ******
 

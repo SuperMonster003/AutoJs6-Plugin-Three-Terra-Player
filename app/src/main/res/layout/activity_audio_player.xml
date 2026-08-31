@@ -18,6 +18,7 @@
         app:menu="@menu/menu_audio_player"
         app:navigationContentDescription="@string/action_back"
         app:navigationIcon="@drawable/ic_arrow_back"
+        app:popupTheme="@style/AppTheme.Toolbar.Popup"
         app:title="@string/app_name" />
 
     <LinearLayout

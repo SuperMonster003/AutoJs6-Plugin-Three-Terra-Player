@@ -16,7 +16,7 @@
     <string name="error_no_external_app">사용 가능한 다른 오디오 앱이 없습니다</string>
     <string name="error_playback">이 앱에서 오디오 파일을 디코딩하거나 재생할 수 없습니다</string>
     <string name="notification_permission_explanation">이 화면 밖에서 재생 컨트롤을 보려면 알림을 허용하세요. 거부해도 재생할 수 있습니다.</string>
-    <string name="plugin_description">파일 관리자 플러그인. 앱 내 및 백그라운드 제어로 오디오 파일 재생</string>
+    <string name="plugin_description">오디오 재생 플러그인이자 독립 실행 앱. AutoJs6 파일 관리자에서 한 번의 탭으로 오디오를 재생하고 단독으로도 사용할 수 있으며 백그라운드 재생을 지원</string>
     <string name="unknown_audio">알 수 없는 오디오</string>
     <string name="action_play_audio_selection">선택한 오디오 재생</string>
     <string name="action_previous_track">이전 트랙</string>
@@ -67,8 +67,6 @@
     <string name="theme_preset_selected_accessibility">%1$s, %2$s, 선택됨</string>
     <string name="theme_presets">Material 500 사전 설정</string>
     <string name="theme_source_autojs6">AutoJs6 따르기</string>
-    <string name="theme_source_autojs6_available">호스트 실시간 색상 · %1$s</string>
-    <string name="theme_source_autojs6_unavailable">호스트 색상 사용 불가 · 대체 %1$s</string>
     <string name="standalone_title">간편한 오디오 플레이어</string>
     <string name="standalone_description">하나 이상의 오디오 파일을 선택해 여기서 재생하거나 AutoJs6 파일 관리자에서 3-Terra Player를 바로 사용할 수 있습니다.</string>
     <string name="action_open_audio_files">오디오 파일 열기</string>
@@ -81,7 +79,7 @@
     <string name="setting_night_mode">야간 모드</string>
     <string name="setting_theme_color">테마 색상</string>
     <string name="setting_resume_playback">이어서 재생</string>
-    <string name="setting_resume_playback_summary">가장 최근에 연 파일 하나의 재생 위치만 기억합니다</string>
+    <string name="setting_resume_playback_summary">런처에서 앱을 열 때 마지막 독립 재생 대기열, 현재 곡 및 위치를 복원합니다</string>
     <string name="setting_check_updates">업데이트 확인</string>
     <string name="setting_check_updates_summary">게시된 최신 버전을 지금 확인합니다</string>
     <string name="setting_auto_check_updates">업데이트 자동 확인</string>

@@ -16,7 +16,7 @@
     <string name="error_no_external_app">利用可能な別の音声アプリがありません</string>
     <string name="error_playback">このアプリでは音声ファイルをデコードまたは再生できませんでした</string>
     <string name="notification_permission_explanation">この画面以外でも再生コントロールを表示するには通知を許可してください. 拒否しても再生は利用できます.</string>
-    <string name="plugin_description">ファイルマネージャープラグイン. アプリ内操作とバックグラウンド制御で音声ファイルを再生</string>
+    <string name="plugin_description">音声再生プラグイン兼単体アプリ. AutoJs6 のファイルマネージャーからワンタップで音声を再生でき, 単体でも利用可能, バックグラウンド再生に対応</string>
     <string name="unknown_audio">不明な音声</string>
     <string name="action_play_audio_selection">選択した音声を再生</string>
     <string name="action_previous_track">前の曲</string>
@@ -67,8 +67,6 @@
     <string name="theme_preset_selected_accessibility">%1$s、%2$s、選択済み</string>
     <string name="theme_presets">Material 500 プリセット</string>
     <string name="theme_source_autojs6">AutoJs6 に合わせる</string>
-    <string name="theme_source_autojs6_available">ホストの現在色 · %1$s</string>
-    <string name="theme_source_autojs6_unavailable">ホスト色を取得できません · 代替 %1$s</string>
     <string name="standalone_title">シンプルなオーディオプレーヤー</string>
     <string name="standalone_description">1 つ以上の音声ファイルを選んでここで再生するか、AutoJs6 のファイルマネージャーから 3-Terra Player を直接使用できます。</string>
     <string name="action_open_audio_files">音声ファイルを開く</string>
@@ -81,7 +79,7 @@
     <string name="setting_night_mode">ナイトモード</string>
     <string name="setting_theme_color">テーマカラー</string>
     <string name="setting_resume_playback">再生を再開</string>
-    <string name="setting_resume_playback_summary">最後に開いた 1 ファイルの再生位置だけを記憶します</string>
+    <string name="setting_resume_playback_summary">ランチャーから開いたときに、前回の単独再生キュー、現在の曲、再生位置を復元します</string>
     <string name="setting_check_updates">アップデートを確認</string>
     <string name="setting_check_updates_summary">公開済みの最新バージョンを今すぐ確認します</string>
     <string name="setting_auto_check_updates">アップデートを自動確認</string>

@@ -16,7 +16,7 @@
     <string name="error_no_external_app">Нет другого приложения для аудио</string>
     <string name="error_playback">Это приложение не смогло декодировать или воспроизвести аудиофайл</string>
     <string name="notification_permission_explanation">Разрешите уведомления, чтобы видеть элементы управления воспроизведением вне этого экрана. Воспроизведение останется доступным, если вы откажете.</string>
-    <string name="plugin_description">Плагин файлового менеджера. Воспроизводит аудио с элементами управления в приложении и фоновом режиме</string>
+    <string name="plugin_description">Плагин для воспроизведения аудио и самостоятельное приложение. Проигрывает аудио в одно касание прямо из файлового менеджера AutoJs6, работает и отдельно, поддерживает фоновое воспроизведение</string>
     <string name="unknown_audio">Неизвестное аудио</string>
     <string name="action_play_audio_selection">Воспроизвести выбранные аудиофайлы</string>
     <string name="action_previous_track">Предыдущий трек</string>
@@ -76,8 +76,6 @@
     <string name="theme_preset_selected_accessibility">%1$s, %2$s, выбрано</string>
     <string name="theme_presets">Предустановки Material 500</string>
     <string name="theme_source_autojs6">Как в AutoJs6</string>
-    <string name="theme_source_autojs6_available">Текущий цвет хоста · %1$s</string>
-    <string name="theme_source_autojs6_unavailable">Цвет хоста недоступен · резервный %1$s</string>
     <string name="standalone_title">Простой аудиоплеер</string>
     <string name="standalone_description">Выберите один или несколько аудиофайлов для воспроизведения здесь либо запускайте 3-Terra Player прямо из файлового менеджера AutoJs6.</string>
     <string name="action_open_audio_files">Открыть аудиофайлы</string>
@@ -90,7 +88,7 @@
     <string name="setting_night_mode">Ночной режим</string>
     <string name="setting_theme_color">Цвет темы</string>
     <string name="setting_resume_playback">Продолжать воспроизведение</string>
-    <string name="setting_resume_playback_summary">Запоминать позицию только последнего открытого файла</string>
+    <string name="setting_resume_playback_summary">Восстанавливать последнюю автономную очередь, текущий трек и позицию при запуске приложения</string>
     <string name="setting_check_updates">Проверить обновления</string>
     <string name="setting_check_updates_summary">Проверить последнюю опубликованную версию сейчас</string>
     <string name="setting_auto_check_updates">Автоматически проверять обновления</string>

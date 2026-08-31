@@ -1,22 +1,26 @@
-# 3-Terra Player
+3-Terra Player (antes Audio Player) es a la vez un complemento de reproducción de audio para el gestor de archivos de AutoJs6 y un reproductor de audio independiente y sencillo. Una vez instalado y activado, basta con tocar cualquier archivo de audio en el gestor de archivos de AutoJs6 para reproducirlo directamente, sin necesidad de un reproductor de terceros; también puede abrirse desde el lanzador como una aplicación normal para elegir varios archivos de audio y reproducirlos seguidos.
 
-El Reproductor de audio funciona como plugin de AutoJs6 y como aplicación independiente. Añade un controlador y reproducción en segundo plano para todos los tipos MIME de audio que reconoce el gestor, con cobertura explícita de estas extensiones:
+### Uso
 
-`aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma`
+1. Descarga el APK más reciente del complemento desde la página de [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) e instálalo en el dispositivo donde se ejecuta AutoJs6.
+2. Abre el centro de complementos de AutoJs6 y comprueba que `3-Terra Player` aparece reconocido y activado.
+3. En el gestor de archivos de AutoJs6, toca cualquier archivo de audio y elige `Reproducir audio`, o mantén pulsado para seleccionar varios archivos y elige `Reproducir audios seleccionados` en la barra de herramientas.
+4. También puedes abrir `3-Terra Player` directamente desde el lanzador y usar el selector de archivos para elegir varios audios y reproducirlos.
 
-Cuando el plugin está instalado, Reproducir audio en un archivo comienza en esa pista y puede descubrir una cola acotada y ordenada de forma natural de audios hermanos directos legibles. La selección explícita de 1 a 128 archivos conserva el orden del host. Cuando falta, el host mantiene su flujo ACTION_VIEW externo de solo lectura para un archivo.
+Si el complemento no aparece en el centro de complementos, actualiza primero AutoJs6 a la versión 6.8.0 (código de versión 5276) o posterior. El complemento es compatible con dispositivos Android 7.0 (API 24) o superiores, y el modo de aplicación independiente no depende de AutoJs6.
 
-El iniciador permite abrir hasta 128 documentos de audio sin AutoJs6. Los ajustes independientes incluyen idioma, modo nocturno, color del tema, reanudación, actualizaciones, versiones ignoradas, historial de versiones e información de la aplicación y el desarrollador. El idioma, el modo nocturno y el color siguen a AutoJs6 de forma predeterminada cuando su contrato protegido está disponible.
+### Formatos de audio compatibles
 
-La reproducción usa Media3 y puede continuar en segundo plano. Incluye anterior / siguiente, cola editable, modos secuencial / aleatorio / repetir una, temporizador, bucle A-B y velocidad. La reanudación recuerda solo el archivo abierto más recientemente, borra esa posición al abrir otro y nunca guarda una reproducción completada. En Android 13+, el permiso de notificaciones es opcional.
+La entrada del gestor de archivos declara el tipo de audio genérico `audio/*` y cubre explícitamente las siguientes 19 extensiones para mantener la compatibilidad con tablas MIME incompletas o antiguas de algunos dispositivos:
 
-El descubrimiento en la misma carpeta requiere AutoJs6 6.8.0 build 5276+ y Explorer Action v12; las capacidades futuras no elevarán este requisito. Los hosts sin la sesión opcional conservan la reproducción del archivo seleccionado.
+```text
+aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
+```
 
-Límites de seguridad y privacidad:
+Que una extensión sea compatible no garantiza su decodificación: la reproducción real depende de Media3, la versión de Android, los códecs del dispositivo y el contenido del archivo. Cuando un archivo no se puede reproducir, el panel de error ofrece abrirlo con otra aplicación.
 
-- La entrada del gestor exige la firma del host y valida el protocolo v12, destinos y ClipData ordenados, identificadores, relación con el padre, metadatos, capacidades declaradas y permisos de solo lectura.
-- La entrada Android independiente solo acepta URI `content` de lectura con un tipo MIME de audio o WMA heredado y no transfiere extras del llamador ni permisos amplios.
-- La aplicación no solicita almacenamiento y nunca escribe el archivo de origen. Internet se usa solo para comprobaciones de versiones de GitHub iniciadas por el usuario o diarias.
-- Una Host Session por solicitud queda vinculada al UID del plugin y solo permite listar sin recursión el padre directo del archivo seleccionado y abrir este o un audio hermano directo legible. La reproducción recibe rutas sintéticas opacas, nunca rutas del sistema de archivos, y no adivina URI hermanos.
-- La coincidencia de la extensión no garantiza la decodificación. La compatibilidad depende de Media3, Android, los codecs del dispositivo y el contenido.
-- Tras un error de decodificación, el archivo puede abrirse en otra aplicación compatible y este plugin queda excluido del selector.
+### Permisos y seguridad
+
+El complemento no solicita permiso de almacenamiento, accede a los archivos de audio estrictamente en modo de solo lectura y nunca escribe en los archivos originales; la conexión a Internet se usa únicamente para comprobaciones de actualizaciones iniciadas por el usuario o una vez al día. En Android 13+ el permiso de notificaciones es opcional; si se rechaza, solo se ocultan los controles de la notificación, sin afectar a la reproducción.
+
+Para más explicaciones y la documentación completa, consulta la [página principal del proyecto](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player) y la [documentación de AutoJs6](https://docs.autojs6.com).

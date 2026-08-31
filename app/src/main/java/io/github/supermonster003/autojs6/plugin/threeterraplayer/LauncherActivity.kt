@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivityLauncherBinding
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.ExplorerQueuePolicy
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppPreferenceStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.SettingsActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePaletteGenerator
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
@@ -41,6 +42,7 @@ class LauncherActivity : AudioThemedActivity() {
         binding.settingsButton.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
+        if (savedInstanceState == null) openRememberedSession()
     }
 
     override fun onResume() {
@@ -86,6 +88,18 @@ class LauncherActivity : AudioThemedActivity() {
         runCatching {
             contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
+    }
+
+    private fun openRememberedSession() {
+        if (!AppPreferenceStore(this).rememberPlaybackPosition) return
+        val snapshot = PlaybackSessionStore(this).load() ?: return
+        startActivity(
+            AudioPlaybackContract.playerIntent(
+                this,
+                snapshot.request,
+                startPlayback = false,
+            ),
+        )
     }
 
     private fun renderLoading() {

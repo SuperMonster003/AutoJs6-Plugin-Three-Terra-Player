@@ -51,6 +51,7 @@ class AudioPlaybackService : MediaSessionService() {
     private lateinit var player: ExoPlayer
     private lateinit var mediaSession: MediaSession
     private lateinit var positionStore: PlaybackPositionStore
+    private lateinit var sessionStore: PlaybackSessionStore
     private lateinit var appPreferenceStore: AppPreferenceStore
     private val sourceRouter = ExplorerAudioSourceRouter()
 
@@ -66,6 +67,8 @@ class AudioPlaybackService : MediaSessionService() {
     private var activeHostTargetId: String? = null
     private var activeCompleted = false
     private var replacingQueue = false
+    private var restorationAttempted = false
+    private var retainStoredSessionOnShutdown = false
 
     private var sleepDeadlineElapsedRealtimeMs: Long? = null
     private var stopAfterCurrent = false
@@ -96,6 +99,7 @@ class AudioPlaybackService : MediaSessionService() {
         override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_ENDED) {
                 activeCompleted = true
+                persistPlaybackSession(positionOverrideMs = 0L)
                 activePositionKey?.let(positionStore::clear)
                 clearSleepTimerState(restoreVolume = false)
                 stopPlaybackService()
@@ -109,6 +113,7 @@ class AudioPlaybackService : MediaSessionService() {
                 mainHandler.postDelayed(progressSaver, PROGRESS_SAVE_INTERVAL_MS)
             } else {
                 persistActivePosition()
+                persistPlaybackSession()
             }
             schedulePlaybackToolTick()
         }
@@ -144,6 +149,7 @@ class AudioPlaybackService : MediaSessionService() {
             if (nextMediaId == null || nextMediaId == previousMediaId) return
             activateMediaItem(nextMediaId, applyRememberedPosition = true)
             previousMediaId?.let(::stripArtwork)
+            persistPlaybackSession()
         }
 
         @ExperimentalOptIn(markerClass = [UnstableApi::class])
@@ -152,7 +158,11 @@ class AudioPlaybackService : MediaSessionService() {
             newPosition: Player.PositionInfo,
             reason: Int,
         ) {
-            if (oldPosition.mediaItemIndex == newPosition.mediaItemIndex) return
+            if (oldPosition.mediaItemIndex == newPosition.mediaItemIndex) {
+                persistActivePosition()
+                persistPlaybackSession()
+                return
+            }
             val mediaId = oldPosition.mediaItem?.mediaId ?: return
             if (reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
                 tracksByMediaId[mediaId]?.let(::positionKey)?.let(positionStore::clear)
@@ -160,6 +170,7 @@ class AudioPlaybackService : MediaSessionService() {
             }
             val durationMs = durationsByMediaId[mediaId] ?: 0L
             persistPosition(mediaId, oldPosition.positionMs, durationMs)
+            persistPlaybackSession()
         }
 
         override fun onTimelineChanged(timeline: Timeline, reason: Int) {
@@ -175,9 +186,11 @@ class AudioPlaybackService : MediaSessionService() {
                 clearSleepTimerState(restoreVolume = true)
                 publishToolState()
                 releaseActiveHostSession()
+                if (!retainStoredSessionOnShutdown) sessionStore.clear()
                 stopPlaybackService()
             } else {
                 updateSessionActivity()
+                persistPlaybackSession()
             }
         }
 
@@ -185,10 +198,20 @@ class AudioPlaybackService : MediaSessionService() {
             if (::mediaSession.isInitialized) {
                 mediaSession.setMediaButtonPreferences(mediaButtonPreferences())
             }
+            persistPlaybackSession()
+        }
+
+        override fun onRepeatModeChanged(repeatMode: Int) {
+            persistPlaybackSession()
+        }
+
+        override fun onPlaybackParametersChanged(playbackParameters: androidx.media3.common.PlaybackParameters) {
+            persistPlaybackSession()
         }
 
         override fun onPlayerError(error: PlaybackException) {
             persistActivePosition()
+            persistPlaybackSession()
             stopForeground(STOP_FOREGROUND_REMOVE)
             mainHandler.removeCallbacks(delayedStop)
             mainHandler.postDelayed(delayedStop, ERROR_LINGER_MS)
@@ -244,8 +267,12 @@ class AudioPlaybackService : MediaSessionService() {
     override fun onCreate() {
         super.onCreate()
         positionStore = PlaybackPositionStore(this)
+        sessionStore = PlaybackSessionStore(this)
         appPreferenceStore = AppPreferenceStore(this)
-        if (!appPreferenceStore.rememberPlaybackPosition) positionStore.clearAll()
+        if (!appPreferenceStore.rememberPlaybackPosition) {
+            positionStore.clearAll()
+            sessionStore.clear()
+        }
         val attributes = AudioAttributes.Builder()
             .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
             .setUsage(C.USAGE_MEDIA)
@@ -285,7 +312,18 @@ class AudioPlaybackService : MediaSessionService() {
         return START_NOT_STICKY
     }
 
-    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession = mediaSession
+    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession {
+        restoreForAppControllerIfNeeded(controllerInfo)
+        return mediaSession
+    }
+
+    private fun restoreForAppControllerIfNeeded(controllerInfo: MediaSession.ControllerInfo) {
+        if (controllerInfo.packageName != packageName) return
+        if (restorationAttempted || player.mediaItemCount != 0) return
+        restorationAttempted = true
+        if (!appPreferenceStore.rememberPlaybackPosition) return
+        sessionStore.load()?.let { snapshot -> play(snapshot.request, snapshot) }
+    }
 
     override fun onDestroy() {
         mainHandler.removeCallbacks(progressSaver)
@@ -293,6 +331,7 @@ class AudioPlaybackService : MediaSessionService() {
         mainHandler.removeCallbacks(delayedStop)
         scope.cancel()
         persistActivePosition()
+        persistPlaybackSession()
         if (::mediaSession.isInitialized) mediaSession.release()
         if (::player.isInitialized) {
             player.removeListener(playerListener)
@@ -303,8 +342,13 @@ class AudioPlaybackService : MediaSessionService() {
     }
 
     @ExperimentalOptIn(markerClass = [UnstableApi::class])
-    private fun play(request: AudioPlaybackRequest): Boolean {
+    private fun play(
+        request: AudioPlaybackRequest,
+        restoredSnapshot: PlaybackSessionSnapshot? = null,
+    ): Boolean {
         val previousHostSession = activeHostSession
+        restorationAttempted = true
+        retainStoredSessionOnShutdown = false
         return runCatching {
             mainHandler.removeCallbacks(delayedStop)
             persistActivePosition()
@@ -319,7 +363,7 @@ class AudioPlaybackService : MediaSessionService() {
             }
             val currentMediaId = mediaItems[request.startIndex].mediaId
             val currentTrack = requireNotNull(newTracksByMediaId[currentMediaId])
-            val resumePositionMs = if (appPreferenceStore.rememberPlaybackPosition) {
+            val resumePositionMs = restoredSnapshot?.positionMs ?: if (appPreferenceStore.rememberPlaybackPosition) {
                 positionStore.resumePositionMs(
                     positionKey(currentTrack, request.hostTargetId),
                     System.currentTimeMillis(),
@@ -331,6 +375,7 @@ class AudioPlaybackService : MediaSessionService() {
 
             replacingQueue = true
             try {
+                player.pause()
                 player.stop()
                 sourceRouter.configure(request)
                 activeHostSession = request.hostSession
@@ -340,6 +385,12 @@ class AudioPlaybackService : MediaSessionService() {
                 lastPositionsByMediaId.clear()
                 durationsByMediaId.clear()
                 player.setMediaItems(mediaItems, request.startIndex, resumePositionMs)
+                restoredSnapshot?.let { snapshot ->
+                    player.repeatMode = snapshot.repeatMode
+                    player.shuffleModeEnabled = snapshot.shuffleEnabled
+                    player.setPlaybackSpeed(snapshot.playbackSpeed)
+                    player.playWhenReady = false
+                }
             } finally {
                 replacingQueue = false
             }
@@ -349,10 +400,11 @@ class AudioPlaybackService : MediaSessionService() {
             lastPositionsByMediaId[currentMediaId] = resumePositionMs
             mediaSession.setSessionActivity(createSessionActivity(request))
             player.prepare()
-            player.play()
+            if (restoredSnapshot == null) player.play() else player.pause()
             enrichMetadataAsync(currentTrack, currentMediaId)
             publishToolState()
             schedulePlaybackToolTick()
+            persistPlaybackSession()
             if (!sameSession(previousHostSession, request.hostSession)) closeSession(previousHostSession)
             true
         }.getOrElse {
@@ -363,6 +415,7 @@ class AudioPlaybackService : MediaSessionService() {
             activeHostTargetId = null
             activeMediaId = null
             activePositionKey = null
+            sessionStore.clear()
             closeSession(request.hostSession)
             if (!sameSession(previousHostSession, request.hostSession)) closeSession(previousHostSession)
             false
@@ -508,6 +561,26 @@ class AudioPlaybackService : MediaSessionService() {
             safeDurationMs,
             System.currentTimeMillis(),
         )
+        sessionStore.updatePosition(track.uri.toString(), safePositionMs)
+    }
+
+    private fun persistPlaybackSession(positionOverrideMs: Long? = null) {
+        if (replacingQueue || !::player.isInitialized || !::sessionStore.isInitialized) return
+        if (!::appPreferenceStore.isInitialized || !appPreferenceStore.rememberPlaybackPosition) {
+            sessionStore.clear()
+            return
+        }
+        val request = currentPlaybackRequest() ?: return
+        sessionStore.save(
+            PlaybackSessionSnapshot(
+                request = request,
+                positionMs = positionOverrideMs
+                    ?: if (activeCompleted) 0L else player.currentPosition.coerceAtLeast(0L),
+                repeatMode = player.repeatMode,
+                shuffleEnabled = player.shuffleModeEnabled,
+                playbackSpeed = player.playbackParameters.speed,
+            ),
+        )
     }
 
     private fun handleCustomCommand(command: SessionCommand, args: Bundle): SessionResult = when (command) {
@@ -531,6 +604,8 @@ class AudioPlaybackService : MediaSessionService() {
 
     private fun exitPlayback(): SessionResult {
         persistActivePosition()
+        persistPlaybackSession()
+        retainStoredSessionOnShutdown = true
         player.pause()
         player.clearMediaItems()
         releaseActiveHostSession()

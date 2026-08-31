@@ -46,17 +46,7 @@ internal class AudioThemePicker(
         val hostColor = hostResult.snapshot?.themeColorPrimary
             ?: AudioThemePaletteGenerator.AUTOJS6_FALLBACK_SOURCE
         binding.followAutojs6Swatch.setCardBackgroundColor(hostColor)
-        binding.followAutojs6Summary.text = if (hostResult.available) {
-            activity.getString(
-                R.string.theme_source_autojs6_available,
-                AudioThemePaletteGenerator.colorHex(hostColor),
-            )
-        } else {
-            activity.getString(
-                R.string.theme_source_autojs6_unavailable,
-                AudioThemePaletteGenerator.colorHex(hostColor),
-            )
-        }
+        binding.followAutojs6Summary.text = AudioThemePaletteGenerator.colorHex(hostColor)
         val followsHost = preference.mode == ThemeSourceMode.AUTOJS6
         styleSelectableCard(
             binding.followAutojs6Card,

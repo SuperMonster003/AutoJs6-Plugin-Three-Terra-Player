@@ -1,96 +1,101 @@
 ******
 
-### Release history
+### Release History
 
 ******
+
+# v1.4.1
+
+###### 2026/08/31
+
+* `Added` The standalone app now restores the last queue, current track, stopped position, repeat mode, shuffle state, and speed when reopened from the launcher; restored sessions stay paused, and only system-picker queues with durable read access are saved
+* `Fixed` Fixed the player's top-right overflow menu showing white text on a white surface under some themes, which made the Settings entry unreadable
+* `Improved` The AutoJs6 source in theme color settings is now consistently labeled `Follow AutoJs6`; the color picker shows the host color's HEX value directly
+* `Improved` Completed a basic manual review of all ten README, CHANGELOG, and plugin instruction translations, and moved project and in-app update links to the official 3-Terra Player repository
 
 # v1.4.0
 
 ###### 2026/08/29
 
-* `Feature` System media notifications now use dedicated previous, next, shuffle-toggle, and exit actions plus the app's transparent monochrome icon; shuffle illumination stays synchronized with playback
-* `Fix` AutoJs6 no longer marks and disables the plugin as erroneous when plugin-info and Explorer Action discovery occur, because the two Binder protocols now use separate service endpoints
-* `Fix` Clearing the queue now removes stale track metadata and the background session, disables play, seeking, queue, speed, timer, and A-B controls, and presents an explicit empty state instead of accepting ineffective taps
-* `Fix` The primary play-button shadow is no longer clipped by the bottom region and uses a clear low-emphasis disabled palette; radio, multi-choice, progress, and button controls in settings and update dialogs now follow the dynamic theme
-* `Improvement` Renamed both the app and plugin to the non-translatable 3-Terra Player and migrated source namespaces and symbols to three / Three forms, while retaining the published application ID for in-place upgrades and existing settings
-* `Improvement` Replaced the player toolbar palette shortcut with a single Settings item in the overflow menu and preserved the established gap below the playback controls
+* `Added` Overhauled system media notification: dedicated previous / next / shuffle toggle / exit buttons with the app's own monochrome icon, and the shuffle state stays in sync with the player
+* `Fixed` Fixed the plugin possibly being auto-marked as faulty and disabled in the AutoJs6 plugin center: plugin info and the file manager action now use separate service endpoints
+* `Fixed` Clearing the play queue no longer leaves stale info behind: the screen enters an explicit empty state, and the playback, seek, speed, timer, and A-B controls are disabled together
+* `Fixed` Fixed the play button shadow being clipped by the bottom area; radio buttons, checkboxes, progress bars, and buttons in the settings and update dialogs now follow the theme color
+* `Improved` The app and plugin are officially renamed 3-Terra Player: the application ID stays the same, so it upgrades in place and existing settings are untouched
+* `Improved` The player's top-right menu is trimmed to a single Settings entry, removing the palette button that duplicated the settings page
 
 # v1.3.0
 
 ###### 2026/08/29
 
-* `Feature` Added a launcher and standalone multi-file player mode, plus a dedicated settings screen for language, night mode, theme color, resume behavior, updates, release history, and app/developer information
-* `Feature` Language, night mode, and source color now follow AutoJs6 by default through its official read-only settings contract; unavailable host choices remain visible but disabled and fall back to app defaults
-* `Feature` Added manual and daily automatic update checks, ignored-version management, and localized bundled release history
-* `Fix` Fixed Follow AutoJs6 reporting Host color unavailable by exposing the protected plugin-info service entry required by the host settings provider
-* `Fix` Explorer actions now advertise audio MIME support in addition to 19 known extensions, including WMA, so every host-recognized audio item routes directly to the plugin
-* `Improvement` Resume playback now remembers exactly one most recently opened file, immediately discards it when another file opens, and never keeps completed playback
-* `Improvement` Reserved a stable three-line metadata area and supplemented tags with selected-stream sample rate and bitrate in the order 44.1 kHz · MP3 · 128 kbps
-* `Improvement` A-B is now a discoverable three-tap cycle to set A, set B, and clear; bottom controls gained spacing and precisely centered, consistently sized icons
+* `Added` Added a standalone app mode: pick up to 128 audio files from the start page and play them in a row, no AutoJs6 required
+* `Added` Added a settings page: language, night mode, theme color, resume playback, update checks, release history, and app info in one place; language and appearance follow AutoJs6 by default and fall back to built-in defaults when the host is unavailable
+* `Added` Added manual and once-daily automatic update checks, with per-version ignore support and a built-in localized release history
+* `Fixed` Fixed the theme color always reporting the host color as unavailable when following AutoJs6
+* `Fixed` Every entry the host recognizes as audio in the file manager (now including WMA) can invoke this plugin directly
+* `Improved` Resume playback remembers only the most recently opened file: opening another file or finishing playback clears the old record automatically
+* `Improved` The player screen keeps a fixed three-line info area and fills in sample rate and bit rate, so the layout no longer jumps while switching tracks or loading tags
+* `Improved` The A-B loop is now a three-tap cycle of set point A, set point B, and clear; spacing and icon alignment of the bottom controls are polished as well
 
 # v1.2.2
 
 ###### 2026/08/27
 
-* `Fix` Explorer playback no longer fails after a plugin upgrade when the running AutoJs6 file manager still sends a cached protocol v4 action; the gateway accepts the compatible read-only v4–v12 envelope while continuing to advertise v12
-* `Fix` Advertised audio extensions are no longer rejected when an Android or OEM MIME table reports a wildcard or application MIME type; the extension allow-list now supplies a stable canonical audio MIME type
-* `Improvement` Rejected Explorer requests now log a privacy-safe reason code without file names, display paths, or URIs so future contract mismatches can be diagnosed directly
+* `Fixed` Fixed every audio file reporting an invalid audio request after upgrading the plugin in place: the entry now accepts legacy read-only requests cached by a running host
+* `Fixed` Fixed supported extensions such as `ogg` and `opus` being rejected on devices with broken MIME tables: an extension allowlist now provides stable canonical audio types
+* `Improved` Rejected requests now log a privacy-safe reason code (no file names, paths, or URIs), making feedback and diagnosis easier
 
 # v1.2.1
 
 ###### 2026/08/27
 
-* `Feature` A single Play audio action can now discover up to 128 readable audio files in the same folder through Explorer Action v12 and build a naturally ordered queue starting at the selected track
-* `Fix` API 24 no longer rejects a valid Explorer launch when Android adds the non-permission FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS flag from the gateway activity manifest
-* `Fix` Automatically advancing to a sibling track no longer crashes while rebuilding the MediaSession return intent; the originally granted target remains the Host Session anchor independently of the active queue item
-* `Improvement` The selected track keeps its original content URI while sibling tracks stream only through request-scoped Host Session file descriptors; no sibling URI is guessed and no recursive, write, storage, or persistent access is added
-* `Improvement` Audio extension filtering keeps same-named .mp4 video files out of queues containing .m4a audio, while the existing explicit multi-selection queue remains unchanged
-* `Improvement` Host Session ownership now transfers to the background playback service and closes on queue replacement, startup failure, completion, or service destruction
-* `Dependency` Upgraded the bundled Explorer Action API from protocol v4 to the backward-compatible v12 sibling-read extension while retaining minimum host build 5276
+* `Added` Opening one track from the file manager now discovers the other audio files in the same folder and plays them in natural filename order: up to 128 tracks, starting from the selected one
+* `Fixed` Fixed legitimate playback requests being rejected on Android 7.0 because of a window flag the system attaches automatically
+* `Fixed` Fixed a possible crash when auto-advancing to a sibling track
+* `Improved` Same-folder discovery is strictly read-only and bounded: no subfolder recursion, no guessed file locations, no storage permission, and videos sharing an audio file's name never enter the queue
+* `Improved` The same-folder read session is owned by the background playback service and closes automatically when the queue is replaced, playback completes, or the service is destroyed
+* `Dependency` Upgraded the built-in file manager action API to the backward-compatible v12; the minimum host version stays build 5276
 
 # v1.2.0
 
 ###### 2026/08/27
 
-* `Feature` Explorer Action protocol v4 support with a new ordered multi-selection action that builds a playback queue from up to 128 explicitly selected audio files
-* `Feature` Native Media3 playlist with previous / next controls, a queue sheet for jumping to or removing tracks, and sequential / shuffle / repeat-one modes
-* `Feature` Service-owned sleep timer with 15 / 30 / 60 minute presets, a custom duration, stop-after-current, and a final five-second fade-out
-* `Feature` A-B interval loop for repeating a selected section
-* `Improvement` System media controls now expose previous, next, and 10-second rewind / fast-forward commands, while metadata and resume positions follow the current queue item
-* `Improvement` Explorer request validation now covers ordered TARGETS and ClipData, unique request and target identifiers, host session descriptors, and every selected file without broadening read-only grants
-* `Improvement` Documented that the host FileProvider parent URI cannot enumerate children; automatic sibling discovery and URI guessing stay disabled, with explicit multi-selection as the safe queue path
-* `Dependency` Upgraded the bundled Explorer Action API from protocol v2 to v4 and raised the required host build to 5276
-* `Dependency` Added AndroidX RecyclerView version 1.4.0
+* `Added` Added multi-select playback: tick up to 128 audio files in the file manager and queue them with one tap, in exactly the selected order
+* `Added` Added previous / next controls, a queue panel with jump and remove, and sequential / shuffle / repeat-one modes
+* `Added` Added a sleep timer: 15 / 30 / 60 minute presets or a custom duration, with stop-after-current-track and a 5-second final fade-out
+* `Added` Added an A-B loop for repeating a chosen passage
+* `Improved` System media controls gained previous, next, and 10-second rewind / fast-forward commands, with notification metadata updating as the queue advances
+* `Improved` File manager request validation extends to ordered multi-select targets while keeping grants minimal and read-only
+* `Dependency` Upgraded the file manager action API from v2 to v4; the minimum host version rises to build 5276
+* `Dependency` Added AndroidX RecyclerView 1.4.0
 
 # v1.1.0
 
 ###### 2026/08/27
 
-* `Feature` Redesigned player screen with album artwork, title / artist / album tags, a draggable progress bar, and playback time labels
-* `Feature` Enhanced playback controls: 10-second rewind and fast-forward, single-file loop toggle, and 0.5x to 2x speed playback
-* `Feature` Automatic extraction of embedded tags, artwork, and technical properties (codec / sample rate / bitrate) synchronized to system media notifications
-* `Feature` Playback position memory: reopening the same file resumes from the last position, and completed playback clears the record
-* `Improvement` Playback can restart directly on the player screen after completion or decoding failures without returning to the file manager
-* `Improvement` Playback error feedback now includes the specific error code for easier reporting
-* `Dependency` Added AndroidX ConstraintLayout version 2.2.1
+* `Added` Brand-new player screen: album art, title / artist / album tags, technical info, and a draggable progress bar
+* `Added` Added 10-second rewind and fast-forward, a repeat-one toggle, and 0.5x to 2x playback speed
+* `Added` Embedded tags and album art are read automatically and synced to the system media notification
+* `Added` Added resume playback: reopening the same file continues from the last position, cleared automatically once playback completes
+* `Improved` After playback ends or decoding fails, the track can be restarted right from the player without returning to the file manager
+* `Improved` Playback errors include the exact error code, making issues easier to report
+* `Dependency` Added AndroidX ConstraintLayout 2.2.1
 * `Dependency` Removed the unused AndroidX Media3 UI dependency
 
 # v1.0.1
 
 ###### 2026/08/08
 
-* `Fix` Null service binding when enabling the plugin in Plugin Center
-* `Improvement` Clearer and more concise plugin name, description, and user documentation
+* `Fixed` Fixed an empty service binding appearing while enabling the plugin in the plugin center
+* `Improved` The plugin name, description, and instructions read more naturally
 
 # v1.0.0
 
 ###### 2026/08/02
 
-* `Feature` 3-Terra Player plugin with plugin ID `audio-player`, action ID `play-audio`, engine `explorer-action`, and variant `default`
-* `Feature` Primary read-only file manager action for the host's 18 audio extensions, requiring host build 5269 or later
-* `Feature` Media3 ExoPlayer and MediaSessionService playback with audio focus, noisy-output handling, local wake mode, background playback, system media controls, and a private controller interface
-* `Feature` Optional Android 13+ notification permission guidance without blocking playback when permission is denied
-* `Feature` Independent read-only Android ACTION_VIEW support for `content` URI audio requests and decoder-failure transfer to another compatible app with self-loop prevention
-* `Feature` Strict protocol, URI, ClipData, source, name, MIME, size, and grant validation with no storage or Internet access permission and minimum read-only forwarding
-* `Feature` Localized metadata, interface text, usage instructions, README files, and changelogs in Spanish, French, Russian, Arabic, Japanese, Korean, English, Simplified Chinese, Hong Kong Traditional Chinese, and Taiwan Traditional Chinese
-* `Dependency` Added AndroidX Media3 ExoPlayer, Session, and UI version 1.10.1
+* `Added` First stable release: a Play audio action for the AutoJs6 file manager covering 18 common audio extensions, one tap to play
+* `Added` Solid playback built on Media3 ExoPlayer and MediaSessionService: background playback, audio focus handling, auto-pause on output device disconnect, and system media controls
+* `Added` Accepts read-only audio open requests from other apps; on decoder errors the file can be handed to another compatible app while avoiding self-loops
+* `Added` A strict security baseline: no storage or Internet permission, accepting and forwarding only minimal read-only grants
+* `Added` Plugin info, instructions, README, and changelog available in 10 languages
+* `Dependency` Added AndroidX Media3 ExoPlayer, Session, and UI 1.10.1

@@ -4,15 +4,19 @@
   <h1>3-Terra Player</h1>
 
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="audio-player-ic-launcher" border="0" width="128" />
+    <picture>
+      <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
+      <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="three-terra-player-ic-launcher" border="0" width="128" />
+    </picture>
   </p>
 
-  <p>파일 관리자 플러그인. 앱 내 및 백그라운드 제어로 오디오 파일 재생</p>
+  <p>오디오 재생 플러그인이자 독립 실행 앱. AutoJs6 파일 관리자에서 한 번의 탭으로 오디오를 재생하고 단독으로도 사용할 수 있으며 백그라운드 재생을 지원</p>
 
   <p>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Audio-Player?label=Release"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Audio-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Audio-Player?color=534BAE&label=License"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/ff025baf3ad619805b2ebec12c738a32861e524b"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
 
@@ -24,16 +28,16 @@
 
 현재 README.md는 다음 언어를 지원합니다:
 
-- [简体中文 [zh-Hans]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hans.md)
-- [繁體中文 (香港) [zh-Hant-HK]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hant-HK.md)
-- [繁體中文 (台灣) [zh-Hant-TW]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-zh-Hant-TW.md)
-- [English [en]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-en.md)
-- [Français [fr]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-fr.md)
-- [Español [es]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-es.md)
-- [日本語 [ja]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ja.md)
+- [简体中文 [zh-Hans]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hans.md)
+- [繁體中文 (香港) [zh-Hant-HK]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hant-HK.md)
+- [繁體中文 (台灣) [zh-Hant-TW]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-zh-Hant-TW.md)
+- [English [en]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-en.md)
+- [Français [fr]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-fr.md)
+- [Español [es]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-es.md)
+- [日本語 [ja]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ja.md)
 - 한국어 [ko] # 현재
-- [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ru.md)
-- [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/.readme/README-ar.md)
+- [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ru.md)
+- [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/.readme/README-ar.md)
 
 ******
 
@@ -41,48 +45,111 @@
 
 ******
 
-오디오 플레이어는 파일 관리자에서 연 오디오 파일을 위한 앱 내 컨트롤러와 비공개 백그라운드 재생 서비스를 제공합니다. 오디오 MIME 유형을 가진 content URI의 읽기 전용 Android ACTION_VIEW 요청도 받을 수 있습니다.
+3-Terra Player (구 Audio Player) 는 AutoJs6 파일 관리자의 오디오 재생 플러그인이자 단독으로도 쓸 수 있는 간결한 오디오 플레이어입니다. 설치하고 활성화하면 AutoJs6 파일 관리자에서 아무 오디오 파일이나 탭해 바로 재생할 수 있어 별도의 타사 플레이어가 필요 없습니다. 일반 앱처럼 런처에서 열어 여러 오디오 파일을 한 번에 선택해 연속으로 재생할 수도 있습니다.
+
+플러그인은 설치만 하면 AutoJs6가 자동으로 인식하므로 별도의 설정이 필요 없습니다. 재생은 Android 공식 미디어 프레임워크인 Media3 (ExoPlayer) 기반이며 백그라운드 재생과 시스템 미디어 알림 제어를 지원합니다. 오디오 파일에는 항상 읽기 전용으로만 접근하고 저장소 권한을 요청하지 않으며 원본 파일을 수정하거나 삭제하는 일도 결코 없습니다.
 
 ******
 
-### 기능
+### 주요 기능
 
 ******
 
-- 호스트가 인식하는 모든 오디오 MIME과 알려진 확장자 19개에 Explorer Action v12 작업 `play-audio`와 `play-audio-selection`을 등록합니다.
-- Media3 ExoPlayer와 MediaSessionService로 오디오를 재생하며 오디오 포커스, 출력 연결 해제 처리, 로컬 깨우기 모드, 백그라운드 재생 및 시스템 미디어 제어를 지원합니다.
-- 앨범 아트, 태그, 기술 정보, 탐색, 10초 이동, 순차 / 셔플 / 한 곡 반복 모드, 0.5배부터 2배까지 배속 제어를 갖춘 재생 화면을 제공합니다.
-- 호스트가 제공한 순서대로 명시적으로 선택한 오디오 파일을 최대 128개까지 재생하며 이전 / 다음 및 곡 이동과 삭제가 가능한 대기열을 제공합니다.
-- 서비스가 유지하는 프리셋 / 사용자 지정 취침 타이머, 현재 곡 후 정지, 마지막 5초 페이드아웃 및 A-B 구간 반복을 지원합니다.
-- 가장 최근에 연 파일 하나와 위치만 기억하고 다른 파일을 열면 즉시 교체하며 현재 메타데이터와 제어를 시스템에 반영합니다.
-- 최대 128개 문서를 선택하는 런처를 제공하고 이전 WMA MIME을 포함한 읽기 전용 Android ACTION_VIEW `content` URI를 받습니다.
-- 디코더 실패 시 다른 호환 앱으로 파일을 여는 대안을 제공하고 자체 반복을 방지하기 위해 이 플러그인을 제외합니다.
-- 탐색기에서 한 곡을 열면 요청 범위 Host Session을 통해 읽을 수 있는 직접 형제 오디오를 자연 정렬한 제한된 재생목록으로 찾으며 명시적 다중 선택은 호스트 선택 순서를 유지합니다.
-- 하나의 원본 색상으로 읽기 쉬운 팔레트를 만들어 AutoJs6를 따르고 Material 500 색상 19개와 사용자 RGB를 제공합니다. 설정에서 언어, 야간, 이어서 재생, 업데이트, 기록 및 앱 정보도 관리합니다.
+- 파일 관리자에서 탭 한 번으로 재생: AutoJs6 파일 관리자에서 아무 오디오 파일이나 탭하면 바로 재생이 시작됩니다.
+- 같은 폴더 자동 연속 재생: 한 곡을 열면 같은 폴더의 다른 오디오를 자동으로 찾아 파일 이름의 자연 정렬 순서로 이어서 재생합니다 (최대 128곡, 선택한 곡부터 시작).
+- 다중 선택 대기열 재생: 파일 관리자에서 최대 128개의 오디오를 선택해 한 번에 재생하며 선택한 순서가 그대로 유지됩니다.
+- 완성도 높은 재생 화면: 앨범 아트, 제목 / 아티스트 / 앨범 태그, 샘플링 레이트와 비트레이트 같은 기술 정보, 드래그 가능한 진행 막대를 제공합니다.
+- 일상적인 제어 완비: 이전 곡 / 다음 곡, 10초 되감기와 빨리 감기, 순차 / 셔플 / 한 곡 반복 모드, 0.5배부터 2배까지 배속 재생을 지원합니다.
+- 재생 대기열 패널: 언제든 대기 중인 곡을 확인하고 탭해서 이동하거나 삭제할 수 있으며 현재 곡이 한눈에 보입니다.
+- 취침 타이머: 15 / 30 / 60분 프리셋 또는 사용자 지정 시간을 고를 수 있고 현재 곡을 마친 뒤 정지할 수 있으며 종료 전 5초 동안 볼륨이 서서히 줄어듭니다.
+- A-B 구간 반복: 원하는 구간을 반복해서 들을 수 있어 듣기 연습과 악기 카피에 유용합니다.
+- 백그라운드 재생: 화면을 벗어나거나 화면이 꺼져도 재생이 끊기지 않으며 시스템 미디어 알림과 잠금 화면에서 바로 제어할 수 있습니다.
+- 세션 복원: 런처에서 독립 실행형 앱을 다시 열면 마지막 대기열, 현재 곡, 정지 위치, 반복 / 셔플 상태, 재생 속도를 복원하며 복원 후에는 일시 정지 상태를 유지합니다.
+- 독립 실행 모드: AutoJs6가 설치되어 있지 않아도 사용할 수 있으며 시작 화면에서 최대 128개의 오디오 파일을 한 번에 선택해 재생합니다.
+- 모양 개인화: 언어 / 야간 모드 / 테마 색상은 기본적으로 AutoJs6를 따르며 19가지 프리셋 색상이나 사용자 지정 RGB 중에서 직접 고를 수도 있습니다.
 
 ******
 
-### 탐색기 파일 확장자
+### 사용 방법
 
 ******
 
-탐색기 카탈로그는 `audio/*`를 광고하고 오래되거나 불완전한 MIME 표를 위해 다음 확장자도 사용합니다:
+1. [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) 페이지에서 최신 플러그인 APK를 내려받아 AutoJs6가 실행되는 기기에 설치합니다.
+2. AutoJs6의 플러그인 센터를 열어 `3-Terra Player`가 인식되고 활성화되어 있는지 확인합니다.
+3. AutoJs6 파일 관리자에서 오디오 파일을 탭한 뒤 `오디오 재생`을 선택하거나, 길게 눌러 여러 파일을 선택한 다음 도구 모음에서 `선택한 오디오 재생`을 선택합니다.
+4. 또는 런처에서 `3-Terra Player`를 바로 열어 파일 선택 버튼으로 여러 오디오를 한 번에 골라 재생할 수도 있습니다.
+
+> 플러그인 센터에 플러그인이 보이지 않으면 먼저 AutoJs6를 6.8.0 (버전 코드 5276) 이상으로 업데이트하세요. 플러그인 자체는 Android 7.0 (API 24) 이상 기기를 지원하며 독립 실행 모드는 AutoJs6에 의존하지 않습니다.
+
+******
+
+### 지원 오디오 형식
+
+******
+
+파일 관리자 진입점은 일반 오디오 유형 `audio/*`를 선언하고, 일부 기기의 불완전하거나 오래된 MIME 유형 표와의 호환을 위해 다음 19가지 확장자를 명시적으로 포함합니다:
 
 ```text
 aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
 ```
 
-확장자 일치는 디코딩을 보장하지 않습니다. 실제 재생은 Media3, Android 플랫폼, 기기 코덱 및 파일 내용에 따라 달라집니다.
+확장자가 지원 목록에 있다고 해서 디코딩이 보장되지는 않습니다. 실제 재생 여부는 Media3, Android 버전, 기기 코덱, 파일 내용에 따라 달라집니다. 재생할 수 없는 파일을 만나면 오류 패널에서 다른 앱으로 열도록 선택할 수 있습니다.
 
 ******
 
-### 호스트 동작
+### 자주 묻는 질문
 
 ******
 
-플러그인을 설치하고 AutoJs6에서 활성화하면 파일 관리자는 단일 파일에 오디오 재생을, 다중 선택 도구 모음에 선택한 오디오 재생을 표시합니다. 단일 파일 진입점은 선택한 곡에서 시작해 읽을 수 있는 직접 형제 오디오를 자연 순서로 찾을 수 있으며 명시적 다중 선택은 호스트 선택 순서를 유지합니다.
+#### 파일 관리자에 `오디오 재생` 버튼이 보이지 않나요?
 
-플러그인이 없으면 이 작업이 표시되지 않습니다. 호스트는 오디오 파일에 대한 기존 읽기 전용 외부 ACTION_VIEW 흐름을 유지하므로 설치된 다른 오디오 앱이 파일을 처리할 수 있습니다. 호환되는 외부 앱이 없으면 호스트에 대체 재생 인터페이스가 추가되지 않습니다.
+다음 세 가지를 차례로 확인하세요: 플러그인이 설치되어 있는지, AutoJs6 플러그인 센터에서 이 플러그인이 활성화되어 있는지, AutoJs6가 6.8.0 (버전 코드 5276) 이상인지. 세 가지가 모두 갖춰지면 파일 관리자의 오디오 파일에 재생 항목이 나타납니다.
+
+#### 한 곡만 탭했는데 왜 같은 폴더의 다른 곡이 대기열에 들어 있나요?
+
+같은 폴더 자동 연속 재생 기능 때문입니다. 오디오 파일 하나를 열면 플러그인이 호스트가 관리하는 세션을 통해 같은 폴더의 다른 오디오를 찾아 파일 이름의 자연 정렬 순서로 대기열에 넣어 이어서 듣기 편하게 해 줍니다. 검색 과정은 완전히 읽기 전용이며 하위 폴더에는 들어가지 않습니다. 호스트 버전이 이 기능을 지원하지 않으면 선택한 곡만 재생됩니다.
+
+#### 다중 선택 재생은 어떤 순서로 재생되나요?
+
+선택한 순서 그대로 재생됩니다. 특정 순서로 듣고 싶다면 원하는 순서대로 파일을 선택하면 됩니다. 플레이어에 들어간 뒤에도 대기열 패널에서 곡을 탭해 이동하거나 삭제할 수 있습니다.
+
+#### 화면을 벗어나거나 화면이 꺼져도 계속 재생되나요?
+
+네. 재생은 백그라운드 서비스가 담당하며 시스템 미디어 알림과 잠금 화면 컨트롤로 제어할 수 있습니다. Android 13 이상에서 알림 권한은 선택 사항입니다. 거부하면 알림 컨트롤만 숨겨질 뿐 재생 자체에는 영향이 없습니다.
+
+#### 플러그인이 제 오디오 파일을 수정하거나 업로드하나요?
+
+아니요. 플러그인은 저장소 권한을 요청하지 않고 오디오 파일에 읽기 전용으로만 접근합니다. 네트워크는 GitHub의 새 버전 확인에만 사용되며 (사용자가 직접 실행하거나 하루 최대 한 번) 어떤 파일이나 개인 데이터도 업로드하지 않습니다.
+
+#### 왜 어떤 파일은 소리가 나지 않거나 디코딩 오류가 표시되나요?
+
+확장자가 지원된다고 기기가 반드시 디코딩할 수 있는 것은 아니며, 일부 희귀한 코덱이나 손상된 파일은 재생되지 않을 수 있습니다. 오류가 나면 오류 패널에 구체적인 오류 코드가 표시되고 다른 앱으로 열 수 있는 항목이 제공됩니다 (자기 반복을 피하기 위해 이 플러그인은 자동으로 제외됩니다).
+
+#### 플러그인 화면이 AutoJs6의 언어와 테마를 따르게 하려면 어떻게 하나요?
+
+기본값이 이미 따르기입니다. 언어, 야간 모드, 테마 색상은 AutoJs6의 공식 읽기 전용 설정 인터페이스를 통해 자동으로 동기화됩니다. 설정 페이지에서 고정 언어나 원하는 색상으로 바꿀 수도 있습니다. AutoJs6가 설치되어 있지 않으면 시스템 모양과 내장 기본값으로 자동 대체됩니다.
+
+#### 취침 타이머와 A-B 반복은 어디에 있나요?
+
+둘 다 재생 화면 하단 도구 모음에 있습니다. 타이머 아이콘에서 프리셋 또는 사용자 지정 시간을 고를 수 있고, A-B 버튼은 누를 때마다 'A 지점 설정, B 지점 설정, 해제' 순서로 순환하며 구간 반복을 설정하거나 취소할 수 있습니다.
+
+******
+
+### 권한과 보안
+
+******
+
+오디오 파일은 신뢰할 수 없는 출처에서 올 수 있으므로 플러그인은 설계 단계부터 재생 과정에 여러 겹의 방어선을 두었습니다:
+
+- 저장소 권한 없음: 플러그인은 기기 저장소의 읽기 / 쓰기 권한을 요청하지 않고 얻을 수도 없으며, 호스트나 시스템이 명시적으로 허가한 개별 파일에만 접근할 수 있습니다.
+- 쓰기 없음: 오디오 파일에는 읽기 전용으로만 접근하며 어떤 원본 파일도 수정, 이동, 삭제하지 않습니다.
+- 엄격한 검증: 파일 관리자 진입점은 AutoJs6 서명 권한으로 보호되며, 모든 재생 요청의 프로토콜 버전, 대상 목록, 읽기 전용 허가를 항목별로 검증하고 규격에 맞지 않는 요청은 즉시 거부합니다.
+- 제한된 검색: 같은 폴더 연속 재생은 호스트가 관리하는 요청 범위 세션을 통해서만 읽고, 하위 폴더로 재귀하거나 파일 위치를 추측하지 않으며, 세션은 재생이 끝나면 함께 닫힙니다.
+- 로컬 세션만 저장: 이어서 재생을 켜면 앱 전용 저장소에는 가장 최근의 독립 파일 선택기 대기열과 재생 상태만 보관합니다. 영구 읽기 권한이 있는 시스템 선택기 URI만 허용하고 Host Session 경로는 저장하지 않으며, 설정을 끄면 기록을 즉시 지웁니다.
+- 최소한의 네트워크: 인터넷 권한은 사용자가 실행하거나 하루 한 번 이루어지는 GitHub 버전 확인에만 사용되며 오디오 내용이나 사용 데이터와는 전혀 무관합니다.
+- 선택적 알림: Android 13+ 기기에서 알림 권한은 선택 사항이며 거부하면 알림 컨트롤만 숨겨질 뿐 재생은 영향을 받지 않습니다.
+
+플러그인 설치 파일은 공식 [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) 페이지나 그 밖의 신뢰할 수 있는 경로에서만 받으세요. 출처가 불분명한 설치 파일은 이름과 버전이 같아 보여도 변조되었을 수 있습니다.
 
 ******
 
@@ -90,47 +157,36 @@ aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opu
 
 ******
 
-호스트는 다음 식별자로 플러그인을 검색하고 실행합니다:
+다음 정보는 AutoJs6 호스트와 플러그인 개발자를 위한 것으로, 호스트는 이 식별자로 플러그인을 발견하고 기능을 협상합니다:
 
 ```text
+application id: io.github.supermonster003.autojs6.plugin.audioplayer
 service action: org.autojs.plugin.EXPLORER_ACTION
 execute action: org.autojs.plugin.EXPLORER_ACTION_EXECUTE
 plugin id: audio-player
 engine: explorer-action
 variant: default
 Explorer action ids: play-audio (single) / play-audio-selection (multiple, up to 128)
-Explorer protocol version: 12 (accepts compatible read-only v4–v12 requests)
+Explorer protocol version: 12 (accepts compatible read-only v4-v12 requests)
 Explorer MIME types: [audio/*]
 Android VIEW action: android.intent.action.VIEW
 Android VIEW MIME type: audio/* plus legacy WMA MIME aliases
 required host build: 5276
 ```
 
-버전 1.4.0은 v12 읽기 전용 작업, 제한된 형제 접근, 독립 문서 선택기 및 Android 오디오 / WMA 진입점을 제공합니다. 선택적 Host Session이 없으면 선택 파일만 재생합니다.
+현재 버전은 프로토콜 v12의 단일 파일 및 순서 있는 다중 선택 읽기 전용 동작, 요청 범위의 같은 폴더 검색 기능, 독립 문서 선택기, 공개 읽기 전용 Android 오디오 진입점을 제공합니다 (구형 WMA MIME 별칭 포함). 선택적 Host Session 기능이 없는 호스트에서는 계속 선택한 파일만 재생됩니다.
 
-같은 폴더 검색에는 AutoJs6 6.8.0 build 5276 이상과 Explorer Action v12가 필요하며 이후 플러그인 기능에서도 이 요구 사항을 높이지 않습니다.
-
-******
-
-### 보안
+같은 폴더 검색에는 Explorer Action v12를 지원하는 AutoJs6 6.8.0 (버전 코드 5276) 이상이 필요하며, 이후의 플러그인 기능도 이 요구 사항을 높이지 않습니다. 제품은 v1.4.0부터 3-Terra Player로 이름이 바뀌었지만 애플리케이션 ID는 `io.github.supermonster003.autojs6.plugin.audioplayer` 그대로 유지되어 덮어쓰기 설치로 업그레이드할 수 있습니다.
 
 ******
 
-저장소 권한을 요청하지 않고 원본 파일을 쓰지 않습니다. 인터넷은 수동 또는 일일 GitHub 릴리스 확인에만 사용합니다. 서명 진입점은 v12, TARGETS, ClipData, 메타데이터와 읽기를 엄격히 검증하고 Host Session은 UID 고정 및 비재귀이며 공개 진입점은 읽기 전용입니다.
+### 개발 로드맵
 
 ******
 
-### 안전 제한
+플러그인의 기능 계획과 진행 상황은 Roadmap.md에 체크 가능한 목록으로 관리됩니다. 마일스톤별로 정리되고 수용 기준이 함께 붙어 있으며 가사, 이퀄라이저, 커버 기반 색상, 몰입형 화면, 엔지니어링 품질 같은 방향을 다룹니다. 체크되지 않은 항목은 현재 버전의 기능이 아니라 계획 의도이며, Issues를 통해 언제든 논의에 참여할 수 있습니다.
 
-******
-
-- 단일 작업은 정확히 하나의 선택 파일에서 시작해 읽을 수 있는 직접 형제 오디오의 제한된 재생목록을 만들 수 있으며 선택 작업은 순서를 유지한 중복 없는 파일 1개에서 128개를 받습니다.
-- 선언된 크기가 8 TiB를 넘는 탐색기 요청은 거부됩니다.
-- 탐색기 작업은 인식된 오디오 MIME 또는 명시된 확장자와 일치하고 각 대상을 정규화하고 검증합니다.
-- 형제 검색은 호스트가 관리하는 요청 범위 세션에서만 가능하고 재귀하지 않습니다. 플러그인은 형제 URI를 추측하거나 파일 시스템 경로를 받지 않습니다.
-- 공개 Android 진입점에는 ACTION_VIEW, `content` URI, 지원되는 오디오 또는 WMA MIME과 읽기 권한이 필요합니다.
-- 알림 권한은 선택 사항입니다. 거부하면 알림 창 제어가 숨겨지지만 재생은 차단되지 않습니다.
-- 완료 또는 디코더 오류 시 재생을 안전하게 종료합니다. 외부 대안은 새 읽기 권한만 전달하고 이 플러그인을 제외합니다.
+- [Roadmap.md 보기](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/Roadmap.md)
 
 ******
 
@@ -138,41 +194,42 @@ required host build: 5276
 
 ******
 
-# v1.4.0
+#### v1.4.1
 
-###### 2026/08/29
+_2026/08/31_
 
-* `기능` 시스템 미디어 알림에 전용 이전 곡, 다음 곡, 셔플 전환, 종료 동작과 앱의 투명 단색 아이콘을 적용하고 셔플 강조 상태를 재생 상태와 즉시 동기화
-* `수정` 플러그인 정보와 Explorer Action이 같은 Service를 공유할 때 Binder 설명자 불일치로 AutoJs6가 플러그인을 오류로 표시하고 비활성화하던 문제를 수정하고 두 프로토콜을 독립 Service로 분리
-* `수정` 대기열을 비우면 오래된 곡 정보와 백그라운드 세션을 즉시 지우고 재생, 탐색, 대기열, 속도, 타이머, A-B 제어를 비활성화하며 무효한 탭 대신 명확한 빈 상태를 표시
-* `수정` 기본 재생 버튼 그림자가 하단 영역에서 잘리지 않으며 비활성 상태에는 명확한 저강조 색상을 사용; 설정 및 업데이트 대화상자의 라디오, 다중 선택, 진행률, 버튼도 동적 테마 색상을 따름
-* `개선` 앱과 플러그인 이름을 번역하지 않는 고정 텍스트 3-Terra Player로 통일하고 소스 네임스페이스와 기호를 three / Three 형식으로 이전했으며 기존 업데이트와 설정 호환성을 위해 게시된 애플리케이션 ID는 유지
-* `개선` 플레이어 도구 모음의 팔레트 바로가기를 설정만 포함하는 점 3개 메뉴로 교체하고 재생 제어 아래의 기존 간격을 유지
+- `기능` 독립 실행형 앱을 런처에서 다시 열면 마지막 대기열, 현재 곡, 정지 위치, 반복 모드, 셔플 상태, 재생 속도를 복원합니다; 복원된 세션은 일시 정지 상태를 유지하며 영구 읽기 권한이 있는 시스템 파일 선택기 대기열만 저장합니다
+- `수정` 일부 테마에서 플레이어 오른쪽 위 더보기 메뉴가 흰색 배경에 흰색 글자로 표시되어 설정 항목을 알아볼 수 없던 문제를 수정했습니다
+- `개선` 테마 색상 설정의 AutoJs6 소스 문구를 `AutoJs6 따르기`로 통일하고, 색상 선택 패널에는 호스트 색상의 HEX 값을 바로 표시합니다
+- `개선` 10개 언어의 README, CHANGELOG, 플러그인 안내를 기본적으로 수동 검토하고 프로젝트 및 앱 내 업데이트 링크를 3-Terra Player 공식 저장소로 이전했습니다
 
-# v1.3.0
+#### v1.4.0
 
-###### 2026/08/29
+_2026/08/29_
 
-* `기능` 런처와 다중 파일 독립 플레이어를 추가하고 언어, 야간 모드, 테마 색상, 이어서 재생, 업데이트, 릴리스 기록, 앱 및 개발자 정보 전용 설정 화면을 제공합니다
-* `기능` 언어, 야간 모드 및 원본 색상은 공식 읽기 전용 설정 계약을 통해 기본적으로 AutoJs6를 따릅니다. 호스트를 사용할 수 없어도 선택지는 비활성 상태로 표시되고 앱 기본값으로 대체됩니다
-* `기능` 수동 및 일일 자동 업데이트 확인, 무시한 버전 관리, 현지화된 내장 릴리스 기록을 추가했습니다
-* `수정` 호스트 설정 공급자가 요구하는 보호된 플러그인 정보 서비스 진입점을 공개하여 항상 Host color unavailable로 표시되던 문제를 수정했습니다
-* `수정` 탐색기 작업이 19개 알려진 확장자와 함께 오디오 MIME 및 WMA를 광고하여 호스트가 인식한 모든 오디오를 플러그인으로 바로 전달합니다
-* `개선` 이어서 재생은 가장 최근 파일 하나만 기억하고 다른 파일을 열면 이전 기록을 즉시 삭제하며 재생을 마친 위치는 저장하지 않습니다
-* `개선` 메타데이터 영역을 안정적인 세 줄로 고정하고 선택된 오디오 트랙의 샘플링 레이트와 비트레이트를 44.1 kHz · MP3 · 128 kbps 순서로 보완합니다
-* `개선` A-B는 A 설정, B 설정, 해제의 명확한 세 번 누르기로 바뀌었으며 하단 제어 간격과 아이콘 크기 및 수직 중앙을 조정했습니다
+- `기능` 시스템 미디어 알림 전면 개선: 이전 곡 / 다음 곡 / 셔플 전환 / 종료 버튼을 새로 갖추고 앱 전용 단색 아이콘을 사용하며 셔플 상태는 플레이어와 실시간으로 동기화
+- `수정` AutoJs6 플러그인 센터에서 플러그인이 오류로 자동 표시되고 비활성화될 수 있던 문제 수정: 플러그인 정보와 파일 관리자 동작이 이제 각각 독립된 서비스 엔드포인트를 사용
+- `수정` 재생 대기열을 비운 뒤 오래된 정보가 남던 문제 수정: 화면이 명확한 빈 상태로 전환되고 재생, 탐색, 배속, 타이머, A-B 등 컨트롤이 함께 비활성화
+- `수정` 재생 버튼 그림자가 하단 영역에서 잘리던 문제 수정; 설정과 업데이트 대화 상자의 라디오 버튼, 체크박스, 진행 막대, 버튼이 일관되게 테마 색상을 따르도록 개선
+- `개선` 앱과 플러그인 이름을 3-Terra Player로 공식 변경: 애플리케이션 ID는 그대로이므로 덮어쓰기 설치로 바로 업그레이드할 수 있고 기존 설정도 그대로 유지
+- `개선` 플레이어 오른쪽 위 메뉴를 설정 항목만 남기고 간소화하고 설정 페이지와 중복되던 팔레트 버튼을 제거
 
-# v1.2.2
+#### v1.3.0
 
-###### 2026/08/27
+_2026/08/29_
 
-* `수정` 플러그인을 덮어쓴 뒤 실행 중인 AutoJs6 파일 관리자가 캐시된 프로토콜 v4 작업을 계속 보내 모든 오디오 요청이 즉시 거부되던 문제를 수정했습니다. 게이트웨이는 읽기 전용 v4–v12 요청을 호환 처리하면서 계속 v12를 알립니다
-* `수정` Android 또는 제조사 MIME 표가 와일드카드나 application 형식을 반환할 때 지원 대상으로 알린 오디오 확장자가 잘못 거부되던 문제를 수정했습니다. 이제 확장자 허용 목록이 안정적인 표준 오디오 MIME 형식을 제공합니다
-* `개선` 거부된 Explorer 요청은 파일 이름, 표시 경로, URI를 포함하지 않는 개인정보 보호형 사유 코드를 기록하여 이후 계약 불일치를 바로 진단할 수 있습니다
+- `기능` 독립 실행 모드 추가: AutoJs6 없이도 시작 화면에서 최대 128개의 오디오 파일을 한 번에 선택해 연속 재생
+- `기능` 설정 페이지 추가: 언어, 야간 모드, 테마 색상, 이어서 재생, 업데이트 확인, 릴리스 기록, 앱 정보를 한곳에서 관리; 언어와 모양은 기본적으로 AutoJs6를 따르고 호스트를 사용할 수 없으면 내장 기본값으로 자동 대체
+- `기능` 수동 및 하루 한 번 자동 업데이트 확인 추가: 특정 버전 무시를 지원하고 여러 언어로 된 릴리스 기록을 내장
+- `수정` 테마 색상이 AutoJs6를 따를 때 호스트 색상을 사용할 수 없다고 계속 표시되던 문제 수정
+- `수정` 파일 관리자에서 호스트가 오디오로 인식하는 모든 항목을 이제 이 플러그인으로 바로 재생 가능 (WMA 새로 추가)
+- `개선` 이어서 재생은 가장 최근에 연 파일 하나만 기억: 다른 파일을 열거나 재생을 마치면 이전 기록을 자동으로 삭제
+- `개선` 재생 화면이 세 줄 정보 영역을 항상 유지하고 샘플링 레이트와 비트레이트 표시를 보완해 곡 전환이나 비동기 로딩 시 레이아웃이 더 이상 흔들리지 않음
+- `개선` A-B 반복을 세 번 탭으로 A 지점 설정, B 지점 설정, 해제를 차례로 수행하도록 변경; 하단 컨트롤 영역의 간격과 아이콘 정렬도 함께 다듬음
 
-##### 더 많은 릴리스
+##### 더 많은 릴리스 기록은 다음에서 확인할 수 있습니다
 
-* [CHANGELOG-ko.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Audio-Player/blob/master/app/src/main/assets/doc/CHANGELOG-ko.md)
+* [CHANGELOG.md](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/assets/doc/CHANGELOG-ko.md)
 
 ******
 
@@ -180,38 +237,56 @@ required host build: 5276
 
 ******
 
+이 섹션은 소스 코드에서 플러그인을 직접 빌드하려는 개발자를 위한 내용입니다.
+
+debug APK 빌드:
+
 ```powershell
 .\gradlew.bat :app:assembleDebug
 ```
 
-Release 빌드:
+release APK 빌드 (버전 관리에서 제외된 `sign.properties`에 서명 정보를 설정하면 자동으로 서명됩니다):
 
 ```powershell
 .\gradlew.bat :app:assembleRelease
 ```
 
-빌드 매개변수는 `version.properties`에서 가져옵니다. 현재 최소 SDK는 24이고 대상 SDK는 36입니다.
+릴리스 보관용으로는 `:app:appendDigestToReleasedFiles` 작업을 실행하면 서명된 APK가 `releases/`에 복사되고 파일 이름에 버전과 CRC32 다이제스트가 덧붙습니다.
+
+빌드 매개변수는 `version.properties`에 모여 있습니다: 최소 SDK 24 (Android 7.0), 대상 SDK 36, 현재 버전 1.4.1.
 
 ******
 
-### 리소스 구성
+### 현지화와 문서 생성
 
 ******
 
 ```text
+.readme/common.json
 .readme/lang_*.json
+.readme/template_readme.md
+.readme/template_plugin_instruction.md
 .changelog/lang_*.json
+.changelog/template_changelog.md
 .python/generate_markdown.py
 app/src/main/assets/doc/CHANGELOG-*.md
 app/src/main/res/values-*/strings.xml
 app/src/main/res/raw-*/plugin_instruction.md
 ```
 
-`strings.xml`은 플러그인 메타데이터와 UI 텍스트를 현지화합니다. `plugin_instruction.md`는 호스트에 표시되는 안내를 제공합니다. `.python/generate_markdown.py`는 JSON 원본에서 현지화된 README와 변경 기록을 생성합니다.
+`strings.xml`은 플러그인 메타데이터와 UI 텍스트의 현지화를 담당하고, `plugin_instruction.md`는 호스트 플러그인 센터에 표시되는 사용 안내를 제공합니다. README, 변경 기록, 사용 안내는 모두 JSON 원본에서 생성됩니다. `.readme/`와 `.changelog/` 아래의 원본 파일을 수정한 뒤 `py .python/generate_markdown.py`를 실행해 모든 산출물을 다시 생성하며, 생성된 파일은 직접 편집하지 않습니다. `py .python/generate_markdown.py --check`를 실행하면 원본과 산출물이 동기화되어 있는지 검사할 수 있습니다.
 
 ******
 
-### 링크
+### 라이선스
+
+******
+
+프로젝트 코드는 [Mozilla Public License 2.0](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE) 라이선스로 공개되어 있습니다. 오디오 재생 기능은 [AndroidX Media3](https://developer.android.com/media/media3) (Apache License 2.0) 기반입니다.
+
+******
+
+### 관련 링크
 
 ******
 

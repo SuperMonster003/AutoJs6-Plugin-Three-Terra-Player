@@ -15,7 +15,7 @@ val sourceNamespace = "io.github.supermonster003.autojs6.plugin.threeterraplayer
 
 // Keep the published application ID stable so existing installations, AutoJs6's official
 // catalog entry and per-package authorization upgrade in place after the product rename.
-val stableApplicationId = "io.github.supermonster003.autojs6.plugin.audioplayer"
+val globalApplicationId = "io.github.supermonster003.autojs6.plugin.audioplayer"
 
 val buildTypeDebug = "debug"
 val buildTypeRelease = "release"
@@ -25,7 +25,7 @@ android {
     compileSdk = versions.sdkVersionCompile
 
     defaultConfig {
-        applicationId = stableApplicationId
+        applicationId = globalApplicationId
         minSdk = versions.sdkVersionMin
         targetSdk = versions.sdkVersionTarget
         versionCode = versions.appVersionCode
@@ -34,6 +34,9 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         resValue("string", "plugin_author", "SuperMonster003")
+        resValue("string", "plugin_engine", "explorer-action")
+        resValue("string", "plugin_variant", "default")
+        resValue("string", "plugin_id", "audio-player")
         resValue("string", "plugin_version_date", utils.getDateString("MMM d, yyyy", "GMT+08:00"))
     }
 

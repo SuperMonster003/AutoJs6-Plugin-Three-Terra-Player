@@ -31,3 +31,53 @@ tasks {
         delete(rootProject.layout.buildDirectory)
     }
 }
+
+val defaultMarkdownPythonCommand = if (
+    System.getProperty("os.name").startsWith("Windows", ignoreCase = true)
+) {
+    "py"
+} else {
+    "python3"
+}
+val markdownPythonCommand = providers.gradleProperty("markdownPythonCommand")
+    .orElse(defaultMarkdownPythonCommand)
+
+val checkMarkdown by tasks.registering(Exec::class) {
+    group = "verification"
+    description = "Verifies that localized Markdown artifacts match their JSON sources"
+    workingDir(rootDir)
+
+    inputs.files(
+        file(".python/generate_markdown.py"),
+        file("version.properties"),
+        fileTree(".readme") {
+            include("common.json", "lang_*.json", "template_*.md", "README-*.md")
+        },
+        fileTree(".changelog") {
+            include("lang_*.json", "template_*.md")
+        },
+        fileTree("app/src/main/assets/doc") {
+            include("CHANGELOG*.md")
+        },
+        fileTree("app/src/main/res") {
+            include("values*/strings.xml", "raw*/plugin_instruction.md")
+        },
+        file("README.md"),
+    )
+    // This task validates files without producing them, so it must not be skipped as up-to-date.
+    outputs.upToDateWhen { false }
+
+    doFirst {
+        commandLine(
+            markdownPythonCommand.get(),
+            ".python/generate_markdown.py",
+            "--check",
+        )
+    }
+}
+
+// Every Android build now validates generated documentation before resource processing.
+// Use -PmarkdownPythonCommand=/path/to/python when the platform default is unavailable.
+project(":app").tasks.matching { it.name == "preBuild" }.configureEach {
+    dependsOn(checkMarkdown)
+}

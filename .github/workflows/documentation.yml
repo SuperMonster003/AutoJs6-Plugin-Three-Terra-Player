@@ -1,0 +1,36 @@
+name: Documentation consistency
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: documentation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-generated-markdown:
+    name: Verify generated Markdown
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Run consistency-gate tests
+        run: python -m unittest discover -s .python -p "test_*.py" -v
+
+      - name: Verify generated artifacts
+        run: python .python/generate_markdown.py --check

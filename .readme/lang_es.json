@@ -1,55 +1,108 @@
 {
   "$name": "Español",
   "text_current_lowercase": "actual",
-  "text_plugin_synopsis": "Complemento del gestor de archivos. Reproduce audio con controles integrados y en segundo plano",
+  "text_plugin_synopsis": "Complemento de reproducción de audio y aplicación independiente. Reproduce audio directamente desde el gestor de archivos de AutoJs6 o por sí solo, con reproducción en segundo plano",
   "h3_languages_with_ascii": "Idiomas (Languages)",
   "p_languages_all_supported_for_readme": "El README.md actual admite los siguientes idiomas",
   "h3_introduction": "Introducción",
-  "p_introduction": "3-Terra Player ofrece un controlador dentro de la aplicación y un servicio privado de reproducción en segundo plano para los archivos de audio abiertos desde el gestor de archivos. También puede recibir solicitudes Android ACTION_VIEW de solo lectura para content URI con un tipo MIME de audio.",
-  "h3_functions": "Funciones",
+  "p_introduction_what": "3-Terra Player (antes Audio Player) es a la vez un complemento de reproducción de audio para el gestor de archivos de AutoJs6 y un reproductor de audio independiente y sencillo. Una vez instalado y activado, basta con tocar cualquier archivo de audio en el gestor de archivos de AutoJs6 para reproducirlo directamente, sin necesidad de un reproductor de terceros; también puede abrirse desde el lanzador como una aplicación normal para elegir varios archivos de audio y reproducirlos seguidos.",
+  "p_introduction_how": "Tras la instalación, AutoJs6 descubre el complemento automáticamente, sin configuración alguna. La reproducción se basa en Media3 (ExoPlayer), el marco multimedia oficial de Android, con reproducción en segundo plano y controles en la notificación multimedia del sistema; el acceso a los archivos de audio es estrictamente de solo lectura, no se solicita permiso de almacenamiento y los archivos originales nunca se modifican ni se eliminan.",
+  "h3_features": "Funciones destacadas",
   "features": [
-    "Registra las acciones `play-audio` y `play-audio-selection` mediante Explorer Action v12 para todos los tipos MIME de audio reconocidos por el host y 19 extensiones conocidas.",
-    "Reproduce audio con Media3 ExoPlayer y MediaSessionService, con foco de audio, gestión de desconexión de salida, modo de activación local, reproducción en segundo plano y controles multimedia del sistema.",
-    "Proporciona una pantalla completa con carátula, etiquetas, información técnica, arrastre de progreso, saltos de 10 segundos, modos secuencial / aleatorio / repetir una y velocidad de 0,5x a 2x.",
-    "Reproduce hasta 128 archivos de audio seleccionados explícitamente en el orden proporcionado por el host, con anterior / siguiente y una cola para saltar o eliminar pistas.",
-    "Incluye un temporizador gestionado por el servicio con valores predefinidos, duración personalizada, detener tras la pista actual, fundido final de cinco segundos y bucle A-B.",
-    "Recuerda solo el último archivo abierto y su posición, sustituye el registro al abrir otro y refleja los metadatos y controles actuales en el sistema.",
-    "Ofrece un lanzador para seleccionar hasta 128 documentos y acepta URI `content` ACTION_VIEW de solo lectura, incluidos alias MIME antiguos de WMA.",
-    "Ofrece una alternativa ante errores de decodificación que abre el archivo en otra aplicación compatible y excluye este plugin para evitar un bucle.",
-    "Al abrir un único archivo desde el Explorador descubre, mediante una Host Session por solicitud, una cola acotada y ordenada de forma natural de audios hermanos legibles; la multiselección explícita conserva el orden del host.",
-    "Genera una paleta clara y oscura accesible a partir de un color de origen, sigue AutoJs6 de forma predeterminada y ofrece 19 preajustes Material 500 y colores RGB personalizados; los ajustes propios incluyen idioma, noche, reanudación, actualizaciones, historial e información."
+    "Reproducción con un toque en el gestor de archivos: toca cualquier archivo de audio en el gestor de archivos de AutoJs6 para empezar a reproducirlo.",
+    "Reproducción continua de la misma carpeta: al abrir una pista se descubren los demás audios de la carpeta y se ponen en cola por orden natural de nombre de archivo (hasta {{ max_queue_size }} pistas, empezando por la seleccionada).",
+    "Cola por selección múltiple: marca hasta {{ max_queue_size }} archivos de audio en el gestor de archivos y reprodúcelos exactamente en el orden en que los marcaste.",
+    "Pantalla de reproducción completa: carátula del álbum, etiquetas de título / artista / álbum, información técnica como frecuencia de muestreo y tasa de bits, y una barra de progreso arrastrable.",
+    "Todos los controles habituales: anterior / siguiente, retroceso y avance de 10 segundos, modos secuencial / aleatorio / repetir una y velocidad de reproducción de 0,5x a 2x.",
+    "Panel de cola de reproducción: consulta las próximas pistas en cualquier momento, toca para saltar a una pista o quitarla, con la pista actual claramente señalada.",
+    "Temporizador de apagado: valores predefinidos de 15 / 30 / 60 minutos o una duración personalizada, con opción de detenerse al terminar la pista actual y un fundido de volumen en los últimos 5 segundos.",
+    "Bucle A-B: repite cualquier fragmento una y otra vez, ideal para practicar la comprensión auditiva o sacar música de oído.",
+    "Reproducción en segundo plano: el audio no se interrumpe al salir de la pantalla o bloquear el dispositivo, y puede controlarse desde la notificación multimedia del sistema y la pantalla de bloqueo.",
+    "Restauración de sesión: al reabrir la aplicación independiente desde el lanzador se restauran la última cola, la pista actual, la posición de parada, el estado de repetición / aleatorio y la velocidad; la sesión restaurada permanece en pausa.",
+    "Modo de aplicación independiente: funciona sin AutoJs6; elige hasta {{ max_queue_size }} archivos de audio desde la pantalla de inicio y reprodúcelos.",
+    "Apariencia personalizable: el idioma, el modo nocturno y el color del tema siguen a AutoJs6 de forma predeterminada, o elige entre 19 colores predefinidos y RGB personalizado."
   ],
-  "h3_supported_formats": "Extensiones del Explorador",
-  "p_supported_formats": "El catálogo anuncia `audio/*` y usa también estas extensiones para tablas MIME antiguas o incompletas",
-  "p_decoder_support": "La coincidencia de una extensión no garantiza la decodificación. La reproducción real depende de Media3, la plataforma Android, los codecs del dispositivo y el contenido del archivo",
-  "h3_host_behavior": "Comportamiento del host",
-  "p_host_installed": "Cuando el plugin está instalado y activado en AutoJs6, el gestor muestra Reproducir audio para un archivo y Reproducir audio seleccionado en la barra de multiselección. La apertura individual comienza en esa pista y puede descubrir audios hermanos directos legibles en orden natural; la multiselección explícita conserva el orden del host.",
-  "p_host_missing": "Cuando falta el plugin, esta acción no aparece. El host conserva su flujo externo ACTION_VIEW de solo lectura para archivos de audio, por lo que otra aplicación de audio instalada puede gestionar el archivo. Si no hay una aplicación externa compatible, el host no obtiene una interfaz de reproducción alternativa.",
-  "h3_plugin_interface": "Interfaz del plugin",
-  "p_plugin_interface": "El host descubre y ejecuta el plugin con las siguientes identidades",
-  "p_plugin_scope": "La versión 1.4.0 ofrece acciones v12 de solo lectura, acceso limitado a hermanos, selector independiente de documentos y entradas Android de audio / WMA. Los hosts sin Host Session opcional reproducen solo el archivo seleccionado.",
-  "p_plugin_packaging": "El descubrimiento en la misma carpeta requiere AutoJs6 6.8.0 build 5276 o posterior y Explorer Action v12; este requisito no aumentará con capacidades futuras del plugin.",
-  "h3_security": "Seguridad",
-  "p_security": "El plugin no solicita almacenamiento ni escribe archivos. Internet se usa solo para comprobaciones de versiones de GitHub manuales o diarias. La entrada firmada valida estrictamente v12, TARGETS, ClipData, metadatos y lectura; Host Session permanece vinculada al UID y no recursiva, y las entradas públicas conservan permisos de solo lectura.",
-  "h3_security_limits": "Límites de seguridad",
-  "security_limits": [
-    "La acción individual parte exactamente de un archivo seleccionado y puede formar una cola acotada de audios hermanos directos legibles; la acción de selección acepta de 1 a 128 archivos únicos y conserva su orden.",
-    "Se rechazan las solicitudes del Explorador con un tamaño declarado superior a 8 TiB.",
-    "Las acciones coinciden por MIME de audio reconocido o por la lista de extensiones y normalizan y validan cada objetivo.",
-    "El descubrimiento de hermanos no es recursivo y solo está disponible mediante la sesión por solicitud del host; el plugin nunca adivina un URI hermano ni recibe una ruta del sistema de archivos.",
-    "La entrada Android pública requiere ACTION_VIEW, un URI `content`, un MIME de audio o WMA compatible y permiso de lectura.",
-    "El permiso de notificaciones es opcional. Si se deniega, se ocultan los controles de la bandeja de notificaciones pero no se bloquea la reproducción.",
-    "La reproducción finaliza de forma segura al completarse o producirse un error de decodificación. La alternativa externa transfiere solo un nuevo permiso de lectura y excluye este plugin."
+  "h3_usage": "Uso",
+  "usage_steps": [
+    "Descarga el APK más reciente del complemento desde la página de [Releases]({{ repo_url }}/releases) e instálalo en el dispositivo donde se ejecuta AutoJs6.",
+    "Abre el centro de complementos de AutoJs6 y comprueba que `3-Terra Player` aparece reconocido y activado.",
+    "En el gestor de archivos de AutoJs6, toca cualquier archivo de audio y elige `Reproducir audio`, o mantén pulsado para seleccionar varios archivos y elige `Reproducir audios seleccionados` en la barra de herramientas.",
+    "También puedes abrir `3-Terra Player` directamente desde el lanzador y usar el selector de archivos para elegir varios audios y reproducirlos."
   ],
+  "p_usage_note": "Si el complemento no aparece en el centro de complementos, actualiza primero AutoJs6 a la versión {{ required_host_version }} (código de versión {{ required_host_build }}) o posterior. El complemento es compatible con dispositivos Android {{ min_android_version }} (API {{ android_min_sdk }}) o superiores, y el modo de aplicación independiente no depende de AutoJs6.",
+  "h3_supported_formats": "Formatos de audio compatibles",
+  "p_supported_formats": "La entrada del gestor de archivos declara el tipo de audio genérico `audio/*` y cubre explícitamente las siguientes 19 extensiones para mantener la compatibilidad con tablas MIME incompletas o antiguas de algunos dispositivos",
+  "p_decoder_support": "Que una extensión sea compatible no garantiza su decodificación: la reproducción real depende de Media3, la versión de Android, los códecs del dispositivo y el contenido del archivo. Cuando un archivo no se puede reproducir, el panel de error ofrece abrirlo con otra aplicación.",
+  "h3_faq": "Preguntas frecuentes",
+  "faq": [
+    {
+      "q": "No aparece el botón `Reproducir audio` en el gestor de archivos?",
+      "a": "Comprueba tres cosas en este orden: que el complemento esté instalado, que esté activado en el centro de complementos de AutoJs6 y que AutoJs6 sea la versión {{ required_host_version }} (código de versión {{ required_host_build }}) o posterior. Cuando se cumplen las tres, los archivos de audio del gestor de archivos muestran la entrada de reproducción."
+    },
+    {
+      "q": "Solo toqué una canción, por qué aparecen en la cola otras canciones de la misma carpeta?",
+      "a": "Es la reproducción continua de la misma carpeta: al abrir un solo audio, el complemento descubre los demás audios de la carpeta a través de una sesión gestionada por el host y los pone en cola por orden natural de nombre de archivo para escucharlos seguidos. El descubrimiento es totalmente de solo lectura y nunca entra en subcarpetas; si la versión del host no admite esta capacidad, solo se reproduce la pista seleccionada."
+    },
+    {
+      "q": "Qué orden sigue la reproducción con selección múltiple?",
+      "a": "Exactamente el orden en que marcaste los archivos. Para escuchar en un orden concreto, marca los archivos en ese orden; ya en el reproductor también puedes saltar a una pista o quitarla desde el panel de cola."
+    },
+    {
+      "q": "La reproducción continúa al salir de la interfaz o apagar la pantalla?",
+      "a": "Sí. La reproducción corre a cargo de un servicio en segundo plano y puede controlarse desde la notificación multimedia del sistema y la pantalla de bloqueo. En Android 13 y versiones posteriores el permiso de notificaciones es opcional: si se rechaza, solo se ocultan los controles de la notificación, sin afectar a la reproducción."
+    },
+    {
+      "q": "El complemento modifica o sube mis archivos de audio?",
+      "a": "No. El complemento no solicita permiso de almacenamiento y accede a los archivos de audio estrictamente en modo de solo lectura; la conexión a Internet se usa únicamente para buscar nuevas versiones en GitHub (a petición del usuario o como máximo una vez al día) y nunca se suben archivos ni datos personales."
+    },
+    {
+      "q": "Por qué algunos archivos no suenan o indican un error de decodificación?",
+      "a": "Que una extensión sea compatible no significa que el dispositivo pueda decodificar el archivo; algunos códecs poco comunes o archivos dañados pueden fallar. Ante un error, el panel muestra el código exacto y ofrece abrir el archivo con otra aplicación (excluyendo este complemento para evitar bucles)."
+    },
+    {
+      "q": "Cómo hago que la interfaz del complemento siga el idioma y el tema de AutoJs6?",
+      "a": "Los sigue de forma predeterminada: el idioma, el modo nocturno y el color del tema se sincronizan automáticamente a través de la interfaz oficial de ajustes de solo lectura de AutoJs6. También puedes fijar un idioma concreto o elegir tus propios colores en Ajustes; sin AutoJs6 instalado, se recurre a la apariencia del sistema y a los valores predeterminados integrados."
+    },
+    {
+      "q": "Dónde están el temporizador de apagado y el bucle A-B?",
+      "a": "Ambos están en la barra de herramientas inferior de la pantalla de reproducción. El icono del temporizador ofrece valores predefinidos o una duración personalizada; el botón A-B alterna entre 'fijar punto A, fijar punto B, borrar' con toques sucesivos."
+    }
+  ],
+  "h3_security": "Permisos y seguridad",
+  "p_security_intro": "Los archivos de audio pueden proceder de fuentes no confiables, por lo que el flujo de reproducción cuenta desde el diseño con varias líneas de defensa:",
+  "security_points": [
+    "Cero permisos de almacenamiento: el complemento no solicita (ni puede obtener) acceso de lectura o escritura al almacenamiento del dispositivo; solo puede acceder a los archivos concretos autorizados explícitamente por el host o el sistema.",
+    "Nunca escribe: los archivos de audio se abren en modo de solo lectura y nunca se modifican, se mueven ni se eliminan.",
+    "Validación estricta: la entrada del gestor de archivos está protegida por el permiso de firma de AutoJs6, y en cada solicitud de reproducción se verifican uno por uno la versión del protocolo, la lista de destinos y las autorizaciones de solo lectura; las solicitudes no conformes se rechazan directamente.",
+    "Descubrimiento acotado: la reproducción continua de la misma carpeta solo lee a través de una sesión gestionada por el host y limitada a la solicitud, no entra en subcarpetas, no adivina ubicaciones de archivos, y la sesión se cierra al terminar la reproducción.",
+    "Solo sesión local: al activar la reanudación, el almacenamiento privado de la aplicación conserva únicamente la última cola independiente del selector y su estado; solo admite URI del selector del sistema con acceso de lectura duradero, nunca guarda rutas Host Session y al desactivar el ajuste borra el registro de inmediato.",
+    "Red mínima: el permiso de Internet se usa solo para las comprobaciones de versiones en GitHub iniciadas por el usuario o una vez al día, nunca para contenido de audio ni datos de uso.",
+    "Notificaciones opcionales: en Android 13+ el permiso de notificaciones es opcional; si se rechaza, solo se ocultan los controles de la notificación y la reproducción no se ve afectada."
+  ],
+  "p_security_permission": "Instala el complemento únicamente desde la página oficial de [Releases]({{ repo_url }}/releases) u otros canales de confianza; un paquete de origen desconocido puede haber sido manipulado aunque su nombre y versión parezcan idénticos.",
+  "h3_plugin_interface": "Interfaz del complemento",
+  "p_plugin_interface": "La siguiente información está dirigida a los desarrolladores del host AutoJs6 y de complementos; el host usa estos identificadores para descubrir el complemento y negociar capacidades",
+  "p_plugin_scope": "La versión actual ofrece acciones de solo lectura del protocolo v12 para un solo archivo y para selección múltiple ordenada, descubrimiento en la misma carpeta limitado a cada solicitud, un selector de documentos independiente y una entrada de audio Android pública de solo lectura (incluidos los alias MIME antiguos de WMA). Los hosts sin la capacidad opcional Host Session siguen reproduciendo solo el archivo seleccionado.",
+  "p_plugin_packaging": "El descubrimiento en la misma carpeta requiere AutoJs6 {{ required_host_version }} (código de versión {{ required_host_build }}) o posterior con Explorer Action v12; las futuras capacidades del complemento no elevarán este requisito. Desde la v1.4.0 el producto se llama 3-Terra Player, mientras que el ID de aplicación se mantiene como `{{ application_id }}`, por lo que la actualización se instala sobre la versión existente.",
+  "h3_roadmap": "Hoja de ruta",
+  "p_roadmap": "Las capacidades planificadas y su progreso se mantienen como una lista de casillas marcables en Roadmap.md, organizada por hitos y con criterios de aceptación, que abarca letras de canciones, ecualizador, colores basados en la carátula, interfaz de borde a borde y calidad de ingeniería. Los elementos sin marcar son intenciones de planificación y no funciones de la versión actual; puedes sumarte a la conversación a través de Issues.",
+  "text_link_roadmap": "Ver Roadmap.md",
   "h3_release_history": "Historial de versiones",
-  "h5_for_more_release_history": "Para consultar más versiones",
+  "h5_for_more_release_history": "Para más historial de versiones, consulta",
   "h3_build": "Compilación",
-  "text_release_build": "Compilación Release",
-  "p_build_params": "Los parámetros de compilación proceden de `version.properties`. El SDK mínimo actual es 24 y el SDK de destino es 36",
-  "h3_resource_layout": "Estructura de recursos",
-  "p_resource_layout": "`strings.xml` localiza los metadatos del plugin y el texto de la interfaz. `plugin_instruction.md` proporciona instrucciones visibles desde el host. `.python/generate_markdown.py` genera archivos README y de cambios localizados a partir de fuentes JSON",
+  "p_build_intro": "Esta sección está dirigida a los desarrolladores que deseen compilar el complemento a partir del código fuente.",
+  "p_build_debug": "Compilar un APK debug",
+  "p_build_release": "Compilar un APK release (se firma automáticamente una vez configurada la firma en `sign.properties`, un archivo que no entra en el control de versiones)",
+  "p_build_artifacts": "Para archivar una publicación, ejecuta la tarea `:app:appendDigestToReleasedFiles`, que copia los APK firmados en `releases/` añadiendo al nombre del archivo la versión y un resumen CRC32.",
+  "p_build_params": "Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo {{ android_min_sdk }} (Android {{ min_android_version }}), SDK de destino {{ android_target_sdk }}, versión actual {{ version_name }}.",
+  "h3_resource_layout": "Localización y generación de documentación",
+  "p_resource_layout": "`strings.xml` localiza los metadatos del complemento y el texto de la interfaz, y `plugin_instruction.md` proporciona las instrucciones de uso que muestra el centro de complementos del host. El README, el historial de cambios y las instrucciones se generan a partir de fuentes JSON: edita las fuentes de `.readme/` y `.changelog/` y ejecuta `py .python/generate_markdown.py` para regenerar todos los artefactos (los archivos generados no se editan a mano); ejecuta `py .python/generate_markdown.py --check` para verificar que fuentes y artefactos están sincronizados.",
+  "h3_license": "Licencia",
+  "p_license": "El código del proyecto es de código abierto bajo la [Mozilla Public License 2.0]({{ license_url }}). La reproducción de audio se basa en [AndroidX Media3](https://developer.android.com/media/media3) (Apache License 2.0).",
   "h3_links": "Enlaces",
   "text_link_autojs6_docs": "Documentación de AutoJs6",
   "text_link_android_media3": "Android Media3",
-  "text_link_android_secure_file_sharing": "Uso compartido seguro de archivos en Android"
+  "text_link_android_secure_file_sharing": "Uso compartido seguro de archivos en Android",
+  "p_instruction_security": "El complemento no solicita permiso de almacenamiento, accede a los archivos de audio estrictamente en modo de solo lectura y nunca escribe en los archivos originales; la conexión a Internet se usa únicamente para comprobaciones de actualizaciones iniciadas por el usuario o una vez al día. En Android 13+ el permiso de notificaciones es opcional; si se rechaza, solo se ocultan los controles de la notificación, sin afectar a la reproducción.",
+  "p_instruction_docs": "Para más explicaciones y la documentación completa, consulta la [página principal del proyecto]({{ repo_url }}) y la [documentación de AutoJs6]({{ docs_autojs6_url }})."
 }

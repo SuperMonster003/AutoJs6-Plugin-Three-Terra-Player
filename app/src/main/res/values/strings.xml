@@ -34,7 +34,7 @@
     <string name="setting_night_mode">Night mode</string>
     <string name="setting_theme_color">Theme color</string>
     <string name="setting_resume_playback">Resume playback</string>
-    <string name="setting_resume_playback_summary">Remember the position of only the most recently opened file</string>
+    <string name="setting_resume_playback_summary">Restore the last standalone queue, current track, and position when the app opens</string>
     <string name="setting_check_updates">Check for updates</string>
     <string name="setting_check_updates_summary">Check the latest published version now</string>
     <string name="setting_auto_check_updates">Automatically check for updates</string>
@@ -122,7 +122,7 @@
     <string name="error_playback">This app could not decode or play the audio file</string>
     <string name="error_control_unavailable">This playback control is temporarily unavailable</string>
     <string name="notification_permission_explanation">Allow notifications to see playback controls outside this screen. Playback remains available if you decline.</string>
-    <string name="plugin_description">File manager plugin. Play audio files with in-app and background controls</string>
+    <string name="plugin_description">Audio player plugin and standalone app. Play audio right from the AutoJs6 file manager or on its own, with background playback</string>
     <string name="speed_default" translatable="false">1×</string>
     <string name="theme_custom">Custom color</string>
     <string name="theme_custom_error">Enter a six-digit RGB hexadecimal color</string>
@@ -135,8 +135,6 @@
     <string name="theme_preset_selected_accessibility">%1$s, %2$s, selected</string>
     <string name="theme_presets">Material 500 presets</string>
     <string name="theme_source_autojs6">Follow AutoJs6</string>
-    <string name="theme_source_autojs6_available">Live host color · %1$s</string>
-    <string name="theme_source_autojs6_unavailable">Host color unavailable · fallback %1$s</string>
     <string name="unknown_audio">Unknown audio</string>
 
     <plurals name="queue_track_count">
