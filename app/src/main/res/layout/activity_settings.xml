@@ -118,6 +118,51 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/default_speed_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/default_speed_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_default_speed" />
+
+                <TextView
+                    android:id="@+id/default_speed_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/seek_increment_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/seek_increment_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_seek_increment" />
+
+                <TextView
+                    android:id="@+id/seek_increment_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/completion_behavior_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/completion_behavior_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/setting_completion_behavior" />
+
+                <TextView
+                    android:id="@+id/completion_behavior_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/updates_section"
                 style="@style/SettingsSectionTitle"

@@ -25,6 +25,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
@@ -52,16 +53,27 @@ import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.MimeType
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackControlPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackMode
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackModePolicy
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackPreferencePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.SleepTimerPolicy
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppPreferenceStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePaletteGenerator
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.ArtworkColorPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeDialogStyler
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePalette
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.SettingsActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeViewStyler
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.UiFeedback
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.update.AppUpdateCoordinator
 import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.ceil
+import kotlin.math.max
+import kotlin.math.roundToInt
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /** Controller UI for the private MediaSessionService. */
 class AudioPlayerActivity : AudioThemedActivity() {
@@ -77,6 +89,12 @@ class AudioPlayerActivity : AudioThemedActivity() {
     private var queueAdapter: PlaybackQueueAdapter? = null
     private var selectedAudioStream: SelectedAudioStream? = null
     private var pendingPlaybackTarget = true
+    private val appPreferenceStore by lazy(LazyThreadSafetyMode.NONE) { AppPreferenceStore(this) }
+    private lateinit var playerPalette: AudioThemePalette
+    private var artworkJob: Job? = null
+    private var artworkRendered = false
+    private var artworkSignature: Int? = null
+    private var lastRenderedPause: Boolean? = null
 
     private val mainHandler = Handler(Looper.getMainLooper())
     private val progressTicker = object : Runnable {
@@ -197,13 +215,20 @@ class AudioPlayerActivity : AudioThemedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        playerPalette = audioPalette
         request = AudioPlaybackContract.resolvePlayerIntent(intent) ?: run {
             finish()
             return
         }
         binding = ActivityAudioPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AudioThemeViewStyler.applyPlayer(this, binding)
+        applyEdgeToEdge(
+            binding.playerRoot,
+            binding.toolbar,
+            binding.playerContent,
+            binding.notificationPermissionBanner,
+        )
+        AudioThemeViewStyler.applyPlayer(this, binding, playerPalette)
         binding.toolbar.setNavigationOnClickListener { finishAfterTransition() }
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -246,6 +271,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (::binding.isInitialized) renderAdjacentControls()
         AppUpdateCoordinator.maybeCheckAutomatically(this)
     }
 
@@ -258,10 +284,30 @@ class AudioPlayerActivity : AudioThemedActivity() {
 
     private fun bindTransportControls() {
         binding.playPauseButton.setOnClickListener { onPlayPauseClicked() }
-        binding.seekBackwardButton.setOnClickListener { activeController()?.seekBack() }
-        binding.seekForwardButton.setOnClickListener { activeController()?.seekForward() }
-        binding.previousButton.setOnClickListener { activeController()?.seekToPreviousMediaItem() }
-        binding.nextButton.setOnClickListener { activeController()?.seekToNextMediaItem() }
+        binding.seekBackwardButton.setOnClickListener { view ->
+            activeController()?.let { active ->
+                UiFeedback.confirm(view)
+                active.seekBack()
+            }
+        }
+        binding.seekForwardButton.setOnClickListener { view ->
+            activeController()?.let { active ->
+                UiFeedback.confirm(view)
+                active.seekForward()
+            }
+        }
+        binding.previousButton.setOnClickListener { view ->
+            activeController()?.let { active ->
+                UiFeedback.confirm(view)
+                active.seekToPreviousMediaItem()
+            }
+        }
+        binding.nextButton.setOnClickListener { view ->
+            activeController()?.let { active ->
+                UiFeedback.confirm(view)
+                active.seekToNextMediaItem()
+            }
+        }
         binding.playbackModeButton.setOnClickListener { cyclePlaybackMode() }
         binding.queueButton.setOnClickListener { showQueue() }
         binding.speedButton.setOnClickListener { showSpeedMenu() }
@@ -271,6 +317,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
             if (!controlAvailability().playbackTools || toolState.abStartMs == null) {
                 false
             } else {
+                UiFeedback.confirm(binding.abLoopButton)
                 sendCustomCommand(PlaybackSessionContract.COMMAND_CLEAR_AB_LOOP) {
                     Toast.makeText(this, R.string.ab_loop_cleared, Toast.LENGTH_SHORT).show()
                 }
@@ -293,6 +340,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
                 isSeekBarTracking = false
                 val duration = durationMs() ?: return
+                UiFeedback.confirm(seekBar)
                 activeController()?.seekTo(progressToPosition(seekBar.progress, duration))
             }
         })
@@ -300,6 +348,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
 
     private fun onPlayPauseClicked() {
         if (!controlAvailability().playPause) return
+        UiFeedback.confirm(binding.playPauseButton)
         val active = activeController()
         when {
             active == null -> startPlayback()
@@ -320,6 +369,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     private fun cyclePlaybackMode() {
         if (!controlAvailability().playbackTools) return
         val active = activeController() ?: return
+        UiFeedback.confirm(binding.playbackModeButton)
         val current = PlaybackModePolicy.current(active.shuffleModeEnabled, active.repeatMode)
         val state = PlaybackModePolicy.state(PlaybackModePolicy.next(current))
         active.shuffleModeEnabled = state.shuffleEnabled
@@ -331,11 +381,12 @@ class AudioPlayerActivity : AudioThemedActivity() {
         if (!controlAvailability().playbackTools) return
         val active = activeController() ?: return
         val menu = PopupMenu(this, binding.speedButton)
-        SPEED_OPTIONS.forEachIndexed { index, speed ->
+        PlaybackPreferencePolicy.SPEED_OPTIONS.forEachIndexed { index, speed ->
             menu.menu.add(0, index, index, formatSpeed(speed))
         }
         menu.setOnMenuItemClickListener { item ->
-            SPEED_OPTIONS.getOrNull(item.itemId)?.let { speed ->
+            PlaybackPreferencePolicy.SPEED_OPTIONS.getOrNull(item.itemId)?.let { speed ->
+                UiFeedback.confirm(binding.speedButton)
                 activeController()?.setPlaybackSpeed(speed)
             }
             true
@@ -365,7 +416,10 @@ class AudioPlayerActivity : AudioThemedActivity() {
         }
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.sleep_timer)
-            .setItems(labels.toTypedArray()) { _, which -> actions[which]() }
+            .setItems(labels.toTypedArray()) { _, which ->
+                UiFeedback.confirm(binding.sleepTimerButton)
+                actions[which]()
+            }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
             .also(::tintDialogButtons)
@@ -377,9 +431,9 @@ class AudioPlayerActivity : AudioThemedActivity() {
             hint = getString(R.string.timer_custom_hint)
             setText(String.format(Locale.getDefault(), "%d", CUSTOM_TIMER_DEFAULT_MINUTES))
             setSelectAllOnFocus(true)
-            setTextColor(audioPalette.onSurface)
-            setHintTextColor(audioPalette.onSurfaceVariant)
-            backgroundTintList = ColorStateList.valueOf(audioPalette.primary)
+            setTextColor(playerPalette.onSurface)
+            setHintTextColor(playerPalette.onSurfaceVariant)
+            backgroundTintList = ColorStateList.valueOf(playerPalette.primary)
         }
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.timer_custom)
@@ -412,6 +466,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     private fun cycleAbLoop() {
         if (!controlAvailability().playbackTools) return
         val active = activeController() ?: return
+        UiFeedback.confirm(binding.abLoopButton)
         val positionMs = active.currentPosition.coerceAtLeast(0L)
         when {
             toolState.abStartMs == null -> sendPositionCommand(
@@ -457,7 +512,7 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun tintDialogButtons(dialog: AlertDialog) {
-        AudioThemeDialogStyler.apply(dialog, audioPalette)
+        AudioThemeDialogStyler.apply(dialog, playerPalette)
     }
 
     private fun sendPositionCommand(
@@ -502,18 +557,22 @@ class AudioPlayerActivity : AudioThemedActivity() {
         dismissQueue()
         val sheetBinding = BottomSheetPlaybackQueueBinding.inflate(layoutInflater)
         val adapter = PlaybackQueueAdapter(
-            palette = audioPalette,
+            palette = playerPalette,
             onSelect = { index ->
                 activeController()?.takeIf { index in 0 until it.mediaItemCount }?.let { controller ->
+                    UiFeedback.confirm(binding.queueButton)
                     controller.seekToDefaultPosition(index)
                     controller.play()
                 }
             },
             onRemove = { index ->
-                activeController()?.takeIf { index in 0 until it.mediaItemCount }?.removeMediaItem(index)
+                activeController()?.takeIf { index in 0 until it.mediaItemCount }?.let { controller ->
+                    UiFeedback.confirm(binding.queueButton)
+                    controller.removeMediaItem(index)
+                }
             },
         )
-        AudioThemeViewStyler.applyQueue(sheetBinding, audioPalette)
+        AudioThemeViewStyler.applyQueue(sheetBinding, playerPalette)
         sheetBinding.queueList.layoutManager = LinearLayoutManager(this)
         sheetBinding.queueList.adapter = adapter
         val dialog = BottomSheetDialog(this).apply {
@@ -675,30 +734,134 @@ class AudioPlayerActivity : AudioThemedActivity() {
     }
 
     private fun renderArtwork(artworkData: ByteArray?) {
-        val bitmap = artworkData?.let(::decodeArtwork)
-        if (bitmap != null) {
-            binding.artworkImage.scaleType = ImageView.ScaleType.CENTER_CROP
-            binding.artworkImage.imageTintList = null
-            binding.artworkImage.setImageBitmap(bitmap)
-        } else {
-            binding.artworkImage.scaleType = ImageView.ScaleType.CENTER_INSIDE
-            binding.artworkImage.imageTintList = ColorStateList.valueOf(
-                AudioThemePaletteGenerator.withAlpha(
-                    audioPalette.onPrimaryContainer,
-                    PLACEHOLDER_ICON_ALPHA,
-                ),
-            )
-            binding.artworkImage.setImageResource(R.drawable.ic_audio_placeholder)
+        val signature = artworkData?.contentHashCode()
+        if (artworkRendered && signature == artworkSignature) return
+        artworkRendered = true
+        artworkSignature = signature
+        artworkJob?.cancel()
+
+        if (artworkData == null) {
+            applyPlayerPalette(audioPalette)
+            showArtworkPlaceholder()
+            return
+        }
+
+        // Metadata callbacks run on the main thread. Decode and quantize a bounded sample away
+        // from it, then atomically apply the image and its generated semantic palette.
+        showArtworkPlaceholder()
+        artworkJob = lifecycleScope.launch {
+            val result = withContext(Dispatchers.Default) { decodeArtworkResult(artworkData) }
+            if (artworkSignature != signature || !::binding.isInitialized) return@launch
+            if (result == null) {
+                applyPlayerPalette(audioPalette)
+                showArtworkPlaceholder()
+            } else {
+                val palette = result.seed?.let { seed ->
+                    AudioThemePaletteGenerator.generate(seed, audioPalette.isDark)
+                } ?: audioPalette
+                applyPlayerPalette(palette)
+                showDecodedArtwork(result.bitmap)
+            }
         }
     }
 
-    private fun decodeArtwork(data: ByteArray): Bitmap? = runCatching {
-        BitmapFactory.decodeByteArray(data, 0, data.size)
+    private fun showArtworkPlaceholder() {
+        binding.artworkImage.animate().cancel()
+        binding.artworkImage.alpha = 1f
+        binding.artworkImage.scaleX = 1f
+        binding.artworkImage.scaleY = 1f
+        binding.artworkImage.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        binding.artworkImage.imageTintList = ColorStateList.valueOf(
+            AudioThemePaletteGenerator.withAlpha(
+                playerPalette.onPrimaryContainer,
+                PLACEHOLDER_ICON_ALPHA,
+            ),
+        )
+        binding.artworkImage.setImageResource(R.drawable.ic_audio_placeholder)
+    }
+
+    private fun showDecodedArtwork(bitmap: Bitmap) {
+        val view = binding.artworkImage
+        view.animate().cancel()
+        view.scaleType = ImageView.ScaleType.CENTER_CROP
+        view.imageTintList = null
+        view.setImageBitmap(bitmap)
+        if (!UiFeedback.animationsEnabled(this)) {
+            view.alpha = 1f
+            view.scaleX = 1f
+            view.scaleY = 1f
+            return
+        }
+        view.alpha = 0f
+        view.scaleX = ARTWORK_ENTER_SCALE
+        view.scaleY = ARTWORK_ENTER_SCALE
+        view.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(ARTWORK_ENTER_DURATION_MS)
+            .start()
+    }
+
+    private fun applyPlayerPalette(value: AudioThemePalette) {
+        if (playerPalette == value) return
+        playerPalette = value
+        AudioThemeViewStyler.applyPlayer(this, binding, value)
+        applyWindowPalette(value)
+        queueSheetBinding?.let { sheet -> AudioThemeViewStyler.applyQueue(sheet, value) }
+        queueAdapter?.updatePalette(value)
+    }
+
+    private fun decodeArtworkResult(data: ByteArray): ArtworkResult? = runCatching {
+        val bitmap = BitmapFactory.decodeByteArray(data, 0, data.size) ?: return null
+        val largestSide = max(bitmap.width, bitmap.height).coerceAtLeast(1)
+        val scale = (ARTWORK_SAMPLE_MAX_SIDE.toFloat() / largestSide).coerceAtMost(1f)
+        val sampleWidth = (bitmap.width * scale).roundToInt().coerceAtLeast(1)
+        val sampleHeight = (bitmap.height * scale).roundToInt().coerceAtLeast(1)
+        val sample = if (sampleWidth == bitmap.width && sampleHeight == bitmap.height) {
+            bitmap
+        } else {
+            Bitmap.createScaledBitmap(bitmap, sampleWidth, sampleHeight, true)
+        }
+        val pixels = IntArray(sample.width * sample.height)
+        sample.getPixels(pixels, 0, sample.width, 0, 0, sample.width, sample.height)
+        val seed = ArtworkColorPolicy.dominantSeed(pixels)
+        if (sample !== bitmap) sample.recycle()
+        ArtworkResult(bitmap, seed)
     }.getOrNull()
 
     private fun renderPlayPause() {
         val showPause = activeController()?.isPlaying == true
-        binding.playPauseButton.setImageResource(if (showPause) R.drawable.ic_pause else R.drawable.ic_play)
+        val icon = if (showPause) R.drawable.ic_pause else R.drawable.ic_play
+        val previous = lastRenderedPause
+        lastRenderedPause = showPause
+        val button = binding.playPauseButton
+        if (previous != showPause) {
+            button.animate().cancel()
+            if (previous != null && UiFeedback.animationsEnabled(this)) {
+                button.animate()
+                    .alpha(0f)
+                    .scaleX(PLAY_ICON_MID_SCALE)
+                    .scaleY(PLAY_ICON_MID_SCALE)
+                    .setDuration(PLAY_ICON_OUT_DURATION_MS)
+                    .withEndAction transitionEnd@{
+                        if (lastRenderedPause != showPause) return@transitionEnd
+                        button.setImageResource(icon)
+                        button.animate()
+                            .alpha(1f)
+                            .scaleX(1f)
+                            .scaleY(1f)
+                            .setDuration(PLAY_ICON_IN_DURATION_MS)
+                            .start()
+                    }
+                    .start()
+            } else {
+                button.alpha = 1f
+                button.scaleX = 1f
+                button.scaleY = 1f
+                button.setImageResource(icon)
+            }
+        }
         binding.playPauseButton.contentDescription =
             getString(if (showPause) R.string.action_pause else R.string.action_play)
         binding.playPauseButton.isEnabled = controlAvailability().playPause
@@ -741,6 +904,17 @@ class AudioPlayerActivity : AudioThemedActivity() {
         val hasQueue = (active?.mediaItemCount ?: 0) > 1
         binding.seekBackwardButton.isEnabled = mediaActionsEnabled
         binding.seekForwardButton.isEnabled = mediaActionsEnabled
+        val seekSeconds = (appPreferenceStore.seekIncrementMs() / 1_000L).toInt()
+        binding.seekBackwardButton.contentDescription = resources.getQuantityString(
+            R.plurals.action_seek_backward_seconds,
+            seekSeconds,
+            seekSeconds,
+        )
+        binding.seekForwardButton.contentDescription = resources.getQuantityString(
+            R.plurals.action_seek_forward_seconds,
+            seekSeconds,
+            seekSeconds,
+        )
         binding.previousButton.isEnabled = mediaActionsEnabled && hasQueue && active?.hasPreviousMediaItem() == true
         binding.nextButton.isEnabled = mediaActionsEnabled && hasQueue && active?.hasNextMediaItem() == true
         binding.previousButton.alpha = 1f
@@ -970,6 +1144,12 @@ class AudioPlayerActivity : AudioThemedActivity() {
     private companion object {
         const val SEEK_BAR_MAX = 1000
         const val PROGRESS_TICK_MS = 500L
+        const val ARTWORK_SAMPLE_MAX_SIDE = 64
+        const val ARTWORK_ENTER_DURATION_MS = 220L
+        const val ARTWORK_ENTER_SCALE = 0.96f
+        const val PLAY_ICON_OUT_DURATION_MS = 70L
+        const val PLAY_ICON_IN_DURATION_MS = 110L
+        const val PLAY_ICON_MID_SCALE = 0.82f
         const val PLACEHOLDER_ICON_ALPHA = 0xB8
         const val TIME_PLACEHOLDER = "--:--"
         const val SUBTITLE_SEPARATOR = " · "
@@ -978,12 +1158,16 @@ class AudioPlayerActivity : AudioThemedActivity() {
         const val CUSTOM_TIMER_DEFAULT_MINUTES = 45
         const val MIN_CUSTOM_TIMER_MINUTES = 1L
         const val MAX_CUSTOM_TIMER_MINUTES = 24L * 60L
-        val SPEED_OPTIONS = floatArrayOf(0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f)
     }
 
     private data class SelectedAudioStream(
         val mimeType: String?,
         val sampleRateHz: Int?,
         val bitrateBps: Int?,
+    )
+
+    private data class ArtworkResult(
+        val bitmap: Bitmap,
+        val seed: Int?,
     )
 }

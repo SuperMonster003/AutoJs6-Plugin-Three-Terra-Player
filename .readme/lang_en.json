@@ -13,14 +13,14 @@
     "Same-folder auto-play: opening one track discovers the other audio files in the same folder and queues them in natural filename order (up to {{ max_queue_size }} tracks, starting from the selected one).",
     "Multi-select queue: tick up to {{ max_queue_size }} audio files in the file manager and play them in exactly the order you selected.",
     "Complete player screen: album art, title / artist / album tags, technical info such as sample rate and bit rate, and a draggable progress bar.",
-    "All the everyday controls: previous / next, 10-second rewind and fast-forward, sequential / shuffle / repeat-one modes, and 0.5x to 2x playback speed.",
+    "All the everyday controls: previous / next, configurable 5 / 10 / 15 / 30-second rewind and fast-forward, sequential / shuffle / repeat-one modes, a saved default speed from 0.5x to 2x, and selectable queue-finished behavior.",
     "Queue panel: view upcoming tracks at any time, tap to jump or remove, with the current track clearly marked.",
     "Sleep timer: 15 / 30 / 60 minute presets or a custom duration, optionally stopping after the current track, with a 5-second fade-out at the end.",
     "A-B loop: repeat any passage over and over, great for listening practice and learning music by ear.",
     "Background playback: audio keeps going after leaving the screen or locking the device, controllable from the system media notification and the lock screen.",
     "Session restore: reopening the standalone app from the launcher restores the last queue, current track, stopped position, repeat / shuffle state, and speed; the restored session stays paused.",
     "Standalone mode: works without AutoJs6; pick up to {{ max_queue_size }} audio files from the start page and play them.",
-    "Personalized looks: language, night mode, and theme color follow AutoJs6 by default, or choose from 19 preset colors and custom RGB."
+    "Responsive looks: language, night mode, and base color can follow AutoJs6 or be customized; album art generates a readable live palette across the edge-to-edge player, with system-respecting transitions and haptics."
   ],
   "h3_usage": "Usage",
   "usage_steps": [

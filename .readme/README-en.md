@@ -59,14 +59,14 @@ After installation the plugin is discovered by AutoJs6 automatically, with zero 
 - Same-folder auto-play: opening one track discovers the other audio files in the same folder and queues them in natural filename order (up to 128 tracks, starting from the selected one).
 - Multi-select queue: tick up to 128 audio files in the file manager and play them in exactly the order you selected.
 - Complete player screen: album art, title / artist / album tags, technical info such as sample rate and bit rate, and a draggable progress bar.
-- All the everyday controls: previous / next, 10-second rewind and fast-forward, sequential / shuffle / repeat-one modes, and 0.5x to 2x playback speed.
+- All the everyday controls: previous / next, configurable 5 / 10 / 15 / 30-second rewind and fast-forward, sequential / shuffle / repeat-one modes, a saved default speed from 0.5x to 2x, and selectable queue-finished behavior.
 - Queue panel: view upcoming tracks at any time, tap to jump or remove, with the current track clearly marked.
 - Sleep timer: 15 / 30 / 60 minute presets or a custom duration, optionally stopping after the current track, with a 5-second fade-out at the end.
 - A-B loop: repeat any passage over and over, great for listening practice and learning music by ear.
 - Background playback: audio keeps going after leaving the screen or locking the device, controllable from the system media notification and the lock screen.
 - Session restore: reopening the standalone app from the launcher restores the last queue, current track, stopped position, repeat / shuffle state, and speed; the restored session stays paused.
 - Standalone mode: works without AutoJs6; pick up to 128 audio files from the start page and play them.
-- Personalized looks: language, night mode, and theme color follow AutoJs6 by default, or choose from 19 preset colors and custom RGB.
+- Responsive looks: language, night mode, and base color can follow AutoJs6 or be customized; album art generates a readable live palette across the edge-to-edge player, with system-respecting transitions and haptics.
 
 ******
 
@@ -194,6 +194,17 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 ******
 
+#### v1.5.0
+
+_2026/08/31_
+
+- `Added` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
+- `Added` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
+- `Added` Added compact play / pause and artwork transitions plus system-respecting haptic feedback for key playback actions; disabling system animations switches every state directly
+- `Fixed` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
+- `Improved` Artwork decoding and 64x64 color sampling run off the main thread; arbitrary cover colors retain the existing 4.5:1 text and 3:1 outline contrast gates
+- `Improved` Completed the playback visualization feasibility study and an RMS bucket prototype: platform Visualizer remains excluded because it requires recording permission, while a permission-free Media3 PCM tap is documented for future benchmark work
+
 #### v1.4.1
 
 _2026/08/31_
@@ -213,19 +224,6 @@ _2026/08/29_
 - `Fixed` Fixed the play button shadow being clipped by the bottom area; radio buttons, checkboxes, progress bars, and buttons in the settings and update dialogs now follow the theme color
 - `Improved` The app and plugin are officially renamed 3-Terra Player: the application ID stays the same, so it upgrades in place and existing settings are untouched
 - `Improved` The player's top-right menu is trimmed to a single Settings entry, removing the palette button that duplicated the settings page
-
-#### v1.3.0
-
-_2026/08/29_
-
-- `Added` Added a standalone app mode: pick up to 128 audio files from the start page and play them in a row, no AutoJs6 required
-- `Added` Added a settings page: language, night mode, theme color, resume playback, update checks, release history, and app info in one place; language and appearance follow AutoJs6 by default and fall back to built-in defaults when the host is unavailable
-- `Added` Added manual and once-daily automatic update checks, with per-version ignore support and a built-in localized release history
-- `Fixed` Fixed the theme color always reporting the host color as unavailable when following AutoJs6
-- `Fixed` Every entry the host recognizes as audio in the file manager (now including WMA) can invoke this plugin directly
-- `Improved` Resume playback remembers only the most recently opened file: opening another file or finishing playback clears the old record automatically
-- `Improved` The player screen keeps a fixed three-line info area and fills in sample rate and bit rate, so the layout no longer jumps while switching tracks or loading tags
-- `Improved` The A-B loop is now a three-tap cycle of set point A, set point B, and clear; spacing and icon alignment of the bottom controls are polished as well
 
 ##### For more release history, see
 
@@ -253,7 +251,7 @@ Build a release APK (signed automatically once signing is configured in the untr
 
 For release archiving, run the `:app:appendDigestToReleasedFiles` task to copy signed APKs into `releases/` with the version and a CRC32 digest appended to the file name.
 
-Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 36, current version 1.4.1.
+Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 36, current version 1.5.0.
 
 ******
 

@@ -9,6 +9,21 @@
     <string name="action_playback_speed">Vitesse de lecture</string>
     <string name="action_seek_backward">Reculer de 10 secondes</string>
     <string name="action_seek_forward">Avancer de 10 secondes</string>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="one">Reculer de %1$d seconde</item>
+        <item quantity="many">Reculer de %1$d secondes</item>
+        <item quantity="other">Reculer de %1$d secondes</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="one">Avancer de %1$d seconde</item>
+        <item quantity="many">Avancer de %1$d secondes</item>
+        <item quantity="other">Avancer de %1$d secondes</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="one">%1$d seconde</item>
+        <item quantity="many">%1$d secondes</item>
+        <item quantity="other">%1$d secondes</item>
+    </plurals>
     <string name="cd_album_artwork">Pochette d\'album</string>
     <string name="chooser_open_audio">Ouvrir l\'audio avec</string>
     <string name="error_cannot_read_file">Le fichier audio ne peut pas être lu</string>
@@ -86,6 +101,12 @@
     <string name="setting_theme_color">Couleur du thème</string>
     <string name="setting_resume_playback">Reprendre la lecture</string>
     <string name="setting_resume_playback_summary">Restaurer la dernière file d’attente autonome, le morceau actuel et sa position à l’ouverture de l’application</string>
+    <string name="setting_default_speed">Vitesse de lecture par défaut</string>
+    <string name="setting_seek_increment">Intervalle de recul et d’avance</string>
+    <string name="setting_completion_behavior">À la fin de la file d’attente</string>
+    <string name="completion_stop">Arrêter la lecture</string>
+    <string name="completion_rewind_paused">Revenir au début et mettre en pause</string>
+    <string name="completion_replay">Relire la file d’attente</string>
     <string name="setting_check_updates">Rechercher des mises à jour</string>
     <string name="setting_check_updates_summary">Vérifier maintenant la dernière version publiée</string>
     <string name="setting_auto_check_updates">Rechercher automatiquement les mises à jour</string>

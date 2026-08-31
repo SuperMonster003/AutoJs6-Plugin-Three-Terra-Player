@@ -22,10 +22,16 @@ internal data class PlaybackQueueRow(
 )
 
 internal class PlaybackQueueAdapter(
-    private val palette: AudioThemePalette,
+    private var palette: AudioThemePalette,
     private val onSelect: (Int) -> Unit,
     private val onRemove: (Int) -> Unit,
 ) : ListAdapter<PlaybackQueueRow, PlaybackQueueAdapter.ViewHolder>(DiffCallback) {
+
+    fun updatePalette(value: AudioThemePalette) {
+        if (palette == value) return
+        palette = value
+        notifyItemRangeChanged(0, itemCount)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         ItemPlaybackQueueBinding.inflate(LayoutInflater.from(parent.context), parent, false),

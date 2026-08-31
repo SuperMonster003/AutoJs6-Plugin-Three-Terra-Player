@@ -21,6 +21,7 @@ class AboutActivity : AudioThemedActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        applyEdgeToEdge(binding.aboutRoot, binding.toolbar, binding.aboutContent)
         binding.toolbar.setNavigationOnClickListener { finishAfterTransition() }
         binding.versionText.text = getString(
             R.string.about_version,

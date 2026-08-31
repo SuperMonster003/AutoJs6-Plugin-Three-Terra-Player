@@ -9,6 +9,15 @@
     <string name="action_playback_speed">재생 속도</string>
     <string name="action_seek_backward">10초 되감기</string>
     <string name="action_seek_forward">10초 빨리 감기</string>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="other">%1$d초 되감기</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="other">%1$d초 빨리 감기</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="other">%1$d초</item>
+    </plurals>
     <string name="cd_album_artwork">앨범 아트</string>
     <string name="chooser_open_audio">오디오를 열 앱</string>
     <string name="error_cannot_read_file">오디오 파일을 읽을 수 없습니다</string>
@@ -80,6 +89,12 @@
     <string name="setting_theme_color">테마 색상</string>
     <string name="setting_resume_playback">이어서 재생</string>
     <string name="setting_resume_playback_summary">런처에서 앱을 열 때 마지막 독립 재생 대기열, 현재 곡 및 위치를 복원합니다</string>
+    <string name="setting_default_speed">기본 재생 속도</string>
+    <string name="setting_seek_increment">되감기 및 빨리 감기 간격</string>
+    <string name="setting_completion_behavior">대기열 재생이 끝나면</string>
+    <string name="completion_stop">재생 중지</string>
+    <string name="completion_rewind_paused">처음으로 돌아가 일시 정지</string>
+    <string name="completion_replay">대기열 다시 재생</string>
     <string name="setting_check_updates">업데이트 확인</string>
     <string name="setting_check_updates_summary">게시된 최신 버전을 지금 확인합니다</string>
     <string name="setting_auto_check_updates">업데이트 자동 확인</string>

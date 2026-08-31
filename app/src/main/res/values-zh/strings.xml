@@ -9,6 +9,15 @@
     <string name="action_playback_speed">播放速度</string>
     <string name="action_seek_backward">快退 10 秒</string>
     <string name="action_seek_forward">快进 10 秒</string>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="other">快退 %1$d 秒</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="other">快进 %1$d 秒</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="other">%1$d 秒</item>
+    </plurals>
     <string name="cd_album_artwork">专辑封面</string>
     <string name="chooser_open_audio">选择应用打开音频</string>
     <string name="error_cannot_read_file">无法读取音频文件</string>
@@ -80,6 +89,12 @@
     <string name="setting_theme_color">主题色</string>
     <string name="setting_resume_playback">续播</string>
     <string name="setting_resume_playback_summary">从启动器打开时恢复上次独立播放的队列、当前曲目及位置</string>
+    <string name="setting_default_speed">默认播放倍速</string>
+    <string name="setting_seek_increment">快退与快进步长</string>
+    <string name="setting_completion_behavior">播放队列结束后</string>
+    <string name="completion_stop">停止播放</string>
+    <string name="completion_rewind_paused">回到队首并暂停</string>
+    <string name="completion_replay">重新播放队列</string>
     <string name="setting_check_updates">检查更新</string>
     <string name="setting_check_updates_summary">立即检查最新发行版本</string>
     <string name="setting_auto_check_updates">自动检查更新</string>

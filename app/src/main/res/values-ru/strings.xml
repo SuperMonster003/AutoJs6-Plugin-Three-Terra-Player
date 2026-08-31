@@ -9,6 +9,24 @@
     <string name="action_playback_speed">Скорость воспроизведения</string>
     <string name="action_seek_backward">Назад на 10 секунд</string>
     <string name="action_seek_forward">Вперед на 10 секунд</string>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="one">Назад на %1$d секунду</item>
+        <item quantity="few">Назад на %1$d секунды</item>
+        <item quantity="many">Назад на %1$d секунд</item>
+        <item quantity="other">Назад на %1$d секунды</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="one">Вперёд на %1$d секунду</item>
+        <item quantity="few">Вперёд на %1$d секунды</item>
+        <item quantity="many">Вперёд на %1$d секунд</item>
+        <item quantity="other">Вперёд на %1$d секунды</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="one">%1$d секунда</item>
+        <item quantity="few">%1$d секунды</item>
+        <item quantity="many">%1$d секунд</item>
+        <item quantity="other">%1$d секунды</item>
+    </plurals>
     <string name="cd_album_artwork">Обложка альбома</string>
     <string name="chooser_open_audio">Открыть аудио с помощью</string>
     <string name="error_cannot_read_file">Не удалось прочитать аудиофайл</string>
@@ -89,6 +107,12 @@
     <string name="setting_theme_color">Цвет темы</string>
     <string name="setting_resume_playback">Продолжать воспроизведение</string>
     <string name="setting_resume_playback_summary">Восстанавливать последнюю автономную очередь, текущий трек и позицию при запуске приложения</string>
+    <string name="setting_default_speed">Скорость воспроизведения по умолчанию</string>
+    <string name="setting_seek_increment">Шаг перемотки назад и вперёд</string>
+    <string name="setting_completion_behavior">После завершения очереди</string>
+    <string name="completion_stop">Остановить воспроизведение</string>
+    <string name="completion_rewind_paused">Вернуться в начало и поставить на паузу</string>
+    <string name="completion_replay">Повторить очередь</string>
     <string name="setting_check_updates">Проверить обновления</string>
     <string name="setting_check_updates_summary">Проверить последнюю опубликованную версию сейчас</string>
     <string name="setting_auto_check_updates">Автоматически проверять обновления</string>

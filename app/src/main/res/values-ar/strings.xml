@@ -9,6 +9,30 @@
     <string name="action_playback_speed">سرعة التشغيل</string>
     <string name="action_seek_backward">ارجاع 10 ثوان</string>
     <string name="action_seek_forward">تقديم 10 ثوان</string>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="zero">إرجاع 0 ثانية</item>
+        <item quantity="one">إرجاع ثانية واحدة</item>
+        <item quantity="two">إرجاع ثانيتين</item>
+        <item quantity="few">إرجاع %1$d ثوانٍ</item>
+        <item quantity="many">إرجاع %1$d ثانية</item>
+        <item quantity="other">إرجاع %1$d ثانية</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="zero">تقديم 0 ثانية</item>
+        <item quantity="one">تقديم ثانية واحدة</item>
+        <item quantity="two">تقديم ثانيتين</item>
+        <item quantity="few">تقديم %1$d ثوانٍ</item>
+        <item quantity="many">تقديم %1$d ثانية</item>
+        <item quantity="other">تقديم %1$d ثانية</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="zero">0 ثانية</item>
+        <item quantity="one">ثانية واحدة</item>
+        <item quantity="two">ثانيتان</item>
+        <item quantity="few">%1$d ثوانٍ</item>
+        <item quantity="many">%1$d ثانية</item>
+        <item quantity="other">%1$d ثانية</item>
+    </plurals>
     <string name="cd_album_artwork">غلاف الالبوم</string>
     <string name="chooser_open_audio">فتح الصوت باستخدام</string>
     <string name="error_cannot_read_file">لا يمكن قراءة ملف الصوت</string>
@@ -95,6 +119,12 @@
     <string name="setting_theme_color">لون السمة</string>
     <string name="setting_resume_playback">متابعة التشغيل</string>
     <string name="setting_resume_playback_summary">استعادة آخر قائمة تشغيل مستقلة والمسار الحالي والموضع عند فتح التطبيق</string>
+    <string name="setting_default_speed">سرعة التشغيل الافتراضية</string>
+    <string name="setting_seek_increment">مدة الإرجاع والتقديم</string>
+    <string name="setting_completion_behavior">عند انتهاء قائمة التشغيل</string>
+    <string name="completion_stop">إيقاف التشغيل</string>
+    <string name="completion_rewind_paused">العودة إلى البداية والإيقاف المؤقت</string>
+    <string name="completion_replay">إعادة تشغيل قائمة التشغيل</string>
     <string name="setting_check_updates">التحقق من التحديثات</string>
     <string name="setting_check_updates_summary">التحقق الآن من أحدث إصدار منشور</string>
     <string name="setting_auto_check_updates">التحقق تلقائيا من التحديثات</string>

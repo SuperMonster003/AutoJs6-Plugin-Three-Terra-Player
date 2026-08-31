@@ -59,14 +59,14 @@ Tras la instalación, AutoJs6 descubre el complemento automáticamente, sin conf
 - Reproducción continua de la misma carpeta: al abrir una pista se descubren los demás audios de la carpeta y se ponen en cola por orden natural de nombre de archivo (hasta 128 pistas, empezando por la seleccionada).
 - Cola por selección múltiple: marca hasta 128 archivos de audio en el gestor de archivos y reprodúcelos exactamente en el orden en que los marcaste.
 - Pantalla de reproducción completa: carátula del álbum, etiquetas de título / artista / álbum, información técnica como frecuencia de muestreo y tasa de bits, y una barra de progreso arrastrable.
-- Todos los controles habituales: anterior / siguiente, retroceso y avance de 10 segundos, modos secuencial / aleatorio / repetir una y velocidad de reproducción de 0,5x a 2x.
+- Todos los controles habituales: anterior / siguiente, retroceso y avance configurables de 5 / 10 / 15 / 30 segundos, modos secuencial / aleatorio / repetir una, velocidad predeterminada guardada de 0,5x a 2x y comportamiento al terminar la cola.
 - Panel de cola de reproducción: consulta las próximas pistas en cualquier momento, toca para saltar a una pista o quitarla, con la pista actual claramente señalada.
 - Temporizador de apagado: valores predefinidos de 15 / 30 / 60 minutos o una duración personalizada, con opción de detenerse al terminar la pista actual y un fundido de volumen en los últimos 5 segundos.
 - Bucle A-B: repite cualquier fragmento una y otra vez, ideal para practicar la comprensión auditiva o sacar música de oído.
 - Reproducción en segundo plano: el audio no se interrumpe al salir de la pantalla o bloquear el dispositivo, y puede controlarse desde la notificación multimedia del sistema y la pantalla de bloqueo.
 - Restauración de sesión: al reabrir la aplicación independiente desde el lanzador se restauran la última cola, la pista actual, la posición de parada, el estado de repetición / aleatorio y la velocidad; la sesión restaurada permanece en pausa.
 - Modo de aplicación independiente: funciona sin AutoJs6; elige hasta 128 archivos de audio desde la pantalla de inicio y reprodúcelos.
-- Apariencia personalizable: el idioma, el modo nocturno y el color del tema siguen a AutoJs6 de forma predeterminada, o elige entre 19 colores predefinidos y RGB personalizado.
+- Apariencia adaptable: el idioma, el modo nocturno y el color base pueden seguir a AutoJs6 o personalizarse; la carátula genera una paleta legible en el reproductor de borde a borde, con transiciones y respuesta háptica que respetan el sistema.
 
 ******
 
@@ -194,6 +194,17 @@ Las capacidades planificadas y su progreso se mantienen como una lista de casill
 
 ******
 
+#### v1.5.0
+
+_2026/08/31_
+
+- `Función` La carátula del álbum ahora genera una paleta legible en tiempo real para el degradado, la barra, los controles y la cola; las pantallas se extienden de borde a borde alrededor de barras, recortes y gestos
+- `Función` Los ajustes de reproducción incluyen velocidad predeterminada guardada, intervalos de retroceso y avance de 5 / 10 / 15 / 30 segundos y una acción al terminar la cola: detener, volver al principio y pausar o repetir
+- `Función` Se añadieron transiciones discretas para reproducción / pausa y carátulas, además de respuesta háptica para acciones clave que respeta el sistema; al desactivar las animaciones, los estados cambian directamente
+- `Corrección` Las opciones de los diálogos de idioma y modo nocturno ahora usan Material Body1 a 16sp en lugar del texto de lista del sistema, demasiado grande
+- `Mejora` La decodificación de carátulas y la muestra de color de hasta 64x64 se ejecutan fuera del hilo principal; cualquier color mantiene los límites de contraste de 4,5:1 para texto y 3:1 para contornos
+- `Mejora` Se completaron el estudio de visualización y un prototipo RMS por bloques: Visualizer sigue excluido por requerir permiso de grabación y se documenta una toma PCM de Media3 sin permisos para futuras pruebas de rendimiento
+
 #### v1.4.1
 
 _2026/08/31_
@@ -213,19 +224,6 @@ _2026/08/29_
 - `Corrección` Corregido el recorte de la sombra del botón de reproducción por la zona inferior; los botones de opción, las casillas, las barras de progreso y los botones de los diálogos de ajustes y de actualización ahora siguen el color del tema
 - `Mejora` La aplicación y el complemento pasan a llamarse oficialmente 3-Terra Player: el ID de aplicación no cambia, la actualización se instala directamente sobre la versión anterior y los ajustes existentes se conservan
 - `Mejora` El menú de la esquina superior derecha del reproductor se reduce a una sola entrada de Ajustes, eliminando el botón de paleta que duplicaba la página de ajustes
-
-#### v1.3.0
-
-_2026/08/29_
-
-- `Función` Nuevo modo de aplicación independiente: sin necesidad de AutoJs6, elige de una vez hasta 128 archivos de audio desde la pantalla de inicio y reprodúcelos seguidos
-- `Función` Nueva página de ajustes: idioma, modo nocturno, color del tema, reanudación de la reproducción, comprobación de actualizaciones, historial de versiones e información de la aplicación en un solo lugar; el idioma y la apariencia siguen a AutoJs6 de forma predeterminada y recurren a los valores integrados cuando el host no está disponible
-- `Función` Nuevas comprobaciones de actualizaciones manuales y automáticas una vez al día, con opción de ignorar versiones concretas y un historial de versiones multilingüe integrado
-- `Corrección` Corregido que, al seguir el color del tema de AutoJs6, siempre se indicara que el color del host no estaba disponible
-- `Corrección` Todos los elementos que el host reconoce como audio en el gestor de archivos (ahora también WMA) pueden reproducirse directamente con este complemento
-- `Mejora` La reanudación de la reproducción recuerda solo el último archivo abierto: al abrir otro archivo o terminar la reproducción, el registro anterior se borra automáticamente
-- `Mejora` La pantalla de reproducción reserva un área fija de tres líneas de información y completa la frecuencia de muestreo y la tasa de bits, de modo que el diseño ya no salta al cambiar de pista ni durante la carga asíncrona
-- `Mejora` El bucle A-B ahora se completa con tres toques sucesivos: fijar punto A, fijar punto B y borrar; también se mejoran el espaciado y la alineación de los iconos de los controles inferiores
 
 ##### Para más historial de versiones, consulta
 
@@ -253,7 +251,7 @@ Compilar un APK release (se firma automáticamente una vez configurada la firma 
 
 Para archivar una publicación, ejecuta la tarea `:app:appendDigestToReleasedFiles`, que copia los APK firmados en `releases/` añadiendo al nombre del archivo la versión y un resumen CRC32.
 
-Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 36, versión actual 1.4.1.
+Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 36, versión actual 1.5.0.
 
 ******
 

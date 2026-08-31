@@ -1,7 +1,10 @@
 package io.github.supermonster003.autojs6.plugin.threeterraplayer.settings
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.core.content.edit
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackCompletionBehavior
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackPreferencePolicy
 
 internal enum class AppLanguageMode {
     AUTOJS6,
@@ -75,11 +78,54 @@ internal class AppPreferenceStore(context: Context) {
         get() = preferences.getBoolean(KEY_REMEMBER_POSITION, true)
         set(value) = preferences.edit { putBoolean(KEY_REMEMBER_POSITION, value) }
 
+    fun defaultPlaybackSpeed(): Float = PlaybackPreferencePolicy.normalizeSpeed(
+        preferences.getFloat(KEY_DEFAULT_PLAYBACK_SPEED, PlaybackPreferencePolicy.DEFAULT_SPEED),
+    )
+
+    fun saveDefaultPlaybackSpeed(value: Float): Boolean {
+        val normalized = PlaybackPreferencePolicy.normalizeSpeed(value)
+        if (normalized == defaultPlaybackSpeed()) return false
+        preferences.edit { putFloat(KEY_DEFAULT_PLAYBACK_SPEED, normalized) }
+        return true
+    }
+
+    fun seekIncrementMs(): Long = PlaybackPreferencePolicy.normalizeSeekIncrementMs(
+        preferences.getLong(
+            KEY_SEEK_INCREMENT_MS,
+            PlaybackPreferencePolicy.DEFAULT_SEEK_INCREMENT_MS,
+        ),
+    )
+
+    fun saveSeekIncrementMs(value: Long): Boolean {
+        val normalized = PlaybackPreferencePolicy.normalizeSeekIncrementMs(value)
+        if (normalized == seekIncrementMs()) return false
+        preferences.edit { putLong(KEY_SEEK_INCREMENT_MS, normalized) }
+        return true
+    }
+
+    fun completionBehavior(): PlaybackCompletionBehavior = PlaybackPreferencePolicy.completionBehavior(
+        preferences.getString(KEY_COMPLETION_BEHAVIOR, null),
+    )
+
+    fun saveCompletionBehavior(value: PlaybackCompletionBehavior): Boolean {
+        if (value == completionBehavior()) return false
+        preferences.edit { putString(KEY_COMPLETION_BEHAVIOR, value.name) }
+        return true
+    }
+
     var autoCheckUpdates: Boolean
         get() = preferences.getBoolean(KEY_AUTO_CHECK_UPDATES, true)
         set(value) = preferences.edit { putBoolean(KEY_AUTO_CHECK_UPDATES, value) }
 
     fun appearanceRevision(): Long = preferences.getLong(KEY_APPEARANCE_REVISION, 0L)
+
+    internal fun registerOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+        preferences.registerOnSharedPreferenceChangeListener(listener)
+    }
+
+    internal fun unregisterOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+        preferences.unregisterOnSharedPreferenceChangeListener(listener)
+    }
 
     private fun incrementAppearanceRevision(editor: android.content.SharedPreferences.Editor) {
         editor.putLong(KEY_APPEARANCE_REVISION, appearanceRevision() + 1L)
@@ -119,5 +165,8 @@ internal class AppPreferenceStore(context: Context) {
         private const val KEY_REMEMBER_POSITION = "remember_playback_position"
         private const val KEY_AUTO_CHECK_UPDATES = "auto_check_updates"
         private const val KEY_APPEARANCE_REVISION = "appearance_revision"
+        internal const val KEY_DEFAULT_PLAYBACK_SPEED = "default_playback_speed"
+        internal const val KEY_SEEK_INCREMENT_MS = "seek_increment_ms"
+        internal const val KEY_COMPLETION_BEHAVIOR = "completion_behavior"
     }
 }

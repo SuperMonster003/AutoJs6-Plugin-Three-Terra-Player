@@ -2,6 +2,7 @@ package io.github.supermonster003.autojs6.plugin.threeterraplayer.theme
 
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.view.Menu
 import android.widget.ImageButton
 import androidx.core.graphics.drawable.DrawableCompat
@@ -14,10 +15,20 @@ import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.Bot
 
 internal object AudioThemeViewStyler {
 
-    fun applyPlayer(activity: AudioThemedActivity, binding: ActivityAudioPlayerBinding) {
-        val palette = activity.audioPalette
+    fun applyPlayer(
+        activity: AudioThemedActivity,
+        binding: ActivityAudioPlayerBinding,
+        palette: AudioThemePalette = activity.audioPalette,
+    ) {
         binding.playerRoot.setBackgroundColor(palette.background)
-        binding.playerContent.setBackgroundColor(palette.background)
+        binding.playerContent.background = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            intArrayOf(
+                palette.surfaceContainerHigh,
+                palette.background,
+                palette.surfaceContainerLowest,
+            ),
+        )
 
         binding.toolbar.setBackgroundColor(palette.appBar)
         binding.toolbar.setTitleTextColor(palette.onAppBar)
@@ -38,12 +49,6 @@ internal object AudioThemeViewStyler {
         binding.artworkCard.setCardBackgroundColor(palette.primaryContainer)
         binding.artworkCard.strokeColor = palette.outlineVariant
         binding.artworkCard.strokeWidth = activity.dp(1)
-        binding.artworkImage.imageTintList = ColorStateList.valueOf(
-            AudioThemePaletteGenerator.withAlpha(
-                palette.onPrimaryContainer,
-                PLACEHOLDER_ICON_ALPHA,
-            ),
-        )
         binding.bufferingIndicator.indeterminateTintList = ColorStateList.valueOf(palette.primary)
 
         binding.titleText.setTextColor(palette.onBackground)
@@ -197,6 +202,5 @@ internal object AudioThemeViewStyler {
 
     private const val DISABLED_ALPHA = 0x61
     private const val HIGH_EMPHASIS_ALPHA = 0xCC
-    private const val PLACEHOLDER_ICON_ALPHA = 0xB8
     private const val RIPPLE_ALPHA = 0x24
 }

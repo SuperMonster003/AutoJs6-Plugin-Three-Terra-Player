@@ -4,6 +4,7 @@ import android.app.PendingIntent
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -31,6 +32,8 @@ import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.AbLoopPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.DisplayNamePolicy
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackCompletionBehavior
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackPreferencePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.SleepTimerPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppPreferenceStore
 import java.nio.charset.StandardCharsets.UTF_8
@@ -95,14 +98,24 @@ class AudioPlaybackService : MediaSessionService() {
 
     private val delayedStop = Runnable { stopPlaybackService() }
 
+    private val preferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (!::player.isInitialized) return@OnSharedPreferenceChangeListener
+        when (key) {
+            AppPreferenceStore.KEY_DEFAULT_PLAYBACK_SPEED -> {
+                player.setPlaybackSpeed(appPreferenceStore.defaultPlaybackSpeed())
+            }
+            AppPreferenceStore.KEY_SEEK_INCREMENT_MS -> {
+                val incrementMs = appPreferenceStore.seekIncrementMs()
+                player.setSeekBackIncrementMs(incrementMs)
+                player.setSeekForwardIncrementMs(incrementMs)
+            }
+        }
+    }
+
     private val playerListener = object : Player.Listener {
         override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_ENDED) {
-                activeCompleted = true
-                persistPlaybackSession(positionOverrideMs = 0L)
-                activePositionKey?.let(positionStore::clear)
-                clearSleepTimerState(restoreVolume = false)
-                stopPlaybackService()
+                handlePlaybackCompletion()
             }
             schedulePlaybackToolTick()
         }
@@ -158,6 +171,7 @@ class AudioPlaybackService : MediaSessionService() {
             newPosition: Player.PositionInfo,
             reason: Int,
         ) {
+            if (replacingQueue) return
             if (oldPosition.mediaItemIndex == newPosition.mediaItemIndex) {
                 persistActivePosition()
                 persistPlaybackSession()
@@ -281,8 +295,8 @@ class AudioPlaybackService : MediaSessionService() {
             .setMediaSourceFactory(
                 DefaultMediaSourceFactory(DefaultDataSource.Factory(this, sourceRouter)),
             )
-            .setSeekBackIncrementMs(SEEK_INCREMENT_MS)
-            .setSeekForwardIncrementMs(SEEK_INCREMENT_MS)
+            .setSeekBackIncrementMs(appPreferenceStore.seekIncrementMs())
+            .setSeekForwardIncrementMs(appPreferenceStore.seekIncrementMs())
             .build()
             .apply {
                 setAudioAttributes(attributes, true)
@@ -290,6 +304,7 @@ class AudioPlaybackService : MediaSessionService() {
                 setWakeMode(C.WAKE_MODE_LOCAL)
                 addListener(playerListener)
             }
+        appPreferenceStore.registerOnChangeListener(preferenceChangeListener)
         DefaultMediaNotificationProvider.Builder(this)
             .build()
             .apply { setSmallIcon(R.mipmap.ic_launcher_monochrome) }
@@ -326,6 +341,9 @@ class AudioPlaybackService : MediaSessionService() {
     }
 
     override fun onDestroy() {
+        if (::appPreferenceStore.isInitialized) {
+            appPreferenceStore.unregisterOnChangeListener(preferenceChangeListener)
+        }
         mainHandler.removeCallbacks(progressSaver)
         mainHandler.removeCallbacks(playbackToolTicker)
         mainHandler.removeCallbacks(delayedStop)
@@ -385,10 +403,12 @@ class AudioPlaybackService : MediaSessionService() {
                 lastPositionsByMediaId.clear()
                 durationsByMediaId.clear()
                 player.setMediaItems(mediaItems, request.startIndex, resumePositionMs)
+                player.setPlaybackSpeed(
+                    restoredSnapshot?.playbackSpeed ?: appPreferenceStore.defaultPlaybackSpeed(),
+                )
                 restoredSnapshot?.let { snapshot ->
                     player.repeatMode = snapshot.repeatMode
                     player.shuffleModeEnabled = snapshot.shuffleEnabled
-                    player.setPlaybackSpeed(snapshot.playbackSpeed)
                     player.playWhenReady = false
                 }
             } finally {
@@ -419,6 +439,45 @@ class AudioPlaybackService : MediaSessionService() {
             closeSession(request.hostSession)
             if (!sameSession(previousHostSession, request.hostSession)) closeSession(previousHostSession)
             false
+        }
+    }
+
+    /** Applies the user-selected terminal queue behavior without rebuilding the Media3 queue. */
+    private fun handlePlaybackCompletion() {
+        activeCompleted = true
+        persistPlaybackSession(positionOverrideMs = 0L)
+        activePositionKey?.let(positionStore::clear)
+        val stopRequested = stopAfterCurrent
+        val behavior = PlaybackPreferencePolicy.effectiveCompletionBehavior(
+            stopAfterCurrent = stopRequested,
+            selected = appPreferenceStore.completionBehavior(),
+        )
+        clearSleepTimerState(restoreVolume = behavior != PlaybackCompletionBehavior.STOP)
+        clearAbLoopState()
+        publishToolState()
+
+        if (behavior == PlaybackCompletionBehavior.STOP || player.mediaItemCount == 0) {
+            stopPlaybackService()
+            return
+        }
+
+        val firstMediaId = player.getMediaItemAt(0).mediaId
+        replacingQueue = true
+        try {
+            // Pause before leaving STATE_ENDED so REWIND_PAUSED cannot briefly emit audio.
+            player.pause()
+            player.seekTo(0, 0L)
+        } finally {
+            replacingQueue = false
+        }
+        activateMediaItem(firstMediaId, applyRememberedPosition = false)
+        activeCompleted = false
+        lastPositionsByMediaId[firstMediaId] = 0L
+        persistPlaybackSession(positionOverrideMs = 0L)
+        if (behavior == PlaybackCompletionBehavior.REPLAY) {
+            player.play()
+        } else {
+            player.pause()
         }
     }
 
@@ -884,7 +943,6 @@ class AudioPlaybackService : MediaSessionService() {
 
     companion object {
         private const val SESSION_ACTIVITY_REQUEST_CODE = 0xA61D
-        private const val SEEK_INCREMENT_MS = 10_000L
         private const val PROGRESS_SAVE_INTERVAL_MS = 5_000L
         private const val ERROR_LINGER_MS = 30_000L
         private const val RESUME_SEEK_TOLERANCE_MS = 1_000L

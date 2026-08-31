@@ -9,6 +9,15 @@
     <string name="action_playback_speed">再生速度</string>
     <string name="action_seek_backward">10 秒戻す</string>
     <string name="action_seek_forward">10 秒進める</string>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="other">%1$d 秒戻す</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="other">%1$d 秒進める</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="other">%1$d 秒</item>
+    </plurals>
     <string name="cd_album_artwork">アルバムアート</string>
     <string name="chooser_open_audio">音声を開くアプリ</string>
     <string name="error_cannot_read_file">音声ファイルを読み取れません</string>
@@ -80,6 +89,12 @@
     <string name="setting_theme_color">テーマカラー</string>
     <string name="setting_resume_playback">再生を再開</string>
     <string name="setting_resume_playback_summary">ランチャーから開いたときに、前回の単独再生キュー、現在の曲、再生位置を復元します</string>
+    <string name="setting_default_speed">デフォルトの再生速度</string>
+    <string name="setting_seek_increment">巻き戻し・早送りの間隔</string>
+    <string name="setting_completion_behavior">キューの再生終了後</string>
+    <string name="completion_stop">再生を停止</string>
+    <string name="completion_rewind_paused">先頭に戻って一時停止</string>
+    <string name="completion_replay">キューをもう一度再生</string>
     <string name="setting_check_updates">アップデートを確認</string>
     <string name="setting_check_updates_summary">公開済みの最新バージョンを今すぐ確認します</string>
     <string name="setting_auto_check_updates">アップデートを自動確認</string>

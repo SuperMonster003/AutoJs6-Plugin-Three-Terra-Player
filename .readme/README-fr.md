@@ -59,14 +59,14 @@ Une fois installé, le plugin est détecté automatiquement par AutoJs6, sans au
 - Enchaînement automatique dans le même dossier: à l'ouverture d'un titre, les autres fichiers audio du dossier sont détectés et lus à la suite dans l'ordre naturel des noms de fichiers (jusqu'à 128 titres, à partir du titre choisi).
 - File multisélection: cochez jusqu'à 128 fichiers audio dans le gestionnaire de fichiers et lisez-les d'un seul appui, exactement dans l'ordre de sélection.
 - Écran de lecture complet: pochette d'album, étiquettes titre / artiste / album, informations techniques comme la fréquence d'échantillonnage et le débit, et une barre de progression déplaçable.
-- Toutes les commandes du quotidien: précédent / suivant, recul et avance de 10 secondes, modes séquentiel / aléatoire / répétition d'un titre, et vitesse de lecture de 0,5x à 2x.
+- Toutes les commandes du quotidien: précédent / suivant, recul et avance réglables à 5 / 10 / 15 / 30 secondes, modes séquentiel / aléatoire / répétition d'un titre, vitesse par défaut mémorisée de 0,5x à 2x et action choisie en fin de file.
 - Panneau de file de lecture: consultez à tout moment les titres à venir, touchez pour y sauter ou les retirer, avec le titre en cours clairement indiqué.
 - Minuterie de veille: préréglages de 15 / 30 / 60 minutes ou durée personnalisée, avec arrêt possible après le titre en cours et fondu du volume sur les 5 dernières secondes.
 - Boucle A-B: réécoutez un passage en boucle, idéal pour travailler la compréhension orale ou relever un morceau à l'oreille.
 - Lecture en arrière-plan: la lecture continue après avoir quitté l'écran ou verrouillé l'appareil, avec commandes dans la notification multimédia du système et sur l'écran de verrouillage.
 - Restauration de session: rouvrir l'application autonome depuis le lanceur restaure la dernière file, la piste active, la position d'arrêt, l'état répétition / aléatoire et la vitesse; la session restaurée reste en pause.
 - Mode application autonome: utilisable sans AutoJs6; choisissez jusqu'à 128 fichiers audio depuis l'écran de démarrage et lisez-les.
-- Apparence personnalisable: la langue / le mode nuit / la couleur du thème suivent AutoJs6 par défaut, avec au choix 19 couleurs prédéfinies ou une couleur RGB personnalisée.
+- Apparence adaptative: la langue, le mode nuit et la couleur de base peuvent suivre AutoJs6 ou être personnalisés; la pochette génère une palette lisible dans le lecteur bord à bord, avec transitions et retours haptiques respectant le système.
 
 ******
 
@@ -194,6 +194,17 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 ******
 
+#### v1.5.0
+
+_2026/08/31_
+
+- `Fonctionnalité` La pochette génère désormais en direct une palette lisible pour le dégradé, la barre, les commandes et la file; les écrans s'étendent bord à bord autour des barres système, découpes et zones gestuelles
+- `Fonctionnalité` Les réglages de lecture proposent une vitesse par défaut mémorisée, des pas de recul et d'avance de 5 / 10 / 15 / 30 secondes et une action en fin de file: arrêter, revenir au début et mettre en pause ou relire
+- `Fonctionnalité` Ajout de transitions discrètes pour lecture / pause et les pochettes, ainsi que de retours haptiques conformes au système pour les actions clés; si les animations système sont coupées, les états changent directement
+- `Correctif` Les choix des boîtes de dialogue de langue et de mode nuit utilisent désormais Material Body1 en 16sp au lieu du texte de liste système surdimensionné
+- `Amélioration` Le décodage des pochettes et l'échantillonnage couleur limité à 64x64 quittent le thread principal; toute couleur conserve les seuils de contraste existants de 4,5:1 pour le texte et 3:1 pour les contours
+- `Amélioration` Étude de visualisation et prototype RMS par blocs terminés: Visualizer reste exclu car il exige l'autorisation d'enregistrement, tandis qu'une dérivation PCM Media3 sans permission est documentée pour de futurs tests de performance
+
 #### v1.4.1
 
 _2026/08/31_
@@ -213,19 +224,6 @@ _2026/08/29_
 - `Correctif` Correction de l'ombre du bouton de lecture coupée par la zone inférieure; les boutons radio, cases à cocher, barres de progression et boutons des dialogues de paramètres et de mise à jour suivent désormais la couleur du thème
 - `Amélioration` L'application et le plugin sont officiellement renommés 3-Terra Player: l'ID d'application reste inchangé, la mise à niveau s'installe directement par-dessus et les réglages existants sont conservés
 - `Amélioration` Le menu en haut à droite du lecteur est allégé pour ne garder que l'entrée Paramètres; le bouton de palette, redondant avec la page des paramètres, est supprimé
-
-#### v1.3.0
-
-_2026/08/29_
-
-- `Fonctionnalité` Ajout d'un mode application autonome: sans AutoJs6, choisissez jusqu'à 128 fichiers audio depuis l'écran de démarrage et lisez-les à la suite
-- `Fonctionnalité` Ajout d'une page de paramètres: langue, mode nuit, couleur du thème, reprise de lecture, recherche de mises à jour, historique des versions et informations sur l'application réunis au même endroit; la langue et l'apparence suivent AutoJs6 par défaut et reviennent aux valeurs intégrées quand l'hôte est indisponible
-- `Fonctionnalité` Ajout de la recherche de mises à jour manuelle et automatique quotidienne, avec possibilité d'ignorer une version donnée et un historique des versions multilingue intégré
-- `Correctif` Correction de la couleur du thème signalant toujours la couleur de l'hôte comme indisponible en mode Suivre AutoJs6
-- `Correctif` Tous les éléments reconnus comme audio par l'hôte dans le gestionnaire de fichiers (WMA inclus désormais) peuvent maintenant être lus directement par ce plugin
-- `Amélioration` La reprise de lecture ne mémorise que le dernier fichier ouvert: ouvrir un autre fichier ou terminer la lecture efface automatiquement l'ancien enregistrement
-- `Amélioration` L'écran de lecture conserve une zone d'informations fixe de trois lignes et complète la fréquence d'échantillonnage et le débit; la mise en page ne bouge plus au changement de titre ni pendant le chargement des étiquettes
-- `Amélioration` La boucle A-B devient un cycle de trois appuis pour définir le point A, définir le point B puis effacer; l'espacement et l'alignement des icônes des commandes du bas sont également peaufinés
 
 ##### Pour un historique des versions plus complet, voir
 
@@ -253,7 +251,7 @@ Compiler un APK release (signé automatiquement une fois la signature configuré
 
 Pour l'archivage des publications, exécutez la tâche `:app:appendDigestToReleasedFiles`, qui copie les APK signés dans `releases/` en ajoutant au nom de fichier la version et une somme de contrôle CRC32.
 
-Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 36, version actuelle 1.4.1.
+Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 36, version actuelle 1.5.0.
 
 ******
 

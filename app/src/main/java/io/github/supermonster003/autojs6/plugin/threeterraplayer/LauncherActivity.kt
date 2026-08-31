@@ -35,6 +35,7 @@ class LauncherActivity : AudioThemedActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLauncherBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        applyEdgeToEdge(binding.launcherRoot, binding.toolbar, binding.launcherContent)
         styleViews()
         binding.openAudioButton.setOnClickListener {
             if (!resolvingFiles) documentPicker.launch(AUDIO_DOCUMENT_MIME_TYPES)

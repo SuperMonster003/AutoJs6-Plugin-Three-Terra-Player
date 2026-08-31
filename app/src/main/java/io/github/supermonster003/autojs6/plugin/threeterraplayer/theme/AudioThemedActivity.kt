@@ -1,10 +1,13 @@
 package io.github.supermonster003.autojs6.plugin.threeterraplayer.theme
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppAppearanceController
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppLanguageMode
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppNightMode
@@ -29,6 +32,7 @@ abstract class AudioThemedActivity : AppCompatActivity() {
         // Activity boundary so host-following locale and night mode are in place before AppCompat
         // creates delegates or inflates any resources.
         AppAppearanceController.apply(this)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         resolvedAudioTheme = AudioThemeResolver.resolve(this)
         appliedPreferenceRevision = ThemePreferenceStore(this).revision()
@@ -58,22 +62,83 @@ abstract class AudioThemedActivity : AppCompatActivity() {
         }
     }
 
-    @Suppress("DEPRECATION") // Required below API 35; edge-to-edge migration is a separate layout change.
+    @Suppress("DEPRECATION") // Color setters remain the compatibility path below Android 15.
     internal fun applyWindowPalette(palette: AudioThemePalette) {
-        window.statusBarColor = palette.appBar
-        window.navigationBarColor = palette.background
+        window.statusBarColor = Color.TRANSPARENT
+        window.navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Color.TRANSPARENT
+        } else {
+            // API 24–25 cannot request dark navigation-bar icons. Keep the legacy three-button
+            // region opaque black instead of risking white icons over a light page.
+            OPAQUE_BLACK
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            window.navigationBarDividerColor = palette.outlineVariant
+            window.navigationBarDividerColor = Color.TRANSPARENT
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isStatusBarContrastEnforced = false
+            window.isNavigationBarContrastEnforced = false
         }
         val lightStatusBar = AudioThemePaletteGenerator.bestMonochromeForeground(palette.appBar) ==
             OPAQUE_BLACK
         val lightNavigationBar = AudioThemePaletteGenerator.bestMonochromeForeground(palette.background) ==
             OPAQUE_BLACK
-        val decorView = window.decorView
-        decorView.post {
+        window.decorView.post {
             if (isFinishing || isDestroyed) return@post
-            applySystemBarIconAppearance(decorView, lightStatusBar, lightNavigationBar)
+            WindowCompat.getInsetsController(window, window.decorView).apply {
+                isAppearanceLightStatusBars = lightStatusBar
+                isAppearanceLightNavigationBars =
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigationBar
+            }
         }
+    }
+
+    /** Keeps controls clear of cutouts and gesture areas while their backgrounds draw underneath. */
+    internal fun applyEdgeToEdge(
+        root: View,
+        toolbar: View,
+        bottomContent: View,
+        vararg sideInsetViews: View,
+    ) {
+        val toolbarPadding = toolbar.initialPadding()
+        val toolbarHeight = toolbar.layoutParams.height
+        val toolbarMinimumHeight = toolbar.minimumHeight
+        val contentPadding = bottomContent.initialPadding()
+        val sidePaddings = sideInsetViews.associateWith { view -> view.initialPadding() }
+        ViewCompat.setOnApplyWindowInsetsListener(root) { _, windowInsets ->
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout(),
+            )
+            toolbar.setPadding(
+                toolbarPadding.left + insets.left,
+                toolbarPadding.top + insets.top,
+                toolbarPadding.right + insets.right,
+                toolbarPadding.bottom,
+            )
+            if (toolbarHeight >= 0) {
+                toolbar.layoutParams = toolbar.layoutParams.apply {
+                    height = toolbarHeight + insets.top
+                }
+            } else {
+                toolbar.minimumHeight = toolbarMinimumHeight + insets.top
+            }
+            bottomContent.setPadding(
+                contentPadding.left + insets.left,
+                contentPadding.top,
+                contentPadding.right + insets.right,
+                contentPadding.bottom + insets.bottom,
+            )
+            sidePaddings.forEach { (view, padding) ->
+                view.setPadding(
+                    padding.left + insets.left,
+                    padding.top,
+                    padding.right + insets.right,
+                    padding.bottom,
+                )
+            }
+            windowInsets
+        }
+        ViewCompat.requestApplyInsets(root)
     }
 
     internal fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
@@ -95,44 +160,14 @@ abstract class AudioThemedActivity : AppCompatActivity() {
         store.language().mode == AppLanguageMode.AUTOJS6 ||
         store.nightMode() == AppNightMode.AUTOJS6
 
-    private fun applySystemBarIconAppearance(
-        decorView: View,
-        lightStatusBar: Boolean,
-        lightNavigationBar: Boolean,
-    ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            var appearance = 0
-            var mask = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            if (lightStatusBar) {
-                appearance = appearance or WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            }
-            mask = mask or WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-            if (lightNavigationBar) {
-                appearance = appearance or WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-            }
-            decorView.windowInsetsController?.setSystemBarsAppearance(appearance, mask)
-            return
-        }
+    private fun View.initialPadding() = ViewPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
 
-        @Suppress("DEPRECATION")
-        var visibility = decorView.systemUiVisibility
-        @Suppress("DEPRECATION")
-        visibility = if (lightStatusBar) {
-            visibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        } else {
-            visibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            @Suppress("DEPRECATION")
-            visibility = if (lightNavigationBar) {
-                visibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-            } else {
-                visibility and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
-            }
-        }
-        @Suppress("DEPRECATION")
-        run { decorView.systemUiVisibility = visibility }
-    }
+    private data class ViewPadding(
+        val left: Int,
+        val top: Int,
+        val right: Int,
+        val bottom: Int,
+    )
 
     private companion object {
         const val OPAQUE_BLACK = -0x1000000

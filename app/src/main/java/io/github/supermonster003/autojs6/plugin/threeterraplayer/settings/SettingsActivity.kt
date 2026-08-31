@@ -1,5 +1,6 @@
 package io.github.supermonster003.autojs6.plugin.threeterraplayer.settings
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
@@ -10,12 +11,15 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.widget.TextViewCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.PlaybackPositionStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.PlaybackSessionStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.R
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivitySettingsBinding
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackCompletionBehavior
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.PlaybackPreferencePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePaletteGenerator
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeDialogStyler
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePicker
@@ -44,6 +48,7 @@ class SettingsActivity : AudioThemedActivity() {
         hostResult = AutoJs6AppearanceClient.query(this)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        applyEdgeToEdge(binding.settingsRoot, binding.toolbar, binding.settingsContent)
         styleViews()
         binding.toolbar.setNavigationOnClickListener { finishAfterTransition() }
         bindRows()
@@ -72,6 +77,9 @@ class SettingsActivity : AudioThemedActivity() {
                 PlaybackSessionStore(this).clear()
             }
         }
+        binding.defaultSpeedSetting.setOnClickListener { showDefaultSpeedDialog() }
+        binding.seekIncrementSetting.setOnClickListener { showSeekIncrementDialog() }
+        binding.completionBehaviorSetting.setOnClickListener { showCompletionBehaviorDialog() }
         binding.checkUpdateSetting.setOnClickListener {
             AppUpdateCoordinator.checkManually(this)
         }
@@ -110,7 +118,12 @@ class SettingsActivity : AudioThemedActivity() {
         val dialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.setting_language)
             .setSingleChoiceItems(
-                DisabledChoiceAdapter(labels, disableFirst = !hostResult.available),
+                SettingsChoiceAdapter(
+                    this,
+                    labels,
+                    disableFirst = !hostResult.available,
+                    palette = audioPalette,
+                ),
                 checked,
             ) { selectedDialog, which ->
                 val selected = when (which) {
@@ -146,7 +159,12 @@ class SettingsActivity : AudioThemedActivity() {
         val dialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.setting_night_mode)
             .setSingleChoiceItems(
-                DisabledChoiceAdapter(labels, disableFirst = !hostResult.available),
+                SettingsChoiceAdapter(
+                    this,
+                    labels,
+                    disableFirst = !hostResult.available,
+                    palette = audioPalette,
+                ),
                 values.indexOf(preferenceStore.nightMode()),
             ) { selectedDialog, which ->
                 values.getOrNull(which)?.let { value ->
@@ -161,11 +179,82 @@ class SettingsActivity : AudioThemedActivity() {
         showTinted(dialog)
     }
 
+    private fun showDefaultSpeedDialog() {
+        val values = PlaybackPreferencePolicy.SPEED_OPTIONS
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.setting_default_speed)
+            .setSingleChoiceItems(
+                SettingsChoiceAdapter(
+                    this,
+                    values.map(::formatSpeed),
+                    disableFirst = false,
+                    palette = audioPalette,
+                ),
+                values.indexOf(preferenceStore.defaultPlaybackSpeed()),
+            ) { selectedDialog, which ->
+                values.getOrNull(which)?.let(preferenceStore::saveDefaultPlaybackSpeed)
+                renderValues()
+                selectedDialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        showTinted(dialog)
+    }
+
+    private fun showSeekIncrementDialog() {
+        val values = PlaybackPreferencePolicy.SEEK_INCREMENT_OPTIONS_MS
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.setting_seek_increment)
+            .setSingleChoiceItems(
+                SettingsChoiceAdapter(
+                    this,
+                    values.map(::formatSeekIncrement),
+                    disableFirst = false,
+                    palette = audioPalette,
+                ),
+                values.indexOf(preferenceStore.seekIncrementMs()),
+            ) { selectedDialog, which ->
+                values.getOrNull(which)?.let(preferenceStore::saveSeekIncrementMs)
+                renderValues()
+                selectedDialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        showTinted(dialog)
+    }
+
+    private fun showCompletionBehaviorDialog() {
+        val values = PlaybackCompletionBehavior.entries
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.setting_completion_behavior)
+            .setSingleChoiceItems(
+                SettingsChoiceAdapter(
+                    this,
+                    values.map(::completionBehaviorLabel),
+                    disableFirst = false,
+                    palette = audioPalette,
+                ),
+                values.indexOf(preferenceStore.completionBehavior()),
+            ) { selectedDialog, which ->
+                values.getOrNull(which)?.let(preferenceStore::saveCompletionBehavior)
+                renderValues()
+                selectedDialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        showTinted(dialog)
+    }
+
     private fun renderValues() {
         binding.languageSummary.text = languageSummary()
         binding.nightModeSummary.text = nightModeSummary()
         binding.themeColorSummary.text = themeSummary()
         binding.rememberPositionSwitch.isChecked = preferenceStore.rememberPlaybackPosition
+        binding.defaultSpeedSummary.text = formatSpeed(preferenceStore.defaultPlaybackSpeed())
+        binding.seekIncrementSummary.text = formatSeekIncrement(preferenceStore.seekIncrementMs())
+        binding.completionBehaviorSummary.text = completionBehaviorLabel(
+            preferenceStore.completionBehavior(),
+        )
         binding.autoUpdateSwitch.isChecked = preferenceStore.autoCheckUpdates
         val ignoredCount = AppUpdateStore(this).ignoredVersions().size
         binding.ignoredUpdatesSummary.text = resources.getQuantityString(
@@ -249,6 +338,29 @@ class SettingsActivity : AudioThemedActivity() {
         }
     }
 
+    private fun completionBehaviorLabel(value: PlaybackCompletionBehavior): String = getString(
+        when (value) {
+            PlaybackCompletionBehavior.STOP -> R.string.completion_stop
+            PlaybackCompletionBehavior.REWIND_PAUSED -> R.string.completion_rewind_paused
+            PlaybackCompletionBehavior.REPLAY -> R.string.completion_replay
+        },
+    )
+
+    private fun formatSeekIncrement(valueMs: Long): String {
+        val seconds = (valueMs / 1_000L).toInt()
+        return resources.getQuantityString(R.plurals.seconds_count, seconds, seconds)
+    }
+
+    private fun formatSpeed(speed: Float): String {
+        val hundredths = (speed * 100f).toInt()
+        val value = when {
+            hundredths % 100 == 0 -> (hundredths / 100).toString()
+            hundredths % 10 == 0 -> String.format(Locale.ROOT, "%.1f", speed)
+            else -> String.format(Locale.ROOT, "%.2f", speed)
+        }
+        return "$value×"
+    }
+
     private fun styleViews() {
         val palette = audioPalette
         binding.settingsRoot.setBackgroundColor(palette.background)
@@ -267,6 +379,9 @@ class SettingsActivity : AudioThemedActivity() {
             binding.nightModeTitle,
             binding.themeColorTitle,
             binding.rememberPositionTitle,
+            binding.defaultSpeedTitle,
+            binding.seekIncrementTitle,
+            binding.completionBehaviorTitle,
             binding.checkUpdateTitle,
             binding.autoUpdateTitle,
             binding.ignoredUpdatesTitle,
@@ -278,6 +393,9 @@ class SettingsActivity : AudioThemedActivity() {
             binding.nightModeSummary,
             binding.themeColorSummary,
             binding.rememberPositionSummary,
+            binding.defaultSpeedSummary,
+            binding.seekIncrementSummary,
+            binding.completionBehaviorSummary,
             binding.checkUpdateSummary,
             binding.autoUpdateSummary,
             binding.ignoredUpdatesSummary,
@@ -307,19 +425,26 @@ class SettingsActivity : AudioThemedActivity() {
         DrawableCompat.setTint(it, color)
     }
 
-    private inner class DisabledChoiceAdapter(
-        values: List<String>,
-        private val disableFirst: Boolean,
-    ) : ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice, values) {
-        override fun isEnabled(position: Int): Boolean = !(disableFirst && position == 0)
+}
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View =
-            super.getView(position, convertView, parent).also { row ->
-                AudioThemeDialogStyler.styleChoiceRow(row, audioPalette, isEnabled(position))
-                (row as? TextView)?.setTextColor(
-                    if (isEnabled(position)) audioPalette.onSurface else audioPalette.onSurfaceVariant,
+/** Material-sized single-choice rows shared by the language and night-mode dialogs. */
+internal class SettingsChoiceAdapter(
+    context: Context,
+    values: List<String>,
+    private val disableFirst: Boolean,
+    private val palette: io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemePalette,
+) : ArrayAdapter<String>(context, android.R.layout.select_dialog_singlechoice, values) {
+
+    override fun isEnabled(position: Int): Boolean = !(disableFirst && position == 0)
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View =
+        super.getView(position, convertView, parent).also { row ->
+            AudioThemeDialogStyler.styleChoiceRow(row, palette, isEnabled(position))
+            (row as? TextView)?.let { text ->
+                TextViewCompat.setTextAppearance(text, R.style.SettingsDialogChoiceText)
+                text.setTextColor(
+                    if (isEnabled(position)) palette.onSurface else palette.onSurfaceVariant,
                 )
             }
-    }
-
+        }
 }

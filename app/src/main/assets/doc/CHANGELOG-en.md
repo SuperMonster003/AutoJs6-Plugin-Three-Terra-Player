@@ -4,6 +4,17 @@
 
 ******
 
+# v1.5.0
+
+###### 2026/08/31
+
+* `Added` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
+* `Added` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
+* `Added` Added compact play / pause and artwork transitions plus system-respecting haptic feedback for key playback actions; disabling system animations switches every state directly
+* `Fixed` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
+* `Improved` Artwork decoding and 64x64 color sampling run off the main thread; arbitrary cover colors retain the existing 4.5:1 text and 3:1 outline contrast gates
+* `Improved` Completed the playback visualization feasibility study and an RMS bucket prototype: platform Visualizer remains excluded because it requires recording permission, while a permission-free Media3 PCM tap is documented for future benchmark work
+
 # v1.4.1
 
 ###### 2026/08/31

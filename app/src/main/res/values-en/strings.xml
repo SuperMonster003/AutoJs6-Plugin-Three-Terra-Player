@@ -9,6 +9,18 @@
     <string name="action_playback_speed">Playback speed</string>
     <string name="action_seek_backward">Rewind 10 seconds</string>
     <string name="action_seek_forward">Fast-forward 10 seconds</string>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="one">Rewind %1$d second</item>
+        <item quantity="other">Rewind %1$d seconds</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="one">Fast-forward %1$d second</item>
+        <item quantity="other">Fast-forward %1$d seconds</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="one">%1$d second</item>
+        <item quantity="other">%1$d seconds</item>
+    </plurals>
     <string name="cd_album_artwork">Album artwork</string>
     <string name="chooser_open_audio">Open audio with</string>
     <string name="error_cannot_read_file">The audio file cannot be read</string>
@@ -83,6 +95,12 @@
     <string name="setting_theme_color">Theme color</string>
     <string name="setting_resume_playback">Resume playback</string>
     <string name="setting_resume_playback_summary">Restore the last standalone queue, current track, and position when the app opens</string>
+    <string name="setting_default_speed">Default playback speed</string>
+    <string name="setting_seek_increment">Rewind and fast-forward increment</string>
+    <string name="setting_completion_behavior">When the queue finishes</string>
+    <string name="completion_stop">Stop playback</string>
+    <string name="completion_rewind_paused">Return to the beginning and pause</string>
+    <string name="completion_replay">Replay the queue</string>
     <string name="setting_check_updates">Check for updates</string>
     <string name="setting_check_updates_summary">Check the latest published version now</string>
     <string name="setting_auto_check_updates">Automatically check for updates</string>

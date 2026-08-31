@@ -76,4 +76,9 @@
         <item name="android:layout_marginTop">4dp</item>
     </style>
 
+    <!-- Material dialog choices use Body1 (16sp), independent of the platform dialog layout. -->
+    <style name="SettingsDialogChoiceText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

@@ -13,14 +13,14 @@
     "Enchaînement automatique dans le même dossier: à l'ouverture d'un titre, les autres fichiers audio du dossier sont détectés et lus à la suite dans l'ordre naturel des noms de fichiers (jusqu'à {{ max_queue_size }} titres, à partir du titre choisi).",
     "File multisélection: cochez jusqu'à {{ max_queue_size }} fichiers audio dans le gestionnaire de fichiers et lisez-les d'un seul appui, exactement dans l'ordre de sélection.",
     "Écran de lecture complet: pochette d'album, étiquettes titre / artiste / album, informations techniques comme la fréquence d'échantillonnage et le débit, et une barre de progression déplaçable.",
-    "Toutes les commandes du quotidien: précédent / suivant, recul et avance de 10 secondes, modes séquentiel / aléatoire / répétition d'un titre, et vitesse de lecture de 0,5x à 2x.",
+    "Toutes les commandes du quotidien: précédent / suivant, recul et avance réglables à 5 / 10 / 15 / 30 secondes, modes séquentiel / aléatoire / répétition d'un titre, vitesse par défaut mémorisée de 0,5x à 2x et action choisie en fin de file.",
     "Panneau de file de lecture: consultez à tout moment les titres à venir, touchez pour y sauter ou les retirer, avec le titre en cours clairement indiqué.",
     "Minuterie de veille: préréglages de 15 / 30 / 60 minutes ou durée personnalisée, avec arrêt possible après le titre en cours et fondu du volume sur les 5 dernières secondes.",
     "Boucle A-B: réécoutez un passage en boucle, idéal pour travailler la compréhension orale ou relever un morceau à l'oreille.",
     "Lecture en arrière-plan: la lecture continue après avoir quitté l'écran ou verrouillé l'appareil, avec commandes dans la notification multimédia du système et sur l'écran de verrouillage.",
     "Restauration de session: rouvrir l'application autonome depuis le lanceur restaure la dernière file, la piste active, la position d'arrêt, l'état répétition / aléatoire et la vitesse; la session restaurée reste en pause.",
     "Mode application autonome: utilisable sans AutoJs6; choisissez jusqu'à {{ max_queue_size }} fichiers audio depuis l'écran de démarrage et lisez-les.",
-    "Apparence personnalisable: la langue / le mode nuit / la couleur du thème suivent AutoJs6 par défaut, avec au choix 19 couleurs prédéfinies ou une couleur RGB personnalisée."
+    "Apparence adaptative: la langue, le mode nuit et la couleur de base peuvent suivre AutoJs6 ou être personnalisés; la pochette génère une palette lisible dans le lecteur bord à bord, avec transitions et retours haptiques respectant le système."
   ],
   "h3_usage": "Utilisation",
   "usage_steps": [

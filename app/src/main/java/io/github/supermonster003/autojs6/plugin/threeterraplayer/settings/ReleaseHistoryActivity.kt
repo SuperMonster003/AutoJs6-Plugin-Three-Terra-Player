@@ -22,6 +22,7 @@ class ReleaseHistoryActivity : AudioThemedActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReleaseHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        applyEdgeToEdge(binding.releaseHistoryRoot, binding.toolbar, binding.historyText)
         binding.toolbar.setNavigationOnClickListener { finishAfterTransition() }
         styleViews()
         binding.historyText.text = loadHistory()?.let(::formatMarkdown)

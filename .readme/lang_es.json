@@ -13,14 +13,14 @@
     "Reproducción continua de la misma carpeta: al abrir una pista se descubren los demás audios de la carpeta y se ponen en cola por orden natural de nombre de archivo (hasta {{ max_queue_size }} pistas, empezando por la seleccionada).",
     "Cola por selección múltiple: marca hasta {{ max_queue_size }} archivos de audio en el gestor de archivos y reprodúcelos exactamente en el orden en que los marcaste.",
     "Pantalla de reproducción completa: carátula del álbum, etiquetas de título / artista / álbum, información técnica como frecuencia de muestreo y tasa de bits, y una barra de progreso arrastrable.",
-    "Todos los controles habituales: anterior / siguiente, retroceso y avance de 10 segundos, modos secuencial / aleatorio / repetir una y velocidad de reproducción de 0,5x a 2x.",
+    "Todos los controles habituales: anterior / siguiente, retroceso y avance configurables de 5 / 10 / 15 / 30 segundos, modos secuencial / aleatorio / repetir una, velocidad predeterminada guardada de 0,5x a 2x y comportamiento al terminar la cola.",
     "Panel de cola de reproducción: consulta las próximas pistas en cualquier momento, toca para saltar a una pista o quitarla, con la pista actual claramente señalada.",
     "Temporizador de apagado: valores predefinidos de 15 / 30 / 60 minutos o una duración personalizada, con opción de detenerse al terminar la pista actual y un fundido de volumen en los últimos 5 segundos.",
     "Bucle A-B: repite cualquier fragmento una y otra vez, ideal para practicar la comprensión auditiva o sacar música de oído.",
     "Reproducción en segundo plano: el audio no se interrumpe al salir de la pantalla o bloquear el dispositivo, y puede controlarse desde la notificación multimedia del sistema y la pantalla de bloqueo.",
     "Restauración de sesión: al reabrir la aplicación independiente desde el lanzador se restauran la última cola, la pista actual, la posición de parada, el estado de repetición / aleatorio y la velocidad; la sesión restaurada permanece en pausa.",
     "Modo de aplicación independiente: funciona sin AutoJs6; elige hasta {{ max_queue_size }} archivos de audio desde la pantalla de inicio y reprodúcelos.",
-    "Apariencia personalizable: el idioma, el modo nocturno y el color del tema siguen a AutoJs6 de forma predeterminada, o elige entre 19 colores predefinidos y RGB personalizado."
+    "Apariencia adaptable: el idioma, el modo nocturno y el color base pueden seguir a AutoJs6 o personalizarse; la carátula genera una paleta legible en el reproductor de borde a borde, con transiciones y respuesta háptica que respetan el sistema."
   ],
   "h3_usage": "Uso",
   "usage_steps": [
