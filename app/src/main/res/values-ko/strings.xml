@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">뒤로</string>
     <string name="action_enable_notifications">알림 사용</string>
     <string name="action_open_external">다른 앱으로 열기</string>
@@ -25,7 +25,7 @@
     <string name="error_no_external_app">사용 가능한 다른 오디오 앱이 없습니다</string>
     <string name="error_playback">이 앱에서 오디오 파일을 디코딩하거나 재생할 수 없습니다</string>
     <string name="notification_permission_explanation">이 화면 밖에서 재생 컨트롤을 보려면 알림을 허용하세요. 거부해도 재생할 수 있습니다.</string>
-    <string name="plugin_description">오디오 재생 플러그인이자 독립 실행 앱. AutoJs6 파일 관리자에서 한 번의 탭으로 오디오를 재생하고 단독으로도 사용할 수 있으며 백그라운드 재생을 지원</string>
+    <string name="plugin_description">백그라운드 재생을 지원하는 오디오 플레이어 플러그인 겸 독립 실행 앱</string>
     <string name="unknown_audio">알 수 없는 오디오</string>
     <string name="action_play_audio_selection">선택한 오디오 재생</string>
     <string name="action_previous_track">이전 트랙</string>
@@ -122,7 +122,7 @@
     <string name="about_open_project">프로젝트 페이지 열기</string>
     <string name="about_open_releases">게시된 릴리스 보기</string>
     <string name="about_version">버전 %1$s · 빌드 %2$d</string>
-    <string name="update_checking">업데이트 확인 중…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">업데이트 확인 중...</string>
     <string name="update_checking_description">공식 GitHub 릴리스 페이지에 연결 중입니다</string>
     <string name="update_check_failed">업데이트를 확인할 수 없습니다</string>
     <string name="update_check_failed_description">네트워크 연결을 확인하고 나중에 다시 시도하세요.</string>

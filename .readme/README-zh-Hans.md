@@ -1,8 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>3-Terra Player</h1>
-
   <p>
     <picture>
       <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
@@ -10,12 +8,11 @@
     </picture>
   </p>
 
-  <p>音频播放插件与独立应用. 从 AutoJs6 文件管理器一键播放音频, 也可独立使用, 支持后台播放</p>
+  <p>支持后台播放的音频播放插件与独立应用</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/b44bd63ce6e2a7b7a393f61a28430c2815cc2d7e"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
@@ -196,7 +193,7 @@ required host build: 5276
 
 #### v1.5.0
 
-_2026/08/31_
+_2026/09/01_
 
 - `新增` 专辑封面现在会为播放器渐变背景, 工具栏, 控件与队列实时生成可读色板; 各页面以边到边方式融入状态栏, 刘海与手势区域
 - `新增` 播放设置新增可保存的默认倍速, 5 / 10 / 15 / 30 秒快退快进步长, 以及队列播完后的停止, 回到队首并暂停或自动重播行为
@@ -204,6 +201,10 @@ _2026/08/31_
 - `修复` 语言与夜间模式对话框的列表项改用 16sp Material Body1, 不再沿用过大的平台列表文字
 - `优化` 封面解码与最大 64x64 取色采样移至后台线程; 任意封面颜色继续通过正文 4.5:1 与轮廓 3:1 的既有对比度门禁
 - `优化` 完成播放可视化可行性调研与 RMS 分桶原型: 平台 Visualizer 因要求录音权限而继续排除, 并记录无权限 Media3 PCM 抽头供后续性能基线验证
+- `优化` 统一 README 版式与 Gradle 平台版本管理方式
+- `优化` 精简插件描述并规范多语言资源中的标点符号
+- `优化` 将外部查看入口统一命名为 External Viewer
+- `优化` 插件更新对话框的发行历史按钮改为打开内置发行历史页面
 
 #### v1.4.1
 

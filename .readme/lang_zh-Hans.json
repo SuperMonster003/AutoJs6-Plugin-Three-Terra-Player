@@ -1,7 +1,7 @@
 {
   "$name": "简体中文",
   "text_current_lowercase": "当前",
-  "text_plugin_synopsis": "音频播放插件与独立应用. 从 AutoJs6 文件管理器一键播放音频, 也可独立使用, 支持后台播放",
+  "text_plugin_synopsis": "支持后台播放的音频播放插件与独立应用",
   "h3_languages_with_ascii": "语言 (Languages)",
   "p_languages_all_supported_for_readme": "当前 README.md 支持以下语言",
   "h3_introduction": "简介",

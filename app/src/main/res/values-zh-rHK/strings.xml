@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">返回</string>
     <string name="action_enable_notifications">啟用通知</string>
     <string name="action_open_external">使用其他應用程式開啟</string>
@@ -25,7 +25,7 @@
     <string name="error_no_external_app">沒有可用的其他音訊應用程式</string>
     <string name="error_playback">此應用程式無法解碼或播放音訊檔案</string>
     <string name="notification_permission_explanation">允許通知以便在此畫面之外查看播放控制項. 拒絕權限後仍可播放.</string>
-    <string name="plugin_description">音訊播放外掛程式與獨立應用程式. 從 AutoJs6 檔案管理器一鍵播放音訊, 亦可獨立使用, 支援背景播放</string>
+    <string name="plugin_description">支援背景播放的音訊播放插件與獨立應用程式</string>
     <string name="unknown_audio">未知音訊</string>
     <string name="action_play_audio_selection">播放所選音訊</string>
     <string name="action_previous_track">上一首</string>
@@ -70,10 +70,10 @@
     <string name="theme_custom_error">請輸入六位 RGB 十六進制顏色</string>
     <string name="theme_custom_title">自訂色源</string>
     <string name="theme_palette_preview">產生的配色預覽</string>
-    <string name="theme_picker_description">由一個色源自動產生適用於控制項、表面、輪廓及光亮或暗黑外觀的高可讀性語義色。</string>
+    <string name="theme_picker_description">由一個色源自動產生適用於控制項, 表面, 輪廓及光亮或暗黑外觀的高可讀性語義色.</string>
     <string name="theme_picker_title">主題顏色</string>
-    <string name="theme_preset_accessibility">%1$s，%2$s</string>
-    <string name="theme_preset_selected_accessibility">%1$s，%2$s，已選擇</string>
+    <string name="theme_preset_accessibility">%1$s, %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s, %2$s, 已選擇</string>
     <string name="theme_presets">Material 500 預設顏色</string>
     <string name="theme_source_autojs6">跟隨 AutoJs6</string>
     <string name="standalone_title">簡易音訊播放器</string>
@@ -88,7 +88,7 @@
     <string name="setting_night_mode">夜間模式</string>
     <string name="setting_theme_color">主題色彩</string>
     <string name="setting_resume_playback">接續播放</string>
-    <string name="setting_resume_playback_summary">從啟動器開啟時還原上次獨立播放的佇列、目前曲目及位置</string>
+    <string name="setting_resume_playback_summary">從啟動器開啟時還原上次獨立播放的佇列, 目前曲目及位置</string>
     <string name="setting_default_speed">預設播放倍速</string>
     <string name="setting_seek_increment">快退與快進步長</string>
     <string name="setting_completion_behavior">播放佇列結束後</string>
@@ -103,7 +103,7 @@
     <string name="setting_release_history">發行記錄</string>
     <string name="setting_release_history_summary">閱讀目前版本內置的更新記錄</string>
     <string name="setting_about">關於應用程式及開發者</string>
-    <string name="setting_about_summary">版本、專案、開發者及授權資訊</string>
+    <string name="setting_about_summary">版本, 專案, 開發者及授權資訊</string>
     <string name="follow_autojs6">跟隨 AutoJs6</string>
     <string name="follow_system">跟隨系統</string>
     <string name="night_mode_light">永遠使用淺色</string>
@@ -122,7 +122,7 @@
     <string name="about_open_project">開啟專案頁面</string>
     <string name="about_open_releases">查看已發行版本</string>
     <string name="about_version">版本 %1$s · 組建 %2$d</string>
-    <string name="update_checking">正在檢查更新…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">正在檢查更新...</string>
     <string name="update_checking_description">正在連接 GitHub 官方發行頁面</string>
     <string name="update_check_failed">無法檢查更新</string>
     <string name="update_check_failed_description">請檢查網絡連線並稍後再試.</string>

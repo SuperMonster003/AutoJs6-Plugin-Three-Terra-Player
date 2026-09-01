@@ -1,8 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>3-Terra Player</h1>
-
   <p>
     <picture>
       <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
@@ -10,12 +8,11 @@
     </picture>
   </p>
 
-  <p>Audio player plugin and standalone app. Play audio right from the AutoJs6 file manager or on its own, with background playback</p>
+  <p>Audio player plugin and standalone app with background playback</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/b44bd63ce6e2a7b7a393f61a28430c2815cc2d7e"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
@@ -196,7 +193,7 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 #### v1.5.0
 
-_2026/08/31_
+_2026/09/01_
 
 - `Added` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
 - `Added` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
@@ -204,6 +201,10 @@ _2026/08/31_
 - `Fixed` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
 - `Improved` Artwork decoding and 64x64 color sampling run off the main thread; arbitrary cover colors retain the existing 4.5:1 text and 3:1 outline contrast gates
 - `Improved` Completed the playback visualization feasibility study and an RMS bucket prototype: platform Visualizer remains excluded because it requires recording permission, while a permission-free Media3 PCM tap is documented for future benchmark work
+- `Improved` Standardize the README layout and Gradle platform version management
+- `Improved` Refine the plugin description and normalize punctuation in multilingual resources
+- `Improved` Rename the external viewing entry to External Viewer for consistent viewer semantics
+- `Improved` Open the built-in release history page from the release history button in the update dialog
 
 #### v1.4.1
 

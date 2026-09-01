@@ -22,7 +22,7 @@ internal object ExternalAudioOpener {
             .filter { it.activityInfo.packageName == context.packageName }
             .map { ComponentName(it.activityInfo.packageName, it.activityInfo.name) }
             .toMutableSet()
-            .apply { add(ComponentName(context, ExternalViewActivity::class.java)) }
+            .apply { add(ComponentName(context, ExternalViewerActivity::class.java)) }
         if (handlers.none { it.activityInfo.packageName != context.packageName }) {
             Toast.makeText(context, R.string.error_no_external_app, Toast.LENGTH_LONG).show()
             return false

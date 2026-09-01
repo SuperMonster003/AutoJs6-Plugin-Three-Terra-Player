@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">Volver</string>
     <string name="action_enable_notifications">Activar notificaciones</string>
     <string name="action_open_external">Abrir con otra aplicación</string>
@@ -31,7 +31,7 @@
     <string name="error_no_external_app">No hay otra aplicación de audio disponible</string>
     <string name="error_playback">Esta aplicación no pudo decodificar ni reproducir el archivo de audio</string>
     <string name="notification_permission_explanation">Permite las notificaciones para ver los controles de reproducción fuera de esta pantalla. La reproducción seguirá disponible si las rechazas.</string>
-    <string name="plugin_description">Complemento de reproducción de audio y aplicación independiente. Reproduce audio directamente desde el gestor de archivos de AutoJs6 o por sí solo, con reproducción en segundo plano</string>
+    <string name="plugin_description">Reproductor de audio y aplicación independiente con reproducción en segundo plano</string>
     <string name="unknown_audio">Audio desconocido</string>
     <string name="action_play_audio_selection">Reproducir audios seleccionados</string>
     <string name="action_previous_track">Pista anterior</string>
@@ -134,7 +134,7 @@
     <string name="about_open_project">Abrir página del proyecto</string>
     <string name="about_open_releases">Ver versiones publicadas</string>
     <string name="about_version">Versión %1$s · compilación %2$d</string>
-    <string name="update_checking">Buscando actualizaciones…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">Buscando actualizaciones...</string>
     <string name="update_checking_description">Contactando con la página oficial de versiones de GitHub</string>
     <string name="update_check_failed">No se pudieron buscar actualizaciones</string>
     <string name="update_check_failed_description">Comprueba la conexión de red e inténtalo de nuevo más tarde.</string>

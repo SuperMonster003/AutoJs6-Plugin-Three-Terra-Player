@@ -8,6 +8,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.BuildConfig
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.R
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppPreferenceStore
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.ReleaseHistoryActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeDialogStyler
 import kotlinx.coroutines.Dispatchers
@@ -141,8 +142,8 @@ internal object AppUpdateCoordinator {
             .setTitle(release.name)
             .setMessage(message)
             .setPositiveButton(R.string.update_view_release) { _, _ -> openUrl(activity, release.pageUrl) }
-            .setNeutralButton(R.string.update_ignore_version) { _, _ ->
-                AppUpdateStore(activity).ignore(release.version)
+            .setNeutralButton(R.string.setting_release_history) { _, _ ->
+                activity.startActivity(Intent(activity, ReleaseHistoryActivity::class.java))
             }
             .setNegativeButton(R.string.update_later, null)
             .create()

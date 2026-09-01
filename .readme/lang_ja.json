@@ -1,7 +1,7 @@
 {
   "$name": "日本語",
   "text_current_lowercase": "現在",
-  "text_plugin_synopsis": "音声再生プラグイン兼単体アプリ. AutoJs6 のファイルマネージャーからワンタップで音声を再生でき, 単体でも利用可能, バックグラウンド再生に対応",
+  "text_plugin_synopsis": "バックグラウンド再生に対応した音声プレーヤープラグイン兼単体アプリ",
   "h3_languages_with_ascii": "言語 (Languages)",
   "p_languages_all_supported_for_readme": "現在の README.md は次の言語に対応しています",
   "h3_introduction": "概要",

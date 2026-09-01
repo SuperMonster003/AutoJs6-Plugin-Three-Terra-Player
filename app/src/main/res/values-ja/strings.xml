@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">戻る</string>
     <string name="action_enable_notifications">通知を有効にする</string>
     <string name="action_open_external">別のアプリで開く</string>
@@ -25,7 +25,7 @@
     <string name="error_no_external_app">利用可能な別の音声アプリがありません</string>
     <string name="error_playback">このアプリでは音声ファイルをデコードまたは再生できませんでした</string>
     <string name="notification_permission_explanation">この画面以外でも再生コントロールを表示するには通知を許可してください. 拒否しても再生は利用できます.</string>
-    <string name="plugin_description">音声再生プラグイン兼単体アプリ. AutoJs6 のファイルマネージャーからワンタップで音声を再生でき, 単体でも利用可能, バックグラウンド再生に対応</string>
+    <string name="plugin_description">バックグラウンド再生に対応した音声プレーヤープラグイン兼単体アプリ</string>
     <string name="unknown_audio">不明な音声</string>
     <string name="action_play_audio_selection">選択した音声を再生</string>
     <string name="action_previous_track">前の曲</string>
@@ -56,10 +56,10 @@
     <string name="timer_custom_hint">分 (1–1440)</string>
     <string name="timer_end_of_track">現在の曲が終わったら停止</string>
     <string name="timer_cancel">スリープタイマーを解除</string>
-    <string name="timer_invalid">1～1440 分の範囲で入力してください</string>
-    <string name="ab_invalid_end">B 点は A 点より 0.5 秒以上後に設定してください。A-B を長押しすると A 点を解除できます。</string>
+    <string name="timer_invalid">1-1440 分の範囲で入力してください</string>
+    <string name="ab_invalid_end">B 点は A 点より 0.5 秒以上後に設定してください.A-B を長押しすると A 点を解除できます.</string>
     <string name="ab_state_off">A-B リピートはオフです</string>
-    <string name="ab_state_start_set">A 点は %1$s です。B 点を設定するとリピートを開始します</string>
+    <string name="ab_state_start_set">A 点は %1$s です.B 点を設定するとリピートを開始します</string>
     <string name="ab_state_active">%1$s から %2$s をリピート中</string>
     <string name="error_control_unavailable">この再生操作は一時的に利用できません</string>
     <plurals name="queue_track_count">
@@ -70,14 +70,14 @@
     <string name="theme_custom_error">6 桁の RGB 16 進カラーを入力してください</string>
     <string name="theme_custom_title">カスタムソースカラー</string>
     <string name="theme_palette_preview">生成パレットのプレビュー</string>
-    <string name="theme_picker_description">1 つのソースカラーから、コントロール、サーフェス、輪郭、ライトまたはダーク表示用の読みやすい役割色を生成します。</string>
+    <string name="theme_picker_description">1 つのソースカラーから, コントロール, サーフェス, 輪郭, ライトまたはダーク表示用の読みやすい役割色を生成します.</string>
     <string name="theme_picker_title">テーマカラー</string>
-    <string name="theme_preset_accessibility">%1$s、%2$s</string>
-    <string name="theme_preset_selected_accessibility">%1$s、%2$s、選択済み</string>
+    <string name="theme_preset_accessibility">%1$s, %2$s</string>
+    <string name="theme_preset_selected_accessibility">%1$s, %2$s, 選択済み</string>
     <string name="theme_presets">Material 500 プリセット</string>
     <string name="theme_source_autojs6">AutoJs6 に合わせる</string>
     <string name="standalone_title">シンプルなオーディオプレーヤー</string>
-    <string name="standalone_description">1 つ以上の音声ファイルを選んでここで再生するか、AutoJs6 のファイルマネージャーから 3-Terra Player を直接使用できます。</string>
+    <string name="standalone_description">1 つ以上の音声ファイルを選んでここで再生するか, AutoJs6 のファイルマネージャーから 3-Terra Player を直接使用できます.</string>
     <string name="action_open_audio_files">音声ファイルを開く</string>
     <string name="settings_title">設定</string>
     <string name="settings_section_appearance">外観</string>
@@ -88,7 +88,7 @@
     <string name="setting_night_mode">ナイトモード</string>
     <string name="setting_theme_color">テーマカラー</string>
     <string name="setting_resume_playback">再生を再開</string>
-    <string name="setting_resume_playback_summary">ランチャーから開いたときに、前回の単独再生キュー、現在の曲、再生位置を復元します</string>
+    <string name="setting_resume_playback_summary">ランチャーから開いたときに, 前回の単独再生キュー, 現在の曲, 再生位置を復元します</string>
     <string name="setting_default_speed">デフォルトの再生速度</string>
     <string name="setting_seek_increment">巻き戻し・早送りの間隔</string>
     <string name="setting_completion_behavior">キューの再生終了後</string>
@@ -103,44 +103,44 @@
     <string name="setting_release_history">リリース履歴</string>
     <string name="setting_release_history_summary">このバージョンに同梱された変更履歴を読みます</string>
     <string name="setting_about">アプリと開発者について</string>
-    <string name="setting_about_summary">バージョン、プロジェクト、開発者、ライセンス情報</string>
+    <string name="setting_about_summary">バージョン, プロジェクト, 開発者, ライセンス情報</string>
     <string name="follow_autojs6">AutoJs6 に従う</string>
     <string name="follow_system">システムに従う</string>
     <string name="night_mode_light">常にライト</string>
     <string name="night_mode_dark">常にダーク</string>
     <string name="follow_autojs6_value">AutoJs6 に従う · %1$s</string>
-    <string name="follow_autojs6_unavailable_value">AutoJs6 に従えません（%1$s）· 代替: %2$s</string>
+    <string name="follow_autojs6_unavailable_value">AutoJs6 に従えません (%1$s)· 代替: %2$s</string>
     <string name="autojs6_not_installed">未インストール</string>
     <string name="autojs6_disabled">無効</string>
     <string name="autojs6_settings_unavailable">設定へのアクセス不可</string>
     <string name="autojs6_settings_available">利用可能</string>
     <string name="theme_custom_value">カスタム · %1$s</string>
     <string name="error_release_history_unavailable">同梱のリリース履歴を読み込めませんでした</string>
-    <string name="about_description">AutoJs6 Explorer と日常の単独再生に特化したオーディオプレーヤーです。</string>
+    <string name="about_description">AutoJs6 Explorer と日常の単独再生に特化したオーディオプレーヤーです.</string>
     <string name="about_developer">開発者</string>
     <string name="about_license">オープンソースソフトウェア · Mozilla Public License 2.0</string>
     <string name="about_open_project">プロジェクトページを開く</string>
     <string name="about_open_releases">公開済みリリースを表示</string>
     <string name="about_version">バージョン %1$s · ビルド %2$d</string>
-    <string name="update_checking">アップデートを確認中…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">アップデートを確認中...</string>
     <string name="update_checking_description">公式 GitHub リリースページに接続しています</string>
     <string name="update_check_failed">アップデートを確認できませんでした</string>
-    <string name="update_check_failed_description">ネットワーク接続を確認して、後でもう一度お試しください。</string>
+    <string name="update_check_failed_description">ネットワーク接続を確認して, 後でもう一度お試しください.</string>
     <string name="update_up_to_date">最新バージョンです</string>
     <string name="update_up_to_date_message">インストール済み: %1$s\n最新リリース: %2$s</string>
-    <string name="update_available_message">バージョン %1$s が利用できます。</string>
+    <string name="update_available_message">バージョン %1$s が利用できます.</string>
     <string name="update_view_release">リリースを表示</string>
     <string name="update_ignore_version">このバージョンを無視</string>
     <string name="update_later">後で</string>
     <string name="update_ignored_title">アップデートは無視されています</string>
-    <string name="update_ignored_message">バージョン %1$s が利用できますが、現在は無視したアップデートに含まれています。</string>
+    <string name="update_ignored_message">バージョン %1$s が利用できますが, 現在は無視したアップデートに含まれています.</string>
     <string name="update_stop_ignoring">無視を解除</string>
-    <string name="update_no_ignored_versions">無視したアップデートはありません。</string>
+    <string name="update_no_ignored_versions">無視したアップデートはありません.</string>
     <string name="action_save">保存</string>
     <plurals name="ignored_update_count"><item quantity="other">無視したバージョン: %1$d</item></plurals>
-    <string name="error_no_supported_audio">選択したファイルに、対応する読み取り可能な音声ファイルがありません</string>
-    <string name="some_files_skipped">選択した %2$d ファイルのうち %1$d 件を追加しました。非対応または読み取り不能なファイルはスキップしました</string>
-    <string name="ab_start_set_hint">A 点を %1$s に設定しました。終点で A-B をもう一度タップするか、長押しして解除してください。</string>
-    <string name="ab_loop_started">A-B リピートを開始しました: %1$s–%2$s。もう一度タップすると解除します。</string>
+    <string name="error_no_supported_audio">選択したファイルに, 対応する読み取り可能な音声ファイルがありません</string>
+    <string name="some_files_skipped">選択した %2$d ファイルのうち %1$d 件を追加しました.非対応または読み取り不能なファイルはスキップしました</string>
+    <string name="ab_start_set_hint">A 点を %1$s に設定しました.終点で A-B をもう一度タップするか, 長押しして解除してください.</string>
+    <string name="ab_loop_started">A-B リピートを開始しました: %1$s–%2$s.もう一度タップすると解除します.</string>
     <string name="ab_loop_cleared">A-B リピートを解除しました</string>
 </resources>

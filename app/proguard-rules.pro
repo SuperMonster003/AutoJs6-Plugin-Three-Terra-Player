@@ -1,7 +1,7 @@
 -keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.ExplorerActionService { *; }
 -keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.PluginInfoService { *; }
 -keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.ExplorerActionActivity { *; }
--keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.ExternalViewActivity { *; }
+-keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.ExternalViewerActivity { *; }
 -keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.AudioPlayerActivity { *; }
 -keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.AudioPlaybackService { *; }
 -keep class io.github.supermonster003.autojs6.plugin.threeterraplayer.WakeActivity { *; }

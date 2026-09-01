@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">Retour</string>
     <string name="action_enable_notifications">Activer les notifications</string>
     <string name="action_open_external">Ouvrir avec une autre application</string>
@@ -31,7 +31,7 @@
     <string name="error_no_external_app">Aucune autre application audio n\'est disponible</string>
     <string name="error_playback">Cette application n\'a pas pu décoder ni lire le fichier audio</string>
     <string name="notification_permission_explanation">Autorisez les notifications pour afficher les commandes de lecture en dehors de cet écran. La lecture reste disponible en cas de refus.</string>
-    <string name="plugin_description">Plugin de lecture audio et application autonome. Lisez vos fichiers audio d\'un simple appui depuis le gestionnaire de fichiers AutoJs6 ou de manière indépendante, avec lecture en arrière-plan</string>
+    <string name="plugin_description">Lecteur audio et application autonome avec lecture en arrière-plan</string>
     <string name="unknown_audio">Audio inconnu</string>
     <string name="action_play_audio_selection">Lire les fichiers audio sélectionnés</string>
     <string name="action_previous_track">Piste précédente</string>
@@ -134,7 +134,7 @@
     <string name="about_open_project">Ouvrir la page du projet</string>
     <string name="about_open_releases">Voir les versions publiées</string>
     <string name="about_version">Version %1$s · build %2$d</string>
-    <string name="update_checking">Recherche de mises à jour…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">Recherche de mises à jour...</string>
     <string name="update_checking_description">Connexion à la page officielle des versions GitHub</string>
     <string name="update_check_failed">Échec de la recherche de mises à jour</string>
     <string name="update_check_failed_description">Vérifiez votre connexion réseau et réessayez plus tard.</string>

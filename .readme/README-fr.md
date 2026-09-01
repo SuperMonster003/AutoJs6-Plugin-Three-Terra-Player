@@ -1,8 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>3-Terra Player</h1>
-
   <p>
     <picture>
       <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
@@ -10,12 +8,11 @@
     </picture>
   </p>
 
-  <p>Plugin de lecture audio et application autonome. Lisez vos fichiers audio d'un simple appui depuis le gestionnaire de fichiers AutoJs6 ou de manière indépendante, avec lecture en arrière-plan</p>
+  <p>Lecteur audio et application autonome avec lecture en arrière-plan</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/b44bd63ce6e2a7b7a393f61a28430c2815cc2d7e"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
@@ -196,7 +193,7 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 #### v1.5.0
 
-_2026/08/31_
+_2026/09/01_
 
 - `Fonctionnalité` La pochette génère désormais en direct une palette lisible pour le dégradé, la barre, les commandes et la file; les écrans s'étendent bord à bord autour des barres système, découpes et zones gestuelles
 - `Fonctionnalité` Les réglages de lecture proposent une vitesse par défaut mémorisée, des pas de recul et d'avance de 5 / 10 / 15 / 30 secondes et une action en fin de file: arrêter, revenir au début et mettre en pause ou relire
@@ -204,6 +201,10 @@ _2026/08/31_
 - `Correctif` Les choix des boîtes de dialogue de langue et de mode nuit utilisent désormais Material Body1 en 16sp au lieu du texte de liste système surdimensionné
 - `Amélioration` Le décodage des pochettes et l'échantillonnage couleur limité à 64x64 quittent le thread principal; toute couleur conserve les seuils de contraste existants de 4,5:1 pour le texte et 3:1 pour les contours
 - `Amélioration` Étude de visualisation et prototype RMS par blocs terminés: Visualizer reste exclu car il exige l'autorisation d'enregistrement, tandis qu'une dérivation PCM Media3 sans permission est documentée pour de futurs tests de performance
+- `Amélioration` Uniformiser la mise en page du README et la gestion des versions de la plateforme Gradle
+- `Amélioration` Simplifier la description du plugin et normaliser la ponctuation des ressources multilingues
+- `Amélioration` Renommer l'entrée de visualisation externe en External Viewer pour unifier la sémantique de la visionneuse
+- `Amélioration` Ouvrir la page intégrée de l'historique des versions depuis le bouton correspondant de la boîte de dialogue de mise à jour
 
 #### v1.4.1
 

@@ -6,7 +6,7 @@
   "changelog_label_dependency": "Dépendance",
   "$data": {
     "v1.5.0": {
-      "released_date": "2026/08/31",
+      "released_date": "2026/09/01",
       "feature": [
         "La pochette génère désormais en direct une palette lisible pour le dégradé, la barre, les commandes et la file; les écrans s'étendent bord à bord autour des barres système, découpes et zones gestuelles",
         "Les réglages de lecture proposent une vitesse par défaut mémorisée, des pas de recul et d'avance de 5 / 10 / 15 / 30 secondes et une action en fin de file: arrêter, revenir au début et mettre en pause ou relire",
@@ -17,7 +17,11 @@
       ],
       "improvement": [
         "Le décodage des pochettes et l'échantillonnage couleur limité à 64x64 quittent le thread principal; toute couleur conserve les seuils de contraste existants de 4,5:1 pour le texte et 3:1 pour les contours",
-        "Étude de visualisation et prototype RMS par blocs terminés: Visualizer reste exclu car il exige l'autorisation d'enregistrement, tandis qu'une dérivation PCM Media3 sans permission est documentée pour de futurs tests de performance"
+        "Étude de visualisation et prototype RMS par blocs terminés: Visualizer reste exclu car il exige l'autorisation d'enregistrement, tandis qu'une dérivation PCM Media3 sans permission est documentée pour de futurs tests de performance",
+        "Uniformiser la mise en page du README et la gestion des versions de la plateforme Gradle",
+        "Simplifier la description du plugin et normaliser la ponctuation des ressources multilingues",
+        "Renommer l'entrée de visualisation externe en External Viewer pour unifier la sémantique de la visionneuse",
+        "Ouvrir la page intégrée de l'historique des versions depuis le bouton correspondant de la boîte de dialogue de mise à jour"
       ]
     },
     "v1.4.1": {

@@ -1,8 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>3-Terra Player</h1>
-
   <p>
     <picture>
       <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
@@ -10,12 +8,11 @@
     </picture>
   </p>
 
-  <p>ملحق لتشغيل الصوت وتطبيق مستقل. يشغل الصوت بنقرة واحدة من مدير ملفات AutoJs6 ويعمل بشكل مستقل أيضا, مع دعم التشغيل في الخلفية</p>
+  <p>مشغل صوت إضافي وتطبيق مستقل مع تشغيل في الخلفية</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/b44bd63ce6e2a7b7a393f61a28430c2815cc2d7e"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
@@ -196,7 +193,7 @@ required host build: 5276
 
 #### v1.5.0
 
-_2026/08/31_
+_2026/09/01_
 
 - `ميزة` يولد غلاف الألبوم الآن لوحة ألوان مقروءة مباشرة للخلفية المتدرجة وشريط الأدوات وعناصر التحكم وقائمة الانتظار; وتمتد الشاشات من الحافة إلى الحافة مع مراعاة أشرطة النظام وفتحات الشاشة ومناطق الإيماءات
 - `ميزة` تتضمن إعدادات التشغيل سرعة افتراضية محفوظة وخطوات إرجاع وتقديم 5 / 10 / 15 / 30 ثانية وسلوكا عند انتهاء القائمة: الإيقاف أو العودة إلى البداية والتوقف المؤقت أو إعادة التشغيل
@@ -204,6 +201,10 @@ _2026/08/31_
 - `إصلاح` تستخدم خيارات مربعي حوار اللغة والوضع الليلي الآن Material Body1 بحجم 16sp بدلا من نص قائمة النظام الكبير جدا
 - `تحسين` يجري فك ترميز الغلاف وأخذ عينة لون حتى 64x64 خارج المسار الرئيسي; وتحافظ أي ألوان على حدي التباين الحاليين 4.5:1 للنص و3:1 للحدود
 - `تحسين` اكتملت دراسة جدوى المرئيات ونموذج أولي لحزم RMS: ما زال Visualizer مستبعدا لأنه يتطلب إذن التسجيل, بينما وثق مسار Media3 PCM بلا أذونات لاختبارات الأداء المستقبلية
+- `تحسين` توحيد تخطيط README وطريقة إدارة إصدارات منصة Gradle
+- `تحسين` تبسيط وصف المكون الإضافي وتوحيد علامات الترقيم في الموارد متعددة اللغات
+- `تحسين` إعادة تسمية مدخل العرض الخارجي إلى External Viewer لتوحيد دلالة العارض
+- `تحسين` فتح صفحة سجل الإصدارات المضمنة من زر سجل الإصدارات في مربع حوار التحديث
 
 #### v1.4.1
 

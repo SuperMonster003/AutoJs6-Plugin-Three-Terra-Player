@@ -1,8 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>3-Terra Player</h1>
-
   <p>
     <picture>
       <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
@@ -10,12 +8,11 @@
     </picture>
   </p>
 
-  <p>音声再生プラグイン兼単体アプリ. AutoJs6 のファイルマネージャーからワンタップで音声を再生でき, 単体でも利用可能, バックグラウンド再生に対応</p>
+  <p>バックグラウンド再生に対応した音声プレーヤープラグイン兼単体アプリ</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/b44bd63ce6e2a7b7a393f61a28430c2815cc2d7e"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
@@ -196,7 +193,7 @@ required host build: 5276
 
 #### v1.5.0
 
-_2026/08/31_
+_2026/09/01_
 
 - `機能` アルバムアートからグラデーション, ツールバー, 操作ボタン, キューへ読みやすい配色をリアルタイム生成します. 各画面はステータスバー, 画面の切り欠き, ジェスチャー領域を考慮したエッジツーエッジ表示になりました
 - `機能` 再生設定に保存可能な既定速度, 5 / 10 / 15 / 30 秒の早戻しと早送り, キュー終了時の停止 / 先頭へ戻って一時停止 / 再再生を追加しました
@@ -204,6 +201,10 @@ _2026/08/31_
 - `修正` 言語とナイトモードのダイアログ項目を Material Body1 の 16sp に変更し, 大きすぎるプラットフォーム既定のリスト文字を使わないようにしました
 - `改善` アルバムアートのデコードと最大 64x64 の色サンプル処理をメインスレッド外へ移しました. 任意の色でも本文 4.5:1 と輪郭 3:1 の既存コントラスト基準を維持します
 - `改善` 再生可視化の調査と RMS バケットの試作を完了しました. 録音権限が必要な Visualizer は引き続き除外し, 将来の性能検証向けに権限不要の Media3 PCM 抽出経路を記録しました
+- `改善` README のレイアウトと Gradle プラットフォームのバージョン管理方式を統一
+- `改善` プラグインの説明を簡潔にし, 多言語リソースの句読点を統一
+- `改善` 外部表示エントリを External Viewer に改名し, ビューアーの意味を統一
+- `改善` 更新ダイアログのリリース履歴ボタンから内蔵のリリース履歴ページを開くように変更
 
 #### v1.4.1
 

@@ -1,7 +1,7 @@
 {
   "$name": "한국어",
   "text_current_lowercase": "현재",
-  "text_plugin_synopsis": "오디오 재생 플러그인이자 독립 실행 앱. AutoJs6 파일 관리자에서 한 번의 탭으로 오디오를 재생하고 단독으로도 사용할 수 있으며 백그라운드 재생을 지원",
+  "text_plugin_synopsis": "백그라운드 재생을 지원하는 오디오 플레이어 플러그인 겸 독립 실행 앱",
   "h3_languages_with_ascii": "언어 (Languages)",
   "p_languages_all_supported_for_readme": "현재 README.md는 다음 언어를 지원합니다",
   "h3_introduction": "소개",

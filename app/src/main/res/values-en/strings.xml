@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">Back</string>
     <string name="action_enable_notifications">Enable notifications</string>
     <string name="action_open_external">Open with another app</string>
@@ -28,7 +28,7 @@
     <string name="error_no_external_app">No other audio app is available</string>
     <string name="error_playback">This app could not decode or play the audio file</string>
     <string name="notification_permission_explanation">Allow notifications to see playback controls outside this screen. Playback remains available if you decline.</string>
-    <string name="plugin_description">Audio player plugin and standalone app. Play audio right from the AutoJs6 file manager or on its own, with background playback</string>
+    <string name="plugin_description">Audio player plugin and standalone app with background playback</string>
     <string name="unknown_audio">Unknown audio</string>
     <string name="action_play_audio_selection">Play selected audio</string>
     <string name="action_previous_track">Previous track</string>
@@ -128,7 +128,7 @@
     <string name="about_open_project">Open project page</string>
     <string name="about_open_releases">View published releases</string>
     <string name="about_version">Version %1$s · build %2$d</string>
-    <string name="update_checking">Checking for updates…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">Checking for updates...</string>
     <string name="update_checking_description">Contacting the official GitHub releases page</string>
     <string name="update_check_failed">Couldn’t check for updates</string>
     <string name="update_check_failed_description">Check your network connection and try again later.</string>

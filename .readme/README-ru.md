@@ -1,8 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>3-Terra Player</h1>
-
   <p>
     <picture>
       <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
@@ -10,12 +8,11 @@
     </picture>
   </p>
 
-  <p>Плагин для воспроизведения аудио и самостоятельное приложение. Проигрывает аудио в одно касание прямо из файлового менеджера AutoJs6, работает и отдельно, поддерживает фоновое воспроизведение</p>
+  <p>Аудиоплеер и самостоятельное приложение с фоновым воспроизведением</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/b44bd63ce6e2a7b7a393f61a28430c2815cc2d7e"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
@@ -196,7 +193,7 @@ required host build: 5276
 
 #### v1.5.0
 
-_2026/08/31_
+_2026/09/01_
 
 - `Функция` Обложка альбома теперь в реальном времени создаёт читаемую палитру для градиента, панели, элементов управления и очереди; экраны отображаются от края до края с учётом системных панелей, вырезов и зон жестов
 - `Функция` В настройки воспроизведения добавлены сохраняемая скорость по умолчанию, шаг перемотки 5 / 10 / 15 / 30 секунд и действие после окончания очереди: остановить, вернуться в начало и поставить на паузу или повторить
@@ -204,6 +201,10 @@ _2026/08/31_
 - `Исправление` Варианты в диалогах языка и ночного режима теперь используют Material Body1 размером 16sp вместо слишком крупного системного текста списка
 - `Улучшение` Декодирование обложки и выборка цвета до 64x64 выполняются вне главного потока; любые цвета сохраняют существующие пороги контраста 4,5:1 для текста и 3:1 для контуров
 - `Улучшение` Завершены исследование визуализации и прототип RMS по блокам: Visualizer исключён из-за требования разрешения на запись, а не требующий разрешений отвод PCM из Media3 описан для будущих замеров производительности
+- `Улучшение` Унифицировать оформление README и управление версиями платформы Gradle
+- `Улучшение` Сократить описание плагина и унифицировать пунктуацию в многоязычных ресурсах
+- `Улучшение` Переименовать внешний просмотр в External Viewer для единообразной семантики средства просмотра
+- `Улучшение` Открывать встроенную страницу истории выпусков кнопкой истории выпусков в диалоге обновления
 
 #### v1.4.1
 

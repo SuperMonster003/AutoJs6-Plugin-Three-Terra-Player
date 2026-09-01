@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">رجوع</string>
     <string name="action_enable_notifications">تفعيل الاشعارات</string>
     <string name="action_open_external">فتح باستخدام تطبيق اخر</string>
@@ -40,7 +40,7 @@
     <string name="error_no_external_app">لا يتوفر تطبيق صوت اخر</string>
     <string name="error_playback">تعذر على هذا التطبيق فك ترميز ملف الصوت او تشغيله</string>
     <string name="notification_permission_explanation">اسمح بالاشعارات لعرض عناصر التحكم بالتشغيل خارج هذه الشاشة. يبقى التشغيل متاحا اذا رفضت.</string>
-    <string name="plugin_description">ملحق لتشغيل الصوت وتطبيق مستقل. يشغل الصوت بنقرة واحدة من مدير ملفات AutoJs6 ويعمل بشكل مستقل أيضا, مع دعم التشغيل في الخلفية</string>
+    <string name="plugin_description">مشغل صوت إضافي وتطبيق مستقل مع تشغيل في الخلفية</string>
     <string name="unknown_audio">صوت غير معروف</string>
     <string name="action_play_audio_selection">تشغيل الملفات الصوتية المحددة</string>
     <string name="action_previous_track">المسار السابق</string>
@@ -152,7 +152,7 @@
     <string name="about_open_project">فتح صفحة المشروع</string>
     <string name="about_open_releases">عرض الإصدارات المنشورة</string>
     <string name="about_version">الإصدار %1$s · البنية %2$d</string>
-    <string name="update_checking">جار التحقق من التحديثات…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">جار التحقق من التحديثات...</string>
     <string name="update_checking_description">جار الاتصال بصفحة إصدارات GitHub الرسمية</string>
     <string name="update_check_failed">تعذر التحقق من التحديثات</string>
     <string name="update_check_failed_description">تحقق من اتصال الشبكة وحاول مرة أخرى لاحقا.</string>

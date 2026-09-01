@@ -1,7 +1,7 @@
 {
   "$name": "العربية",
   "text_current_lowercase": "الحالية",
-  "text_plugin_synopsis": "ملحق لتشغيل الصوت وتطبيق مستقل. يشغل الصوت بنقرة واحدة من مدير ملفات AutoJs6 ويعمل بشكل مستقل أيضا, مع دعم التشغيل في الخلفية",
+  "text_plugin_synopsis": "مشغل صوت إضافي وتطبيق مستقل مع تشغيل في الخلفية",
   "h3_languages_with_ascii": "اللغات (Languages)",
   "p_languages_all_supported_for_readme": "يدعم ملف README.md الحالي اللغات التالية",
   "h3_introduction": "مقدمة",

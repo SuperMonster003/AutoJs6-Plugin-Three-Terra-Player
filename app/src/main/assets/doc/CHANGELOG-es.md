@@ -6,7 +6,7 @@
 
 # v1.5.0
 
-###### 2026/08/31
+###### 2026/09/01
 
 * `Función` La carátula del álbum ahora genera una paleta legible en tiempo real para el degradado, la barra, los controles y la cola; las pantallas se extienden de borde a borde alrededor de barras, recortes y gestos
 * `Función` Los ajustes de reproducción incluyen velocidad predeterminada guardada, intervalos de retroceso y avance de 5 / 10 / 15 / 30 segundos y una acción al terminar la cola: detener, volver al principio y pausar o repetir
@@ -14,6 +14,10 @@
 * `Corrección` Las opciones de los diálogos de idioma y modo nocturno ahora usan Material Body1 a 16sp en lugar del texto de lista del sistema, demasiado grande
 * `Mejora` La decodificación de carátulas y la muestra de color de hasta 64x64 se ejecutan fuera del hilo principal; cualquier color mantiene los límites de contraste de 4,5:1 para texto y 3:1 para contornos
 * `Mejora` Se completaron el estudio de visualización y un prototipo RMS por bloques: Visualizer sigue excluido por requerir permiso de grabación y se documenta una toma PCM de Media3 sin permisos para futuras pruebas de rendimiento
+* `Mejora` Unificar el diseño del README y la gestión de versiones de la plataforma Gradle
+* `Mejora` Simplificar la descripción del complemento y normalizar la puntuación de los recursos multilingües
+* `Mejora` Renombrar la entrada de visualización externa como External Viewer para unificar la semántica del visor
+* `Mejora` Abrir la página integrada del historial de versiones desde el botón correspondiente del diálogo de actualización
 
 # v1.4.1
 

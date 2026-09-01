@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 
 /** Public Android ACTION_VIEW ingress. It never forwards caller extras or broad URI grants. */
-class ExternalViewActivity : Activity() {
+class ExternalViewerActivity : Activity() {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val cancellationSignal = CancellationSignal()
@@ -39,7 +39,7 @@ class ExternalViewActivity : Activity() {
         }
 
         val resolution = scope.async(Dispatchers.IO) {
-            ContentAudioRequestResolver.resolve(this@ExternalViewActivity, uri, mimeType, cancellationSignal)
+            ContentAudioRequestResolver.resolve(this@ExternalViewerActivity, uri, mimeType, cancellationSignal)
                 ?.let { track -> AudioPlaybackRequest(listOf(track)) }
         }
         scope.launch {
@@ -49,7 +49,7 @@ class ExternalViewActivity : Activity() {
                 resolution.cancel()
             } else {
                 runCatching {
-                    startActivity(AudioPlaybackContract.playerIntent(this@ExternalViewActivity, request, true))
+                    startActivity(AudioPlaybackContract.playerIntent(this@ExternalViewerActivity, request, true))
                 }
             }
             finish()

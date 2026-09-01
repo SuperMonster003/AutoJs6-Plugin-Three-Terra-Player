@@ -33,7 +33,6 @@
         <item quantity="one">%1$d second</item>
         <item quantity="other">%1$d seconds</item>
     </plurals>
-    <string name="app_name" translatable="false">3-Terra Player</string>
     <string name="standalone_title">Your simple audio player</string>
     <string name="standalone_description">Choose one or more audio files to play them here, or use 3-Terra Player directly from the AutoJs6 file manager.</string>
     <string name="action_open_audio_files">Open audio files</string>
@@ -80,7 +79,7 @@
     <string name="about_open_project">Open project page</string>
     <string name="about_open_releases">View published releases</string>
     <string name="about_version">Version %1$s · build %2$d</string>
-    <string name="update_checking">Checking for updates…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">Checking for updates...</string>
     <string name="update_checking_description">Contacting the official GitHub releases page</string>
     <string name="update_check_failed">Couldn’t check for updates</string>
     <string name="update_check_failed_description">Check your network connection and try again later.</string>
@@ -129,9 +128,6 @@
     <string name="ab_state_off">A-B loop is off</string>
     <string name="ab_state_start_set">Point A is %1$s; set point B to start looping</string>
     <string name="ab_state_active">Looping from %1$s to %2$s</string>
-    <string name="ab_short" translatable="false">A–B</string>
-    <string name="ab_short_start_set" translatable="false">A…</string>
-    <string name="ab_short_active" translatable="false">A↔B</string>
     <string name="cd_album_artwork">Album artwork</string>
     <string name="chooser_open_audio">Open audio with</string>
     <string name="error_cannot_read_file">The audio file cannot be read</string>
@@ -140,11 +136,9 @@
     <string name="error_playback">This app could not decode or play the audio file</string>
     <string name="error_control_unavailable">This playback control is temporarily unavailable</string>
     <string name="notification_permission_explanation">Allow notifications to see playback controls outside this screen. Playback remains available if you decline.</string>
-    <string name="plugin_description">Audio player plugin and standalone app. Play audio right from the AutoJs6 file manager or on its own, with background playback</string>
-    <string name="speed_default" translatable="false">1×</string>
+    <string name="plugin_description">Audio player plugin and standalone app with background playback</string>
     <string name="theme_custom">Custom color</string>
     <string name="theme_custom_error">Enter a six-digit RGB hexadecimal color</string>
-    <string name="theme_custom_hint" translatable="false">#RRGGBB</string>
     <string name="theme_custom_title">Custom source color</string>
     <string name="theme_palette_preview">Generated palette preview</string>
     <string name="theme_picker_description">One source color generates accessible roles for controls, surfaces, outlines, and light or dark appearance.</string>

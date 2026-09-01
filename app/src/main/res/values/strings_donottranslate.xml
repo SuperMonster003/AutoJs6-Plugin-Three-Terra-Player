@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="ab_short" translatable="false">A-B</string>
+    <string name="ab_short_active" translatable="false">A&lt;-&gt;B</string>
+    <string name="ab_short_start_set" translatable="false" tools:ignore="TypographyEllipsis">A...</string>
+    <string name="app_name" translatable="false">3-Terra Player</string>
+    <string name="speed_default" translatable="false">1x</string>
+    <string name="theme_custom_hint" translatable="false">#RRGGBB</string>
+</resources>

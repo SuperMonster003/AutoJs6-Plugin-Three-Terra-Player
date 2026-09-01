@@ -1,7 +1,7 @@
 {
   "$name": "English",
   "text_current_lowercase": "current",
-  "text_plugin_synopsis": "Audio player plugin and standalone app. Play audio right from the AutoJs6 file manager or on its own, with background playback",
+  "text_plugin_synopsis": "Audio player plugin and standalone app with background playback",
   "h3_languages_with_ascii": "Languages",
   "p_languages_all_supported_for_readme": "The current README.md supports the following languages",
   "h3_introduction": "Introduction",

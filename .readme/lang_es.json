@@ -1,7 +1,7 @@
 {
   "$name": "Español",
   "text_current_lowercase": "actual",
-  "text_plugin_synopsis": "Complemento de reproducción de audio y aplicación independiente. Reproduce audio directamente desde el gestor de archivos de AutoJs6 o por sí solo, con reproducción en segundo plano",
+  "text_plugin_synopsis": "Reproductor de audio y aplicación independiente con reproducción en segundo plano",
   "h3_languages_with_ascii": "Idiomas (Languages)",
   "p_languages_all_supported_for_readme": "El README.md actual admite los siguientes idiomas",
   "h3_introduction": "Introducción",

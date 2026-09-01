@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_back">Назад</string>
     <string name="action_enable_notifications">Включить уведомления</string>
     <string name="action_open_external">Открыть в другом приложении</string>
@@ -34,7 +34,7 @@
     <string name="error_no_external_app">Нет другого приложения для аудио</string>
     <string name="error_playback">Это приложение не смогло декодировать или воспроизвести аудиофайл</string>
     <string name="notification_permission_explanation">Разрешите уведомления, чтобы видеть элементы управления воспроизведением вне этого экрана. Воспроизведение останется доступным, если вы откажете.</string>
-    <string name="plugin_description">Плагин для воспроизведения аудио и самостоятельное приложение. Проигрывает аудио в одно касание прямо из файлового менеджера AutoJs6, работает и отдельно, поддерживает фоновое воспроизведение</string>
+    <string name="plugin_description">Аудиоплеер и самостоятельное приложение с фоновым воспроизведением</string>
     <string name="unknown_audio">Неизвестное аудио</string>
     <string name="action_play_audio_selection">Воспроизвести выбранные аудиофайлы</string>
     <string name="action_previous_track">Предыдущий трек</string>
@@ -140,7 +140,7 @@
     <string name="about_open_project">Открыть страницу проекта</string>
     <string name="about_open_releases">Просмотреть выпуски</string>
     <string name="about_version">Версия %1$s · сборка %2$d</string>
-    <string name="update_checking">Проверка обновлений…</string>
+    <string name="update_checking" tools:ignore="TypographyEllipsis">Проверка обновлений...</string>
     <string name="update_checking_description">Подключение к официальной странице выпусков GitHub</string>
     <string name="update_check_failed">Не удалось проверить обновления</string>
     <string name="update_check_failed_description">Проверьте подключение к сети и повторите попытку позже.</string>

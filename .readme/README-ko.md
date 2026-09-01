@@ -1,8 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>3-Terra Player</h1>
-
   <p>
     <picture>
       <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
@@ -10,12 +8,11 @@
     </picture>
   </p>
 
-  <p>오디오 재생 플러그인이자 독립 실행 앱. AutoJs6 파일 관리자에서 한 번의 탭으로 오디오를 재생하고 단독으로도 사용할 수 있으며 백그라운드 재생을 지원</p>
+  <p>백그라운드 재생을 지원하는 오디오 플레이어 플러그인 겸 독립 실행 앱</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=A24232&label=Issues"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/commit/b44bd63ce6e2a7b7a393f61a28430c2815cc2d7e"><img alt="Created" src="https://img.shields.io/date/1785664006?color=2e7d32&label=Created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player?color=534BAE&label=License"/></a>
   </p>
 </div>
@@ -196,7 +193,7 @@ required host build: 5276
 
 #### v1.5.0
 
-_2026/08/31_
+_2026/09/01_
 
 - `기능` 앨범 아트에서 그라데이션, 도구 모음, 제어 버튼, 대기열에 적용할 읽기 쉬운 색상표를 실시간 생성합니다. 모든 화면은 상태 표시줄, 디스플레이 컷아웃, 제스처 영역을 고려한 엣지 투 엣지 방식으로 표시됩니다
 - `기능` 재생 설정에 저장 가능한 기본 속도, 5 / 10 / 15 / 30초 되감기와 빨리 감기, 대기열 종료 시 정지 / 처음으로 돌아가 일시 정지 / 다시 재생 동작을 추가했습니다
@@ -204,6 +201,10 @@ _2026/08/31_
 - `수정` 언어 및 야간 모드 대화상자 항목이 지나치게 큰 플랫폼 목록 글자 대신 16sp Material Body1을 사용합니다
 - `개선` 앨범 아트 디코딩과 최대 64x64 색상 샘플링을 메인 스레드 밖에서 처리합니다. 임의의 색상에도 본문 4.5:1과 윤곽선 3:1의 기존 대비 기준을 유지합니다
 - `개선` 재생 시각화 연구와 RMS 버킷 프로토타입을 완료했습니다. 녹음 권한이 필요한 Visualizer는 계속 제외하고 권한 없는 Media3 PCM 탭을 향후 성능 기준 검증 경로로 문서화했습니다
+- `개선` README 레이아웃과 Gradle 플랫폼 버전 관리 방식을 통일
+- `개선` 플러그인 설명을 간결하게 다듬고 다국어 리소스의 문장 부호를 통일
+- `개선` 외부 보기 진입점을 External Viewer로 변경해 뷰어 의미를 통일
+- `개선` 업데이트 대화상자의 릴리스 기록 버튼에서 내장 릴리스 기록 페이지를 열도록 변경
 
 #### v1.4.1
 

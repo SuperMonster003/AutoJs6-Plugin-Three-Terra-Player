@@ -1,7 +1,7 @@
 {
   "$name": "繁體中文 (香港)",
   "text_current_lowercase": "目前",
-  "text_plugin_synopsis": "音訊播放外掛程式與獨立應用程式. 從 AutoJs6 檔案管理器一鍵播放音訊, 亦可獨立使用, 支援背景播放",
+  "text_plugin_synopsis": "支援背景播放的音訊播放插件與獨立應用程式",
   "h3_languages_with_ascii": "語言 (Languages)",
   "p_languages_all_supported_for_readme": "目前 README.md 支援以下語言",
   "h3_introduction": "簡介",
