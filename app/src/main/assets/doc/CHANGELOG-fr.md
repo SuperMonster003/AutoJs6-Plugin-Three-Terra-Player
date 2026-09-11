@@ -6,7 +6,7 @@
 
 # v1.5.0
 
-###### 2026/09/01
+###### 2026/09/11
 
 * `Fonctionnalité` La pochette génère désormais en direct une palette lisible pour le dégradé, la barre, les commandes et la file; les écrans s'étendent bord à bord autour des barres système, découpes et zones gestuelles
 * `Fonctionnalité` Les réglages de lecture proposent une vitesse par défaut mémorisée, des pas de recul et d'avance de 5 / 10 / 15 / 30 secondes et une action en fin de file: arrêter, revenir au début et mettre en pause ou relire
@@ -18,6 +18,7 @@
 * `Amélioration` Simplifier la description du plugin et normaliser la ponctuation des ressources multilingues
 * `Amélioration` Renommer l'entrée de visualisation externe en External Viewer pour unifier la sémantique de la visionneuse
 * `Amélioration` Ouvrir la page intégrée de l'historique des versions depuis le bouton correspondant de la boîte de dialogue de mise à jour
+* `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 
 # v1.4.1
 

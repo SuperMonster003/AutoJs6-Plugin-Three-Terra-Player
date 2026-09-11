@@ -193,7 +193,7 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 #### v1.5.0
 
-_2026/09/01_
+_2026/09/11_
 
 - `Added` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
 - `Added` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
@@ -205,6 +205,7 @@ _2026/09/01_
 - `Improved` Refine the plugin description and normalize punctuation in multilingual resources
 - `Improved` Rename the external viewing entry to External Viewer for consistent viewer semantics
 - `Improved` Open the built-in release history page from the release history button in the update dialog
+- `Improved` Build verification rejects accidental native dependencies and produces a JSON report
 
 #### v1.4.1
 
@@ -292,3 +293,6 @@ The project code is open source under the [Mozilla Public License 2.0](https://g
 - AutoJs6 documentation: https://docs.autojs6.com
 - Android Media3: https://developer.android.com/media/media3
 - Android secure file sharing: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/docs/16kb.md)

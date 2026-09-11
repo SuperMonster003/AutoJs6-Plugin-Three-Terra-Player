@@ -193,7 +193,7 @@ required host build: 5276
 
 #### v1.5.0
 
-_2026/09/01_
+_2026/09/11_
 
 - `機能` アルバムアートからグラデーション, ツールバー, 操作ボタン, キューへ読みやすい配色をリアルタイム生成します. 各画面はステータスバー, 画面の切り欠き, ジェスチャー領域を考慮したエッジツーエッジ表示になりました
 - `機能` 再生設定に保存可能な既定速度, 5 / 10 / 15 / 30 秒の早戻しと早送り, キュー終了時の停止 / 先頭へ戻って一時停止 / 再再生を追加しました
@@ -205,6 +205,7 @@ _2026/09/01_
 - `改善` プラグインの説明を簡潔にし, 多言語リソースの句読点を統一
 - `改善` 外部表示エントリを External Viewer に改名し, ビューアーの意味を統一
 - `改善` 更新ダイアログのリリース履歴ボタンから内蔵のリリース履歴ページを開くように変更
+- `改善` 意図しないネイティブ依存関係をビルド時に拒否し, JSON レポートを生成
 
 #### v1.4.1
 
@@ -292,3 +293,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 - AutoJs6 ドキュメント: https://docs.autojs6.com
 - Android Media3: https://developer.android.com/media/media3
 - Android の安全なファイル共有: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/docs/16kb.md)

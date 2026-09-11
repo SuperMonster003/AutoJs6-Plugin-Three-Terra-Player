@@ -193,7 +193,7 @@ required host build: 5276
 
 #### v1.5.0
 
-_2026/09/01_
+_2026/09/11_
 
 - `新增` 專輯封面現在會為播放器漸層背景, 工具列, 控制項與佇列即時產生可讀色盤; 各頁面以邊到邊方式融入狀態列, 瀏海與手勢區域
 - `新增` 播放設定新增可儲存的預設倍速, 5 / 10 / 15 / 30 秒快退快進間隔, 以及佇列播完後停止, 回到佇列開頭並暫停或自動重播的行為
@@ -205,6 +205,7 @@ _2026/09/01_
 - `優化` 精簡外掛描述並規範多語言資源中的標點符號
 - `優化` 將外部檢視入口統一命名為 External Viewer
 - `優化` 外掛更新對話框的發行歷史按鈕改為開啟內建發行歷史頁面
+- `優化` 建置階段阻止意外引入原生相依套件, 並輸出 JSON 校驗報告
 
 #### v1.4.1
 
@@ -292,3 +293,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 - AutoJs6 文件: https://docs.autojs6.com
 - Android Media3: https://developer.android.com/media/media3
 - Android 安全檔案分享: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/docs/16kb.md)

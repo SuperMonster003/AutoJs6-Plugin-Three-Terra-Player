@@ -193,7 +193,7 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 #### v1.5.0
 
-_2026/09/01_
+_2026/09/11_
 
 - `Fonctionnalité` La pochette génère désormais en direct une palette lisible pour le dégradé, la barre, les commandes et la file; les écrans s'étendent bord à bord autour des barres système, découpes et zones gestuelles
 - `Fonctionnalité` Les réglages de lecture proposent une vitesse par défaut mémorisée, des pas de recul et d'avance de 5 / 10 / 15 / 30 secondes et une action en fin de file: arrêter, revenir au début et mettre en pause ou relire
@@ -205,6 +205,7 @@ _2026/09/01_
 - `Amélioration` Simplifier la description du plugin et normaliser la ponctuation des ressources multilingues
 - `Amélioration` Renommer l'entrée de visualisation externe en External Viewer pour unifier la sémantique de la visionneuse
 - `Amélioration` Ouvrir la page intégrée de l'historique des versions depuis le bouton correspondant de la boîte de dialogue de mise à jour
+- `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 
 #### v1.4.1
 
@@ -292,3 +293,6 @@ Le code du projet est open source sous [Mozilla Public License 2.0](https://gith
 - Documentation AutoJs6: https://docs.autojs6.com
 - Android Media3: https://developer.android.com/media/media3
 - Partage sécurisé de fichiers Android: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/docs/16kb.md)

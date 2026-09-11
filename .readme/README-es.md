@@ -193,7 +193,7 @@ Las capacidades planificadas y su progreso se mantienen como una lista de casill
 
 #### v1.5.0
 
-_2026/09/01_
+_2026/09/11_
 
 - `Función` La carátula del álbum ahora genera una paleta legible en tiempo real para el degradado, la barra, los controles y la cola; las pantallas se extienden de borde a borde alrededor de barras, recortes y gestos
 - `Función` Los ajustes de reproducción incluyen velocidad predeterminada guardada, intervalos de retroceso y avance de 5 / 10 / 15 / 30 segundos y una acción al terminar la cola: detener, volver al principio y pausar o repetir
@@ -205,6 +205,7 @@ _2026/09/01_
 - `Mejora` Simplificar la descripción del complemento y normalizar la puntuación de los recursos multilingües
 - `Mejora` Renombrar la entrada de visualización externa como External Viewer para unificar la semántica del visor
 - `Mejora` Abrir la página integrada del historial de versiones desde el botón correspondiente del diálogo de actualización
+- `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 
 #### v1.4.1
 
@@ -292,3 +293,6 @@ El código del proyecto es de código abierto bajo la [Mozilla Public License 2.
 - Documentación de AutoJs6: https://docs.autojs6.com
 - Android Media3: https://developer.android.com/media/media3
 - Uso compartido seguro de archivos en Android: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/docs/16kb.md)

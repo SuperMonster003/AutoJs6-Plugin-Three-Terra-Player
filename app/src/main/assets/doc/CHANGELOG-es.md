@@ -6,7 +6,7 @@
 
 # v1.5.0
 
-###### 2026/09/01
+###### 2026/09/11
 
 * `Función` La carátula del álbum ahora genera una paleta legible en tiempo real para el degradado, la barra, los controles y la cola; las pantallas se extienden de borde a borde alrededor de barras, recortes y gestos
 * `Función` Los ajustes de reproducción incluyen velocidad predeterminada guardada, intervalos de retroceso y avance de 5 / 10 / 15 / 30 segundos y una acción al terminar la cola: detener, volver al principio y pausar o repetir
@@ -18,6 +18,7 @@
 * `Mejora` Simplificar la descripción del complemento y normalizar la puntuación de los recursos multilingües
 * `Mejora` Renombrar la entrada de visualización externa como External Viewer para unificar la semántica del visor
 * `Mejora` Abrir la página integrada del historial de versiones desde el botón correspondiente del diálogo de actualización
+* `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 
 # v1.4.1
 

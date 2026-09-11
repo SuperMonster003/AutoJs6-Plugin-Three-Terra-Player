@@ -6,7 +6,7 @@
 
 # v1.5.0
 
-###### 2026/09/01
+###### 2026/09/11
 
 * `Added` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
 * `Added` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
@@ -18,6 +18,7 @@
 * `Improved` Refine the plugin description and normalize punctuation in multilingual resources
 * `Improved` Rename the external viewing entry to External Viewer for consistent viewer semantics
 * `Improved` Open the built-in release history page from the release history button in the update dialog
+* `Improved` Build verification rejects accidental native dependencies and produces a JSON report
 
 # v1.4.1
 

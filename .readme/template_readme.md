@@ -200,3 +200,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 - {{ text_link_autojs6_docs }}: {{ docs_autojs6_url }}
 - {{ text_link_android_media3 }}: https://developer.android.com/media/media3
 - {{ text_link_android_secure_file_sharing }}: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/blob/master/docs/16kb.md)
