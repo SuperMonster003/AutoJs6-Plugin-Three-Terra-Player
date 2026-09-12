@@ -521,7 +521,7 @@ class AudioPlaybackService : MediaSessionService() {
         resolved: ResolvedAudioMetadata,
     ): MediaMetadata {
         val builder = MediaMetadata.Builder()
-            .setTitle(sanitizedTag(resolved.title) ?: track.displayName)
+            .setTitle(if (track.preferDisplayName) track.displayName else sanitizedTag(resolved.title) ?: track.displayName)
             .setIsPlayable(true)
         sanitizedTag(resolved.artist)?.let(builder::setArtist)
         sanitizedTag(resolved.album)?.let(builder::setAlbumTitle)

@@ -155,4 +155,11 @@
     <string name="ab_start_set_hint">Punto A fijado en %1$s. Toca A-B de nuevo en el punto final o mantén pulsado para cancelar.</string>
     <string name="ab_loop_started">Bucle A-B iniciado: %1$s–%2$s. Toca de nuevo para borrarlo.</string>
     <string name="ab_loop_cleared">Bucle A-B borrado</string>
+    <string name="playlist_folder_title">Abrir carpeta de la lista</string>
+    <string name="playlist_folder_message">Selecciona la carpeta que contiene esta lista para leer los medios referenciados. Solo se pueden reproducir archivos dentro de esa carpeta.</string>
+    <string name="playlist_invalid">No se puede leer esta lista. Comprueba el formato o ábrela en el reproductor independiente para elegir su carpeta.</string>
+    <string name="playlist_empty">No hay medios accesibles y compatibles. Desde AutoJs6 solo se admiten archivos de la misma carpeta; no se admiten direcciones de red ni listas anidadas.</string>
+    <string name="playlist_too_large">La lista supera el límite de tamaño o de entradas.</string>
+    <string name="playlist_hls_unsupported">Este archivo es un manifiesto HLS. Las listas locales no admiten flujos HLS.</string>
+    <string name="playlist_skipped">%1$d elementos cargados; %2$d entradas inaccesibles, incompatibles o excedentes omitidas.</string>
 </resources>

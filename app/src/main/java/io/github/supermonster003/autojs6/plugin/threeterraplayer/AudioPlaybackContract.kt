@@ -20,6 +20,7 @@ internal data class AudioTrackRequest(
     val mimeType: String,
     val displayName: String,
     val hostRelativePath: String? = null,
+    val preferDisplayName: Boolean = false,
 )
 
 internal data class AudioPlaybackRequest(
@@ -42,7 +43,8 @@ internal data class AudioPlaybackRequest(
             require(tracks.all { it.hostRelativePath != null })
             // The empty route identifies the originally selected, directly granted target.
             // It is independent of the item that is currently active after queue navigation.
-            require(tracks.count { it.hostRelativePath == "" } == 1)
+            // A playlist queue contains only sibling routes; the input document is not media.
+            require(tracks.count { it.hostRelativePath == "" } <= 1)
         }
     }
 
@@ -80,6 +82,8 @@ internal object AudioPlaybackContract {
         "io.github.supermonster003.autojs6.plugin.threeterraplayer.extra.TRACK_DISPLAY_NAMES"
     private const val EXTRA_START_INDEX =
         "io.github.supermonster003.autojs6.plugin.threeterraplayer.extra.START_INDEX"
+    private const val EXTRA_PREFER_DISPLAY_NAMES =
+        "io.github.supermonster003.autojs6.plugin.threeterraplayer.extra.PREFER_DISPLAY_NAMES"
     private const val EXTRA_HOST_REQUEST =
         "io.github.supermonster003.autojs6.plugin.threeterraplayer.extra.HOST_REQUEST"
     private const val HOST_TARGET_ID = "targetId"
@@ -131,6 +135,8 @@ internal object AudioPlaybackContract {
         val displayNames = intent.getStringArrayListExtra(EXTRA_TRACK_DISPLAY_NAMES)
             ?.takeIf { it.size == count }
             ?: return null
+        val preferDisplayNames = intent.getBooleanArrayExtra(EXTRA_PREFER_DISPLAY_NAMES) ?: BooleanArray(count)
+        if (preferDisplayNames.size != count) return null
         val startIndex = intent.getIntExtra(EXTRA_START_INDEX, -1)
             .takeIf { it in 0 until count }
             ?: return null
@@ -172,9 +178,8 @@ internal object AudioPlaybackContract {
                 ?.takeIf(MimeTypePolicy::isAudio)
                 ?: return null
             val displayName = DisplayNamePolicy.sanitizeIncoming(displayNames[index]) ?: return null
-            AudioTrackRequest(uri, mimeType, displayName, relativePath)
+            AudioTrackRequest(uri, mimeType, displayName, relativePath, preferDisplayNames[index])
         }
-        if (tracks.map { it.uri }.toSet().size != tracks.size) return null
         val currentTrack = tracks[startIndex]
         if (intent.data != currentTrack.uri) return null
         if (MimeTypePolicy.normalize(intent.type) != currentTrack.mimeType) return null
@@ -210,11 +215,11 @@ internal object AudioPlaybackContract {
                 mimeType = payload.mimeType,
                 displayName = requireNotNull(payload.displayName),
                 hostRelativePath = track.hostRelativePath,
+                preferDisplayName = track.preferDisplayName,
             )
         }
         require(tracks.size in 1..ExplorerQueuePolicy.MAX_TARGETS)
         require(request.startIndex in tracks.indices)
-        require(tracks.map { it.uri }.toSet().size == tracks.size)
 
         val currentTrack = tracks[request.startIndex]
         setDataAndType(currentTrack.uri, currentTrack.mimeType)
@@ -224,6 +229,7 @@ internal object AudioPlaybackContract {
         putStringArrayListExtra(EXTRA_TRACK_MIME_TYPES, ArrayList(tracks.map { it.mimeType }))
         putStringArrayListExtra(EXTRA_TRACK_DISPLAY_NAMES, ArrayList(tracks.map { it.displayName }))
         putExtra(EXTRA_START_INDEX, request.startIndex)
+        putExtra(EXTRA_PREFER_DISPLAY_NAMES, tracks.map { it.preferDisplayName }.toBooleanArray())
         request.hostSession?.let { session ->
             putExtra(
                 EXTRA_HOST_REQUEST,

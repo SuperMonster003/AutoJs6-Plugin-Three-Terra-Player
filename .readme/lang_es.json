@@ -9,6 +9,7 @@
   "p_introduction_how": "Tras la instalación, AutoJs6 descubre el complemento automáticamente, sin configuración alguna. La reproducción se basa en Media3 (ExoPlayer), el marco multimedia oficial de Android, con reproducción en segundo plano y controles en la notificación multimedia del sistema; el acceso a los archivos de audio es estrictamente de solo lectura, no se solicita permiso de almacenamiento y los archivos originales nunca se modifican ni se eliminan.",
   "h3_features": "Funciones destacadas",
   "features": [
+    "Listas locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservan orden, títulos y duplicados. AutoJs6 lee archivos de la misma carpeta; el reproductor independiente pide la carpeta para rutas relativas. Una lista a la vez, hasta 128 elementos. No se admiten URL de red, HLS ni listas anidadas.",
     "Reproducción con un toque en el gestor de archivos: toca cualquier archivo de audio en el gestor de archivos de AutoJs6 para empezar a reproducirlo.",
     "Reproducción continua de la misma carpeta: al abrir una pista se descubren los demás audios de la carpeta y se ponen en cola por orden natural de nombre de archivo (hasta {{ max_queue_size }} pistas, empezando por la seleccionada).",
     "Cola por selección múltiple: marca hasta {{ max_queue_size }} archivos de audio en el gestor de archivos y reprodúcelos exactamente en el orden en que los marcaste.",

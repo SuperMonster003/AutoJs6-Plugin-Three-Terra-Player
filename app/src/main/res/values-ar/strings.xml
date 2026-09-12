@@ -173,4 +173,11 @@
     <string name="ab_start_set_hint">تم تعيين النقطة A عند %1$s. اضغط A-B مجددا عند نقطة النهاية أو اضغط مطولا للإلغاء.</string>
     <string name="ab_loop_started">بدأ تكرار A-B: ‏%1$s–%2$s. اضغط مجددا لمسحه.</string>
     <string name="ab_loop_cleared">تم مسح تكرار A-B</string>
+    <string name="playlist_folder_title">فتح مجلد قائمة التشغيل</string>
+    <string name="playlist_folder_message">اختر المجلد الذي يحتوي على قائمة التشغيل لقراءة الوسائط المشار إليها. يمكن تشغيل الملفات الموجودة داخل المجلد المحدد فقط.</string>
+    <string name="playlist_invalid">تعذرت قراءة قائمة التشغيل. تحقق من التنسيق أو افتحها من المشغل المستقل لاختيار مجلد الوسائط.</string>
+    <string name="playlist_empty">لا توجد وسائط مدعومة يمكن الوصول إليها. يدعم المضيف ملفات المجلد نفسه فقط؛ ولا يدعم عناوين الشبكة أو قوائم التشغيل المتداخلة.</string>
+    <string name="playlist_too_large">تتجاوز قائمة التشغيل حد الحجم أو عدد العناصر.</string>
+    <string name="playlist_hls_unsupported">هذا ملف بيان HLS. لا تدعم قوائم التشغيل المحلية تدفقات HLS.</string>
+    <string name="playlist_skipped">تم تحميل %1$d من العناصر؛ وتم تخطي %2$d من العناصر غير المتاحة أو غير المدعومة أو الزائدة.</string>
 </resources>

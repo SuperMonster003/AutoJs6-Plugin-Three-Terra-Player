@@ -143,4 +143,11 @@
     <string name="ab_start_set_hint">A 点を %1$s に設定しました.終点で A-B をもう一度タップするか, 長押しして解除してください.</string>
     <string name="ab_loop_started">A-B リピートを開始しました: %1$s–%2$s.もう一度タップすると解除します.</string>
     <string name="ab_loop_cleared">A-B リピートを解除しました</string>
+    <string name="playlist_folder_title">プレイリストのフォルダーを開く</string>
+    <string name="playlist_folder_message">参照先のメディアを読むため、このプレイリストを含むフォルダーを選択してください。選択したフォルダー内のファイルのみ再生できます。</string>
+    <string name="playlist_invalid">プレイリストを読めません。形式を確認するか、単独のプレーヤーから開いてメディアのフォルダーを選択してください。</string>
+    <string name="playlist_empty">アクセス可能な対応メディアがありません。ホストからは同じフォルダー内のファイルのみ利用でき、ネットワークアドレスと入れ子のプレイリストには対応していません。</string>
+    <string name="playlist_too_large">プレイリストのサイズまたは項目数が上限を超えています。</string>
+    <string name="playlist_hls_unsupported">これは HLS マニフェストです。ローカルのプレイリスト機能は HLS ストリームに対応していません。</string>
+    <string name="playlist_skipped">%1$d 件を読み込み、アクセス不可、未対応、または上限超過の %2$d 件をスキップしました。</string>
 </resources>

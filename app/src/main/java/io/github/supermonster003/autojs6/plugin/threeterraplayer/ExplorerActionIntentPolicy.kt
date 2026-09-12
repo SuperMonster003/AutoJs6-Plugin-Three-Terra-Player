@@ -172,7 +172,7 @@ internal object ExplorerActionIntentPolicy {
             ) {
                 reject(ExplorerRequestRejection.TARGET_KIND)
             }
-            val mimeType = AudioMimePolicy.resolve(
+            val mimeType = AudioMimePolicy.resolveInput(
                 target.getString(ExplorerActionTargetKeys.MIME_TYPE),
                 displayName,
             ) ?: reject(ExplorerRequestRejection.TARGET_MIME_TYPE)
@@ -225,7 +225,7 @@ internal object ExplorerActionIntentPolicy {
 
     private fun normalizeEnvelopeMimeType(value: String?, targets: List<ExplorerAudioTarget>): String? =
         if (targets.size == 1) {
-            AudioMimePolicy.resolve(value, targets.single().track.displayName)
+            AudioMimePolicy.resolveInput(value, targets.single().track.displayName)
         } else {
             value?.takeIf { it == MULTIPLE_TARGET_MIME_TYPE }
         }

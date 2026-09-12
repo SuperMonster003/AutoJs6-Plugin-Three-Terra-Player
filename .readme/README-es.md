@@ -52,6 +52,7 @@ Tras la instalación, AutoJs6 descubre el complemento automáticamente, sin conf
 
 ******
 
+- Listas locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservan orden, títulos y duplicados. AutoJs6 lee archivos de la misma carpeta; el reproductor independiente pide la carpeta para rutas relativas. Una lista a la vez, hasta 128 elementos. No se admiten URL de red, HLS ni listas anidadas.
 - Reproducción con un toque en el gestor de archivos: toca cualquier archivo de audio en el gestor de archivos de AutoJs6 para empezar a reproducirlo.
 - Reproducción continua de la misma carpeta: al abrir una pista se descubren los demás audios de la carpeta y se ponen en cola por orden natural de nombre de archivo (hasta 128 pistas, empezando por la seleccionada).
 - Cola por selección múltiple: marca hasta 128 archivos de audio en el gestor de archivos y reprodúcelos exactamente en el orden en que los marcaste.
@@ -193,8 +194,9 @@ Las capacidades planificadas y su progreso se mantienen como una lista de casill
 
 #### v1.5.0
 
-_2026/09/11_
+_2026/09/12_
 
+- `Función` Listas locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservan orden, títulos y duplicados. AutoJs6 lee archivos de la misma carpeta; el reproductor independiente pide la carpeta para rutas relativas. Una lista a la vez, hasta 128 elementos. No se admiten URL de red, HLS ni listas anidadas
 - `Función` La carátula del álbum ahora genera una paleta legible en tiempo real para el degradado, la barra, los controles y la cola; las pantallas se extienden de borde a borde alrededor de barras, recortes y gestos
 - `Función` Los ajustes de reproducción incluyen velocidad predeterminada guardada, intervalos de retroceso y avance de 5 / 10 / 15 / 30 segundos y una acción al terminar la cola: detener, volver al principio y pausar o repetir
 - `Función` Se añadieron transiciones discretas para reproducción / pausa y carátulas, además de respuesta háptica para acciones clave que respeta el sistema; al desactivar las animaciones, los estados cambian directamente

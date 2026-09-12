@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.AudioMimePolicy
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser
 import org.autojs.plugin.common.api.PluginCapabilityKeys
 import org.autojs.plugin.common.api.PluginInfo
 import org.autojs.plugin.explorer.api.ExplorerActionCapabilityKeys
@@ -106,10 +107,10 @@ private fun audioPlayerAction(
     if (readSiblings) putBoolean(ExplorerActionCatalogKeys.READ_SIBLINGS, true)
     putStringArrayList(
         ExplorerActionCatalogKeys.MIME_TYPES,
-        ArrayList(ThreeTerraPlayerPlugin.MIME_TYPES.asList()),
+        ArrayList(ThreeTerraPlayerPlugin.MIME_TYPES.asList() + if (readSiblings) PlaylistParser.mimeTypes.asList() else emptyList()),
     )
     putStringArrayList(
         ExplorerActionCatalogKeys.EXTENSIONS,
-        ArrayList(ThreeTerraPlayerPlugin.EXTENSIONS.asList()),
+        ArrayList(ThreeTerraPlayerPlugin.EXTENSIONS.asList() + if (readSiblings) PlaylistParser.extensions.asList() else emptyList()),
     )
 }

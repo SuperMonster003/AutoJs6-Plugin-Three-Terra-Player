@@ -143,4 +143,11 @@
     <string name="ab_start_set_hint">A 지점을 %1$s에 설정했습니다. 끝 지점에서 A-B를 다시 누르거나 길게 눌러 취소하세요.</string>
     <string name="ab_loop_started">A-B 반복을 시작했습니다: %1$s–%2$s. 다시 누르면 해제됩니다.</string>
     <string name="ab_loop_cleared">A-B 반복을 해제했습니다</string>
+    <string name="playlist_folder_title">재생 목록 폴더 열기</string>
+    <string name="playlist_folder_message">참조된 미디어를 읽으려면 이 재생 목록이 있는 폴더를 선택하세요. 선택한 폴더 안의 파일만 재생할 수 있습니다.</string>
+    <string name="playlist_invalid">재생 목록을 읽을 수 없습니다. 형식을 확인하거나 독립 플레이어에서 열어 미디어 폴더를 선택하세요.</string>
+    <string name="playlist_empty">접근 가능한 지원 미디어가 없습니다. 호스트에서는 같은 폴더의 파일만 지원하며 네트워크 주소와 중첩 재생 목록은 지원하지 않습니다.</string>
+    <string name="playlist_too_large">재생 목록이 파일 크기 또는 항목 수 제한을 초과했습니다.</string>
+    <string name="playlist_hls_unsupported">HLS 매니페스트입니다. 로컬 재생 목록 기능은 HLS 스트림을 지원하지 않습니다.</string>
+    <string name="playlist_skipped">%1$d개 항목을 불러왔습니다. 접근 불가, 미지원 또는 제한 초과 항목 %2$d개를 건너뛰었습니다.</string>
 </resources>

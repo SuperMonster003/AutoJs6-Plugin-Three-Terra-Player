@@ -74,7 +74,9 @@ class PluginContractInstrumentationTest {
                 action.getInt(ExplorerActionCatalogKeys.ACCESS_MODE),
             )
             assertEquals(
-                listOf("audio/*"),
+                listOf("audio/*") + if (action.getBoolean(ExplorerActionCatalogKeys.READ_SIBLINGS)) {
+                    io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser.mimeTypes.asList()
+                } else emptyList(),
                 action.getStringArrayList(ExplorerActionCatalogKeys.MIME_TYPES),
             )
             assertTrue(
@@ -195,6 +197,33 @@ class PluginContractInstrumentationTest {
             addItem(ClipData.Item(AudioPlaybackContract.hostAudioUri(99)))
         }
         assertNull(AudioPlaybackContract.resolvePlayerIntent(intent))
+    }
+
+    @Test
+    fun playlistRoundTripsWithoutPuttingTheInputDocumentInTheQueue() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val request = AudioPlaybackRequest(
+            tracks = List(2) { index ->
+                AudioTrackRequest(AudioPlaybackContract.hostAudioUri(index), "audio/mpeg", "Same title", "track.mp3", preferDisplayName = true)
+            },
+            hostSession = TestHostSession(),
+            hostTargetId = "playlist-target",
+        )
+        val resolved = requireNotNull(AudioPlaybackContract.resolvePlayerIntent(AudioPlaybackContract.playerIntent(context, request, true)))
+        assertEquals(listOf("track.mp3", "track.mp3"), resolved.tracks.map { it.hostRelativePath })
+        assertEquals(listOf("Same title", "Same title"), resolved.tracks.map { it.displayName })
+        assertTrue(resolved.tracks.all { it.preferDisplayName })
+        assertTrue(resolved.tracks.none { it.hostRelativePath == "" })
+        assertNotNull(AudioPlaybackContract.resolveServiceIntent(AudioPlaybackContract.serviceIntent(context, resolved)))
+    }
+
+    @Test
+    fun documentPlaylistPreservesRepeatedContentUris() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val track = AudioTrackRequest(Uri.parse("content://test/music/song.mp3"), "audio/mpeg", "Repeated")
+        val request = AudioPlaybackRequest(listOf(track, track))
+        val resolved = requireNotNull(AudioPlaybackContract.resolvePlayerIntent(AudioPlaybackContract.playerIntent(context, request, true)))
+        assertEquals(request.tracks, resolved.tracks)
     }
 
     private class TestHostSession : IExplorerActionHostSession.Stub() {

@@ -143,4 +143,11 @@
     <string name="ab_start_set_hint">A 點已設為 %1$s. 請在結束位置再次按 A-B; 長按可取消.</string>
     <string name="ab_loop_started">A-B 循環已開始: %1$s–%2$s. 再次按下即可清除.</string>
     <string name="ab_loop_cleared">A-B 循環已清除</string>
+    <string name="playlist_folder_title">開啟播放清單資料夾</string>
+    <string name="playlist_folder_message">請選擇此播放清單所在的資料夾，以讀取它引用的媒體。只能播放所選資料夾範圍內的檔案。</string>
+    <string name="playlist_invalid">無法讀取播放清單。請檢查格式，或從獨立播放器開啟以選擇媒體資料夾。</string>
+    <string name="playlist_empty">播放清單沒有可存取且支援的媒體。宿主入口僅支援同目錄檔案；不支援網絡位址和巢狀播放清單。</string>
+    <string name="playlist_too_large">播放清單超過檔案大小或項目數量限制。</string>
+    <string name="playlist_hls_unsupported">這是 HLS 串流清單。本機播放清單功能不支援 HLS 串流。</string>
+    <string name="playlist_skipped">已載入 %1$d 項；略過 %2$d 項無法存取、不支援或超出數量限制的項目。</string>
 </resources>

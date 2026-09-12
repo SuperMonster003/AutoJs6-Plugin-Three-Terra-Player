@@ -52,6 +52,7 @@ After installation the plugin is discovered by AutoJs6 automatically, with zero 
 
 ******
 
+- Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported.
 - One-tap playback in the file manager: tap any audio file in the AutoJs6 file manager to start playing.
 - Same-folder auto-play: opening one track discovers the other audio files in the same folder and queues them in natural filename order (up to 128 tracks, starting from the selected one).
 - Multi-select queue: tick up to 128 audio files in the file manager and play them in exactly the order you selected.
@@ -193,8 +194,9 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 #### v1.5.0
 
-_2026/09/11_
+_2026/09/12_
 
+- `Added` Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported
 - `Added` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
 - `Added` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
 - `Added` Added compact play / pause and artwork transitions plus system-respecting haptic feedback for key playback actions; disabling system animations switches every state directly

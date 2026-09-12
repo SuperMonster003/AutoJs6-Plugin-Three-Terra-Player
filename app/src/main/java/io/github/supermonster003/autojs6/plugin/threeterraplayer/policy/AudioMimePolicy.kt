@@ -1,6 +1,7 @@
 package io.github.supermonster003.autojs6.plugin.threeterraplayer.policy
 
 import java.util.Locale
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser
 
 /**
  * Keeps the advertised audio extensions independent from Android's device-specific MimeTypeMap.
@@ -43,6 +44,11 @@ internal object AudioMimePolicy {
 
     val supportedExtensions: Array<String>
         get() = canonicalMimeByExtension.keys.toTypedArray()
+
+    fun resolveInput(declaredMimeType: String?, displayName: String): String? {
+        val normalized = normalizeDeclaredMimeType(declaredMimeType) ?: return null
+        return if (PlaylistParser.format(displayName, normalized) != null) normalized else resolve(normalized, displayName)
+    }
 
     fun isPotentialAudioMimeType(value: String?): Boolean {
         val normalized = normalizeDeclaredMimeType(value) ?: return false

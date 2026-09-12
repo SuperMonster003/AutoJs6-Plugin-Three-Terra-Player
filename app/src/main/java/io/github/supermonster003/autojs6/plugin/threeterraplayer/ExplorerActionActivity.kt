@@ -5,6 +5,12 @@ import android.os.Bundle
 import android.os.CancellationSignal
 import android.util.Log
 import android.widget.Toast
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistActivity
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistError
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistException
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistLoader
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -20,6 +26,8 @@ class ExplorerActionActivity : Activity() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val cancellationSignal = CancellationSignal()
     private var hostSession: IExplorerActionHostSession? = null
+    private var playlistFailure: Exception? = null
+    private var playlistLoaded: io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.LoadedPlaylist? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +57,15 @@ class ExplorerActionActivity : Activity() {
             if (request == null) {
                 cancellationSignal.cancel()
                 requestBuilder.cancel()
-                Toast.makeText(
+                if (playlistFailure != null) {
+                    PlaylistActivity.showError(this@ExplorerActionActivity, requireNotNull(playlistFailure))
+                } else Toast.makeText(
                     this@ExplorerActionActivity,
                     R.string.error_cannot_read_file,
                     Toast.LENGTH_LONG,
                 ).show()
             } else {
+                playlistLoaded?.let { PlaylistActivity.showSkipped(this@ExplorerActionActivity, it) }
                 runCatching {
                     startActivity(
                         AudioPlaybackContract.playerIntent(
@@ -95,6 +106,28 @@ class ExplorerActionActivity : Activity() {
 
     private fun buildPlaybackRequest(request: ExplorerAudioRequest): AudioPlaybackRequest? {
         if (!canRead(request)) return null
+        if (request.targets.any { PlaylistParser.format(it.track.displayName, it.track.mimeType) != null }) {
+            return try {
+                if (request.targets.size != 1 || request.hostSession == null) throw PlaylistException(PlaylistError.INVALID)
+                val target = request.targets.single()
+                val loaded = PlaylistLoader.host(
+                    this, PlaylistSource(target.track.uri, target.track.displayName, target.track.mimeType),
+                    request.hostSession, target.id, request.parentDisplayPath, PlaylistPlayback::mediaMime,
+                )
+                if (loaded.items.isEmpty()) throw PlaylistException(PlaylistError.EMPTY)
+                playlistLoaded = loaded
+                AudioPlaybackRequest(
+                    tracks = loaded.items.mapIndexed { index, item ->
+                        AudioTrackRequest(AudioPlaybackContract.hostAudioUri(index), item.mimeType, item.displayName, item.relativePath, preferDisplayName = true)
+                    },
+                    hostSession = request.hostSession,
+                    hostTargetId = target.id,
+                )
+            } catch (error: Exception) {
+                playlistFailure = error
+                null
+            }
+        }
         if (request.targets.size != 1 || request.hostSession == null) {
             return AudioPlaybackRequest(tracks = request.targets.map(ExplorerAudioTarget::track))
         }

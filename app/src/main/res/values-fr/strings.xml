@@ -155,4 +155,11 @@
     <string name="ab_start_set_hint">Point A défini à %1$s. Touchez de nouveau A-B au point final ou appuyez longuement pour annuler.</string>
     <string name="ab_loop_started">Boucle A-B démarrée : %1$s–%2$s. Touchez de nouveau pour l’effacer.</string>
     <string name="ab_loop_cleared">Boucle A-B effacée</string>
+    <string name="playlist_folder_title">Ouvrir le dossier de la liste</string>
+    <string name="playlist_folder_message">Sélectionnez le dossier contenant cette liste pour lire les médias référencés. Seuls les fichiers de ce dossier sont accessibles.</string>
+    <string name="playlist_invalid">Impossible de lire cette liste. Vérifiez le format ou ouvrez-la dans le lecteur autonome pour choisir son dossier.</string>
+    <string name="playlist_empty">Aucun média accessible et pris en charge. Depuis AutoJs6, seuls les fichiers du même dossier sont disponibles ; les adresses réseau et les listes imbriquées ne sont pas prises en charge.</string>
+    <string name="playlist_too_large">La liste dépasse la limite de taille ou de nombre d’entrées.</string>
+    <string name="playlist_hls_unsupported">Ce fichier est un manifeste HLS. Les listes locales ne prennent pas en charge les flux HLS.</string>
+    <string name="playlist_skipped">%1$d éléments chargés ; %2$d entrées indisponibles, non prises en charge ou en excès ignorées.</string>
 </resources>

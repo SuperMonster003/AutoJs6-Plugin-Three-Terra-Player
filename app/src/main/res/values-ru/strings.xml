@@ -161,4 +161,11 @@
     <string name="ab_start_set_hint">Точка A установлена на %1$s. Нажмите A-B ещё раз в конечной точке или удерживайте для отмены.</string>
     <string name="ab_loop_started">Цикл A-B запущен: %1$s–%2$s. Нажмите ещё раз, чтобы очистить.</string>
     <string name="ab_loop_cleared">Цикл A-B очищен</string>
+    <string name="playlist_folder_title">Открыть папку плейлиста</string>
+    <string name="playlist_folder_message">Выберите папку с этим плейлистом для чтения указанных медиафайлов. Доступны только файлы внутри выбранной папки.</string>
+    <string name="playlist_invalid">Не удалось прочитать плейлист. Проверьте формат или откройте его в отдельном плеере и выберите папку с файлами.</string>
+    <string name="playlist_empty">Нет доступных поддерживаемых файлов. При открытии из AutoJs6 доступны только файлы той же папки; сетевые адреса и вложенные плейлисты не поддерживаются.</string>
+    <string name="playlist_too_large">Плейлист превышает ограничение размера или числа записей.</string>
+    <string name="playlist_hls_unsupported">Это манифест HLS. Локальные плейлисты не поддерживают потоки HLS.</string>
+    <string name="playlist_skipped">Загружено: %1$d; пропущено недоступных, неподдерживаемых или лишних записей: %2$d.</string>
 </resources>

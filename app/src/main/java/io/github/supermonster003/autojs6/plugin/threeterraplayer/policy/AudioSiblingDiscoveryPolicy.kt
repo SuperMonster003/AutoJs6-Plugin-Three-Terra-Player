@@ -1,6 +1,7 @@
 package io.github.supermonster003.autojs6.plugin.threeterraplayer.policy
 
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.ThreeTerraPlayerPlugin
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser
 import java.util.Locale
 
 internal data class AudioSiblingItem(
@@ -39,6 +40,7 @@ internal object AudioSiblingDiscoveryPolicy {
             .filter { it.kind == TARGET_KIND_FILE && it.readable && !it.symbolicLink }
             .filter { it.relativePath == it.displayName && isSafeName(it.displayName) }
             .filter { extension(it.displayName) in ThreeTerraPlayerPlugin.EXTENSIONS }
+            .filter { PlaylistParser.format(it.displayName, it.mimeType) == null }
             .distinctBy(AudioSiblingItem::relativePath)
             .associate { sibling ->
                 sibling.displayName to DiscoveredAudioTrack(

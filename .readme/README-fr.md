@@ -52,6 +52,7 @@ Une fois installé, le plugin est détecté automatiquement par AutoJs6, sans au
 
 ******
 
+- Listes locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservent ordre, titres et doublons. Depuis AutoJs6, les fichiers doivent être dans le même dossier; le lecteur autonome demande le dossier pour les chemins relatifs. Une liste à la fois, 128 éléments maximum. URL réseau, HLS et listes imbriquées non pris en charge.
 - Lecture en un appui depuis le gestionnaire de fichiers: touchez n'importe quel fichier audio dans le gestionnaire de fichiers AutoJs6 pour lancer la lecture.
 - Enchaînement automatique dans le même dossier: à l'ouverture d'un titre, les autres fichiers audio du dossier sont détectés et lus à la suite dans l'ordre naturel des noms de fichiers (jusqu'à 128 titres, à partir du titre choisi).
 - File multisélection: cochez jusqu'à 128 fichiers audio dans le gestionnaire de fichiers et lisez-les d'un seul appui, exactement dans l'ordre de sélection.
@@ -193,8 +194,9 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 #### v1.5.0
 
-_2026/09/11_
+_2026/09/12_
 
+- `Fonctionnalité` Listes locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservent ordre, titres et doublons. Depuis AutoJs6, les fichiers doivent être dans le même dossier; le lecteur autonome demande le dossier pour les chemins relatifs. Une liste à la fois, 128 éléments maximum. URL réseau, HLS et listes imbriquées non pris en charge
 - `Fonctionnalité` La pochette génère désormais en direct une palette lisible pour le dégradé, la barre, les commandes et la file; les écrans s'étendent bord à bord autour des barres système, découpes et zones gestuelles
 - `Fonctionnalité` Les réglages de lecture proposent une vitesse par défaut mémorisée, des pas de recul et d'avance de 5 / 10 / 15 / 30 secondes et une action en fin de file: arrêter, revenir au début et mettre en pause ou relire
 - `Fonctionnalité` Ajout de transitions discrètes pour lecture / pause et les pochettes, ainsi que de retours haptiques conformes au système pour les actions clés; si les animations système sont coupées, les états changent directement

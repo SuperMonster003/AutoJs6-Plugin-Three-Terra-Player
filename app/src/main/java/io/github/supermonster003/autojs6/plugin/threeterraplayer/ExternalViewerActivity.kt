@@ -6,6 +6,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.CancellationSignal
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistActivity
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistLoader
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.AudioMimePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.IntentFlagPolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.MimeTypePolicy
@@ -32,15 +35,18 @@ class ExternalViewerActivity : Activity() {
         val incoming = intent
         val uri = validateExternalEnvelope(incoming)
         val mimeType = MimeTypePolicy.normalize(incoming.type)
-            ?.takeIf(AudioMimePolicy::isPotentialAudioMimeType)
+            ?.takeIf { AudioMimePolicy.isPotentialAudioMimeType(it) || PlaylistParser.format("", it) != null }
         if (uri == null || mimeType == null) {
             finish()
             return
         }
 
         val resolution = scope.async(Dispatchers.IO) {
-            ContentAudioRequestResolver.resolve(this@ExternalViewerActivity, uri, mimeType, cancellationSignal)
-                ?.let { track -> AudioPlaybackRequest(listOf(track)) }
+            val source = PlaylistLoader.source(this@ExternalViewerActivity, uri, mimeType)
+            if (PlaylistParser.format(source.displayName, source.mimeType) != null) {
+                PlaylistActivity.intent(this@ExternalViewerActivity, source)
+            } else ContentAudioRequestResolver.resolve(this@ExternalViewerActivity, uri, mimeType, cancellationSignal)
+                ?.let { track -> AudioPlaybackContract.playerIntent(this@ExternalViewerActivity, AudioPlaybackRequest(listOf(track)), true) }
         }
         scope.launch {
             val request = withTimeoutOrNull(URI_RESOLUTION_TIMEOUT_MILLIS) { resolution.await() }
@@ -49,7 +55,7 @@ class ExternalViewerActivity : Activity() {
                 resolution.cancel()
             } else {
                 runCatching {
-                    startActivity(AudioPlaybackContract.playerIntent(this@ExternalViewerActivity, request, true))
+                    startActivity(request)
                 }
             }
             finish()

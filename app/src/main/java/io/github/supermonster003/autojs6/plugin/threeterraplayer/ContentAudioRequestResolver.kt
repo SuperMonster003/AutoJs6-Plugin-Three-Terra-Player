@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.CancellationSignal
 import android.provider.OpenableColumns
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.AudioMimePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.DisplayNamePolicy
 
@@ -26,6 +27,7 @@ internal object ContentAudioRequestResolver {
 
         val displayName = resolveDisplayName(context, resolver, uri, signal)
         val resolverMimeType = runCatching { resolver.getType(uri) }.getOrNull()
+        if (PlaylistParser.format(displayName, resolverMimeType ?: declaredMimeType) != null) return null
         val mimeType = sequenceOf(resolverMimeType, declaredMimeType, "*/*")
             .mapNotNull { candidate -> AudioMimePolicy.resolve(candidate, displayName) }
             .firstOrNull()

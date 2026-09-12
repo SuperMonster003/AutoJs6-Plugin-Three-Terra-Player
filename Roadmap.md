@@ -125,3 +125,7 @@
 - [ ] `:app:assembleDebug` 构建通过并抽样安装验证
 - [ ] `:app:appendDigestToReleasedFiles` 产出带摘要签名 APK 至 `releases/`
 - [ ] Roadmap 勾选已完成项并更新里程碑状态
+
+## 本地播放列表
+
+- [x] 本地播放列表解析: 支持 M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL; 宿主沿用同目录只读会话, 独立入口由用户选择列表目录. 详见 [Playlists.md](docs/Playlists.md).

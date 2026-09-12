@@ -8,6 +8,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistActivity
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistLoader
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.playlist.PlaylistParser
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivityLauncherBinding
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.policy.ExplorerQueuePolicy
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppPreferenceStore
@@ -56,6 +59,16 @@ class LauncherActivity : AudioThemedActivity() {
         resolvingFiles = true
         renderLoading()
         lifecycleScope.launch {
+            val playlist = withContext(Dispatchers.IO) {
+                uris.singleOrNull()?.let { PlaylistLoader.source(this@LauncherActivity, it) }
+                    ?.takeIf { PlaylistParser.format(it.displayName, it.mimeType) != null }
+            }
+            if (playlist != null) {
+                resolvingFiles = false
+                renderLoading()
+                startActivity(PlaylistActivity.intent(this@LauncherActivity, playlist))
+                return@launch
+            }
             val tracks = withContext(Dispatchers.IO) {
                 uris.mapNotNull { uri -> ContentAudioRequestResolver.resolve(this@LauncherActivity, uri) }
             }
@@ -138,7 +151,8 @@ class LauncherActivity : AudioThemedActivity() {
             "application/x-ms-wma",
             "application/vnd.ms-wma",
             "video/x-ms-asf",
-        )
+            "text/plain", "application/octet-stream",
+        ) + PlaylistParser.mimeTypes
         const val RIPPLE_ALPHA = 0x24
     }
 }

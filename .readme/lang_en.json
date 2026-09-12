@@ -9,6 +9,7 @@
   "p_introduction_how": "After installation the plugin is discovered by AutoJs6 automatically, with zero configuration. Playback is powered by Media3 (ExoPlayer), the official Android media framework, with background playback and system media notification controls; audio files are accessed strictly read-only, no storage permission is requested, and source files are never modified or deleted.",
   "h3_features": "Feature Highlights",
   "features": [
+    "Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported.",
     "One-tap playback in the file manager: tap any audio file in the AutoJs6 file manager to start playing.",
     "Same-folder auto-play: opening one track discovers the other audio files in the same folder and queues them in natural filename order (up to {{ max_queue_size }} tracks, starting from the selected one).",
     "Multi-select queue: tick up to {{ max_queue_size }} audio files in the file manager and play them in exactly the order you selected.",
