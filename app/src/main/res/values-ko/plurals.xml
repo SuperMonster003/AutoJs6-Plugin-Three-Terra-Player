@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="other">%1$d초 되감기</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="other">%1$d초 빨리 감기</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="other">%1$d초</item>
+    </plurals>
+    <plurals name="timer_minutes">
+        <item quantity="other">%1$d분</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="other">취침 타이머: %1$d분 남음</item>
+    </plurals>
+    <plurals name="queue_track_count">
+        <item quantity="other">%1$d개 트랙</item>
+    </plurals>
+    <plurals name="ignored_update_count"><item quantity="other">무시한 버전 %1$d개</item></plurals>
+</resources>

@@ -9,7 +9,7 @@ import org.autojs.plugin.common.api.IPluginInfoProvider
 class PluginInfoService : Service() {
 
     private val binder = object : IPluginInfoProvider.Stub() {
-        override fun getInfo() = threeTerraPlayerPluginInfo()
+        override fun getInfo() = threeTerraPlayerPluginInfo().apply { supportedAbis = emptyArray() }
     }
 
     override fun onBind(intent: Intent?): IBinder = binder

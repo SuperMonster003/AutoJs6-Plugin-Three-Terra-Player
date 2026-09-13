@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="other">快退 %1$d 秒</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="other">快進 %1$d 秒</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="other">%1$d 秒</item>
+    </plurals>
+    <plurals name="timer_minutes">
+        <item quantity="other">%1$d 分鐘</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="other">睡眠計時器: 尚餘 %1$d 分鐘</item>
+    </plurals>
+    <plurals name="queue_track_count">
+        <item quantity="other">%1$d 首</item>
+    </plurals>
+    <plurals name="ignored_update_count"><item quantity="other">已忽略 %1$d 個版本</item></plurals>
+</resources>

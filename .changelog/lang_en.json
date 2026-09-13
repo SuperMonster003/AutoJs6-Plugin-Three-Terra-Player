@@ -1,14 +1,25 @@
 {
   "changelog_label_hint": "Hint",
-  "changelog_label_feature": "Added",
-  "changelog_label_fix": "Fixed",
-  "changelog_label_improvement": "Improved",
+  "changelog_label_feature": "Feature",
+  "changelog_label_fix": "Fix",
+  "changelog_label_improvement": "Improvement",
   "changelog_label_dependency": "Dependency",
   "$data": {
+    "v1.6.0": {
+      "released_date": "2026/09/13",
+      "feature": [
+        "Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported"
+      ],
+      "fix": [
+        "Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text"
+      ],
+      "improvement": [
+        "Consistent localized resources, explicit plugin activation and validated release preparation"
+      ]
+    },
     "v1.5.0": {
       "released_date": "2026/09/12",
       "feature": [
-        "Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported",
         "Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas",
         "Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay",
         "Added compact play / pause and artwork transitions plus system-respecting haptic feedback for key playback actions; disabling system animations switches every state directly"
