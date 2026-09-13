@@ -10,6 +10,7 @@
 
 * `Feature` Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported
 * `Fix` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
+* `Fix` Keep the plugin version date in English regardless of the build machine locale
 * `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
 
 # v1.5.0

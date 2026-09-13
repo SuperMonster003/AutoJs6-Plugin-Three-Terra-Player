@@ -10,6 +10,7 @@
 
 * `Fonctionnalité` Listes locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservent ordre, titres et doublons. Depuis AutoJs6, les fichiers doivent être dans le même dossier; le lecteur autonome demande le dossier pour les chemins relatifs. Une liste à la fois, 128 éléments maximum. URL réseau, HLS et listes imbriquées non pris en charge
 * `Correctif` Les choix des boîtes de dialogue de langue et de mode nuit utilisent désormais Material Body1 en 16sp au lieu du texte de liste système surdimensionné
+* `Correctif` Conserver la date de version du plugin en anglais quelle que soit la langue de la machine de compilation
 * `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
 
 # v1.5.0
