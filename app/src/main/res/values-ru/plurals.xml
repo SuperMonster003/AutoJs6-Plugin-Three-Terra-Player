@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="one">Назад на %1$d секунду</item>
+        <item quantity="few">Назад на %1$d секунды</item>
+        <item quantity="many">Назад на %1$d секунд</item>
+        <item quantity="other">Назад на %1$d секунды</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="one">Вперёд на %1$d секунду</item>
+        <item quantity="few">Вперёд на %1$d секунды</item>
+        <item quantity="many">Вперёд на %1$d секунд</item>
+        <item quantity="other">Вперёд на %1$d секунды</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="one">%1$d секунда</item>
+        <item quantity="few">%1$d секунды</item>
+        <item quantity="many">%1$d секунд</item>
+        <item quantity="other">%1$d секунды</item>
+    </plurals>
+    <plurals name="timer_minutes">
+        <item quantity="one">%1$d минута</item>
+        <item quantity="few">%1$d минуты</item>
+        <item quantity="many">%1$d минут</item>
+        <item quantity="other">%1$d минуты</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="one">Таймер сна: осталась %1$d минута</item>
+        <item quantity="few">Таймер сна: осталось %1$d минуты</item>
+        <item quantity="many">Таймер сна: осталось %1$d минут</item>
+        <item quantity="other">Таймер сна: осталось %1$d минуты</item>
+    </plurals>
+    <plurals name="queue_track_count">
+        <item quantity="one">%1$d трек</item>
+        <item quantity="few">%1$d трека</item>
+        <item quantity="many">%1$d треков</item>
+        <item quantity="other">%1$d трека</item>
+    </plurals>
+    <plurals name="ignored_update_count"><item quantity="one">Игнорируется %1$d версия</item><item quantity="few">Игнорируются %1$d версии</item><item quantity="many">Игнорируются %1$d версий</item><item quantity="other">Игнорируется %1$d версии</item></plurals>
+</resources>

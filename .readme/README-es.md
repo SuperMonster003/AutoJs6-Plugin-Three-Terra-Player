@@ -192,11 +192,18 @@ Las capacidades planificadas y su progreso se mantienen como una lista de casill
 
 ******
 
+#### v1.6.0
+
+_2026/09/13_
+
+- `Función` Listas locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservan orden, títulos y duplicados. AutoJs6 lee archivos de la misma carpeta; el reproductor independiente pide la carpeta para rutas relativas. Una lista a la vez, hasta 128 elementos. No se admiten URL de red, HLS ni listas anidadas
+- `Corrección` Las opciones de los diálogos de idioma y modo nocturno ahora usan Material Body1 a 16sp en lugar del texto de lista del sistema, demasiado grande
+- `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
+
 #### v1.5.0
 
 _2026/09/12_
 
-- `Función` Listas locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservan orden, títulos y duplicados. AutoJs6 lee archivos de la misma carpeta; el reproductor independiente pide la carpeta para rutas relativas. Una lista a la vez, hasta 128 elementos. No se admiten URL de red, HLS ni listas anidadas
 - `Función` La carátula del álbum ahora genera una paleta legible en tiempo real para el degradado, la barra, los controles y la cola; las pantallas se extienden de borde a borde alrededor de barras, recortes y gestos
 - `Función` Los ajustes de reproducción incluyen velocidad predeterminada guardada, intervalos de retroceso y avance de 5 / 10 / 15 / 30 segundos y una acción al terminar la cola: detener, volver al principio y pausar o repetir
 - `Función` Se añadieron transiciones discretas para reproducción / pausa y carátulas, además de respuesta háptica para acciones clave que respeta el sistema; al desactivar las animaciones, los estados cambian directamente
@@ -217,17 +224,6 @@ _2026/08/31_
 - `Corrección` Se corrigió el menú adicional de la esquina superior derecha del reproductor, que con algunos temas mostraba texto blanco sobre fondo blanco e impedía leer la opción Ajustes
 - `Mejora` La fuente AutoJs6 del ajuste de color del tema ahora se denomina siempre `Seguir AutoJs6`; el selector muestra directamente el valor HEX del color del host
 - `Mejora` Se completó una revisión manual básica de las diez traducciones del README, CHANGELOG e instrucciones del complemento, y se migraron los enlaces del proyecto y de actualización integrada al repositorio oficial de 3-Terra Player
-
-#### v1.4.0
-
-_2026/08/29_
-
-- `Función` Notificación multimedia del sistema renovada por completo: nuevos botones de anterior / siguiente / alternar aleatorio y salir, con el icono monocromo propio de la aplicación, y el estado de aleatorio sincronizado en tiempo real con el reproductor
-- `Corrección` Corregido que el complemento pudiera marcarse automáticamente como defectuoso y desactivarse en el centro de complementos de AutoJs6: la información del complemento y la acción del gestor de archivos ahora usan servicios independientes
-- `Corrección` Vaciar la cola de reproducción ya no deja información obsoleta: la pantalla pasa a un estado vacío explícito y los controles de reproducción, búsqueda, velocidad, temporizador y A-B se desactivan a la vez
-- `Corrección` Corregido el recorte de la sombra del botón de reproducción por la zona inferior; los botones de opción, las casillas, las barras de progreso y los botones de los diálogos de ajustes y de actualización ahora siguen el color del tema
-- `Mejora` La aplicación y el complemento pasan a llamarse oficialmente 3-Terra Player: el ID de aplicación no cambia, la actualización se instala directamente sobre la versión anterior y los ajustes existentes se conservan
-- `Mejora` El menú de la esquina superior derecha del reproductor se reduce a una sola entrada de Ajustes, eliminando el botón de paleta que duplicaba la página de ajustes
 
 ##### Para más historial de versiones, consulta
 
@@ -255,7 +251,7 @@ Compilar un APK release (se firma automáticamente una vez configurada la firma 
 
 Para archivar una publicación, ejecuta la tarea `:app:appendDigestToReleasedFiles`, que copia los APK firmados en `releases/` añadiendo al nombre del archivo la versión y un resumen CRC32.
 
-Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 36, versión actual 1.5.0.
+Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 36, versión actual 1.6.0.
 
 ******
 

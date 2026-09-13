@@ -192,42 +192,38 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 ******
 
+#### v1.6.0
+
+_2026/09/13_
+
+- `Feature` Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported
+- `Fix` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
+- `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
+
 #### v1.5.0
 
 _2026/09/12_
 
-- `Added` Local playlists: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL preserve order, titles and repeated entries. Host playback reads the same folder; standalone playback asks for the playlist folder to resolve relative paths. One list at a time, up to 128 items. Network URLs, HLS and nested playlists are not supported
-- `Added` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
-- `Added` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
-- `Added` Added compact play / pause and artwork transitions plus system-respecting haptic feedback for key playback actions; disabling system animations switches every state directly
-- `Fixed` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
-- `Improved` Artwork decoding and 64x64 color sampling run off the main thread; arbitrary cover colors retain the existing 4.5:1 text and 3:1 outline contrast gates
-- `Improved` Completed the playback visualization feasibility study and an RMS bucket prototype: platform Visualizer remains excluded because it requires recording permission, while a permission-free Media3 PCM tap is documented for future benchmark work
-- `Improved` Standardize the README layout and Gradle platform version management
-- `Improved` Refine the plugin description and normalize punctuation in multilingual resources
-- `Improved` Rename the external viewing entry to External Viewer for consistent viewer semantics
-- `Improved` Open the built-in release history page from the release history button in the update dialog
-- `Improved` Build verification rejects accidental native dependencies and produces a JSON report
+- `Feature` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
+- `Feature` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
+- `Feature` Added compact play / pause and artwork transitions plus system-respecting haptic feedback for key playback actions; disabling system animations switches every state directly
+- `Fix` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
+- `Improvement` Artwork decoding and 64x64 color sampling run off the main thread; arbitrary cover colors retain the existing 4.5:1 text and 3:1 outline contrast gates
+- `Improvement` Completed the playback visualization feasibility study and an RMS bucket prototype: platform Visualizer remains excluded because it requires recording permission, while a permission-free Media3 PCM tap is documented for future benchmark work
+- `Improvement` Standardize the README layout and Gradle platform version management
+- `Improvement` Refine the plugin description and normalize punctuation in multilingual resources
+- `Improvement` Rename the external viewing entry to External Viewer for consistent viewer semantics
+- `Improvement` Open the built-in release history page from the release history button in the update dialog
+- `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 #### v1.4.1
 
 _2026/08/31_
 
-- `Added` The standalone app now restores the last queue, current track, stopped position, repeat mode, shuffle state, and speed when reopened from the launcher; restored sessions stay paused, and only system-picker queues with durable read access are saved
-- `Fixed` Fixed the player's top-right overflow menu showing white text on a white surface under some themes, which made the Settings entry unreadable
-- `Improved` The AutoJs6 source in theme color settings is now consistently labeled `Follow AutoJs6`; the color picker shows the host color's HEX value directly
-- `Improved` Completed a basic manual review of all ten README, CHANGELOG, and plugin instruction translations, and moved project and in-app update links to the official 3-Terra Player repository
-
-#### v1.4.0
-
-_2026/08/29_
-
-- `Added` Overhauled system media notification: dedicated previous / next / shuffle toggle / exit buttons with the app's own monochrome icon, and the shuffle state stays in sync with the player
-- `Fixed` Fixed the plugin possibly being auto-marked as faulty and disabled in the AutoJs6 plugin center: plugin info and the file manager action now use separate service endpoints
-- `Fixed` Clearing the play queue no longer leaves stale info behind: the screen enters an explicit empty state, and the playback, seek, speed, timer, and A-B controls are disabled together
-- `Fixed` Fixed the play button shadow being clipped by the bottom area; radio buttons, checkboxes, progress bars, and buttons in the settings and update dialogs now follow the theme color
-- `Improved` The app and plugin are officially renamed 3-Terra Player: the application ID stays the same, so it upgrades in place and existing settings are untouched
-- `Improved` The player's top-right menu is trimmed to a single Settings entry, removing the palette button that duplicated the settings page
+- `Feature` The standalone app now restores the last queue, current track, stopped position, repeat mode, shuffle state, and speed when reopened from the launcher; restored sessions stay paused, and only system-picker queues with durable read access are saved
+- `Fix` Fixed the player's top-right overflow menu showing white text on a white surface under some themes, which made the Settings entry unreadable
+- `Improvement` The AutoJs6 source in theme color settings is now consistently labeled `Follow AutoJs6`; the color picker shows the host color's HEX value directly
+- `Improvement` Completed a basic manual review of all ten README, CHANGELOG, and plugin instruction translations, and moved project and in-app update links to the official 3-Terra Player repository
 
 ##### For more release history, see
 
@@ -255,7 +251,7 @@ Build a release APK (signed automatically once signing is configured in the untr
 
 For release archiving, run the `:app:appendDigestToReleasedFiles` task to copy signed APKs into `releases/` with the version and a CRC32 digest appended to the file name.
 
-Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 36, current version 1.5.0.
+Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 36, current version 1.6.0.
 
 ******
 

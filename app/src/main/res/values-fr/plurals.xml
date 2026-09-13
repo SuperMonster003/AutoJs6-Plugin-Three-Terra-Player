@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="action_seek_backward_seconds">
+        <item quantity="one">Reculer de %1$d seconde</item>
+        <item quantity="many">Reculer de %1$d secondes</item>
+        <item quantity="other">Reculer de %1$d secondes</item>
+    </plurals>
+    <plurals name="action_seek_forward_seconds">
+        <item quantity="one">Avancer de %1$d seconde</item>
+        <item quantity="many">Avancer de %1$d secondes</item>
+        <item quantity="other">Avancer de %1$d secondes</item>
+    </plurals>
+    <plurals name="seconds_count">
+        <item quantity="one">%1$d seconde</item>
+        <item quantity="many">%1$d secondes</item>
+        <item quantity="other">%1$d secondes</item>
+    </plurals>
+    <plurals name="timer_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="many">%1$d minutes</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <plurals name="timer_remaining">
+        <item quantity="one">Minuterie: %1$d minute restante</item>
+        <item quantity="many">Minuterie: %1$d minutes restantes</item>
+        <item quantity="other">Minuterie: %1$d minutes restantes</item>
+    </plurals>
+    <plurals name="queue_track_count">
+        <item quantity="one">%1$d piste</item>
+        <item quantity="many">%1$d pistes</item>
+        <item quantity="other">%1$d pistes</item>
+    </plurals>
+    <plurals name="ignored_update_count"><item quantity="one">%1$d version ignorée</item><item quantity="many">%1$d versions ignorées</item><item quantity="other">%1$d versions ignorées</item></plurals>
+</resources>

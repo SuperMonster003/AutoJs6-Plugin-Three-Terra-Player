@@ -192,11 +192,18 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 ******
 
+#### v1.6.0
+
+_2026/09/13_
+
+- `Fonctionnalité` Listes locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservent ordre, titres et doublons. Depuis AutoJs6, les fichiers doivent être dans le même dossier; le lecteur autonome demande le dossier pour les chemins relatifs. Une liste à la fois, 128 éléments maximum. URL réseau, HLS et listes imbriquées non pris en charge
+- `Correctif` Les choix des boîtes de dialogue de langue et de mode nuit utilisent désormais Material Body1 en 16sp au lieu du texte de liste système surdimensionné
+- `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
+
 #### v1.5.0
 
 _2026/09/12_
 
-- `Fonctionnalité` Listes locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservent ordre, titres et doublons. Depuis AutoJs6, les fichiers doivent être dans le même dossier; le lecteur autonome demande le dossier pour les chemins relatifs. Une liste à la fois, 128 éléments maximum. URL réseau, HLS et listes imbriquées non pris en charge
 - `Fonctionnalité` La pochette génère désormais en direct une palette lisible pour le dégradé, la barre, les commandes et la file; les écrans s'étendent bord à bord autour des barres système, découpes et zones gestuelles
 - `Fonctionnalité` Les réglages de lecture proposent une vitesse par défaut mémorisée, des pas de recul et d'avance de 5 / 10 / 15 / 30 secondes et une action en fin de file: arrêter, revenir au début et mettre en pause ou relire
 - `Fonctionnalité` Ajout de transitions discrètes pour lecture / pause et les pochettes, ainsi que de retours haptiques conformes au système pour les actions clés; si les animations système sont coupées, les états changent directement
@@ -217,17 +224,6 @@ _2026/08/31_
 - `Correctif` Correction du menu supplémentaire en haut à droite du lecteur qui affichait, avec certains thèmes, du texte blanc sur fond blanc et rendait l'entrée Paramètres illisible
 - `Amélioration` La source AutoJs6 du réglage de couleur du thème porte désormais partout le libellé `Suivre AutoJs6`; le sélecteur affiche directement la valeur HEX de la couleur de l'hôte
 - `Amélioration` Révision manuelle de base achevée pour les dix traductions du README, du CHANGELOG et des instructions du plugin, avec migration des liens du projet et de mise à jour intégrée vers le dépôt officiel 3-Terra Player
-
-#### v1.4.0
-
-_2026/08/29_
-
-- `Fonctionnalité` Notification multimédia du système entièrement revue: nouveaux boutons précédent / suivant / mode aléatoire / quitter, icône monochrome propre à l'application, et état du mode aléatoire synchronisé en temps réel avec le lecteur
-- `Correctif` Correction du plugin parfois marqué automatiquement comme défectueux et désactivé par le centre des plugins d'AutoJs6: les informations du plugin et l'action du gestionnaire de fichiers utilisent désormais des points de terminaison de service distincts
-- `Correctif` Vider la file de lecture ne laisse plus d'informations obsolètes: l'écran passe dans un état vide explicite et les commandes de lecture, de saut, de vitesse, de minuterie et A-B sont désactivées ensemble
-- `Correctif` Correction de l'ombre du bouton de lecture coupée par la zone inférieure; les boutons radio, cases à cocher, barres de progression et boutons des dialogues de paramètres et de mise à jour suivent désormais la couleur du thème
-- `Amélioration` L'application et le plugin sont officiellement renommés 3-Terra Player: l'ID d'application reste inchangé, la mise à niveau s'installe directement par-dessus et les réglages existants sont conservés
-- `Amélioration` Le menu en haut à droite du lecteur est allégé pour ne garder que l'entrée Paramètres; le bouton de palette, redondant avec la page des paramètres, est supprimé
 
 ##### Pour un historique des versions plus complet, voir
 
@@ -255,7 +251,7 @@ Compiler un APK release (signé automatiquement une fois la signature configuré
 
 Pour l'archivage des publications, exécutez la tâche `:app:appendDigestToReleasedFiles`, qui copie les APK signés dans `releases/` en ajoutant au nom de fichier la version et une somme de contrôle CRC32.
 
-Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 36, version actuelle 1.5.0.
+Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 36, version actuelle 1.6.0.
 
 ******
 
