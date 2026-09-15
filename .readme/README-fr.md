@@ -192,6 +192,12 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 ******
 
+#### v1.6.1
+
+_2026/09/15_
+
+- `Amélioration` compileSdk passe à 37 (Android 17) ; targetSdk reste à 36 jusqu'à la vérification du comportement dépendant de la cible
+
 #### v1.6.0
 
 _2026/09/13_
@@ -216,15 +222,6 @@ _2026/09/12_
 - `Amélioration` Renommer l'entrée de visualisation externe en External Viewer pour unifier la sémantique de la visionneuse
 - `Amélioration` Ouvrir la page intégrée de l'historique des versions depuis le bouton correspondant de la boîte de dialogue de mise à jour
 - `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
-
-#### v1.4.1
-
-_2026/08/31_
-
-- `Fonctionnalité` L'application autonome restaure désormais, lorsqu'elle est rouverte depuis le lanceur, la dernière file d'attente, la piste active, la position d'arrêt, le mode de répétition, l'état aléatoire et la vitesse; la session restaurée reste en pause et seules les files du sélecteur système disposant d'un accès en lecture durable sont enregistrées
-- `Correctif` Correction du menu supplémentaire en haut à droite du lecteur qui affichait, avec certains thèmes, du texte blanc sur fond blanc et rendait l'entrée Paramètres illisible
-- `Amélioration` La source AutoJs6 du réglage de couleur du thème porte désormais partout le libellé `Suivre AutoJs6`; le sélecteur affiche directement la valeur HEX de la couleur de l'hôte
-- `Amélioration` Révision manuelle de base achevée pour les dix traductions du README, du CHANGELOG et des instructions du plugin, avec migration des liens du projet et de mise à jour intégrée vers le dépôt officiel 3-Terra Player
 
 ##### Pour un historique des versions plus complet, voir
 
@@ -252,7 +249,7 @@ Compiler un APK release (signé automatiquement une fois la signature configuré
 
 Pour l'archivage des publications, exécutez la tâche `:app:appendDigestToReleasedFiles`, qui copie les APK signés dans `releases/` en ajoutant au nom de fichier la version et une somme de contrôle CRC32.
 
-Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 36, version actuelle 1.6.0.
+Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 36, version actuelle 1.6.1.
 
 ******
 

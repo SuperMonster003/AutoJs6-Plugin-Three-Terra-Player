@@ -192,6 +192,12 @@ Las capacidades planificadas y su progreso se mantienen como una lista de casill
 
 ******
 
+#### v1.6.1
+
+_2026/09/15_
+
+- `Mejora` compileSdk sube a 37 (Android 17); targetSdk se mantiene en 36 hasta verificar el comportamiento que depende del objetivo
+
 #### v1.6.0
 
 _2026/09/13_
@@ -216,15 +222,6 @@ _2026/09/12_
 - `Mejora` Renombrar la entrada de visualización externa como External Viewer para unificar la semántica del visor
 - `Mejora` Abrir la página integrada del historial de versiones desde el botón correspondiente del diálogo de actualización
 - `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
-
-#### v1.4.1
-
-_2026/08/31_
-
-- `Función` La aplicación independiente ahora restaura la última cola, la pista actual, la posición de parada, el modo de repetición, el estado aleatorio y la velocidad al volver a abrirla desde el lanzador; la sesión restaurada permanece en pausa y solo se guardan colas del selector del sistema con acceso de lectura duradero
-- `Corrección` Se corrigió el menú adicional de la esquina superior derecha del reproductor, que con algunos temas mostraba texto blanco sobre fondo blanco e impedía leer la opción Ajustes
-- `Mejora` La fuente AutoJs6 del ajuste de color del tema ahora se denomina siempre `Seguir AutoJs6`; el selector muestra directamente el valor HEX del color del host
-- `Mejora` Se completó una revisión manual básica de las diez traducciones del README, CHANGELOG e instrucciones del complemento, y se migraron los enlaces del proyecto y de actualización integrada al repositorio oficial de 3-Terra Player
 
 ##### Para más historial de versiones, consulta
 
@@ -252,7 +249,7 @@ Compilar un APK release (se firma automáticamente una vez configurada la firma 
 
 Para archivar una publicación, ejecuta la tarea `:app:appendDigestToReleasedFiles`, que copia los APK firmados en `releases/` añadiendo al nombre del archivo la versión y un resumen CRC32.
 
-Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 36, versión actual 1.6.0.
+Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 36, versión actual 1.6.1.
 
 ******
 

@@ -192,6 +192,12 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 ******
 
+#### v1.6.1
+
+_2026/09/15_
+
+- `Improvement` Raise compileSdk to 37 (Android 17); targetSdk stays at 36 until the behavior that depends on the target is verified
+
 #### v1.6.0
 
 _2026/09/13_
@@ -216,15 +222,6 @@ _2026/09/12_
 - `Improvement` Rename the external viewing entry to External Viewer for consistent viewer semantics
 - `Improvement` Open the built-in release history page from the release history button in the update dialog
 - `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
-
-#### v1.4.1
-
-_2026/08/31_
-
-- `Feature` The standalone app now restores the last queue, current track, stopped position, repeat mode, shuffle state, and speed when reopened from the launcher; restored sessions stay paused, and only system-picker queues with durable read access are saved
-- `Fix` Fixed the player's top-right overflow menu showing white text on a white surface under some themes, which made the Settings entry unreadable
-- `Improvement` The AutoJs6 source in theme color settings is now consistently labeled `Follow AutoJs6`; the color picker shows the host color's HEX value directly
-- `Improvement` Completed a basic manual review of all ten README, CHANGELOG, and plugin instruction translations, and moved project and in-app update links to the official 3-Terra Player repository
 
 ##### For more release history, see
 
@@ -252,7 +249,7 @@ Build a release APK (signed automatically once signing is configured in the untr
 
 For release archiving, run the `:app:appendDigestToReleasedFiles` task to copy signed APKs into `releases/` with the version and a CRC32 digest appended to the file name.
 
-Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 36, current version 1.6.0.
+Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 36, current version 1.6.1.
 
 ******
 
