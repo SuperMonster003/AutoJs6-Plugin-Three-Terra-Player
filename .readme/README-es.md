@@ -192,6 +192,12 @@ Las capacidades planificadas y su progreso se mantienen como una lista de casill
 
 ******
 
+#### v1.6.2
+
+_2026/09/16_
+
+- `Mejora` Tras compileSdk, targetSdk sube a 37 (Android 17); el comportamiento del plugin no depende del nuevo objetivo
+
 #### v1.6.1
 
 _2026/09/15_
@@ -206,22 +212,6 @@ _2026/09/13_
 - `Corrección` Las opciones de los diálogos de idioma y modo nocturno ahora usan Material Body1 a 16sp en lugar del texto de lista del sistema, demasiado grande
 - `Corrección` Mantener la fecha de versión del complemento en inglés sin depender del idioma del equipo de compilación
 - `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
-
-#### v1.5.0
-
-_2026/09/12_
-
-- `Función` La carátula del álbum ahora genera una paleta legible en tiempo real para el degradado, la barra, los controles y la cola; las pantallas se extienden de borde a borde alrededor de barras, recortes y gestos
-- `Función` Los ajustes de reproducción incluyen velocidad predeterminada guardada, intervalos de retroceso y avance de 5 / 10 / 15 / 30 segundos y una acción al terminar la cola: detener, volver al principio y pausar o repetir
-- `Función` Se añadieron transiciones discretas para reproducción / pausa y carátulas, además de respuesta háptica para acciones clave que respeta el sistema; al desactivar las animaciones, los estados cambian directamente
-- `Corrección` Las opciones de los diálogos de idioma y modo nocturno ahora usan Material Body1 a 16sp en lugar del texto de lista del sistema, demasiado grande
-- `Mejora` La decodificación de carátulas y la muestra de color de hasta 64x64 se ejecutan fuera del hilo principal; cualquier color mantiene los límites de contraste de 4,5:1 para texto y 3:1 para contornos
-- `Mejora` Se completaron el estudio de visualización y un prototipo RMS por bloques: Visualizer sigue excluido por requerir permiso de grabación y se documenta una toma PCM de Media3 sin permisos para futuras pruebas de rendimiento
-- `Mejora` Unificar el diseño del README y la gestión de versiones de la plataforma Gradle
-- `Mejora` Simplificar la descripción del complemento y normalizar la puntuación de los recursos multilingües
-- `Mejora` Renombrar la entrada de visualización externa como External Viewer para unificar la semántica del visor
-- `Mejora` Abrir la página integrada del historial de versiones desde el botón correspondiente del diálogo de actualización
-- `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 
 ##### Para más historial de versiones, consulta
 
@@ -249,7 +239,7 @@ Compilar un APK release (se firma automáticamente una vez configurada la firma 
 
 Para archivar una publicación, ejecuta la tarea `:app:appendDigestToReleasedFiles`, que copia los APK firmados en `releases/` añadiendo al nombre del archivo la versión y un resumen CRC32.
 
-Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 36, versión actual 1.6.1.
+Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 37, versión actual 1.6.2.
 
 ******
 
