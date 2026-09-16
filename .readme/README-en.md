@@ -192,6 +192,12 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 ******
 
+#### v1.6.2
+
+_2026/09/16_
+
+- `Improvement` Raise targetSdk to 37 (Android 17) after compileSdk; the plugin's behavior does not depend on the new target
+
 #### v1.6.1
 
 _2026/09/15_
@@ -206,22 +212,6 @@ _2026/09/13_
 - `Fix` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
 - `Fix` Keep the plugin version date in English regardless of the build machine locale
 - `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
-
-#### v1.5.0
-
-_2026/09/12_
-
-- `Feature` Album artwork now generates a readable live color palette for the player gradient, toolbar, controls, and queue; screens draw edge to edge around status bars, cutouts, and gesture areas
-- `Feature` Playback settings now include a saved default speed, 5 / 10 / 15 / 30-second rewind and fast-forward increments, and selectable queue-finished behavior: stop, return to the beginning and pause, or replay
-- `Feature` Added compact play / pause and artwork transitions plus system-respecting haptic feedback for key playback actions; disabling system animations switches every state directly
-- `Fix` Language and night-mode dialog choices now use Material Body1 at 16sp instead of the oversized platform list text
-- `Improvement` Artwork decoding and 64x64 color sampling run off the main thread; arbitrary cover colors retain the existing 4.5:1 text and 3:1 outline contrast gates
-- `Improvement` Completed the playback visualization feasibility study and an RMS bucket prototype: platform Visualizer remains excluded because it requires recording permission, while a permission-free Media3 PCM tap is documented for future benchmark work
-- `Improvement` Standardize the README layout and Gradle platform version management
-- `Improvement` Refine the plugin description and normalize punctuation in multilingual resources
-- `Improvement` Rename the external viewing entry to External Viewer for consistent viewer semantics
-- `Improvement` Open the built-in release history page from the release history button in the update dialog
-- `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 ##### For more release history, see
 
@@ -249,7 +239,7 @@ Build a release APK (signed automatically once signing is configured in the untr
 
 For release archiving, run the `:app:appendDigestToReleasedFiles` task to copy signed APKs into `releases/` with the version and a CRC32 digest appended to the file name.
 
-Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 36, current version 1.6.1.
+Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 37, current version 1.6.2.
 
 ******
 
