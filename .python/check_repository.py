@@ -20,7 +20,7 @@ def check(root, pending_commit=False):
     count = int(subprocess.check_output(['git','-C',str(root),'rev-list','--count','HEAD']))
     require(int(props['VERSION_BUILD']) == count + int(pending_commit), 'VERSION_BUILD must match the commit count')
     settings = (root/'settings.gradle.kts').read_text(encoding='utf-8-sig')
-    require('autojs6-platform-versions") version "1.8.1"' in settings, 'Published platform version must be 1.8.1')
+    require('autojs6-platform-versions") version "1.8.3"' in settings, 'Published platform version must be 1.8.3')
     require('mavenLocal(' not in settings and 'autojs.buildPlugins.includeBuild' not in settings, 'Local platform substitution is forbidden')
     root_name = re.search(r'rootProject.name\s*=\s*"([^"]+)"', settings)
     require(root_name and re.fullmatch('[a-z0-9-]+', root_name[1]), 'rootProject.name must be lowercase kebab-case')
