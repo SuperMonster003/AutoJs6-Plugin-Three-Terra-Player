@@ -35,6 +35,21 @@
                 android:text="@string/settings_section_appearance" />
 
             <LinearLayout
+                android:id="@+id/launcher_icon_setting"
+                style="@style/SettingsClickableRow">
+
+                <TextView
+                    android:id="@+id/launcher_icon_title"
+                    style="@style/SettingsRowTitle"
+                    android:text="@string/launcher_icon_title" />
+
+                <TextView
+                    android:id="@+id/launcher_icon_summary"
+                    style="@style/SettingsRowSummary" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/language_setting"
                 style="@style/SettingsClickableRow">
 

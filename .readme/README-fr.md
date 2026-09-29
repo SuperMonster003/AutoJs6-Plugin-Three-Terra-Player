@@ -65,6 +65,7 @@ Une fois installé, le plugin est détecté automatiquement par AutoJs6, sans au
 - Restauration de session: rouvrir l'application autonome depuis le lanceur restaure la dernière file, la piste active, la position d'arrêt, l'état répétition / aléatoire et la vitesse; la session restaurée reste en pause.
 - Mode application autonome: utilisable sans AutoJs6; choisissez jusqu'à 128 fichiers audio depuis l'écran de démarrage et lisez-les.
 - Apparence adaptative: la langue, le mode nuit et la couleur de base peuvent suivre AutoJs6 ou être personnalisés; la pochette génère une palette lisible dans le lecteur bord à bord, avec transitions et retours haptiques respectant le système.
+- Choix de l'icône du lanceur dans les paramètres: adaptative claire, adaptative sombre (par défaut), adaptative automatique ou fond transparent. Les couleurs automatiques et la transparence dépendent du lanceur, qui peut garder les icônes en cache ou ajouter un fond. Certains raccourcis doivent parfois être ajoutés à nouveau après le changement.
 
 ******
 
@@ -192,6 +193,12 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 ******
 
+#### v1.7.0
+
+_2026/09/29_
+
+- `Fonctionnalité` Choix de l'icône du lanceur dans les paramètres: adaptative claire, adaptative sombre (par défaut), adaptative automatique ou fond transparent. Les couleurs automatiques et la transparence dépendent du lanceur, qui peut garder les icônes en cache ou ajouter un fond. Certains raccourcis doivent parfois être ajoutés à nouveau après le changement
+
 #### v1.6.2
 
 _2026/09/29_
@@ -205,15 +212,6 @@ _2026/09/29_
 _2026/09/15_
 
 - `Amélioration` compileSdk passe à 37 (Android 17) ; targetSdk reste à 36 jusqu'à la vérification du comportement dépendant de la cible
-
-#### v1.6.0
-
-_2026/09/13_
-
-- `Fonctionnalité` Listes locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservent ordre, titres et doublons. Depuis AutoJs6, les fichiers doivent être dans le même dossier; le lecteur autonome demande le dossier pour les chemins relatifs. Une liste à la fois, 128 éléments maximum. URL réseau, HLS et listes imbriquées non pris en charge
-- `Correctif` Les choix des boîtes de dialogue de langue et de mode nuit utilisent désormais Material Body1 en 16sp au lieu du texte de liste système surdimensionné
-- `Correctif` Conserver la date de version du plugin en anglais quelle que soit la langue de la machine de compilation
-- `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
 
 ##### Pour un historique des versions plus complet, voir
 
@@ -241,7 +239,7 @@ Compiler un APK release (signé automatiquement une fois la signature configuré
 
 Pour l'archivage des publications, exécutez la tâche `:app:appendDigestToReleasedFiles`, qui copie les APK signés dans `releases/` en ajoutant au nom de fichier la version et une somme de contrôle CRC32.
 
-Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 37, version actuelle 1.6.2.
+Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 37, version actuelle 1.7.0.
 
 ******
 

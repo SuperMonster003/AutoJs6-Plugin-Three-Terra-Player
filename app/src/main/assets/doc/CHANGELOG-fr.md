@@ -4,6 +4,12 @@
 
 ******
 
+# v1.7.0
+
+###### 2026/09/29
+
+* `Fonctionnalité` Choix de l'icône du lanceur dans les paramètres: adaptative claire, adaptative sombre (par défaut), adaptative automatique ou fond transparent. Les couleurs automatiques et la transparence dépendent du lanceur, qui peut garder les icônes en cache ou ajouter un fond. Certains raccourcis doivent parfois être ajoutés à nouveau après le changement
+
 # v1.6.2
 
 ###### 2026/09/29

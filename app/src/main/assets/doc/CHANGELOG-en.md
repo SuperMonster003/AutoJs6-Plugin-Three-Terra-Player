@@ -4,6 +4,12 @@
 
 ******
 
+# v1.7.0
+
+###### 2026/09/29
+
+* `Feature` Launcher icon choices in Settings: adaptive light, adaptive dark (default), adaptive automatic, or transparent background. Automatic colors and transparent rendering depend on the launcher; it may cache icons or add a background. Some home-screen shortcuts may need to be added again after a change
+
 # v1.6.2
 
 ###### 2026/09/29

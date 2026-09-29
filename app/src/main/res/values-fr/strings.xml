@@ -57,6 +57,15 @@
     <string name="follow_autojs6_unavailable_value">Impossible de suivre AutoJs6 (%1$s) · repli : %2$s</string>
     <string name="follow_autojs6_value">Suivre AutoJs6 · %1$s</string>
     <string name="follow_system">Suivre le système</string>
+    <string name="launcher_icon_applied_note">Le lanceur peut prendre quelques secondes pour se rafraîchir. Certains raccourcis peuvent devoir être ajoutés a nouveau.</string>
+    <string name="launcher_icon_auto">Adaptative automatique</string>
+    <string name="launcher_icon_auto_note">Tente de suivre le thème du système. Certains lanceurs gardent les icônes en cache ou utilisent une seule palette.</string>
+    <string name="launcher_icon_dark">Adaptative sombre</string>
+    <string name="launcher_icon_failed">Impossible de changer l\'icône du lanceur. Veuillez réessayer.</string>
+    <string name="launcher_icon_light">Adaptative claire</string>
+    <string name="launcher_icon_title">Icône du lanceur</string>
+    <string name="launcher_icon_transparent">Fond transparent</string>
+    <string name="launcher_icon_transparent_note">Certains lanceurs ajoutent un fond ou un masque. La transparence peut ne pas être conservée.</string>
     <string name="night_mode_dark">Toujours sombre</string>
     <string name="night_mode_light">Toujours clair</string>
     <string name="notification_permission_explanation">Autorisez les notifications pour afficher les commandes de lecture en dehors de cet écran. La lecture reste disponible en cas de refus.</string>

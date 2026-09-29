@@ -21,7 +21,8 @@
     "Lecture en arrière-plan: la lecture continue après avoir quitté l'écran ou verrouillé l'appareil, avec commandes dans la notification multimédia du système et sur l'écran de verrouillage.",
     "Restauration de session: rouvrir l'application autonome depuis le lanceur restaure la dernière file, la piste active, la position d'arrêt, l'état répétition / aléatoire et la vitesse; la session restaurée reste en pause.",
     "Mode application autonome: utilisable sans AutoJs6; choisissez jusqu'à {{ max_queue_size }} fichiers audio depuis l'écran de démarrage et lisez-les.",
-    "Apparence adaptative: la langue, le mode nuit et la couleur de base peuvent suivre AutoJs6 ou être personnalisés; la pochette génère une palette lisible dans le lecteur bord à bord, avec transitions et retours haptiques respectant le système."
+    "Apparence adaptative: la langue, le mode nuit et la couleur de base peuvent suivre AutoJs6 ou être personnalisés; la pochette génère une palette lisible dans le lecteur bord à bord, avec transitions et retours haptiques respectant le système.",
+    "Choix de l'icône du lanceur dans les paramètres: adaptative claire, adaptative sombre (par défaut), adaptative automatique ou fond transparent. Les couleurs automatiques et la transparence dépendent du lanceur, qui peut garder les icônes en cache ou ajouter un fond. Certains raccourcis doivent parfois être ajoutés à nouveau après le changement."
   ],
   "h3_usage": "Utilisation",
   "usage_steps": [

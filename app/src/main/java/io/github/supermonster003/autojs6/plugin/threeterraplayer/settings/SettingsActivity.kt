@@ -5,6 +5,10 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
+import android.widget.Toast
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -62,7 +66,43 @@ class SettingsActivity : AudioThemedActivity() {
         renderValues()
     }
 
+    private fun launcherIconLabel(mode: LauncherIconMode): Int = when (mode) {
+        LauncherIconMode.LIGHT -> R.string.launcher_icon_light
+        LauncherIconMode.DARK -> R.string.launcher_icon_dark
+        LauncherIconMode.AUTO -> R.string.launcher_icon_auto
+        LauncherIconMode.TRANSPARENT -> R.string.launcher_icon_transparent
+    }
+
+    private fun showLauncherIconDialog() {
+        val modes = LauncherIconMode.entries
+        val labels = modes.map { mode ->
+            val note = when (mode) {
+                LauncherIconMode.AUTO -> R.string.launcher_icon_auto_note
+                LauncherIconMode.TRANSPARENT -> R.string.launcher_icon_transparent_note
+                else -> null
+            }
+            val title = getString(launcherIconLabel(mode))
+            SpannableString(title + (note?.let { "\n" + getString(it) } ?: "")).apply {
+                if (note != null) setSpan(RelativeSizeSpan(0.8f), title.length + 1, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+        }
+        val chooser = MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.launcher_icon_title)
+            .setSingleChoiceItems(labels.toTypedArray(), modes.indexOf(LauncherIcons.current(this))) { shown, which ->
+                val changed = runCatching { LauncherIcons.select(this, modes[which]) }.isSuccess
+                Toast.makeText(this, if (changed) R.string.launcher_icon_applied_note else R.string.launcher_icon_failed, Toast.LENGTH_LONG).show()
+                renderValues()
+                shown.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        showTinted(chooser)
+        // Long explanatory rows must not scroll the first choice off-screen.
+        chooser.listView?.setSelection(0)
+    }
+
     private fun bindRows() {
+        binding.launcherIconSetting.setOnClickListener { showLauncherIconDialog() }
         binding.languageSetting.setOnClickListener { showLanguageDialog() }
         binding.nightModeSetting.setOnClickListener { showNightModeDialog() }
         binding.themeColorSetting.setOnClickListener {
@@ -246,6 +286,7 @@ class SettingsActivity : AudioThemedActivity() {
     }
 
     private fun renderValues() {
+        binding.launcherIconSummary.setText(launcherIconLabel(LauncherIcons.current(this)))
         binding.languageSummary.text = languageSummary()
         binding.nightModeSummary.text = nightModeSummary()
         binding.themeColorSummary.text = themeSummary()
@@ -375,6 +416,7 @@ class SettingsActivity : AudioThemedActivity() {
             binding.aboutSection,
         ).forEach { view -> view.setTextColor(palette.primary) }
         listOf(
+            binding.launcherIconTitle,
             binding.languageTitle,
             binding.nightModeTitle,
             binding.themeColorTitle,
@@ -389,6 +431,7 @@ class SettingsActivity : AudioThemedActivity() {
             binding.aboutTitle,
         ).forEach { view -> view.setTextColor(palette.onSurface) }
         listOf(
+            binding.launcherIconSummary,
             binding.languageSummary,
             binding.nightModeSummary,
             binding.themeColorSummary,

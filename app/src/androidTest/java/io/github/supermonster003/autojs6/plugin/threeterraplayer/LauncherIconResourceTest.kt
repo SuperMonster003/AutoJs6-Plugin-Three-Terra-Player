@@ -51,15 +51,20 @@ class LauncherIconResourceTest {
     }
 
     @Test fun systemIconsUseAdaptiveLayersWithMatchingLegacyFallbacks() {
-        for ((mode, background) in listOf(Configuration.UI_MODE_NIGHT_NO to 0xff212121.toInt(), Configuration.UI_MODE_NIGHT_YES to 0xff212121.toInt(), Configuration.UI_MODE_NIGHT_UNDEFINED to 0xff212121.toInt())) {
-            val icon = resources(mode).getDrawable(R.mipmap.ic_launcher_system, null)
+        val modes = listOf(Configuration.UI_MODE_NIGHT_NO, Configuration.UI_MODE_NIGHT_YES, Configuration.UI_MODE_NIGHT_UNDEFINED)
+        for (mode in modes) for ((resource, background) in listOf(
+            R.mipmap.ic_launcher_system to 0xff212121.toInt(),
+            R.mipmap.ic_launcher_system_light to 0xfffafafa.toInt(),
+            R.mipmap.ic_launcher_system_auto to (if (mode == Configuration.UI_MODE_NIGHT_NO) 0xfffafafa.toInt() else 0xff212121.toInt()),
+        )) {
+            val icon = resources(mode).getDrawable(resource, null)
             if (Build.VERSION.SDK_INT >= 26) {
                 assertTrue("An API 26+ launcher must always receive an adaptive icon (mode $mode)", icon is AdaptiveIconDrawable)
                 val adaptive = icon as AdaptiveIconDrawable
                 assertEquals(background, (adaptive.background as ColorDrawable).color)
                 assertTrue(adaptive.foreground is BitmapDrawable)
                 val glyph = (adaptive.foreground as BitmapDrawable).bitmap
-                val expected = 0xffd8d8d8.toInt()
+                val expected = if (background == 0xff212121.toInt()) 0xffd8d8d8.toInt() else 0xff272727.toInt()
                 val opaque = (0 until glyph.height).asSequence().flatMap { y -> (0 until glyph.width).asSequence().map { x -> glyph.getPixel(x, y) } }.first { Color.alpha(it) == 255 }
                 assertEquals(expected, opaque)
                 if (Build.VERSION.SDK_INT >= 33) assertTrue(adaptive.monochrome is BitmapDrawable)
