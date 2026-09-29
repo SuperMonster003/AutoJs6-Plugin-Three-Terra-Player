@@ -57,6 +57,15 @@
     <string name="follow_autojs6_unavailable_value">無法跟隨 AutoJs6 (%1$s) · 後備: %2$s</string>
     <string name="follow_autojs6_value">跟隨 AutoJs6 · %1$s</string>
     <string name="follow_system">跟隨系統</string>
+    <string name="launcher_icon_applied_note">啟動器可能需要幾秒鐘重新整理. 部分主畫面捷徑可能需要重新新增.</string>
+    <string name="launcher_icon_auto">自適應自動</string>
+    <string name="launcher_icon_auto_note">嘗試跟隨系統主題. 部分啟動器會快取圖示或只使用一種配色.</string>
+    <string name="launcher_icon_dark">自適應暗色</string>
+    <string name="launcher_icon_failed">無法切換啟動器圖示, 請重試.</string>
+    <string name="launcher_icon_light">自適應亮色</string>
+    <string name="launcher_icon_title">啟動器圖示</string>
+    <string name="launcher_icon_transparent">透明背景</string>
+    <string name="launcher_icon_transparent_note">部分啟動器會自行新增背景或遮罩, 透明效果可能無法保留.</string>
     <string name="night_mode_dark">一律使用深色</string>
     <string name="night_mode_light">一律使用淺色</string>
     <string name="notification_permission_explanation">允許通知以便在此畫面之外查看播放控制項. 拒絕權限後仍可播放.</string>

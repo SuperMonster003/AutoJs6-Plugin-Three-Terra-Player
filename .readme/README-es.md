@@ -65,6 +65,7 @@ Tras la instalación, AutoJs6 descubre el complemento automáticamente, sin conf
 - Restauración de sesión: al reabrir la aplicación independiente desde el lanzador se restauran la última cola, la pista actual, la posición de parada, el estado de repetición / aleatorio y la velocidad; la sesión restaurada permanece en pausa.
 - Modo de aplicación independiente: funciona sin AutoJs6; elige hasta 128 archivos de audio desde la pantalla de inicio y reprodúcelos.
 - Apariencia adaptable: el idioma, el modo nocturno y el color base pueden seguir a AutoJs6 o personalizarse; la carátula genera una paleta legible en el reproductor de borde a borde, con transiciones y respuesta háptica que respetan el sistema.
+- Icono del lanzador en Ajustes: adaptable claro, adaptable oscuro (predeterminado), adaptable automático o fondo transparente. Los colores automáticos y la transparencia dependen del lanzador, que puede guardar iconos en caché o añadir un fondo. Algunos accesos directos pueden necesitar añadirse de nuevo tras el cambio.
 
 ******
 
@@ -192,6 +193,12 @@ Las capacidades planificadas y su progreso se mantienen como una lista de casill
 
 ******
 
+#### v1.7.0
+
+_2026/09/29_
+
+- `Función` Icono del lanzador en Ajustes: adaptable claro, adaptable oscuro (predeterminado), adaptable automático o fondo transparente. Los colores automáticos y la transparencia dependen del lanzador, que puede guardar iconos en caché o añadir un fondo. Algunos accesos directos pueden necesitar añadirse de nuevo tras el cambio
+
 #### v1.6.2
 
 _2026/09/29_
@@ -205,15 +212,6 @@ _2026/09/29_
 _2026/09/15_
 
 - `Mejora` compileSdk sube a 37 (Android 17); targetSdk se mantiene en 36 hasta verificar el comportamiento que depende del objetivo
-
-#### v1.6.0
-
-_2026/09/13_
-
-- `Función` Listas locales: M3U/M3U8, PLS, XSPF, WPL, ASX/WAX/WVX, MPCPL, DPL conservan orden, títulos y duplicados. AutoJs6 lee archivos de la misma carpeta; el reproductor independiente pide la carpeta para rutas relativas. Una lista a la vez, hasta 128 elementos. No se admiten URL de red, HLS ni listas anidadas
-- `Corrección` Las opciones de los diálogos de idioma y modo nocturno ahora usan Material Body1 a 16sp en lugar del texto de lista del sistema, demasiado grande
-- `Corrección` Mantener la fecha de versión del complemento en inglés sin depender del idioma del equipo de compilación
-- `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
 
 ##### Para más historial de versiones, consulta
 
@@ -241,7 +239,7 @@ Compilar un APK release (se firma automáticamente una vez configurada la firma 
 
 Para archivar una publicación, ejecuta la tarea `:app:appendDigestToReleasedFiles`, que copia los APK firmados en `releases/` añadiendo al nombre del archivo la versión y un resumen CRC32.
 
-Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 37, versión actual 1.6.2.
+Los parámetros de compilación se centralizan en `version.properties`: SDK mínimo 24 (Android 7.0), SDK de destino 37, versión actual 1.7.0.
 
 ******
 

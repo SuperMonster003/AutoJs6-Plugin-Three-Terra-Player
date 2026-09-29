@@ -57,6 +57,15 @@
     <string name="follow_autojs6_unavailable_value">No se puede seguir AutoJs6 (%1$s) · alternativa: %2$s</string>
     <string name="follow_autojs6_value">Seguir AutoJs6 · %1$s</string>
     <string name="follow_system">Seguir el sistema</string>
+    <string name="launcher_icon_applied_note">El lanzador puede tardar unos segundos en actualizarse. Puede ser necesario volver a agregar algunos accesos directos.</string>
+    <string name="launcher_icon_auto">Adaptable automático</string>
+    <string name="launcher_icon_auto_note">Intenta seguir el tema del sistema. Algunos lanzadores guardan los iconos en caché o usan una sola paleta.</string>
+    <string name="launcher_icon_dark">Adaptable oscuro</string>
+    <string name="launcher_icon_failed">No se pudo cambiar el icono del lanzador. Inténtalo de nuevo.</string>
+    <string name="launcher_icon_light">Adaptable claro</string>
+    <string name="launcher_icon_title">Icono del lanzador</string>
+    <string name="launcher_icon_transparent">Fondo transparente</string>
+    <string name="launcher_icon_transparent_note">Algunos lanzadores agregan un fondo o una máscara. Puede que no se conserve la transparencia.</string>
     <string name="night_mode_dark">Siempre oscuro</string>
     <string name="night_mode_light">Siempre claro</string>
     <string name="notification_permission_explanation">Permite las notificaciones para ver los controles de reproducción fuera de esta pantalla. La reproducción seguirá disponible si las rechazas.</string>

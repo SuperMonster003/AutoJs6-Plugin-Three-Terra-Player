@@ -57,6 +57,15 @@
     <string name="follow_autojs6_unavailable_value">يتعذر اتباع AutoJs6 ‏(%1$s) · البديل: %2$s</string>
     <string name="follow_autojs6_value">اتباع AutoJs6 · %1$s</string>
     <string name="follow_system">اتباع النظام</string>
+    <string name="launcher_icon_applied_note">قد يستغرق تحديث المشغل بضع ثوان. قد تحتاج إلى إضافة بعض اختصارات الشاشة الرئيسية مرة أخرى.</string>
+    <string name="launcher_icon_auto">متكيف تلقائي</string>
+    <string name="launcher_icon_auto_note">يحاول اتباع سمة النظام. بعض المشغلات تخزن الرموز مؤقتا أو تستخدم نظام ألوان واحدا فقط.</string>
+    <string name="launcher_icon_dark">متكيف داكن</string>
+    <string name="launcher_icon_failed">تعذر تغيير رمز المشغل. يرجى المحاولة مرة أخرى.</string>
+    <string name="launcher_icon_light">متكيف فاتح</string>
+    <string name="launcher_icon_title">رمز المشغل</string>
+    <string name="launcher_icon_transparent">خلفية شفافة</string>
+    <string name="launcher_icon_transparent_note">قد تضيف بعض المشغلات خلفية أو قناعا, لذلك قد لا يتم الحفاظ على الشفافية.</string>
     <string name="night_mode_dark">داكن دائما</string>
     <string name="night_mode_light">فاتح دائما</string>
     <string name="notification_permission_explanation">اسمح بالاشعارات لعرض عناصر التحكم بالتشغيل خارج هذه الشاشة. يبقى التشغيل متاحا اذا رفضت.</string>

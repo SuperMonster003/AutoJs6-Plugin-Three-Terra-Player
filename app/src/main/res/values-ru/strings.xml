@@ -57,6 +57,15 @@
     <string name="follow_autojs6_unavailable_value">Настройки AutoJs6 недоступны (%1$s) · резерв: %2$s</string>
     <string name="follow_autojs6_value">Как в AutoJs6 · %1$s</string>
     <string name="follow_system">Как в системе</string>
+    <string name="launcher_icon_applied_note">Обновление значка может занять несколько секунд. Некоторые ярлыки на главном экране может потребоваться добавить заново.</string>
+    <string name="launcher_icon_auto">Адаптивный автоматический</string>
+    <string name="launcher_icon_auto_note">Пытается следовать системной теме. Некоторые лаунчеры кешируют значки или используют только одну цветовую схему.</string>
+    <string name="launcher_icon_dark">Адаптивный темный</string>
+    <string name="launcher_icon_failed">Не удалось изменить значок запуска. Повторите попытку.</string>
+    <string name="launcher_icon_light">Адаптивный светлый</string>
+    <string name="launcher_icon_title">Значок запуска</string>
+    <string name="launcher_icon_transparent">Прозрачный фон</string>
+    <string name="launcher_icon_transparent_note">Некоторые лаунчеры добавляют фон или маску, поэтому прозрачность может не сохраниться.</string>
     <string name="night_mode_dark">Всегда тёмный</string>
     <string name="night_mode_light">Всегда светлый</string>
     <string name="notification_permission_explanation">Разрешите уведомления, чтобы видеть элементы управления воспроизведением вне этого экрана. Воспроизведение останется доступным, если вы откажете.</string>

@@ -2,8 +2,8 @@
 
 The retained source alpha is the artwork. Colors and output geometry are generated,
 never inferred from antialiased source RGB. Run with --check to verify without writes.
-Launcher colors stay dark in every configuration because launchers can cache a day
-icon indefinitely. Only the transparent UI/README icons follow the application theme.
+Fixed light/dark and best-effort automatic launcher variants are independent of
+transparent UI icons. Automatic color changes depend on the launcher configuration.
 """
 
 from __future__ import annotations
@@ -22,6 +22,11 @@ SIZE = 432
 SCALE = 4
 UI_GLYPH = 0.66
 ADAPTIVE_GLYPH = 0.44
+# Offset is a fraction of the rendered glyph width/height, not the canvas.
+# Ember uses optical balance assessed in circular masks at 48/96/160 px.
+OPTICAL_X = 0.0
+OPTICAL_Y = 0.0
+DAY_BACKGROUND = (0xFA, 0xFA, 0xFA, 255)
 DAY_GLYPH = (0x27, 0x27, 0x27)
 NIGHT_GLYPH = (0xD8, 0xD8, 0xD8)
 NIGHT_BACKGROUND = (0x21, 0x21, 0x21, 255)
@@ -33,30 +38,45 @@ def source_alpha() -> Image.Image:
     if bounds is None:
         raise ValueError("Icon source has no visible artwork")
     alpha = alpha.crop(bounds)
-    radius = 0.5 * ADAPTIVE_GLYPH * 108 * math.hypot(1, alpha.height / alpha.width)
-    if radius >= 33:
-        raise ValueError(f"Adaptive artwork exceeds the 66 dp safe circle: radius {radius:.2f} dp")
     return alpha
 
 
-def render(alpha: Image.Image, ratio: float, color: tuple[int, int, int], background=None) -> Image.Image:
+def glyph_alpha(alpha: Image.Image, ratio: float, optical_x=OPTICAL_X, optical_y=OPTICAL_Y) -> Image.Image:
     size = SIZE * SCALE
-    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    if background is not None:
-        ImageDraw.Draw(canvas).ellipse((0, 0, size - 1, size - 1), fill=background)
     width = round(size * ratio)
     height = max(1, round(width * alpha.height / alpha.width))
-    scaled_alpha = alpha.resize((width, height), Image.Resampling.LANCZOS)
-    glyph = Image.new("RGBA", (width, height), (*color, 255))
-    glyph.putalpha(scaled_alpha)
-    canvas.alpha_composite(glyph, ((size - width) // 2, (size - height) // 2))
-    if background is not None:
-        return canvas.resize((SIZE, SIZE), Image.Resampling.LANCZOS)
-    # Resize only alpha for transparent artwork: premultiplied RGBA resampling can
-    # change foreground RGB by one level, including at fully opaque pixels.
+    left = round((size - width) / 2 + width * optical_x)
+    top = round((size - height) / 2 + height * optical_y)
+    if left < 0 or top < 0 or left + width > size or top + height > size:
+        raise ValueError("Optical offset clips the artwork canvas")
+    canvas = Image.new("L", (size, size))
+    canvas.paste(alpha.resize((width, height), Image.Resampling.LANCZOS), (left, top))
+    return canvas.resize((SIZE, SIZE), Image.Resampling.LANCZOS)
+
+
+def validate_circle(alpha: Image.Image, radius: float) -> None:
+    # Inspect actual nonzero alpha, including resampling fringes, after optical
+    # placement. Empty corners of an asymmetric glyph's bounding box are not ink.
+    center = (SIZE - 1) / 2
+    maximum = max(math.hypot(x - center, y - center)
+                  for y in range(SIZE) for x in range(SIZE) if alpha.getpixel((x, y)))
+    if maximum > radius:
+        raise ValueError(f"Artwork exceeds its safe circle: {maximum:.2f} > {radius:.2f} px")
+
+
+def render(alpha: Image.Image, ratio: float, color: tuple[int, int, int], background=None) -> Image.Image:
+    ink = glyph_alpha(alpha, ratio)
+    validate_circle(ink, SIZE * (33 / 108 if ratio == ADAPTIVE_GLYPH else .5))
     result = Image.new("RGBA", (SIZE, SIZE), (*color, 255))
-    result.putalpha(canvas.getchannel("A").resize((SIZE, SIZE), Image.Resampling.LANCZOS))
-    return result
+    result.putalpha(ink)
+    if background is None:
+        return result
+    size = SIZE * SCALE
+    circle = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    ImageDraw.Draw(circle).ellipse((0, 0, size - 1, size - 1), fill=background)
+    circle = circle.resize((SIZE, SIZE), Image.Resampling.LANCZOS)
+    circle.alpha_composite(result)
+    return circle
 
 
 def generated_files() -> dict[Path, bytes]:
@@ -66,6 +86,8 @@ def generated_files() -> dict[Path, bytes]:
         "mipmap-night/ic_launcher.png": render(alpha, UI_GLYPH, NIGHT_GLYPH),
         "mipmap/ic_launcher_system.png": render(alpha, UI_GLYPH, NIGHT_GLYPH, NIGHT_BACKGROUND),
         "mipmap/ic_launcher_system_foreground.png": render(alpha, ADAPTIVE_GLYPH, NIGHT_GLYPH),
+        "mipmap/ic_launcher_system_light.png": render(alpha, UI_GLYPH, DAY_GLYPH, DAY_BACKGROUND),
+        "mipmap/ic_launcher_system_light_foreground.png": render(alpha, ADAPTIVE_GLYPH, DAY_GLYPH),
         "mipmap/ic_launcher_monochrome.png": render(alpha, ADAPTIVE_GLYPH, (0, 0, 0)),
     }
     result = {}
@@ -73,27 +95,43 @@ def generated_files() -> dict[Path, bytes]:
         output = io.BytesIO()
         image.save(output, format="PNG", optimize=True)
         result[RES / name] = output.getvalue()
-    adaptive = '''<?xml version="1.0" encoding="utf-8"?>
+    for suffix, foreground, background in (("", "ic_launcher_system_foreground", "ic_launcher_background"),
+                                            ("_light", "ic_launcher_system_light_foreground", "ic_launcher_light_background")):
+        adaptive = f'''<?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/ic_launcher_background"/>
-    <foreground android:drawable="@mipmap/ic_launcher_system_foreground"/>
+    <background android:drawable="@color/{background}"/>
+    <foreground android:drawable="@mipmap/{foreground}"/>
     <monochrome android:drawable="@mipmap/ic_launcher_monochrome"/>
 </adaptive-icon>
 '''
-    for directory in ("mipmap-anydpi-v26",):
-        result[RES / directory / "ic_launcher_system.xml"] = adaptive.encode("utf-8")
-    for directory, color in (("values", "#212121"),):
-        result[RES / directory / "ic_launcher_background.xml"] = (
-            '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n'
-            f'    <color name="ic_launcher_background">{color}</color>\n</resources>\n'
+        result[RES / "mipmap-anydpi-v26" / f"ic_launcher_system{suffix}.xml"] = adaptive.encode("utf-8")
+    result[RES / "values/ic_launcher_background.xml"] = ('''<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#212121</color>
+    <color name="ic_launcher_light_background">#FAFAFA</color>
+</resources>
+''').encode("utf-8")
+    # PackageManager eagerly resolves values aliases while parsing Manifest icon
+    # IDs. AUTO therefore needs real XML resources, not <item type="mipmap">.
+    # Bitmap wrappers avoid duplicate legacy PNG bytes while preserving the ID.
+    for qualifier, target in (("", "ic_launcher_system"), ("-notnight", "ic_launcher_system_light")):
+        result[RES / f"mipmap{qualifier}" / "ic_launcher_system_auto.xml"] = (
+            '<?xml version="1.0" encoding="utf-8"?>\n'
+            '<bitmap xmlns:android="http://schemas.android.com/apk/res/android" '
+            f'android:src="@mipmap/{target}" />\n'
         ).encode("utf-8")
+        result[RES / f"mipmap{qualifier}-anydpi-v26" / "ic_launcher_system_auto.xml"] = result[
+            RES / "mipmap-anydpi-v26" / f"{target}.xml"
+        ]
     return result
 
 
 def obsolete_files() -> list[Path]:
     # These exact former resources collided with the transparent UI resource or
     # duplicated launcher layers. Never remove arbitrary files/directories.
-    candidates = [RES / "values-night/ic_launcher_background.xml"]
+    candidates = [RES / "values-night/ic_launcher_background.xml",
+                  RES / "values/ic_launcher_system_auto.xml",
+                  RES / "values-notnight/ic_launcher_system_auto.xml"]
     for directory in RES.glob("mipmap*"):
         for name in ("ic_launcher.xml", "ic_launcher_round.xml", "ic_launcher_round.png", "ic_launcher_foreground.png"):
             candidates.append(directory / name)

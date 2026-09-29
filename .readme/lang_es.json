@@ -21,7 +21,8 @@
     "Reproducción en segundo plano: el audio no se interrumpe al salir de la pantalla o bloquear el dispositivo, y puede controlarse desde la notificación multimedia del sistema y la pantalla de bloqueo.",
     "Restauración de sesión: al reabrir la aplicación independiente desde el lanzador se restauran la última cola, la pista actual, la posición de parada, el estado de repetición / aleatorio y la velocidad; la sesión restaurada permanece en pausa.",
     "Modo de aplicación independiente: funciona sin AutoJs6; elige hasta {{ max_queue_size }} archivos de audio desde la pantalla de inicio y reprodúcelos.",
-    "Apariencia adaptable: el idioma, el modo nocturno y el color base pueden seguir a AutoJs6 o personalizarse; la carátula genera una paleta legible en el reproductor de borde a borde, con transiciones y respuesta háptica que respetan el sistema."
+    "Apariencia adaptable: el idioma, el modo nocturno y el color base pueden seguir a AutoJs6 o personalizarse; la carátula genera una paleta legible en el reproductor de borde a borde, con transiciones y respuesta háptica que respetan el sistema.",
+    "Icono del lanzador en Ajustes: adaptable claro, adaptable oscuro (predeterminado), adaptable automático o fondo transparente. Los colores automáticos y la transparencia dependen del lanzador, que puede guardar iconos en caché o añadir un fondo. Algunos accesos directos pueden necesitar añadirse de nuevo tras el cambio."
   ],
   "h3_usage": "Uso",
   "usage_steps": [

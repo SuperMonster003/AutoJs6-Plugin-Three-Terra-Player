@@ -57,6 +57,15 @@
     <string name="follow_autojs6_unavailable_value">AutoJs6 に従えません (%1$s)· 代替: %2$s</string>
     <string name="follow_autojs6_value">AutoJs6 に従う · %1$s</string>
     <string name="follow_system">システムに従う</string>
+    <string name="launcher_icon_applied_note">反映まで数秒かかる場合があります. ホーム画面のショートカットを再追加する必要がある場合があります.</string>
+    <string name="launcher_icon_auto">アダプティブ 自動</string>
+    <string name="launcher_icon_auto_note">システムテーマへの追従を試みます. ランチャーによってはアイコンがキャッシュされ, 配色が固定されます.</string>
+    <string name="launcher_icon_dark">アダプティブ ダーク</string>
+    <string name="launcher_icon_failed">ランチャーアイコンを変更できませんでした. もう一度お試しください.</string>
+    <string name="launcher_icon_light">アダプティブ ライト</string>
+    <string name="launcher_icon_title">ランチャーアイコン</string>
+    <string name="launcher_icon_transparent">透明な背景</string>
+    <string name="launcher_icon_transparent_note">ランチャーが背景やマスクを追加する場合, 透明な背景は維持されないことがあります.</string>
     <string name="night_mode_dark">常にダーク</string>
     <string name="night_mode_light">常にライト</string>
     <string name="notification_permission_explanation">この画面以外でも再生コントロールを表示するには通知を許可してください. 拒否しても再生は利用できます.</string>
