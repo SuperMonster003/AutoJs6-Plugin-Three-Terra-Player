@@ -6,9 +6,10 @@
   "changelog_label_dependency": "依賴",
   "$data": {
     "v1.6.2": {
-      "released_date": "2026/09/19",
+      "released_date": "2026/09/29",
       "improvement": [
-        "繼 compileSdk 之後將 targetSdk 提升到 37 (Android 17), 插件行為不受新目標版本影響"
+        "繼 compileSdk 之後將 targetSdk 提升到 37 (Android 17), 插件行為不受新目標版本影響",
+        "統一 Three 系列啟動器圖示為淺色圖案配深色背景, 插件中心與應用程式內圖案隨應用主題切換並保持透明背景, 避免部分裝置出現啟動器背景套環"
       ],
       "fix": [
         "AGP 9.1 構建時的 SDK XML v4 解析警告及 JVM 單元測試組裝任務誤觸發 APK 原生程式庫對齊檢查的問題 (共用構建外掛 1.8.3)"
