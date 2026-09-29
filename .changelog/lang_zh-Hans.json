@@ -6,9 +6,10 @@
   "changelog_label_dependency": "依赖",
   "$data": {
     "v1.6.2": {
-      "released_date": "2026/09/19",
+      "released_date": "2026/09/29",
       "improvement": [
-        "targetSdk 升级至 37 (Android 17)"
+        "targetSdk 升级至 37 (Android 17)",
+        "统一 Three 系列启动器图标为浅色图案配深色背景, 插件中心与应用内图案随应用主题切换并保持透明背景, 避免部分设备出现启动器背景套环"
       ],
       "fix": [
         "AGP 9.1 构建时的 SDK XML v4 解析警告, 以及 JVM 单元测试误触发 APK 原生库对齐检查的问题 (共享构建插件 1.8.3)"
