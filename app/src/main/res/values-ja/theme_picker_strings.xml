@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_picker_custom">カスタム色</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">#RRGGBB, RRGGBB または rgb(r, g, b) を入力してください. RGB の値は 0..255 です.</string>
+    <string name="theme_picker_presets">プリセット色</string>
+    <string name="theme_picker_preview">プレビュー</string>
+</resources>

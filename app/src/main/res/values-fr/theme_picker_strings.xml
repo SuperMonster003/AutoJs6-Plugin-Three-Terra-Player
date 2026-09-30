@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_picker_custom">Couleur personnalisée</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">Saisissez #RRGGBB, RRGGBB ou rgb(r, g, b). Les valeurs RGB doivent être comprises entre 0 et 255.</string>
+    <string name="theme_picker_presets">Couleurs prédéfinies</string>
+    <string name="theme_picker_preview">Aperçu</string>
+</resources>

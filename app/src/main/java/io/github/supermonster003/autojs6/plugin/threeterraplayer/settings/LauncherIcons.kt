@@ -2,10 +2,13 @@ package io.github.supermonster003.autojs6.plugin.threeterraplayer.settings
 
 import android.content.ComponentName
 import android.content.Context
+import android.content.BroadcastReceiver
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.os.Build
+import java.util.concurrent.Executors
 
 /** Stable aliases persist the choice in PackageManager, independently of the app's process. */
 internal enum class LauncherIconMode(val alias: String) {
@@ -15,23 +18,53 @@ internal enum class LauncherIconMode(val alias: String) {
     fun component(context: Context) = ComponentName(context.packageName, "${context.packageName}.launcher.$alias")
 }
 
+/** Pure state resolution. Explicit choices survive a change of the Manifest default. */
+internal object LauncherIconStatePolicy {
+    fun enabled(mode: LauncherIconMode, state: Int) = state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED ||
+        (state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT && mode == LauncherIconMode.AUTO)
+
+    fun resolve(states: Map<LauncherIconMode, Int>): LauncherIconMode {
+        val explicit = LauncherIconMode.entries.filter { states.getValue(it) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED }
+        // Interrupted or externally edited states have no trustworthy "last selection".
+        // Prefer an explicit Auto, then the stable visible option order; never depend on map order.
+        return explicit.firstOrNull { it == LauncherIconMode.AUTO } ?: explicit.firstOrNull() ?: LauncherIconMode.AUTO
+    }
+}
+
 /** Keeps the real Activity enabled so explicit intents, tasks and existing shortcuts stay valid. */
 internal object LauncherIcons {
-    fun current(context: Context): LauncherIconMode {
-        val pm = context.packageManager
-        return LauncherIconMode.entries.firstOrNull { mode ->
-            enabled(mode, pm.getComponentEnabledSetting(mode.component(context)))
-        } ?: LauncherIconMode.DARK
+    private val worker by lazy { Executors.newSingleThreadExecutor { Thread(it, "launcher-icon-normalize") } }
+
+    private fun snapshot(context: Context) = LauncherIconMode.entries.associateWith {
+        context.packageManager.getComponentEnabledSetting(it.component(context))
     }
 
-    private fun enabled(mode: LauncherIconMode, state: Int) = state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED ||
-        (state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT && mode == LauncherIconMode.DARK)
+    fun current(context: Context): LauncherIconMode = LauncherIconStatePolicy.resolve(snapshot(context))
+
+    /** Idempotent repair of old/default/mixed states; no duplicate mode preference is stored. */
+    @Synchronized fun normalize(context: Context) { select(context, current(context)) }
+
+    fun normalizeAsync(context: Context, onComplete: (() -> Unit)? = null) {
+        val app = context.applicationContext
+        worker.execute {
+            try { normalize(app) }
+            catch (_: Exception) { /* Keep the prior state; a later launch will retry without logging shortcut data. */ }
+            finally { onComplete?.invoke() }
+        }
+    }
+
+    private fun enabled(mode: LauncherIconMode, state: Int) = LauncherIconStatePolicy.enabled(mode, state)
 
     @Synchronized fun select(context: Context, mode: LauncherIconMode) {
         val pm = context.packageManager
-        val before = LauncherIconMode.entries.associateWith { pm.getComponentEnabledSetting(it.component(context)) }
-        if (before.count { enabled(it.key, it.value) } == 1 && enabled(mode, before.getValue(mode))) return
-        val previous = before.entries.firstOrNull { enabled(it.key, it.value) }?.key ?: LauncherIconMode.DARK
+        val before = snapshot(context)
+        if (before.count { enabled(it.key, it.value) } == 1 && enabled(mode, before.getValue(mode))) {
+            // A Manifest-default upgrade may already have one Auto entry while old mutable
+            // shortcuts still belong to the now-disabled Dark alias. Repair that ownership too.
+            refreshShortcuts(context, mode)
+            return
+        }
+        val previous = LauncherIconStatePolicy.resolve(before)
         val after = LauncherIconMode.entries.associateWith {
             if (it == mode) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED
         }
@@ -66,9 +99,19 @@ internal object LauncherIcons {
     private fun refreshShortcuts(context: Context, mode: LauncherIconMode) {
         if (Build.VERSION.SDK_INT < 25) return
         val manager = context.getSystemService(ShortcutManager::class.java) ?: return
-        val updates = (manager.dynamicShortcuts + manager.pinnedShortcuts).distinctBy { it.id }
+        val mutable = (manager.dynamicShortcuts + manager.pinnedShortcuts).distinctBy { it.id }
             .filterNot { it.isDeclaredInManifest || (Build.VERSION.SDK_INT >= 30 && it.isImmutable) }
-            .map { shortcut ->
+        val target = mode.component(context)
+        val previousLaunchers = LauncherIconMode.entries.map { it.component(context) }.toMutableSet()
+        context.packageManager.getActivityInfo(target, 0).targetActivity?.let {
+            previousLaunchers += ComponentName(context.packageName, it)
+        }
+        // updateShortcuts never changes enabled. Recover only launcher entries that Android
+        // disabled because the app changed; never undo an explicit disableShortcuts() decision.
+        val recoverable = if (Build.VERSION.SDK_INT >= 28) mutable.filter {
+            !it.isEnabled && it.disabledReason == ShortcutInfo.DISABLED_REASON_APP_CHANGED && it.activity in previousLaunchers
+        }.map { it.id } else emptyList()
+        val updates = mutable.filter { it.activity != target }.map { shortcut ->
                 ShortcutInfo.Builder(context, shortcut.id).setActivity(mode.component(context)).apply {
                     shortcut.shortLabel?.let(::setShortLabel)
                     shortcut.longLabel?.let(::setLongLabel)
@@ -76,5 +119,15 @@ internal object LauncherIcons {
                 }.build()
             }
         if (updates.isNotEmpty()) check(manager.updateShortcuts(updates)) { "The launcher could not update shortcut ownership" }
+        if (recoverable.isNotEmpty()) manager.enableShortcuts(recoverable)
+    }
+}
+
+/** Update-only repair: no UI, network, model loading or background service. */
+class LauncherIconUpdateReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action != Intent.ACTION_MY_PACKAGE_REPLACED) return
+        val pending = goAsync()
+        LauncherIcons.normalizeAsync(context) { pending.finish() }
     }
 }

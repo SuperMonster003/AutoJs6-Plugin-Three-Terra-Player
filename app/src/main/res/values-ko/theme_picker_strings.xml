@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_picker_custom">사용자 지정 색상</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">#RRGGBB, RRGGBB 또는 rgb(r, g, b)를 입력하세요. RGB 값은 0..255여야 합니다.</string>
+    <string name="theme_picker_presets">기본 제공 색상</string>
+    <string name="theme_picker_preview">미리 보기</string>
+</resources>

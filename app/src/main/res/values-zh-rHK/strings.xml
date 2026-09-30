@@ -58,13 +58,13 @@
     <string name="follow_autojs6_value">跟隨 AutoJs6 · %1$s</string>
     <string name="follow_system">跟隨系統</string>
     <string name="launcher_icon_applied_note">啓動器可能需要幾秒鐘刷新. 部分主畫面快捷方式可能需要重新添加.</string>
-    <string name="launcher_icon_auto">自適應自動</string>
+    <string name="launcher_icon_auto">自適應圖示 (自動)</string>
     <string name="launcher_icon_auto_note">嘗試跟隨系統主題. 部分啓動器會快取圖標或只使用一種配色.</string>
-    <string name="launcher_icon_dark">自適應暗色</string>
+    <string name="launcher_icon_dark">自適應圖示 (暗色)</string>
     <string name="launcher_icon_failed">無法切換啓動器圖標, 請重試.</string>
-    <string name="launcher_icon_light">自適應亮色</string>
+    <string name="launcher_icon_light">自適應圖示 (亮色)</string>
     <string name="launcher_icon_title">啓動器圖標</string>
-    <string name="launcher_icon_transparent">透明背景</string>
+    <string name="launcher_icon_transparent">透明背景圖示</string>
     <string name="launcher_icon_transparent_note">部分啓動器會自行添加背景或遮罩, 透明效果可能無法保留.</string>
     <string name="night_mode_dark">永遠使用深色</string>
     <string name="night_mode_light">永遠使用淺色</string>

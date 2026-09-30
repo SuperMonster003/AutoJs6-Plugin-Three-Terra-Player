@@ -7,13 +7,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 
-/**
- * Runtime semantic colors derived from one opaque source color.
- *
- * The source itself is preserved for the app bar so a followed AutoJs6 color remains visually
- * recognizable. Interactive and surface roles come from HCT tonal palettes, where tone has a
- * perceptual relationship to contrast that is considerably more stable than HSV lightening.
- */
+/** Fixed neutral surfaces with readable HCT accents; source color never tints the page background. */
 internal data class AudioThemePalette(
     val source: Int,
     val isDark: Boolean,
@@ -56,7 +50,7 @@ internal object AudioThemePaletteGenerator {
     // it library-group-only. The app pins that dependency and deliberately centralizes every use
     // here so an upstream API change has one review point.
     @SuppressLint("RestrictedApi")
-    fun generate(sourceColor: Int, dark: Boolean): AudioThemePalette {
+    fun generate(sourceColor: Int, dark: Boolean, accentSourceColor: Int = sourceColor): AudioThemePalette {
         val source = opaque(sourceColor)
         val sourceHct = Hct.fromInt(source)
         val isAchromatic = sourceHct.chroma < ACHROMATIC_CHROMA_THRESHOLD
@@ -64,30 +58,22 @@ internal object AudioThemePaletteGenerator {
             isAchromatic -> 0.0
             else -> max(sourceHct.chroma, MIN_PRIMARY_CHROMA).coerceAtMost(MAX_PRIMARY_CHROMA)
         }
-        val secondaryChroma = when {
-            isAchromatic -> 0.0
-            else -> max(MIN_SECONDARY_CHROMA, min(primaryChroma / 3.0, MAX_SECONDARY_CHROMA))
-        }
-        val neutralChroma = if (isAchromatic) 0.0 else min(sourceHct.chroma / 12.0, MAX_NEUTRAL_CHROMA)
-        val neutralVariantChroma = if (isAchromatic) 0.0 else max(
-            MIN_NEUTRAL_VARIANT_CHROMA,
-            min(sourceHct.chroma / 6.0, MAX_NEUTRAL_VARIANT_CHROMA),
-        )
+        val accentHct = Hct.fromInt(opaque(accentSourceColor))
+        val secondaryChroma = if (accentHct.chroma < ACHROMATIC_CHROMA_THRESHOLD) 0.0
+            else max(accentHct.chroma, MIN_PRIMARY_CHROMA).coerceAtMost(MAX_PRIMARY_CHROMA)
 
         val primary = TonalPalette.fromHueAndChroma(sourceHct.hue, primaryChroma)
-        val secondary = TonalPalette.fromHueAndChroma(sourceHct.hue, secondaryChroma)
-        val neutral = TonalPalette.fromHueAndChroma(sourceHct.hue, neutralChroma)
-        val neutralVariant = TonalPalette.fromHueAndChroma(sourceHct.hue, neutralVariantChroma)
+        val secondary = TonalPalette.fromHueAndChroma(accentHct.hue, secondaryChroma)
         // Error keeps a stable semantic red instead of inheriting a potentially misleading hue.
         val error = TonalPalette.fromHueAndChroma(ERROR_HUE, ERROR_CHROMA)
 
-        val appBar = source
-        val onAppBar = bestMonochromeForeground(appBar)
-        val background = neutral.tone(if (dark) 6 else 98)
-        val surface = background
-        val onSurface = neutral.tone(if (dark) 90 else 10)
-        val bottomControlSurface = neutralVariant.tone(if (dark) 24 else 86)
-        val expectedBottomContent = neutralVariant.tone(if (dark) 90 else 10)
+        val appBar = if (dark) 0xFF1E1E1E.toInt() else 0xFFFFFFFF.toInt()
+        val onAppBar = if (dark) 0xFFE6E1E5.toInt() else 0xFF1D1B20.toInt()
+        val background = if (dark) 0xFF121212.toInt() else 0xFFF3F4F5.toInt()
+        val surface = appBar
+        val onSurface = onAppBar
+        val bottomControlSurface = if (dark) 0xFF303030.toInt() else 0xFFE5E7EB.toInt()
+        val expectedBottomContent = onSurface
         val bottomControlContent = ensureReadable(
             expectedBottomContent,
             bottomControlSurface,
@@ -110,18 +96,18 @@ internal object AudioThemePaletteGenerator {
             background = background,
             onBackground = onSurface,
             surface = surface,
-            surfaceContainerLowest = neutral.tone(if (dark) 4 else 100),
-            surfaceContainerLow = neutral.tone(if (dark) 10 else 96),
-            surfaceContainer = neutral.tone(if (dark) 12 else 94),
-            surfaceContainerHigh = neutral.tone(if (dark) 17 else 92),
-            surfaceContainerHighest = neutral.tone(if (dark) 22 else 90),
+            surfaceContainerLowest = appBar,
+            surfaceContainerLow = appBar,
+            surfaceContainer = appBar,
+            surfaceContainerHigh = appBar,
+            surfaceContainerHighest = if (dark) 0xFF34363A.toInt() else 0xFFE0E3E7.toInt(),
             onSurface = onSurface,
-            onSurfaceVariant = neutralVariant.tone(if (dark) 80 else 30),
-            outline = neutralVariant.tone(if (dark) 60 else 50),
-            outlineVariant = neutralVariant.tone(if (dark) 30 else 80),
+            onSurfaceVariant = if (dark) 0xFFB9BAC0.toInt() else 0xFF5F6368.toInt(),
+            outline = if (dark) 0xFF777A82.toInt() else 0xFFC5C8CE.toInt(),
+            outlineVariant = if (dark) 0xFF34363A.toInt() else 0xFFE0E3E7.toInt(),
             bottomControlSurface = bottomControlSurface,
             bottomControlContent = bottomControlContent,
-            error = error.tone(if (dark) 80 else 40),
+            error = if (dark) 0xFFFFB4AB.toInt() else 0xFFB3261E.toInt(),
             onError = error.tone(if (dark) 20 else 100),
             errorContainer = error.tone(if (dark) 30 else 90),
             onErrorContainer = error.tone(if (dark) 90 else 10),
@@ -129,6 +115,12 @@ internal object AudioThemePaletteGenerator {
     }
 
     fun parseOpaqueColor(value: String): Int? {
+        val rgb = Regex("""(?i)rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)""").matchEntire(value.trim())
+        if (rgb != null) {
+            val channels = rgb.groupValues.drop(1).map(String::toInt)
+            if (channels.any { it !in 0..255 }) return null
+            return OPAQUE_ALPHA or (channels[0] shl 16) or (channels[1] shl 8) or channels[2]
+        }
         val normalized = value.trim().removePrefix("#").removePrefix("0x").removePrefix("0X")
         if (normalized.length != 6 || normalized.any { it.digitToIntOrNull(16) == null }) return null
         return normalized.toLong(16).toInt() or OPAQUE_ALPHA
@@ -174,13 +166,8 @@ internal object AudioThemePaletteGenerator {
     private const val ACHROMATIC_CHROMA_THRESHOLD = 4.0
     private const val MIN_PRIMARY_CHROMA = 48.0
     private const val MAX_PRIMARY_CHROMA = 96.0
-    private const val MIN_SECONDARY_CHROMA = 16.0
-    private const val MAX_SECONDARY_CHROMA = 24.0
     private const val ERROR_HUE = 25.0
     private const val ERROR_CHROMA = 84.0
-    private const val MAX_NEUTRAL_CHROMA = 6.0
-    private const val MIN_NEUTRAL_VARIANT_CHROMA = 8.0
-    private const val MAX_NEUTRAL_VARIANT_CHROMA = 12.0
     private const val MIN_TEXT_CONTRAST = 4.5
     private const val RGB_MASK = 0x00FFFFFF
     private const val OPAQUE_ALPHA = -0x1000000

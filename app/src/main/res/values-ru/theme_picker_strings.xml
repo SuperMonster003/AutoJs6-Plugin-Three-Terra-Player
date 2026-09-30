@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_picker_custom">Свой цвет</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">Введите #RRGGBB, RRGGBB или rgb(r, g, b). Значения RGB должны быть от 0 до 255.</string>
+    <string name="theme_picker_presets">Готовые цвета</string>
+    <string name="theme_picker_preview">Предпросмотр</string>
+</resources>

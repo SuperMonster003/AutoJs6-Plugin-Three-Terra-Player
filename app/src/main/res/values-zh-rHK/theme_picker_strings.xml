@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_picker_custom">自訂顏色</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">請輸入 #RRGGBB, RRGGBB 或 rgb(r, g, b). RGB 數值須為 0..255.</string>
+    <string name="theme_picker_presets">預設顏色</string>
+    <string name="theme_picker_preview">預覽</string>
+</resources>

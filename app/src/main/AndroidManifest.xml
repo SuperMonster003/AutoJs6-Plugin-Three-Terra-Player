@@ -73,7 +73,7 @@
 
         <activity-alias
             android:name="${applicationId}.launcher.AdaptiveDarkIconAlias"
-            android:enabled="true"
+            android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_system"
             android:targetActivity=".LauncherActivity">
@@ -85,7 +85,7 @@
 
         <activity-alias
             android:name="${applicationId}.launcher.AdaptiveAutoIconAlias"
-            android:enabled="false"
+            android:enabled="true"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_system_auto"
             android:targetActivity=".LauncherActivity">
@@ -252,6 +252,13 @@
             </intent-filter>
         </service>
 
+        <receiver
+            android:name="io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.LauncherIconUpdateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
