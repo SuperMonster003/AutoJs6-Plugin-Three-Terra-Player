@@ -17,7 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.widget.TextViewCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.PlaybackPositionStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.PlaybackSessionStore
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.R
@@ -83,16 +83,22 @@ class SettingsActivity : AudioThemedActivity() {
             }
             val title = getString(launcherIconLabel(mode))
             SpannableString(title + (note?.let { "\n" + getString(it) } ?: "")).apply {
-                if (note != null) setSpan(RelativeSizeSpan(0.8f), title.length + 1, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                if (note != null) {
+                    setSpan(RelativeSizeSpan(14f / 16f), title.length + 1, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(android.text.style.ForegroundColorSpan(audioPalette.onSurfaceVariant), title.length + 1, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                }
             }
         }
+        var pending = LauncherIcons.current(this)
         val chooser = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.launcher_icon_title)
-            .setSingleChoiceItems(labels.toTypedArray(), modes.indexOf(LauncherIcons.current(this))) { shown, which ->
-                val changed = runCatching { LauncherIcons.select(this, modes[which]) }.isSuccess
+            .setSingleChoiceItems(labels.toTypedArray(), modes.indexOf(pending)) { _, which ->
+                pending = modes[which]
+            }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                val changed = runCatching { LauncherIcons.select(this, pending) }.isSuccess
                 Toast.makeText(this, if (changed) R.string.launcher_icon_applied_note else R.string.launcher_icon_failed, Toast.LENGTH_LONG).show()
                 renderValues()
-                shown.dismiss()
             }
             .setNegativeButton(android.R.string.cancel, null)
             .create()
@@ -102,6 +108,8 @@ class SettingsActivity : AudioThemedActivity() {
     }
 
     private fun bindRows() {
+        bindAccessibleSwitch(binding.rememberPositionSetting, binding.rememberPositionSwitch)
+        bindAccessibleSwitch(binding.autoUpdateSetting, binding.autoUpdateSwitch)
         binding.launcherIconSetting.setOnClickListener { showLauncherIconDialog() }
         binding.languageSetting.setOnClickListener { showLanguageDialog() }
         binding.nightModeSetting.setOnClickListener { showNightModeDialog() }
@@ -140,6 +148,7 @@ class SettingsActivity : AudioThemedActivity() {
     }
 
     private fun showLanguageDialog() {
+        hostResult = AutoJs6AppearanceClient.query(this)
         val labels = buildList {
             add(getString(R.string.follow_autojs6))
             add(getString(R.string.follow_system))
@@ -155,6 +164,7 @@ class SettingsActivity : AudioThemedActivity() {
                 ?.plus(2)
                 ?: 1
         }
+        var pending = preference
         val dialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.setting_language)
             .setSingleChoiceItems(
@@ -165,18 +175,19 @@ class SettingsActivity : AudioThemedActivity() {
                     palette = audioPalette,
                 ),
                 checked,
-            ) { selectedDialog, which ->
-                val selected = when (which) {
+            ) { _, which ->
+                pending = when (which) {
                     0 -> AppLanguagePreference(AppLanguageMode.AUTOJS6)
                     1 -> AppLanguagePreference(AppLanguageMode.SYSTEM)
                     else -> AppPreferenceStore.SUPPORTED_LANGUAGE_TAGS.getOrNull(which - 2)
                         ?.let { tag -> AppLanguagePreference(AppLanguageMode.SPECIFIC, tag) }
                         ?: return@setSingleChoiceItems
                 }
-                if (preferenceStore.saveLanguage(selected)) {
+            }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                if (preferenceStore.saveLanguage(pending)) {
                     AppAppearanceController.apply(this, hostResult)
                 }
-                selectedDialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel, null)
             .create()
@@ -184,6 +195,7 @@ class SettingsActivity : AudioThemedActivity() {
     }
 
     private fun showNightModeDialog() {
+        hostResult = AutoJs6AppearanceClient.query(this)
         val labels = listOf(
             getString(R.string.follow_autojs6),
             getString(R.string.follow_system),
@@ -196,6 +208,7 @@ class SettingsActivity : AudioThemedActivity() {
             AppNightMode.LIGHT,
             AppNightMode.DARK,
         )
+        var pending = preferenceStore.nightMode()
         val dialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.setting_night_mode)
             .setSingleChoiceItems(
@@ -206,13 +219,13 @@ class SettingsActivity : AudioThemedActivity() {
                     palette = audioPalette,
                 ),
                 values.indexOf(preferenceStore.nightMode()),
-            ) { selectedDialog, which ->
-                values.getOrNull(which)?.let { value ->
-                    if (preferenceStore.saveNightMode(value)) {
-                        AppAppearanceController.apply(this, hostResult)
-                    }
+            ) { _, which ->
+                values.getOrNull(which)?.let { pending = it }
+            }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                if (preferenceStore.saveNightMode(pending)) {
+                    AppAppearanceController.apply(this, hostResult)
                 }
-                selectedDialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel, null)
             .create()
@@ -404,6 +417,14 @@ class SettingsActivity : AudioThemedActivity() {
 
     private fun styleViews() {
         val palette = audioPalette
+        fun styleDecorations(view: View) {
+            when (view.tag) {
+                "settings_leading_icon", "settings_chevron" -> (view as? android.widget.ImageView)?.imageTintList = ColorStateList.valueOf(palette.onSurfaceVariant)
+                "settings_divider" -> view.setBackgroundColor(palette.outlineVariant)
+            }
+            if (view is ViewGroup) for (index in 0 until view.childCount) styleDecorations(view.getChildAt(index))
+        }
+        styleDecorations(binding.settingsContent)
         binding.settingsRoot.setBackgroundColor(palette.background)
         binding.settingsContent.setBackgroundColor(palette.background)
         binding.toolbar.setBackgroundColor(palette.appBar)
@@ -414,7 +435,7 @@ class SettingsActivity : AudioThemedActivity() {
             binding.playbackSection,
             binding.updatesSection,
             binding.aboutSection,
-        ).forEach { view -> view.setTextColor(palette.primary) }
+        ).forEach { view -> view.setTextColor(palette.onSurfaceVariant) }
         listOf(
             binding.launcherIconTitle,
             binding.languageTitle,
@@ -449,15 +470,20 @@ class SettingsActivity : AudioThemedActivity() {
         styleSwitch(binding.autoUpdateSwitch)
     }
 
-    private fun styleSwitch(view: SwitchMaterial) {
-        view.thumbTintList = ColorStateList(
-            arrayOf(intArrayOf(android.R.attr.state_checked), intArrayOf()),
-            intArrayOf(audioPalette.primary, audioPalette.outline),
-        )
-        view.trackTintList = ColorStateList(
-            arrayOf(intArrayOf(android.R.attr.state_checked), intArrayOf()),
-            intArrayOf(audioPalette.primaryContainer, audioPalette.surfaceContainerHighest),
-        )
+    private fun bindAccessibleSwitch(row: View, control: MaterialSwitch) {
+        control.importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+        androidx.core.view.ViewCompat.setAccessibilityDelegate(row, object : androidx.core.view.AccessibilityDelegateCompat() {
+            override fun onInitializeAccessibilityNodeInfo(host: View, info: androidx.core.view.accessibility.AccessibilityNodeInfoCompat) {
+                super.onInitializeAccessibilityNodeInfo(host, info)
+                info.className = android.widget.Switch::class.java.name
+                info.isCheckable = true
+                info.isChecked = control.isChecked
+            }
+        })
+    }
+
+    private fun styleSwitch(view: MaterialSwitch) {
+        AudioThemeDialogStyler.styleTree(view, audioPalette)
     }
 
     private fun showTinted(dialog: AlertDialog) {

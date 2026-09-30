@@ -26,7 +26,7 @@ class AudioThemePaletteTest {
                     palette.bottomControlSurface,
                     4.5,
                 )
-                assertContrastAtLeast(palette.outline, palette.background, 3.0)
+                assertContrastAtLeast(palette.onSurfaceVariant, palette.background, 4.5)
                 assertContrastAtLeast(palette.onError, palette.error, 4.5)
                 assertContrastAtLeast(palette.onErrorContainer, palette.errorContainer, 4.5)
             }
@@ -39,9 +39,12 @@ class AudioThemePaletteTest {
         val light = AudioThemePaletteGenerator.generate(source, dark = false)
         val dark = AudioThemePaletteGenerator.generate(source, dark = true)
 
-        assertEquals(source, light.appBar)
-        assertEquals(source, dark.appBar)
-        assertEquals(light.appBar, dark.appBar)
+        assertEquals(source, light.source)
+        assertEquals(source, dark.source)
+        assertEquals(0xFFFFFFFF.toInt(), light.appBar)
+        assertEquals(0xFF1E1E1E.toInt(), dark.appBar)
+        assertEquals(0xFFF3F4F5.toInt(), light.background)
+        assertEquals(0xFF121212.toInt(), dark.background)
         assertNotEquals(light.background, dark.background)
         assertNotEquals(light.primary, dark.primary)
         assertNotEquals(light.bottomControlSurface, dark.bottomControlSurface)
@@ -56,6 +59,19 @@ class AudioThemePaletteTest {
         assertEquals(null, AudioThemePaletteGenerator.parseOpaqueColor("#80123ABC"))
         assertEquals(null, AudioThemePaletteGenerator.parseOpaqueColor("red"))
         assertEquals(null, AudioThemePaletteGenerator.parseOpaqueColor("#GG0000"))
+    }
+
+    @Test
+    fun hostAccentUsesTheSameTonalPolicyAsPrimary() {
+        for (dark in listOf(false, true)) {
+            val primarySeed = 0xFFE91E63.toInt()
+            val accentSeed = 0xFF009688.toInt()
+            val combined = AudioThemePaletteGenerator.generate(primarySeed, dark, accentSeed)
+            val accent = AudioThemePaletteGenerator.generate(accentSeed, dark)
+            assertEquals(accent.primary, combined.secondary)
+            assertEquals(accent.onPrimary, combined.onSecondary)
+            assertContrastAtLeast(combined.onSecondary, combined.secondary, 4.5)
+        }
     }
 
     private fun assertOpaque(palette: AudioThemePalette) {

@@ -2,6 +2,7 @@ package io.github.supermonster003.autojs6.plugin.threeterraplayer.theme
 
 import android.graphics.Color
 import android.os.Build
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.LauncherIcons
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -26,31 +27,54 @@ abstract class AudioThemedActivity : AppCompatActivity() {
     private var appliedAppearanceRevision = Long.MIN_VALUE
     private var appliedHostSignature: Int? = null
     private var recreationRequested = false
+    private var userInteracted = false
+    private val appearanceDialogs = java.util.WeakHashMap<android.app.Dialog, Unit>()
+    internal fun trackAppearanceDialog(dialog: android.app.Dialog) { appearanceDialogs[dialog] = Unit }
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        userInteracted = true
+    }
+    private val hostAppearanceListener: () -> Unit = {
+        if (!userInteracted && lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED)) refreshEffectiveAppearance()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AutoJs6AppearanceClient.addListener(hostAppearanceListener)
         // A cold Application can run before AutoJs6's provider is ready. Resolve once more at the
         // Activity boundary so host-following locale and night mode are in place before AppCompat
         // creates delegates or inflates any resources.
-        AppAppearanceController.apply(this)
+        val appearance = AppAppearanceController.apply(this)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
-        resolvedAudioTheme = AudioThemeResolver.resolve(this)
+        LauncherIcons.normalizeAsync(this)
+        resolvedAudioTheme = AudioThemeResolver.resolve(this, appearance.hostResult)
         appliedPreferenceRevision = ThemePreferenceStore(this).revision()
         val appStore = AppPreferenceStore(this)
         appliedAppearanceRevision = appStore.appearanceRevision()
-        appliedHostSignature = resolvedAudioTheme.hostResult?.hashCode()
-            ?: hostResultIfFollowed(appStore)?.hashCode()
+        appliedHostSignature = effectiveHostSignature(appearance.hostResult, ThemePreferenceStore(this).load(), appStore)
         applyWindowPalette(audioPalette)
     }
 
     override fun onResume() {
         super.onResume()
-        if (recreationRequested) return
+        userInteracted = false
+        AutoJs6AppearanceClient.refresh(this)
+        refreshEffectiveAppearance()
+    }
+
+    override fun onDestroy() {
+        AutoJs6AppearanceClient.removeListener(hostAppearanceListener)
+        super.onDestroy()
+    }
+
+    private fun refreshEffectiveAppearance() {
+        if (recreationRequested || isFinishing || isDestroyed || appearanceDialogs.keys.any { it.isShowing }) return
         val store = ThemePreferenceStore(this)
         val preference = store.load()
         val appStore = AppPreferenceStore(this)
         val hostResult = if (followsHost(preference, appStore)) AutoJs6AppearanceClient.query(this) else null
-        val hostSignature = hostResult?.hashCode()
+        val hostSignature = effectiveHostSignature(hostResult, preference, appStore)
         if (
             store.revision() != appliedPreferenceRevision ||
             appStore.appearanceRevision() != appliedAppearanceRevision ||
@@ -143,15 +167,21 @@ abstract class AudioThemedActivity : AppCompatActivity() {
 
     internal fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
-    private fun hostResultIfFollowed(store: AppPreferenceStore): AutoJs6AppearanceResult? =
-        if (
-            store.language().mode == AppLanguageMode.AUTOJS6 ||
-            store.nightMode() == AppNightMode.AUTOJS6
-        ) {
-            AutoJs6AppearanceClient.query(this)
-        } else {
-            null
-        }
+    private fun effectiveHostSignature(
+        result: AutoJs6AppearanceResult?,
+        preference: ThemeSourcePreference,
+        store: AppPreferenceStore,
+    ): Int? {
+        if (!followsHost(preference, store)) return null
+        val host = result?.snapshot
+        return listOf(
+            result?.availability,
+            if (preference.mode == ThemeSourceMode.AUTOJS6) host?.themeColorPrimary ?: AudioThemePaletteGenerator.AUTOJS6_FALLBACK_SOURCE else null,
+            if (preference.mode == ThemeSourceMode.AUTOJS6) host?.themeColorAccent ?: AudioThemePaletteGenerator.AUTOJS6_FALLBACK_SOURCE else null,
+            if (store.language().mode == AppLanguageMode.AUTOJS6) AppAppearanceController.resolveLanguageTag(store.language(), host) else null,
+            if (store.nightMode() == AppNightMode.AUTOJS6) AppAppearanceController.resolveNightMode(store.nightMode(), host) else null,
+        ).hashCode()
+    }
 
     private fun followsHost(
         themePreference: ThemeSourcePreference,

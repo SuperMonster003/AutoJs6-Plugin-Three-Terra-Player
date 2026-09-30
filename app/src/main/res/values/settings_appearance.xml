@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="settings_dialog_layout_bound" type="id" />
+    <style name="ThemeOverlay.Plugin.ConfirmDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="backgroundInsetStart">0dp</item>
+        <item name="backgroundInsetEnd">0dp</item>
+        <item name="backgroundInsetTop">0dp</item>
+        <item name="backgroundInsetBottom">0dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Plugin.ConfirmDialog</item>
+    </style>
+    <style name="ShapeAppearance.Plugin.ConfirmDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+</resources>

@@ -162,18 +162,47 @@ internal data class AutoJs6AppearanceResult(
 internal object AutoJs6AppearanceClient {
     private val settingsUri = HostContract.CONTENT_URI.toUri()
 
+    @Volatile private var cached = AutoJs6AppearanceResult(AutoJs6HostAvailability.NOT_INSTALLED)
+    @Volatile private var loaded = false
+    internal val hasSnapshot: Boolean get() = loaded
+    private val refreshing = java.util.concurrent.atomic.AtomicBoolean(false)
+    private val listeners = java.util.concurrent.CopyOnWriteArraySet<() -> Unit>()
+    private val worker by lazy { java.util.concurrent.Executors.newSingleThreadExecutor { Thread(it, "host-appearance") } }
+    private val main by lazy { android.os.Handler(android.os.Looper.getMainLooper()) }
+
+    /** UI callers read a snapshot; all provider/package IO runs on the application worker. */
     fun query(context: Context): AutoJs6AppearanceResult {
+        if (!loaded) refresh(context)
+        return cached
+    }
+
+    fun addListener(listener: () -> Unit) { listeners += listener }
+    fun removeListener(listener: () -> Unit) { listeners -= listener }
+
+    fun refresh(context: Context) {
+        if (!refreshing.compareAndSet(false, true)) return
+        val app = context.applicationContext
+        worker.execute {
+            val latest = runCatching { queryBlocking(app) }.getOrElse {
+                AutoJs6AppearanceResult(AutoJs6HostAvailability.CONTRACT_UNAVAILABLE)
+            }
+            val changed = latest != cached
+            cached = latest
+            loaded = true
+            refreshing.set(false)
+            if (changed) main.post { listeners.forEach { it() } }
+        }
+    }
+
+    private fun queryBlocking(context: Context): AutoJs6AppearanceResult {
         val hostAvailability = inspectHostPackage(context)
         if (hostAvailability != AutoJs6HostAvailability.AVAILABLE) {
             return AutoJs6AppearanceResult(hostAvailability)
         }
         val response = runCatching {
-            context.contentResolver.call(
-                settingsUri,
-                HostContract.METHOD_GET_SETTINGS,
-                null,
-                null,
-            )
+            context.contentResolver.acquireUnstableContentProviderClient(settingsUri)?.use { client ->
+                client.call(HostContract.METHOD_GET_SETTINGS, null, null)
+            }
         }.getOrNull() ?: return AutoJs6AppearanceResult(
             AutoJs6HostAvailability.CONTRACT_UNAVAILABLE,
         )
@@ -257,10 +286,10 @@ internal data class ResolvedAudioTheme(
 )
 
 internal object AudioThemeResolver {
-    fun resolve(context: Context): ResolvedAudioTheme {
+    fun resolve(context: Context, suppliedHostResult: AutoJs6AppearanceResult? = null): ResolvedAudioTheme {
         val preference = ThemePreferenceStore(context).load()
         val hostResult = if (preference.mode == ThemeSourceMode.AUTOJS6) {
-            AutoJs6AppearanceClient.query(context)
+            suppliedHostResult ?: AutoJs6AppearanceClient.query(context)
         } else {
             null
         }
@@ -273,7 +302,7 @@ internal object AudioThemeResolver {
         return ResolvedAudioTheme(
             preference = preference,
             hostResult = hostResult,
-            palette = AudioThemePaletteGenerator.generate(sourceColor, dark),
+            palette = AudioThemePaletteGenerator.generate(sourceColor, dark, hostResult?.snapshot?.themeColorAccent ?: sourceColor),
         )
     }
 }

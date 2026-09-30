@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_picker_custom">لون مخصص</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">أدخل #RRGGBB أو RRGGBB أو rgb(r, g, b). يجب أن تكون قيم RGB بين 0 و255.</string>
+    <string name="theme_picker_presets">ألوان جاهزة</string>
+    <string name="theme_picker_preview">معاينة</string>
+</resources>
