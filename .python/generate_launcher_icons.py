@@ -9,19 +9,17 @@ transparent UI icons. Automatic color changes depend on the launcher configurati
 from __future__ import annotations
 
 import argparse
-import io
 import math
 from pathlib import Path
 
 from PIL import Image, ImageDraw
+import icon_geometry as geometry
 
 ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "app/src/main/res"
 SOURCE = ROOT / ".python/icons/three-terra-original.png"
 SIZE = 432
 SCALE = 4
-UI_GLYPH = 0.66
-ADAPTIVE_GLYPH = 0.44
 # Offset is a fraction of the rendered glyph width/height, not the canvas.
 # Ember uses optical balance assessed in circular masks at 48/96/160 px.
 OPTICAL_X = 0.0
@@ -39,6 +37,11 @@ def source_alpha() -> Image.Image:
         raise ValueError("Icon source has no visible artwork")
     alpha = alpha.crop(bounds)
     return alpha
+
+
+# Optical geometry v1; ratios are derived, not tuned independently by surface.
+OPTICAL_SCALE = 1.0
+UI_GLYPH, ADAPTIVE_GLYPH = geometry.normalized_ratios(source_alpha(), OPTICAL_SCALE)
 
 
 def glyph_alpha(alpha: Image.Image, ratio: float, optical_x=OPTICAL_X, optical_y=OPTICAL_Y) -> Image.Image:
@@ -64,19 +67,10 @@ def validate_circle(alpha: Image.Image, radius: float) -> None:
         raise ValueError(f"Artwork exceeds its safe circle: {maximum:.2f} > {radius:.2f} px")
 
 
-def render(alpha: Image.Image, ratio: float, color: tuple[int, int, int], background=None) -> Image.Image:
-    ink = glyph_alpha(alpha, ratio)
-    validate_circle(ink, SIZE * (33 / 108 if ratio == ADAPTIVE_GLYPH else .5))
-    result = Image.new("RGBA", (SIZE, SIZE), (*color, 255))
-    result.putalpha(ink)
-    if background is None:
-        return result
-    size = SIZE * SCALE
-    circle = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    ImageDraw.Draw(circle).ellipse((0, 0, size - 1, size - 1), fill=background)
-    circle = circle.resize((SIZE, SIZE), Image.Resampling.LANCZOS)
-    circle.alpha_composite(result)
-    return circle
+def render(alpha, ratio, color, background=None):
+    return geometry.render(alpha, ratio, color, background,
+                           adaptive=ratio == ADAPTIVE_GLYPH,
+                           optical_x=OPTICAL_X, optical_y=OPTICAL_Y)
 
 
 def generated_files() -> dict[Path, bytes]:
@@ -90,11 +84,11 @@ def generated_files() -> dict[Path, bytes]:
         "mipmap/ic_launcher_system_light_foreground.png": render(alpha, ADAPTIVE_GLYPH, DAY_GLYPH),
         "mipmap/ic_launcher_monochrome.png": render(alpha, ADAPTIVE_GLYPH, (0, 0, 0)),
     }
+    images["mipmap/ic_plugin_center.png"] = images["mipmap/ic_launcher.png"]
+    images["mipmap-night/ic_plugin_center.png"] = images["mipmap-night/ic_launcher.png"]
     result = {}
     for name, image in images.items():
-        output = io.BytesIO()
-        image.save(output, format="PNG", optimize=True)
-        result[RES / name] = output.getvalue()
+        result[RES / name] = geometry.encode_png(image)
     for suffix, foreground, background in (("", "ic_launcher_system_foreground", "ic_launcher_background"),
                                             ("_light", "ic_launcher_system_light_foreground", "ic_launcher_light_background")):
         adaptive = f'''<?xml version="1.0" encoding="utf-8"?>
@@ -123,6 +117,7 @@ def generated_files() -> dict[Path, bytes]:
         result[RES / f"mipmap{qualifier}-anydpi-v26" / "ic_launcher_system_auto.xml"] = result[
             RES / "mipmap-anydpi-v26" / f"{target}.xml"
         ]
+    result[RES / "raw/keep_plugin_center_icon.xml"] = geometry.KEEP_RESOURCE
     return result
 
 
