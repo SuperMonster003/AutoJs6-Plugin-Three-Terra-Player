@@ -1,3 +1,4 @@
 # The icon generator verifies exact XML bytes on every platform.
 app/src/main/res/**/ic_launcher_system*.xml text eol=lf
 app/src/main/res/**/ic_launcher_background.xml text eol=lf
+app/src/main/res/raw/keep_plugin_center_icon.xml text eol=lf
