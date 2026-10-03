@@ -12,7 +12,8 @@
         "Unified language, night mode, theme color and launcher icon settings, with explicit confirmation, 16 color presets and HEX/RGB preview. App appearance follows AutoJs6 by default and falls back safely when the host is unavailable"
       ],
       "improvement": [
-        "Neutral surfaces and readable themed Material 3 controls and dialogs, consistent spacing, outline icons and dividers. Automatic launcher icons are the new default; upgrades preserve explicit choices and normalize duplicate entries"
+        "Neutral surfaces and readable themed Material 3 controls and dialogs, consistent spacing, outline icons and dividers. Automatic launcher icons are the new default; upgrades preserve explicit choices and normalize duplicate entries",
+        "Consistent visual sizing for launcher and Plugin Center icons, with transparent backgrounds and neutral black, white or grayscale artwork"
       ]
     },
     "v1.6.2": {
