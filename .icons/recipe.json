@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "generatorVersion": "1.2.0",
+  "profile": "neutral-v1",
+  "repository": "AutoJs6-Plugin-Three-Terra-Player",
+  "packages": [
+    "io.github.supermonster003.autojs6.plugin.audioplayer"
+  ],
+  "launcher": true,
+  "params": {
+    "sources": {
+      "day": "0a3b1a203f529310b9a46e6cff5d394cbb380fd3313fe2e01e4b80b0c71ace58",
+      "night": "0a3b1a203f529310b9a46e6cff5d394cbb380fd3313fe2e01e4b80b0c71ace58",
+      "alphaMode": "alpha"
+    },
+    "geometry": {
+      "mode": "normalized",
+      "scale": 0.86,
+      "offsetX": 0,
+      "offsetY": 0
+    },
+    "day": {
+      "mode": "mask",
+      "foreground": "#272727",
+      "brightness": 1,
+      "contrast": 1,
+      "gamma": 1,
+      "threshold": 128,
+      "invert": false
+    },
+    "night": {
+      "mode": "mask",
+      "foreground": "#d8d8d8",
+      "brightness": 1,
+      "contrast": 1,
+      "gamma": 1,
+      "threshold": 128,
+      "invert": false
+    },
+    "backgrounds": {
+      "day": "#fafafa",
+      "night": "#212121"
+    }
+  },
+  "baseline": {
+    "params": {
+      "sources": {
+        "day": "0a3b1a203f529310b9a46e6cff5d394cbb380fd3313fe2e01e4b80b0c71ace58",
+        "night": "0a3b1a203f529310b9a46e6cff5d394cbb380fd3313fe2e01e4b80b0c71ace58",
+        "alphaMode": "alpha"
+      },
+      "geometry": {
+        "mode": "normalized",
+        "scale": 1.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0
+      },
+      "day": {
+        "mode": "mask",
+        "foreground": "#272727",
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "gamma": 1.0,
+        "threshold": 128,
+        "invert": false
+      },
+      "night": {
+        "mode": "mask",
+        "foreground": "#d8d8d8",
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "gamma": 1.0,
+        "threshold": 128,
+        "invert": false
+      },
+      "backgrounds": {
+        "day": "#fafafa",
+        "night": "#212121"
+      }
+    },
+    "day": "0624bd5785c3dddb9ed8e39e2dd82f58dfb1653a39988aee296727f5c21c8f42",
+    "night": "0297a7d2b4a49ac8b3b63e3e19c1e59fddf5e5118f5f364a1261baf6a7594d67"
+  },
+  "outputs": {
+    "app/src/main/res/mipmap/ic_plugin_center.png": {
+      "role": "ui-day",
+      "original": "0624bd5785c3dddb9ed8e39e2dd82f58dfb1653a39988aee296727f5c21c8f42"
+    },
+    "app/src/main/res/mipmap-night/ic_plugin_center.png": {
+      "role": "ui-night",
+      "original": "0297a7d2b4a49ac8b3b63e3e19c1e59fddf5e5118f5f364a1261baf6a7594d67"
+    },
+    "app/src/main/res/raw/keep_plugin_center_icon.xml": {
+      "role": "keep-rule",
+      "original": "887b28427e8b83cdc88e98d7547ba6ce72dc663fd375a25694d3c609b866748f"
+    },
+    "app/src/main/res/mipmap/ic_launcher.png": {
+      "role": "ui-day",
+      "original": "0624bd5785c3dddb9ed8e39e2dd82f58dfb1653a39988aee296727f5c21c8f42"
+    },
+    "app/src/main/res/mipmap/ic_launcher_monochrome.png": {
+      "role": "mono",
+      "original": "c3e3eb16cb8aede6ad7ea5525d972ea0b79e6780947f8be25e3ee20e563e12e4"
+    },
+    "app/src/main/res/mipmap/ic_launcher_system.png": {
+      "role": "legacy-night",
+      "original": "803a7780daac8ac4fb7db516c0d3bacb2c0acdbae918f633f09f2b71899d01f1"
+    },
+    "app/src/main/res/mipmap/ic_launcher_system_foreground.png": {
+      "role": "adaptive-night",
+      "original": "47d2ff0a767e04e3bfb9eb7ea61c65cc065e9093c6a1066157ce34f325dc431d"
+    },
+    "app/src/main/res/mipmap/ic_launcher_system_light.png": {
+      "role": "legacy-day",
+      "original": "3e701ebea64c945a807f20d8382f906d6077065f3e63376fff187878b4ac038c"
+    },
+    "app/src/main/res/mipmap/ic_launcher_system_light_foreground.png": {
+      "role": "adaptive-day",
+      "original": "ab65b6ad72799b9944c7f7c7001e9ee0074e8736298ed8357f8b00f3edc27ed3"
+    },
+    "app/src/main/res/mipmap-night/ic_launcher.png": {
+      "role": "ui-night",
+      "original": "0297a7d2b4a49ac8b3b63e3e19c1e59fddf5e5118f5f364a1261baf6a7594d67"
+    },
+    "app/src/main/res/values/icon_studio_backgrounds.xml": {
+      "role": "background-color",
+      "theme": "day"
+    },
+    "app/src/main/res/values-night/icon_studio_backgrounds.xml": {
+      "role": "background-color",
+      "theme": "night"
+    },
+    "app/src/main/res/raw/keep_icon_studio_background.xml": {
+      "role": "background-keep"
+    }
+  },
+  "assets": [
+    "0297a7d2b4a49ac8b3b63e3e19c1e59fddf5e5118f5f364a1261baf6a7594d67",
+    "0624bd5785c3dddb9ed8e39e2dd82f58dfb1653a39988aee296727f5c21c8f42",
+    "0a3b1a203f529310b9a46e6cff5d394cbb380fd3313fe2e01e4b80b0c71ace58",
+    "3e701ebea64c945a807f20d8382f906d6077065f3e63376fff187878b4ac038c",
+    "47d2ff0a767e04e3bfb9eb7ea61c65cc065e9093c6a1066157ce34f325dc431d",
+    "803a7780daac8ac4fb7db516c0d3bacb2c0acdbae918f633f09f2b71899d01f1",
+    "887b28427e8b83cdc88e98d7547ba6ce72dc663fd375a25694d3c609b866748f",
+    "ab65b6ad72799b9944c7f7c7001e9ee0074e8736298ed8357f8b00f3edc27ed3",
+    "c3e3eb16cb8aede6ad7ea5525d972ea0b79e6780947f8be25e3ee20e563e12e4"
+  ],
+  "legacyGenerator": ".python/generate_launcher_icons.py",
+  "originalSources": {},
+  "backgroundDefaults": {
+    "day": "#fafafa",
+    "night": "#212121"
+  }
+}
