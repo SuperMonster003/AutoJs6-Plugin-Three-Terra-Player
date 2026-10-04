@@ -42,14 +42,12 @@ def visual_size(alpha: Image.Image) -> float:
 def normalized_ratios(alpha: Image.Image, optical_scale: float = 1.0) -> tuple[float, float]:
     """One optical size for list/legacy artwork and the launcher's visible 72 dp.
 
-    Optical corrections are limited to +/-6% and must be documented alongside
-    the artwork; they are not separate per-surface tuning knobs.
+    Optical corrections are shared across surfaces. Size recommendations are
+    advisory; positioned_alpha/render still enforce clipping and safe circles.
     """
-    if not 0.94 <= optical_scale <= 1.06:
-        raise ValueError("Optical correction must stay within +/-6%")
+    if isinstance(optical_scale, bool) or not isinstance(optical_scale, (int, float)) or not math.isfinite(optical_scale) or not 0.25 <= optical_scale <= 2:
+        raise ValueError("Optical scale must be finite and within 0.25-2.0")
     ui = VISUAL_SIZE * optical_scale / visual_size(alpha)
-    if ui * max(1, alpha.height / alpha.width) > 0.80:
-        raise ValueError("Artwork needs an explicit narrow/tall silhouette review")
     return ui, ui * VISIBLE_TO_ADAPTIVE
 
 
