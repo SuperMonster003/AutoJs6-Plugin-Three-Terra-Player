@@ -78,6 +78,6 @@ class LauncherIconResourceTest {
     }
 
     @Test fun manifestUsesTheSystemIconInsteadOfTheTransparentUiIcon() {
-        assertEquals(R.mipmap.ic_launcher_system, context.applicationInfo.icon)
+        assertEquals(R.mipmap.ic_icon_studio_application, context.applicationInfo.icon)
     }
 }
