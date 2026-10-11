@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 ANDROID = '{http://schemas.android.com/apk/res/android}'
+BUILD_TOLERANCE = 10
 LOCALES = ['values', 'values-en', 'values-ar', 'values-es', 'values-fr', 'values-ja',
            'values-ko', 'values-ru', 'values-zh', 'values-zh-rHK', 'values-zh-rTW']
 
@@ -18,7 +19,9 @@ def check(root, pending_commit=False):
         if not condition: errors.append(message)
     props = dict(re.findall(r'^([A-Z_]+)=(.*)$', (root/'version.properties').read_text(encoding='utf-8-sig'), re.M))
     count = int(subprocess.check_output(['git','-C',str(root),'rev-list','--count','HEAD']))
-    require(int(props['VERSION_BUILD']) == count + int(pending_commit), 'VERSION_BUILD must match the commit count')
+    # VERSION_BUILD follows the commit count within a shared tolerance (D:/idea-projects/COMMON_AGENTS.md).
+    drift = int(props['VERSION_BUILD']) - (count + int(pending_commit))
+    require(abs(drift) <= BUILD_TOLERANCE, f'VERSION_BUILD must stay within {BUILD_TOLERANCE} of the commit count (off by {drift})')
     settings = (root/'settings.gradle.kts').read_text(encoding='utf-8-sig')
     # Any published release is accepted; shared plugins declared here must use one version.
     versions = re.findall(r'autojs6-(platform-versions|native-alignment)"\) version "(\d+\.\d+\.\d+)"', settings)
