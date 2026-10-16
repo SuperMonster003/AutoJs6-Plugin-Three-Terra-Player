@@ -107,7 +107,7 @@
     <string name="settings_title">الإعدادات</string>
     <string name="sleep_timer">مؤقت النوم</string>
     <string name="some_files_skipped">تمت إضافة %1$d من أصل %2$d من الملفات؛ تم تخطي الملفات غير المدعومة أو غير القابلة للقراءة</string>
-    <string name="standalone_description">اختر ملفا صوتيا واحدا أو أكثر لتشغيله هنا، أو استخدم 3-Terra Player مباشرة من مدير ملفات AutoJs6.</string>
+    <string name="standalone_description">اختر ملفا صوتيا واحدا أو أكثر لتشغيله هنا، أو استخدم ⁨3-Terra Player⁩ مباشرة من مدير ملفات AutoJs6.</string>
     <string name="standalone_title">مشغل صوت بسيط</string>
     <string name="theme_custom">لون مخصص</string>
     <string name="theme_custom_error">أدخل لون RGB سداسيا من ست خانات</string>
