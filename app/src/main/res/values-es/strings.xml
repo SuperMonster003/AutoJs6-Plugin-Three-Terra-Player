@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="ab_invalid_end">El punto B debe estar al menos 0,5 segundos después del punto A. Mantén pulsado A-B para borrar el punto A.</string>
     <string name="ab_loop_cleared">Bucle A-B borrado</string>
-    <string name="ab_loop_started">Bucle A-B iniciado: %1$s–%2$s. Toca de nuevo para borrarlo.</string>
+    <string name="ab_loop_started">Bucle A-B iniciado: %1$s-%2$s. Toca de nuevo para borrarlo.</string>
     <string name="ab_start_set_hint">Punto A fijado en %1$s. Toca A-B de nuevo en el punto final o mantén pulsado para cancelar.</string>
     <string name="ab_state_active">Repetición de %1$s a %2$s</string>
     <string name="ab_state_off">El bucle A-B está desactivado</string>
@@ -122,7 +122,7 @@
     <string name="theme_source_autojs6">Seguir AutoJs6</string>
     <string name="timer_cancel">Cancelar temporizador</string>
     <string name="timer_custom">Duración personalizada</string>
-    <string name="timer_custom_hint">Minutos (1–1440)</string>
+    <string name="timer_custom_hint">Minutos (1-1440)</string>
     <string name="timer_end_of_track">Detener al terminar la pista actual</string>
     <string name="timer_invalid">Introduce una duración de 1 a 1440 minutos</string>
     <string name="unknown_audio">Audio desconocido</string>

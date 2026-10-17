@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="ab_invalid_end">Le point B doit suivre le point A de 0,5 seconde au minimum. Appuyez longuement sur A-B pour effacer le point A.</string>
     <string name="ab_loop_cleared">Boucle A-B effacée</string>
-    <string name="ab_loop_started">Boucle A-B démarrée : %1$s–%2$s. Touchez de nouveau pour l\'effacer.</string>
+    <string name="ab_loop_started">Boucle A-B démarrée : %1$s-%2$s. Touchez de nouveau pour l\'effacer.</string>
     <string name="ab_start_set_hint">Point A défini à %1$s. Touchez de nouveau A-B au point final ou appuyez longuement pour annuler.</string>
     <string name="ab_state_active">Boucle de %1$s à %2$s</string>
     <string name="ab_state_off">La boucle A-B est désactivée</string>
@@ -122,7 +122,7 @@
     <string name="theme_source_autojs6">Suivre AutoJs6</string>
     <string name="timer_cancel">Annuler la minuterie</string>
     <string name="timer_custom">Durée personnalisée</string>
-    <string name="timer_custom_hint">Minutes (1–1440)</string>
+    <string name="timer_custom_hint">Minutes (1-1440)</string>
     <string name="timer_end_of_track">Arrêter après la piste actuelle</string>
     <string name="timer_invalid">Saisissez une durée de 1 à 1440 minutes</string>
     <string name="unknown_audio">Audio inconnu</string>

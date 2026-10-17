@@ -19,8 +19,10 @@ Generated artifacts (36 in total, never edit them by hand):
   app/src/main/res/raw*/plugin_instruction.md    x 11 (10 locales plus the English default)
 
 Validated but not generated:
-  app/src/main/res/values*/strings.xml           key parity, plugin_description sync
-  (strings.xml is app UI copy, so the fullwidth-symbol rule applies only to doc sources)
+  app/src/main/res/values*/strings.xml           key parity, plugin_description sync, ASCII punctuation
+
+Every source and every Android text resource uses ASCII punctuation in all ten languages
+(D:/idea-projects/COMMON_AGENTS.md), so Arabic, CJK and other non-ASCII punctuation is rejected.
 
 Usage:
   py .python/generate_markdown.py            regenerate all artifacts
@@ -101,6 +103,9 @@ PLACEHOLDER_MARKERS = (
 )
 TEMPLATE_PATTERN = re.compile(r"\{\{\s*([A-Za-z0-9_$.-]+)\s*\}\}")
 RELEASED_DATE_PATTERN = re.compile(r"^\d{4}/\d{2}/\d{2}$")
+# Non-ASCII punctuation is rejected except the U+00B7 value separator; arrows are rejected too.
+FOLLOW_VALUE_SEPARATOR = 0x00B7
+ARROW_CODE_POINTS = range(0x2190, 0x2200)
 
 
 class MarkdownGenerationError(Exception):
@@ -124,12 +129,21 @@ def reject_duplicate_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
-def validate_no_fullwidth_symbols(path: Path, text: str) -> None:
+def is_prohibited_symbol(ch: str) -> bool:
+    code_point = ord(ch)
+    if code_point <= 0x7F or code_point == FOLLOW_VALUE_SEPARATOR:
+        return False
+    if unicodedata.category(ch).startswith("P") or code_point in ARROW_CODE_POINTS:
+        return True
+    return unicodedata.east_asian_width(ch) in ("F", "W") and unicodedata.category(ch)[0] in ("P", "S", "Z")
+
+
+def validate_ascii_punctuation(path: Path, text: str) -> None:
     for line_number, line in enumerate(text.splitlines(), start=1):
         for ch in line:
-            if unicodedata.east_asian_width(ch) in ("F", "W") and unicodedata.category(ch)[0] in ("P", "S", "Z"):
+            if is_prohibited_symbol(ch):
                 raise MarkdownGenerationError(
-                    f"Fullwidth symbol {ch!r} (U+{ord(ch):04X}) in {path} at line {line_number}"
+                    f"Non-ASCII punctuation {ch!r} (U+{ord(ch):04X}) in {path} at line {line_number}"
                 )
 
 
@@ -138,15 +152,14 @@ def validate_no_placeholder_markers(path: Path, text: str) -> None:
         require(marker not in text, f"Translation placeholder {marker!r} left in {path}")
 
 
-def load_text(path: Path, check_fullwidth: bool = True) -> str:
+def load_text(path: Path) -> str:
     require(path.is_file(), f"Missing source file: {path}")
     require(not path.is_symlink(), f"Refusing to read symlink: {path}")
     try:
         text = path.read_text(encoding="utf-8")
     except UnicodeDecodeError as error:
         raise MarkdownGenerationError(f"Invalid UTF-8 in {path}: {error}") from None
-    if check_fullwidth:
-        validate_no_fullwidth_symbols(path, text)
+    validate_ascii_punctuation(path, text)
     validate_no_placeholder_markers(path, text)
     return text
 
@@ -307,7 +320,7 @@ def android_string_value(raw: str) -> str:
 
 def read_android_strings(path: Path) -> dict[str, str]:
     try:
-        tree = ElementTree.fromstring(load_text(path, check_fullwidth=False))
+        tree = ElementTree.fromstring(load_text(path))
     except ElementTree.ParseError as error:
         raise MarkdownGenerationError(f"Invalid XML in {path}: {error}") from None
     strings: dict[str, str] = {}

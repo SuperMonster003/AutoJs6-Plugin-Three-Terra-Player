@@ -5,6 +5,7 @@ import json
 import re
 import subprocess
 import sys
+import unicodedata
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +13,10 @@ ANDROID = '{http://schemas.android.com/apk/res/android}'
 BUILD_TOLERANCE = 10
 LOCALES = ['values', 'values-en', 'values-ar', 'values-es', 'values-fr', 'values-ja',
            'values-ko', 'values-ru', 'values-zh', 'values-zh-rHK', 'values-zh-rTW']
+
+def non_ascii_punctuation(text):
+    # Every language uses ASCII punctuation (D:/idea-projects/COMMON_AGENTS.md); U+00B7 stays a value separator.
+    return any(ord(ch) > 0x7F and ord(ch) != 0xB7 and unicodedata.category(ch).startswith('P') for ch in text)
 
 def check(root, pending_commit=False):
     errors = []
@@ -52,7 +57,6 @@ def check(root, pending_commit=False):
         require(any(any(a.get(ANDROID+'name') == 'org.autojs.plugin.action.WAKE' for a in f.findall('action'))
                     and any(c.get(ANDROID+'name') == 'android.intent.category.DEFAULT' for c in f.findall('category')) for f in filters), 'Wake action/category missing')
     english = None
-    forbidden = re.compile('[，。；：！？（）【】、…“”‘’]')
     for locale in LOCALES:
         path = root/'app/src/main/res'/locale/'strings.xml'
         require(path.is_file(), 'Missing language ' + locale)
@@ -66,7 +70,7 @@ def check(root, pending_commit=False):
         require('plugin_description' in values, 'Missing description: ' + locale)
         require(not any(e.get('translatable') == 'false' or e.get('name') == 'app_name' for e in strings), 'Nontranslatable identity in strings.xml: ' + locale)
         require(not resource.findall('plurals') and not resource.findall('string-array'), 'Mixed resource types: ' + locale)
-        require(not any(forbidden.search(v) for v in values.values()), 'Non-ASCII punctuation: ' + locale)
+        require(not any(non_ascii_punctuation(v) for v in values.values()), 'Non-ASCII punctuation: ' + locale)
         require(not re.search(r'[.!?;,:]$', values.get('plugin_description','')), 'Description punctuation: ' + locale)
         if locale == 'values': english = values
         elif locale == 'values-en': require(values == english, 'Default and explicit English differ')

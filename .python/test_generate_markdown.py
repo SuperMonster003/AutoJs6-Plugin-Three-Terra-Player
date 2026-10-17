@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -81,6 +82,34 @@ class MarkdownConsistencyTest(unittest.TestCase):
             r"orphan: app.*raw-orphan.*plugin_instruction\.md",
         ):
             generate_markdown.check_artifacts(self.temporary_root, self.temporary_artifacts)
+
+
+class PunctuationRuleTest(unittest.TestCase):
+    def test_non_ascii_punctuation_is_rejected_in_every_language(self) -> None:
+        # Arabic, CJK, fullwidth, dash, quote, Spanish, katakana middle dot and arrow samples.
+        for code_point in (0x060C, 0x061B, 0x061F, 0x3001, 0xFF0C, 0x2013, 0x2019, 0x00AB, 0x00BF, 0x30FB, 0x2192):
+            with self.subTest(code_point=f"U+{code_point:04X}"):
+                with self.assertRaisesRegex(
+                    generate_markdown.MarkdownGenerationError,
+                    re.escape(f"U+{code_point:04X}"),
+                ):
+                    generate_markdown.validate_ascii_punctuation(Path("strings.xml"), "text" + chr(code_point))
+
+    def test_value_separator_and_bidi_isolates_are_allowed(self) -> None:
+        generate_markdown.validate_ascii_punctuation(
+            Path("strings.xml"),
+            "75% " + chr(0x00B7) + " " + chr(0x2068) + "3-Terra Player" + chr(0x2069) + " " + chr(0x200F) + "0:12",
+        )
+
+    def test_android_strings_are_checked(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "strings.xml"
+            path.write_text(
+                '<resources><string name="sample">a' + chr(0x060C) + " b</string></resources>",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(generate_markdown.MarkdownGenerationError, re.escape("U+060C")):
+                generate_markdown.read_android_strings(path)
 
 
 if __name__ == "__main__":

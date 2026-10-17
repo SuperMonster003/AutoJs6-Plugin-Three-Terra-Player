@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="ab_invalid_end">B 点必须比 A 点至少晚 0.5 秒. 长按 A-B 可清除 A 点.</string>
     <string name="ab_loop_cleared">A-B 循环已清除</string>
-    <string name="ab_loop_started">A-B 循环已开始: %1$s–%2$s. 再次点击即可清除.</string>
+    <string name="ab_loop_started">A-B 循环已开始: %1$s-%2$s. 再次点击即可清除.</string>
     <string name="ab_start_set_hint">A 点已设为 %1$s. 请在结束位置再次点击 A-B; 长按可取消.</string>
     <string name="ab_state_active">正在循环 %1$s 至 %2$s</string>
     <string name="ab_state_off">A-B 循环已关闭</string>
@@ -122,7 +122,7 @@
     <string name="theme_source_autojs6">跟随 AutoJs6</string>
     <string name="timer_cancel">取消睡眠定时器</string>
     <string name="timer_custom">自定义时长</string>
-    <string name="timer_custom_hint">分钟 (1–1440)</string>
+    <string name="timer_custom_hint">分钟 (1-1440)</string>
     <string name="timer_end_of_track">本曲播放完后停止</string>
     <string name="timer_invalid">请输入 1 至 1440 分钟</string>
     <string name="unknown_audio">未知音频</string>

@@ -92,7 +92,7 @@ abstract class AudioThemedActivity : AppCompatActivity() {
         window.navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Color.TRANSPARENT
         } else {
-            // API 24–25 cannot request dark navigation-bar icons. Keep the legacy three-button
+            // API 24-25 cannot request dark navigation-bar icons. Keep the legacy three-button
             // region opaque black instead of risking white icons over a light page.
             OPAQUE_BLACK
         }

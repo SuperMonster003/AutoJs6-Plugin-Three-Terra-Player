@@ -29,12 +29,17 @@ def load(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def fullwidth(path):
+def punctuation(path):
+    # ASCII punctuation in every language; U+00B7 stays a value separator (generate_markdown.py rule).
     found = []
     for n, line in enumerate(Path(path).read_text(encoding="utf-8").splitlines(), 1):
         for ch in line:
-            if unicodedata.east_asian_width(ch) in ("F", "W") and unicodedata.category(ch)[0] in ("P", "S", "Z"):
-                found.append(f"fullwidth {ch!r} (U+{ord(ch):04X}) at {path.name}:{n}")
+            cp = ord(ch)
+            if cp <= 0x7F or cp == 0xB7:
+                continue
+            if (unicodedata.category(ch).startswith("P") or 0x2190 <= cp <= 0x21FF
+                    or (unicodedata.east_asian_width(ch) in ("F", "W") and unicodedata.category(ch)[0] in ("P", "S", "Z"))):
+                found.append(f"non-ASCII punctuation {ch!r} (U+{cp:04X}) at {path.name}:{n}")
     return found
 
 
@@ -76,10 +81,10 @@ else:
                 if cat in dref[v] and len(dref[v][cat]) != len(dnew[v][cat]):
                     errors.append(f"{v}: {cat} item count differs")
 
-for p in (rn, cn):
-    errors += fullwidth(p)
-
 sx = ROOT / "app" / "src" / "main" / "res" / STRINGS_DIR[code] / "strings.xml"
+for p in (rn, cn, sx):
+    errors += punctuation(p)
+
 desc = None
 for el in ElementTree.fromstring(sx.read_text(encoding="utf-8")).iter("string"):
     if el.get("name") == "plugin_description":

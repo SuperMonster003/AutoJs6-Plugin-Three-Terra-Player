@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="ab_invalid_end">Point B must be at least 0.5 seconds after point A. Long-press A-B to clear point A.</string>
     <string name="ab_loop_cleared">A-B loop cleared</string>
-    <string name="ab_loop_started">A-B loop started: %1$s–%2$s. Tap again to clear it.</string>
+    <string name="ab_loop_started">A-B loop started: %1$s-%2$s. Tap again to clear it.</string>
     <string name="ab_start_set_hint">Point A set at %1$s. Tap A-B again at the end point, or long-press to cancel.</string>
     <string name="ab_state_active">Looping from %1$s to %2$s</string>
     <string name="ab_state_off">A-B loop is off</string>
@@ -122,7 +122,7 @@
     <string name="theme_source_autojs6">Follow AutoJs6</string>
     <string name="timer_cancel">Cancel sleep timer</string>
     <string name="timer_custom">Custom duration</string>
-    <string name="timer_custom_hint">Minutes (1–1440)</string>
+    <string name="timer_custom_hint">Minutes (1-1440)</string>
     <string name="timer_end_of_track">Stop after the current track</string>
     <string name="timer_invalid">Enter a duration from 1 to 1440 minutes</string>
     <string name="unknown_audio">Unknown audio</string>

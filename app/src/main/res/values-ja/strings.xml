@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="ab_invalid_end">B 点は A 点より 0.5 秒以上後に設定してください.A-B を長押しすると A 点を解除できます.</string>
     <string name="ab_loop_cleared">A-B リピートを解除しました</string>
-    <string name="ab_loop_started">A-B リピートを開始しました: %1$s–%2$s.もう一度タップすると解除します.</string>
+    <string name="ab_loop_started">A-B リピートを開始しました: %1$s-%2$s.もう一度タップすると解除します.</string>
     <string name="ab_start_set_hint">A 点を %1$s に設定しました.終点で A-B をもう一度タップするか, 長押しして解除してください.</string>
     <string name="ab_state_active">%1$s から %2$s をリピート中</string>
     <string name="ab_state_off">A-B リピートはオフです</string>
@@ -98,7 +98,7 @@
     <string name="setting_release_history_summary">このバージョンに同梱された変更履歴を読みます</string>
     <string name="setting_resume_playback">再生を再開</string>
     <string name="setting_resume_playback_summary">ランチャーから開いたときに, 前回の単独再生キュー, 現在の曲, 再生位置を復元します</string>
-    <string name="setting_seek_increment">巻き戻し・早送りの間隔</string>
+    <string name="setting_seek_increment">巻き戻し/早送りの間隔</string>
     <string name="setting_theme_color">テーマカラー</string>
     <string name="settings_section_about">このアプリについて</string>
     <string name="settings_section_appearance">外観</string>
@@ -122,7 +122,7 @@
     <string name="theme_source_autojs6">AutoJs6 に合わせる</string>
     <string name="timer_cancel">スリープタイマーを解除</string>
     <string name="timer_custom">時間を指定</string>
-    <string name="timer_custom_hint">分 (1–1440)</string>
+    <string name="timer_custom_hint">分 (1-1440)</string>
     <string name="timer_end_of_track">現在の曲が終わったら停止</string>
     <string name="timer_invalid">1-1440 分の範囲で入力してください</string>
     <string name="unknown_audio">不明な音声</string>
