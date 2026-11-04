@@ -48,7 +48,7 @@
 
         <meta-data
             android:name="org.autojs.plugin.WAKE_ACTIVITY"
-            android:value=".WakeActivity" />
+            android:value="io.github.supermonster003.autojs6.plugin.threeterraplayer.WakeActivity" />
 
         <meta-data
             android:name="org.autojs.plugin.info.AUTHOR"
@@ -133,7 +133,7 @@
         </service>
 
         <activity
-            android:name=".WakeActivity"
+            android:name="io.github.supermonster003.autojs6.plugin.threeterraplayer.WakeActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:finishOnTaskLaunch="true"
