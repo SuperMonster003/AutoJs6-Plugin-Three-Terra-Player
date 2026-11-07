@@ -5,6 +5,12 @@
   "changelog_label_improvement": "優化",
   "changelog_label_dependency": "相依性",
   "$data": {
+    "v1.7.2": {
+      "released_date": "2026/11/07",
+      "fix": [
+        "AutoJs6 檔案管理器多選操作中本外掛的 \"播放所選音訊\" 選項在非英文介面不再顯示為英文"
+      ]
+    },
     "v1.7.1": {
       "released_date": "2026/11/07",
       "improvement": [

@@ -4,6 +4,12 @@
 
 ******
 
+# v1.7.2
+
+###### 2026/11/07
+
+* `Fix` In multiple selections in the AutoJs6 file manager, the option "Play selected audio" of this plugin no longer appears in English in other interface languages
+
 # v1.7.1
 
 ###### 2026/11/07

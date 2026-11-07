@@ -5,6 +5,12 @@
   "changelog_label_improvement": "改善",
   "changelog_label_dependency": "依存関係",
   "$data": {
+    "v1.7.2": {
+      "released_date": "2026/11/07",
+      "fix": [
+        "AutoJs6 のファイルマネージャーの複数選択で, このプラグインの \"選択した音声を再生\" が英語以外の画面で英語表示されなくなりました"
+      ]
+    },
     "v1.7.1": {
       "released_date": "2026/11/07",
       "improvement": [

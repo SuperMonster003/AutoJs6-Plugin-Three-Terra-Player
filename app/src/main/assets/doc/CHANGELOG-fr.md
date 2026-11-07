@@ -4,6 +4,12 @@
 
 ******
 
+# v1.7.2
+
+###### 2026/11/07
+
+* `Correctif` Dans les sélections multiples du gestionnaire de fichiers d'AutoJs6, l'option "Lire les fichiers audio sélectionnés" de ce plugin ne s'affiche plus en anglais dans les autres langues de l'interface
+
 # v1.7.1
 
 ###### 2026/11/07

@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.7.2": {
+      "released_date": "2026/11/07",
+      "fix": [
+        "En las selecciones múltiples del administrador de archivos de AutoJs6, la opción \"Reproducir audios seleccionados\" de este plugin ya no aparece en inglés en los demás idiomas de la interfaz"
+      ]
+    },
     "v1.7.1": {
       "released_date": "2026/11/07",
       "improvement": [

@@ -4,6 +4,12 @@
 
 ******
 
+# v1.7.2
+
+###### 2026/11/07
+
+* `Corrección` En las selecciones múltiples del administrador de archivos de AutoJs6, la opción "Reproducir audios seleccionados" de este plugin ya no aparece en inglés en los demás idiomas de la interfaz
+
 # v1.7.1
 
 ###### 2026/11/07

@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Improvement",
   "changelog_label_dependency": "Dependency",
   "$data": {
+    "v1.7.2": {
+      "released_date": "2026/11/07",
+      "fix": [
+        "In multiple selections in the AutoJs6 file manager, the option \"Play selected audio\" of this plugin no longer appears in English in other interface languages"
+      ]
+    },
     "v1.7.1": {
       "released_date": "2026/11/07",
       "improvement": [

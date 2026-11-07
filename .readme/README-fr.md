@@ -194,6 +194,12 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 ******
 
+#### v1.7.2
+
+_2026/11/07_
+
+- `Correctif` Dans les sélections multiples du gestionnaire de fichiers d'AutoJs6, l'option "Lire les fichiers audio sélectionnés" de ce plugin ne s'affiche plus en anglais dans les autres langues de l'interface
+
 #### v1.7.1
 
 _2026/11/07_
@@ -213,14 +219,6 @@ _2026/11/04_
 - `Amélioration` Les icônes du centre de plugins utilisent les tailles, positions, images claires et sombres et fonds circulaires réglés dans Icon Studio, avec les sources et paramètres permettant de les reproduire
 - `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
 - `Amélioration` Ponctuation harmonisée dans les textes de l'interface de toutes les langues, y compris les virgules et points-virgules en arabe
-
-#### v1.6.2
-
-_2026/09/29_
-
-- `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
-- `Amélioration` Après compileSdk, targetSdk passe à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
-- `Amélioration` Uniformiser les icônes du lanceur de la série Three avec un dessin clair sur fond sombre fixe, conserver la transparence et le thème des icônes dans le centre des plugins et dans l'application, et éviter les fonds imbriqués sur certains appareils
 
 ##### Pour un historique des versions plus complet, voir
 
@@ -248,7 +246,7 @@ Compiler un APK release (signé automatiquement une fois la signature configuré
 
 Pour l'archivage des publications, exécutez la tâche `:app:appendDigestToReleasedFiles`, qui copie les APK signés dans `releases/` en ajoutant au nom de fichier la version et une somme de contrôle CRC32.
 
-Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 37, version actuelle 1.7.1.
+Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 37, version actuelle 1.7.2.
 
 ******
 

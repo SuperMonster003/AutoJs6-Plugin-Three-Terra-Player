@@ -194,6 +194,12 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 ******
 
+#### v1.7.2
+
+_2026/11/07_
+
+- `Fix` In multiple selections in the AutoJs6 file manager, the option "Play selected audio" of this plugin no longer appears in English in other interface languages
+
 #### v1.7.1
 
 _2026/11/07_
@@ -213,14 +219,6 @@ _2026/11/04_
 - `Improvement` Plugin Center icons use the sizes, positions, light and dark artwork, and circular backgrounds adjusted in Icon Studio, retaining reproducible sources and parameters
 - `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 - `Improvement` Consistent punctuation in the interface text of every language, including Arabic commas and semicolons
-
-#### v1.6.2
-
-_2026/09/29_
-
-- `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
-- `Improvement` Raise targetSdk to 37 (Android 17) after compileSdk; the plugin's behavior does not depend on the new target
-- `Improvement` Unify Three series launcher icons with light artwork on a stable dark background, while plugin-center and in-app icons remain transparent and follow the application theme; prevent nested launcher backgrounds on some devices
 
 ##### For more release history, see
 
@@ -248,7 +246,7 @@ Build a release APK (signed automatically once signing is configured in the untr
 
 For release archiving, run the `:app:appendDigestToReleasedFiles` task to copy signed APKs into `releases/` with the version and a CRC32 digest appended to the file name.
 
-Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 37, current version 1.7.1.
+Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 37, current version 1.7.2.
 
 ******
 

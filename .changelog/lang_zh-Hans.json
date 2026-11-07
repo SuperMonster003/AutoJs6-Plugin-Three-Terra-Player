@@ -5,6 +5,12 @@
   "changelog_label_improvement": "优化",
   "changelog_label_dependency": "依赖",
   "$data": {
+    "v1.7.2": {
+      "released_date": "2026/11/07",
+      "fix": [
+        "AutoJs6 文件管理器多选操作中本插件的 \"播放所选音频\" 选项在非英文界面不再显示为英文"
+      ]
+    },
     "v1.7.1": {
       "released_date": "2026/11/07",
       "improvement": [

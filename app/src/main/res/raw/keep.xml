@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- The host resolves the Explorer Action menu titles in this package by name; nothing references them through R, so release resource shrinking would drop them (docs: AutoJs6 explorer ROADMAP P8.1). -->
 <resources xmlns:tools="http://schemas.android.com/tools"
-    tools:keep="@raw/plugin_instruction,@string/action_play_audio" />
+    tools:keep="@raw/plugin_instruction,@string/action_play_audio,@string/action_play_audio_selection" />

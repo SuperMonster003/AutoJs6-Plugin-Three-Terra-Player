@@ -5,6 +5,12 @@
   "changelog_label_improvement": "개선",
   "changelog_label_dependency": "의존성",
   "$data": {
+    "v1.7.2": {
+      "released_date": "2026/11/07",
+      "fix": [
+        "AutoJs6 파일 관리자의 다중 선택에서 이 플러그인의 \"선택한 오디오 재생\" 항목이 영어가 아닌 화면에서 더 이상 영어로 표시되지 않습니다"
+      ]
+    },
     "v1.7.1": {
       "released_date": "2026/11/07",
       "improvement": [
