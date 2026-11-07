@@ -5,6 +5,12 @@
   "changelog_label_improvement": "개선",
   "changelog_label_dependency": "의존성",
   "$data": {
+    "v1.7.1": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "AutoJs6 파일 관리자의 다중 선택 작업에 같은 이름의 항목이 있으면 이 플러그인의 항목에 \"3-Terra Player\" (플러그인 센터와 같은 이름) 이 덧붙습니다 (AutoJs6 6.8.1 이상 필요)"
+      ]
+    },
     "v1.7.0": {
       "released_date": "2026/11/04",
       "feature": [

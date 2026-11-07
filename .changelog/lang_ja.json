@@ -5,6 +5,12 @@
   "changelog_label_improvement": "改善",
   "changelog_label_dependency": "依存関係",
   "$data": {
+    "v1.7.1": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "AutoJs6 のファイルマネージャーで複数選択時に同じ名前の項目が並ぶ場合, このプラグインの項目に \"3-Terra Player\" (プラグインセンターと同じ名前) が付記されるようになりました (AutoJs6 6.8.1 以降が必要)"
+      ]
+    },
     "v1.7.0": {
       "released_date": "2026/11/04",
       "feature": [

@@ -194,6 +194,12 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 ******
 
+#### v1.7.1
+
+_2026/11/07_
+
+- `Improvement` When the AutoJs6 file manager offers options of the same name for a multiple selection, the options of this plugin are marked "3-Terra Player", named as in the Plugin Center (requires AutoJs6 6.8.1 or later)
+
 #### v1.7.0
 
 _2026/11/04_
@@ -215,12 +221,6 @@ _2026/09/29_
 - `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
 - `Improvement` Raise targetSdk to 37 (Android 17) after compileSdk; the plugin's behavior does not depend on the new target
 - `Improvement` Unify Three series launcher icons with light artwork on a stable dark background, while plugin-center and in-app icons remain transparent and follow the application theme; prevent nested launcher backgrounds on some devices
-
-#### v1.6.1
-
-_2026/09/15_
-
-- `Improvement` Raise compileSdk to 37 (Android 17); targetSdk stays at 36 until the behavior that depends on the target is verified
 
 ##### For more release history, see
 
@@ -248,7 +248,7 @@ Build a release APK (signed automatically once signing is configured in the untr
 
 For release archiving, run the `:app:appendDigestToReleasedFiles` task to copy signed APKs into `releases/` with the version and a CRC32 digest appended to the file name.
 
-Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 37, current version 1.7.0.
+Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 37, current version 1.7.1.
 
 ******
 

@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.7.1": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "Cuando el administrador de archivos de AutoJs6 ofrece opciones con el mismo nombre para una selección múltiple, las de este plugin llevan la indicación \"3-Terra Player\", con el mismo nombre que en el Centro de plugins (requiere AutoJs6 6.8.1 o posterior)"
+      ]
+    },
     "v1.7.0": {
       "released_date": "2026/11/04",
       "feature": [

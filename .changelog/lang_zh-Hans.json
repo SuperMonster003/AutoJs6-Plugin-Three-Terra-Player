@@ -5,6 +5,12 @@
   "changelog_label_improvement": "优化",
   "changelog_label_dependency": "依赖",
   "$data": {
+    "v1.7.1": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "AutoJs6 文件管理器的多选操作中出现同名选项时, 本插件的选项附注 \"3-Terra Player\" 以示区分, 名称与插件中心一致 (需要 AutoJs6 6.8.1 及以上版本)"
+      ]
+    },
     "v1.7.0": {
       "released_date": "2026/11/04",
       "feature": [

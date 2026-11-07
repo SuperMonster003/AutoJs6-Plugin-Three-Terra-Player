@@ -194,6 +194,12 @@ Les capacités prévues et leur avancement sont tenus à jour sous forme de list
 
 ******
 
+#### v1.7.1
+
+_2026/11/07_
+
+- `Amélioration` Lorsque le gestionnaire de fichiers d'AutoJs6 propose des options de même nom pour une sélection multiple, celles de ce plugin portent la mention "3-Terra Player", nommée comme dans le Centre des plugins (AutoJs6 6.8.1 ou ultérieur requis)
+
 #### v1.7.0
 
 _2026/11/04_
@@ -215,12 +221,6 @@ _2026/09/29_
 - `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
 - `Amélioration` Après compileSdk, targetSdk passe à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
 - `Amélioration` Uniformiser les icônes du lanceur de la série Three avec un dessin clair sur fond sombre fixe, conserver la transparence et le thème des icônes dans le centre des plugins et dans l'application, et éviter les fonds imbriqués sur certains appareils
-
-#### v1.6.1
-
-_2026/09/15_
-
-- `Amélioration` compileSdk passe à 37 (Android 17) ; targetSdk reste à 36 jusqu'à la vérification du comportement dépendant de la cible
 
 ##### Pour un historique des versions plus complet, voir
 
@@ -248,7 +248,7 @@ Compiler un APK release (signé automatiquement une fois la signature configuré
 
 Pour l'archivage des publications, exécutez la tâche `:app:appendDigestToReleasedFiles`, qui copie les APK signés dans `releases/` en ajoutant au nom de fichier la version et une somme de contrôle CRC32.
 
-Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 37, version actuelle 1.7.0.
+Les paramètres de compilation sont centralisés dans `version.properties`: SDK minimal 24 (Android 7.0), SDK cible 37, version actuelle 1.7.1.
 
 ******
 

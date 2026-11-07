@@ -4,6 +4,12 @@
 
 ******
 
+# v1.7.1
+
+###### 2026/11/07
+
+* `Mejora` Cuando el administrador de archivos de AutoJs6 ofrece opciones con el mismo nombre para una selección múltiple, las de este plugin llevan la indicación "3-Terra Player", con el mismo nombre que en el Centro de plugins (requiere AutoJs6 6.8.1 o posterior)
+
 # v1.7.0
 
 ###### 2026/11/04

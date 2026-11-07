@@ -45,6 +45,8 @@ class PluginContractInstrumentationTest {
         )
 
         assertEquals(ThreeTerraPlayerPlugin.PROTOCOL_VERSION, catalog.getInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION))
+        assertEquals("app_name", catalog.getString("menuGroupLabelResourceName"))
+        assertEquals("3-Terra Player", catalog.getString("menuGroupLabelFallback"))
         assertEquals(2, actions.size)
         assertEquals(ThreeTerraPlayerPlugin.ACTION_ID, actions[0].getString(ExplorerActionCatalogKeys.ID))
         assertEquals(

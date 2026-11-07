@@ -5,6 +5,12 @@
   "changelog_label_improvement": "تحسين",
   "changelog_label_dependency": "تبعية",
   "$data": {
+    "v1.7.1": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "عندما يعرض مدير الملفات في AutoJs6 خيارات بالاسم نفسه للتحديد المتعدد, تحمل خيارات هذه الإضافة الاسم \"⁨3-Terra Player⁩\" الظاهر في مركز الإضافات (يتطلب AutoJs6 6.8.1 أو أحدث)"
+      ]
+    },
     "v1.7.0": {
       "released_date": "2026/11/04",
       "feature": [

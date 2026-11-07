@@ -5,6 +5,12 @@
   "changelog_label_improvement": "優化",
   "changelog_label_dependency": "相依性",
   "$data": {
+    "v1.7.1": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "AutoJs6 檔案管理器的多選操作中出現同名選項時, 本外掛的選項附註 \"3-Terra Player\" 以示區分, 名稱與外掛中心一致 (需要 AutoJs6 6.8.1 以上版本)"
+      ]
+    },
     "v1.7.0": {
       "released_date": "2026/11/04",
       "feature": [
