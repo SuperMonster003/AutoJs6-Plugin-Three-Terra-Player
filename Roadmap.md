@@ -124,6 +124,7 @@
 - [ ] `:app:testDebugUnitTest` 全部通过
 - [ ] `:app:assembleDebug` 构建通过并抽样安装验证
 - [ ] `:app:appendDigestToReleasedFiles` 产出带摘要签名 APK 至 `releases/`
+- [ ] 低版本 release 包回归 (2026-11-08 起): 上一步产出的签名 APK (不是 debug 包) 装到 API 24 - 30 的模拟器 (至少 API 24 与 API 29) 或真机, 跑一遍 media3 路径: `ACTION_VIEW` 打开本地音频播放到结束; 播放中按 Home 后由播放服务继续; 媒体键暂停 / 继续; logcat 无 `NoClassDefFoundError` / `FATAL EXCEPTION`. 原因: R8 优化 (横向类合并) 可能把持有新版本类型 (例如 API 31 的 `android.media.metrics.LogSessionId`) 字段的 media3 类并进所有版本都会执行的代码, 只有 release 包在 Android 7 - 11 上崩溃, debug 包, 单元测试与 API 31+ 设备都查不出 (3-Slate Studio 1.0.0 发布时发现). 1.7.2 (build 72) 已于 2026-11-08 在 API 24 / 27 / 29 模拟器上通过, 未复现
 - [ ] Roadmap 勾选已完成项并更新里程碑状态
 
 ## 本地播放列表
