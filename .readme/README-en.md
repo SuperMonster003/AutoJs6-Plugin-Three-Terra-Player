@@ -194,6 +194,15 @@ Planned capabilities and their progress are maintained as a checkable list in Ro
 
 ******
 
+#### v1.7.3
+
+_2026/11/19_
+
+- `Improvement` The release history page expands and collapses by version: a collapsed version shows its date and the number of entries per category, an expanded one names each category once; all versions can be expanded or collapsed at once, the newest one opens expanded and the subtitle shows the plugin name
+- `Improvement` Rewrote the instructions shown in Plugin center in four parts: getting started, main features, requirements and FAQ
+- `Dependency` Added Jetpack Compose BOM 2026.09.00 (release history page)
+- `Dependency` Upgraded shared build plugins version 1.9.0 -> 1.9.7
+
 #### v1.7.2
 
 _2026/11/07_
@@ -205,20 +214,6 @@ _2026/11/07_
 _2026/11/07_
 
 - `Improvement` When the AutoJs6 file manager offers options of the same name for a multiple selection, the options of this plugin are marked "3-Terra Player", named as in the Plugin Center (requires AutoJs6 6.8.1 or later)
-
-#### v1.7.0
-
-_2026/11/04_
-
-- `Feature` Launcher icon choices in Settings: adaptive light, adaptive dark, adaptive automatic (default), or transparent background. Automatic colors and transparent rendering depend on the launcher; it may cache icons or add a background. Some home-screen shortcuts may need to be added again after a change
-- `Feature` Unified language, night mode, theme color and launcher icon settings, with explicit confirmation, 16 color presets and HEX/RGB preview. App appearance follows AutoJs6 by default and falls back safely when the host is unavailable
-- `Fix` In the Arabic interface, 3-Terra Player no longer appears reversed as Terra Player-3
-- `Fix` AutoJs6 could not wake the plugin because the activation entry was resolved against the old application package name
-- `Improvement` Neutral surfaces and readable themed Material 3 controls and dialogs, consistent spacing, outline icons and dividers. Automatic launcher icons are the new default; upgrades preserve explicit choices and normalize duplicate entries
-- `Improvement` Consistent visual sizing for launcher and Plugin Center icons, with transparent backgrounds and neutral black, white or grayscale artwork
-- `Improvement` Plugin Center icons use the sizes, positions, light and dark artwork, and circular backgrounds adjusted in Icon Studio, retaining reproducible sources and parameters
-- `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
-- `Improvement` Consistent punctuation in the interface text of every language, including Arabic commas and semicolons
 
 ##### For more release history, see
 
@@ -246,7 +241,7 @@ Build a release APK (signed automatically once signing is configured in the untr
 
 For release archiving, run the `:app:appendDigestToReleasedFiles` task to copy signed APKs into `releases/` with the version and a CRC32 digest appended to the file name.
 
-Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 37, current version 1.7.2.
+Build parameters live in `version.properties`: minimum SDK 24 (Android 7.0), target SDK 37, current version 1.7.3.
 
 ******
 

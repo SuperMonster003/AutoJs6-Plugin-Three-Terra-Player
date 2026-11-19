@@ -4,6 +4,15 @@
 
 ******
 
+# v1.7.3
+
+###### 2026/11/19
+
+* `Improvement` The release history page expands and collapses by version: a collapsed version shows its date and the number of entries per category, an expanded one names each category once; all versions can be expanded or collapsed at once, the newest one opens expanded and the subtitle shows the plugin name
+* `Improvement` Rewrote the instructions shown in Plugin center in four parts: getting started, main features, requirements and FAQ
+* `Dependency` Added Jetpack Compose BOM 2026.09.00 (release history page)
+* `Dependency` Upgraded shared build plugins version 1.9.0 -> 1.9.7
+
 # v1.7.2
 
 ###### 2026/11/07
