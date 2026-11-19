@@ -6,7 +6,8 @@ Source of truth:
   .readme/lang_<code>.json         localized README copy (10 languages)
   .readme/template_readme.md       README skeleton with {{ placeholder }} slots
   .readme/template_plugin_instruction.md
-                                    plugin-center instruction skeleton
+                                    plugin-center instruction skeleton, rendered from the
+                                    instruction_* keys only (D:/idea-projects/AUTOJS6_PLUGIN_INSTRUCTION_AGENTS.md)
   .changelog/lang_<code>.json      localized changelog labels and $data entries
   .changelog/template_changelog.md changelog skeleton
   version.properties               VERSION_NAME (must match the newest changelog entry)
@@ -92,6 +93,22 @@ CHANGELOG_DATA_KEY = "$data"
 
 README_LIST_KEYS = ["features", "usage_steps", "security_points"]
 README_FAQ_KEY = "faq"
+
+# Plugin-center instruction copy lives in its own keys and never borrows README fields.
+INSTRUCTION_KEY_PREFIX = "instruction_"
+INSTRUCTION_LIST_KEYS = [
+    "instruction_start_steps",
+    "instruction_features",
+    "instruction_requirements",
+]
+INSTRUCTION_FAQ_KEY = "instruction_faq"
+INSTRUCTION_REQUIRED_KEYS = [
+    "instruction_p_what",
+    "instruction_h3_start",
+    "instruction_start_steps",
+    "instruction_h3_requirements",
+    "instruction_requirements",
+]
 
 EXPECTED_ARTIFACT_COUNT = 36
 README_LATEST_RELEASES = 3
@@ -223,6 +240,29 @@ def validate_readme_language(code: str, content: dict[str, Any]) -> None:
             isinstance(item, dict) and set(item) == {"q", "a"},
             f"README {code!r} faq[{index}] must be an object with exactly the keys 'q' and 'a'",
         )
+
+
+def validate_instruction_language(code: str, content: dict[str, Any]) -> None:
+    instruction = {key: value for key, value in content.items() if key.startswith(INSTRUCTION_KEY_PREFIX)}
+    for key in INSTRUCTION_REQUIRED_KEYS:
+        require(key in instruction, f"Instruction language {code!r} is missing {key!r}")
+    for key, value in instruction.items():
+        if key in INSTRUCTION_LIST_KEYS:
+            valid = isinstance(value, list) and bool(value) and all(isinstance(item, str) and item for item in value)
+            texts = value if valid else []
+        elif key == INSTRUCTION_FAQ_KEY:
+            valid = isinstance(value, list) and bool(value) and all(
+                isinstance(item, dict) and set(item) == {"q", "a"} and all(isinstance(text, str) and text for text in item.values())
+                for item in value
+            )
+            texts = [text for item in value for text in item.values()] if valid else []
+        else:
+            valid = isinstance(value, str) and bool(value)
+            texts = [value] if valid else []
+        require(valid, f"Instruction field {key!r} of {code!r} is empty or malformed")
+        # UI names are quoted with ASCII double quotes; an odd count means a quote was swallowed on the way in.
+        for text in texts:
+            require(text.count('"') % 2 == 0, f"Instruction field {key!r} of {code!r} has an unpaired double quote: {text[:60]!r}")
 
 
 def validate_changelog_language(code: str, content: dict[str, Any]) -> None:
@@ -420,6 +460,7 @@ def load_languages(root: Path) -> tuple[dict[str, dict[str, Any]], dict[str, dic
     validate_collection_shapes(raw_languages, "README")
     for code in LANGUAGE_CODES:
         validate_readme_language(code, raw_languages[code])
+        validate_instruction_language(code, raw_languages[code])
         validate_changelog_language(code, raw_changelogs[code])
     validate_changelog_shapes(raw_changelogs)
     validate_version_alignment(root, raw_changelogs)
@@ -496,6 +537,23 @@ def build_readme_values(
     return content
 
 
+def instruction_faq_list(items: list[dict[str, str]]) -> str:
+    paragraph_break = chr(10) * 2
+    return paragraph_break.join(f"**{item['q']}**{paragraph_break}{item['a']}" for item in items)
+
+
+def build_instruction_values(code: str, languages: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    """Only instruction_* keys reach the instruction template, so it cannot borrow README copy."""
+    values = {key: value for key, value in languages[code].items() if key.startswith(INSTRUCTION_KEY_PREFIX)}
+    for key in INSTRUCTION_LIST_KEYS:
+        if key in values:
+            render = numbered_list if key == "instruction_start_steps" else bullet_list
+            values[f"placeholder_{key}"] = render(values[key])
+    if INSTRUCTION_FAQ_KEY in values:
+        values[f"placeholder_{INSTRUCTION_FAQ_KEY}"] = instruction_faq_list(values[INSTRUCTION_FAQ_KEY])
+    return values
+
+
 # ---------------------------------------------------------------------------
 # Artifact construction, drift detection, and writing
 # ---------------------------------------------------------------------------
@@ -529,7 +587,7 @@ def build_artifacts(root: Path) -> dict[Path, str]:
             artifacts[root / "README.md"] = output
 
     for code in LANGUAGE_CODES:
-        output = render_template(instruction_template, build_readme_values(code, languages, changelogs))
+        output = render_template(instruction_template, build_instruction_values(code, languages))
         directory = ANDROID_INSTRUCTION_DIRECTORIES[code]
         artifacts[android_resource_dir / directory / "plugin_instruction.md"] = output
         if code == ANDROID_DEFAULT_LANGUAGE:

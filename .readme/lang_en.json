@@ -106,6 +106,50 @@
   "text_link_autojs6_docs": "AutoJs6 documentation",
   "text_link_android_media3": "Android Media3",
   "text_link_android_secure_file_sharing": "Android secure file sharing",
-  "p_instruction_security": "The plugin requests no storage permission, accesses audio strictly read-only, and never writes source files; network access is used only for user-triggered or once-daily update checks. On Android 13+ the notification permission is optional; declining it only hides the notification controls without affecting playback.",
-  "p_instruction_docs": "For more details, see the [project homepage]({{ repo_url }}) and the [AutoJs6 documentation]({{ docs_autojs6_url }})."
+  "instruction_p_what": "3-Terra Player is the audio playback plugin for the AutoJs6 file manager and also works as a standalone local audio player. Tap an audio file in the file manager to play it; it supports continuous playback of a folder, local playlists, a sleep timer, A-B loops and background playback, and never modifies source files.",
+  "instruction_h3_start": "Getting started",
+  "instruction_start_steps": [
+    "Make sure this plugin is enabled in AutoJs6 \"Plugin center\".",
+    "In the AutoJs6 file manager, tap an audio file and choose \"Play audio\"; the player opens and starts playing.",
+    "To play several files at once, long-press to select them and choose \"Play selected audio\" in the toolbar.",
+    "To use it without AutoJs6, open this plugin from its launcher icon and tap \"Open audio files\"."
+  ],
+  "instruction_h3_features": "Main features",
+  "instruction_features": [
+    "**Continuous playback**: After you open an audio file, the other audio files in the same folder are queued by file name, up to {{ max_queue_size }}; jump to or remove tracks in \"Playback queue\".",
+    "**Play selected**: Select several audio files in the file manager and choose \"Play selected audio\" to play up to {{ max_queue_size }} of them in the order you selected them.",
+    "**Local playlists**: Open M3U/M3U8, PLS, XSPF and other playlist files with up to {{ max_queue_size }} items; keep the listed audio in the playlist folder, and pick that folder when prompted after opening from the launcher icon.",
+    "**Playback controls**: Previous, next, seeking and skipping back or forward; switch between \"Sequential playback\", \"Shuffle playback\" and \"Repeat current track\", and choose 0.5x to 2x in \"Playback speed\".",
+    "**Sleep timer**: In \"Sleep timer\", choose a duration or \"Stop after the current track\"; the volume fades out just before playback stops.",
+    "**A-B loop**: Tap \"A-B loop\" once to set the start and again to set the end, and that section repeats; a third tap clears it.",
+    "**Background playback**: Playback continues after you leave the player or lock the screen, with controls in the media notification and on the lock screen.",
+    "**Resume playback**: Reopening from the launcher icon restores the last queue, track and position, paused; you can turn off \"Resume playback\" in \"Settings\".",
+    "**Appearance and settings**: Language, night mode and \"Theme color\" follow AutoJs6 by default; in \"Settings\" you can also change the \"Launcher icon\", \"Check for updates\" and view \"Release history\"."
+  ],
+  "instruction_h3_requirements": "Requirements",
+  "instruction_requirements": [
+    "Android {{ min_android_version }} or later.",
+    "Playing from the file manager requires AutoJs6 {{ required_host_version }} or later; the standalone player opened from its launcher icon does not need AutoJs6.",
+    "On Android 13 or later, the media notification and lock screen controls need the notification permission; playback still works if it is denied."
+  ],
+  "instruction_h3_faq": "FAQ",
+  "instruction_faq": [
+    {
+      "q": "Why \"Play audio\" is missing in the file manager",
+      "a": "Make sure AutoJs6 meets the version requirement and this plugin is enabled in \"Plugin center\"; once both are true, audio files offer \"Play audio\"."
+    },
+    {
+      "q": "When an audio file cannot be played",
+      "a": "Decoding depends on the device and the file, so rare codecs or damaged files may not play. When playback fails, tap \"Open with another app\" to use a different player."
+    },
+    {
+      "q": "Why other tracks from the same folder are queued",
+      "a": "This is continuous playback: opening a single audio file queues the other audio files in the same folder by file name, without subfolders. Remove unwanted tracks in \"Playback queue\"."
+    },
+    {
+      "q": "What the resume record stores",
+      "a": "Only the latest queue opened from the launcher icon and its playback state, kept on this device only; turning off \"Resume playback\" clears it at once."
+    }
+  ],
+  "instruction_p_more": "See the [project homepage]({{ repo_url }}) for more details."
 }

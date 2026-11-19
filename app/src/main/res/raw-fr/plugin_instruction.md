@@ -1,26 +1,46 @@
-3-Terra Player (anciennement Audio Player) est à la fois un plugin de lecture audio pour le gestionnaire de fichiers AutoJs6 et un lecteur audio autonome et épuré. Une fois installé et activé, il suffit de toucher un fichier audio dans le gestionnaire de fichiers AutoJs6 pour le lire directement, sans passer par un lecteur tiers; il peut aussi s'ouvrir depuis l'écran d'accueil comme une application ordinaire, pour choisir plusieurs fichiers audio et les lire à la suite.
+3-Terra Player est le plugin de lecture audio du gestionnaire de fichiers d'AutoJs6 et sert aussi de lecteur audio local autonome. Touchez un fichier audio dans le gestionnaire de fichiers pour le lire; il prend en charge la lecture continue d'un dossier, les listes de lecture locales, une minuterie de veille, les boucles A-B et la lecture en arrière-plan, sans jamais modifier les fichiers source.
 
-### Utilisation
+### Prise en main
 
-1. Téléchargez le dernier APK du plugin depuis la page [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) et installez-le sur l'appareil qui exécute AutoJs6.
-2. Ouvrez le centre des plugins d'AutoJs6 et vérifiez que `3-Terra Player` est bien reconnu et activé.
-3. Dans le gestionnaire de fichiers AutoJs6, touchez un fichier audio et choisissez `Lire l'audio`; ou faites un appui long pour en sélectionner plusieurs, puis choisissez `Lire les fichiers audio sélectionnés` dans la barre d'outils.
-4. Vous pouvez aussi ouvrir `3-Terra Player` directement depuis l'écran d'accueil et choisir plusieurs fichiers audio via le bouton de sélection de fichiers pour lancer la lecture.
+1. Vérifiez que ce plugin est activé dans le "Centre des plugins" d'AutoJs6.
+2. Dans le gestionnaire de fichiers d'AutoJs6, touchez un fichier audio et choisissez "Lire l'audio"; le lecteur s'ouvre et lance la lecture.
+3. Pour lire plusieurs fichiers d'un coup, sélectionnez-les par un appui long puis choisissez "Lire les fichiers audio sélectionnés" dans la barre d'outils.
+4. Pour l'utiliser sans AutoJs6, ouvrez ce plugin depuis son icône et touchez "Ouvrir des fichiers audio".
 
-Si le plugin n'apparaît pas dans le centre des plugins, mettez d'abord AutoJs6 à niveau vers 6.8.0 (code de version 5276) ou une version ultérieure. Le plugin lui-même prend en charge Android 7.0 (API 24) et versions ultérieures, et le mode application autonome ne dépend pas d'AutoJs6.
+### Fonctionnalités principales
 
-### Formats audio pris en charge
+- **Lecture continue**: Après l'ouverture d'un fichier audio, les autres fichiers audio du même dossier sont mis en file par nom, jusqu'à 128; passez à une piste ou retirez-la dans "File de lecture".
+- **Lecture de la sélection**: Sélectionnez plusieurs fichiers audio dans le gestionnaire de fichiers et choisissez "Lire les fichiers audio sélectionnés" pour en lire jusqu'à 128 dans l'ordre de sélection.
+- **Listes de lecture locales**: Ouvrez des listes M3U/M3U8, PLS, XSPF et autres, jusqu'à 128 éléments; gardez les fichiers audio dans le dossier de la liste et choisissez ce dossier quand c'est demandé après une ouverture depuis l'icône.
+- **Commandes de lecture**: Piste précédente ou suivante, déplacement dans la piste, retour et avance rapides; basculez entre "Lecture séquentielle", "Lecture aléatoire" et "Répéter la piste actuelle", et choisissez de 0,5x à 2x dans "Vitesse de lecture".
+- **Minuterie de veille**: Dans "Minuterie de veille", choisissez une durée ou "Arrêter après la piste actuelle"; le volume baisse progressivement juste avant l'arrêt.
+- **Boucle A-B**: Touchez "Boucle A-B" une fois pour fixer le début, puis une deuxième fois pour fixer la fin, et ce passage se répète; une troisième touche l'efface.
+- **Lecture en arrière-plan**: La lecture continue après avoir quitté le lecteur ou verrouillé l'écran, avec des commandes dans la notification multimédia et sur l'écran de verrouillage.
+- **Reprise de la lecture**: Une nouvelle ouverture depuis l'icône restaure la dernière file, la piste et la position, en pause; vous pouvez désactiver "Reprendre la lecture" dans "Paramètres".
+- **Apparence et paramètres**: La langue, le mode nuit et la "Couleur du thème" suivent AutoJs6 par défaut; dans "Paramètres", vous pouvez aussi choisir une icône dans "Icône du lanceur", "Rechercher des mises à jour" et consulter "Historique des versions".
 
-L'entrée du gestionnaire de fichiers déclare le type audio générique `audio/*` et couvre explicitement les 19 extensions suivantes, pour rester compatible avec les tables MIME incomplètes ou anciennes de certains appareils:
+### Prérequis
 
-```text
-aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
-```
+- Android 7.0 ou version ultérieure.
+- La lecture depuis le gestionnaire de fichiers nécessite AutoJs6 6.8.0 ou version ultérieure; le lecteur autonome ouvert depuis son icône n'a pas besoin d'AutoJs6.
+- Sur Android 13 ou version ultérieure, la notification multimédia et les commandes de l'écran de verrouillage nécessitent l'autorisation des notifications; la lecture fonctionne même si elle est refusée.
 
-Une extension prise en charge ne garantit pas le décodage: la lecture réelle dépend de Media3, de la version d'Android, des codecs de l'appareil et du contenu du fichier. Si un fichier ne peut pas être lu, le panneau d'erreur propose de l'ouvrir avec une autre application.
+### Questions fréquentes
 
-### Autorisations et sécurité
+**Raisons pour lesquelles "Lire l'audio" n'apparaît pas dans le gestionnaire de fichiers**
 
-Le plugin ne demande aucune autorisation de stockage, n'accède aux fichiers audio qu'en lecture seule et n'écrit jamais dans les fichiers sources; le réseau ne sert qu'aux vérifications de mise à jour déclenchées par l'utilisateur ou une fois par jour. Sur Android 13+, l'autorisation de notifications est facultative; la refuser masque seulement les commandes de notification, sans affecter la lecture.
+Vérifiez qu'AutoJs6 remplit la condition de version et que ce plugin est activé dans le "Centre des plugins"; une fois les deux réunies, les fichiers audio proposent "Lire l'audio".
 
-Pour plus de détails, consultez la [page du projet](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player) et la [documentation AutoJs6](https://docs.autojs6.com).
+**Cas où un fichier audio ne peut pas être lu**
+
+Le décodage dépend de l'appareil et du fichier: des codecs rares ou des fichiers endommagés peuvent ne pas être lus. En cas d'échec, touchez "Ouvrir avec une autre application" pour utiliser un autre lecteur.
+
+**Raisons pour lesquelles d'autres pistes du même dossier sont mises en file**
+
+C'est la lecture continue: l'ouverture d'un seul fichier audio met en file les autres fichiers audio du même dossier par nom, sans les sous-dossiers. Retirez les pistes inutiles dans "File de lecture".
+
+**Contenu de l'historique de reprise**
+
+Seulement la dernière file ouverte depuis l'icône et son état de lecture, conservés sur cet appareil uniquement; désactiver "Reprendre la lecture" les efface aussitôt.
+
+Plus de détails sur la [page du projet](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player).

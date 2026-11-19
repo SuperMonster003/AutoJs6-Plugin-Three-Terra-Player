@@ -1,26 +1,46 @@
-3-Terra Player (formerly Audio Player) is both an audio playback plugin for the AutoJs6 file manager and a clean standalone audio player. Once installed and enabled, tapping any audio file in the AutoJs6 file manager plays it directly, with no third-party player needed; it can also be opened from the launcher like a regular app to pick several audio files and play them in a row.
+3-Terra Player is the audio playback plugin for the AutoJs6 file manager and also works as a standalone local audio player. Tap an audio file in the file manager to play it; it supports continuous playback of a folder, local playlists, a sleep timer, A-B loops and background playback, and never modifies source files.
 
-### Usage
+### Getting started
 
-1. Download the latest plugin APK from the [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player/releases) page and install it on the device running AutoJs6.
-2. Open the AutoJs6 plugin center and make sure `3-Terra Player` is recognized and enabled.
-3. In the AutoJs6 file manager, tap any audio file and choose `Play audio`, or long-press to select multiple files and choose `Play selected audio` from the toolbar.
-4. Alternatively, open `3-Terra Player` from the launcher and use the file picker to select several audio files to play.
+1. Make sure this plugin is enabled in AutoJs6 "Plugin center".
+2. In the AutoJs6 file manager, tap an audio file and choose "Play audio"; the player opens and starts playing.
+3. To play several files at once, long-press to select them and choose "Play selected audio" in the toolbar.
+4. To use it without AutoJs6, open this plugin from its launcher icon and tap "Open audio files".
 
-If the plugin does not appear in the plugin center, update AutoJs6 to 6.8.0 (version code 5276) or later first. The plugin itself supports Android 7.0 (API 24) and above, and the standalone mode does not depend on AutoJs6.
+### Main features
 
-### Supported Audio Formats
+- **Continuous playback**: After you open an audio file, the other audio files in the same folder are queued by file name, up to 128; jump to or remove tracks in "Playback queue".
+- **Play selected**: Select several audio files in the file manager and choose "Play selected audio" to play up to 128 of them in the order you selected them.
+- **Local playlists**: Open M3U/M3U8, PLS, XSPF and other playlist files with up to 128 items; keep the listed audio in the playlist folder, and pick that folder when prompted after opening from the launcher icon.
+- **Playback controls**: Previous, next, seeking and skipping back or forward; switch between "Sequential playback", "Shuffle playback" and "Repeat current track", and choose 0.5x to 2x in "Playback speed".
+- **Sleep timer**: In "Sleep timer", choose a duration or "Stop after the current track"; the volume fades out just before playback stops.
+- **A-B loop**: Tap "A-B loop" once to set the start and again to set the end, and that section repeats; a third tap clears it.
+- **Background playback**: Playback continues after you leave the player or lock the screen, with controls in the media notification and on the lock screen.
+- **Resume playback**: Reopening from the launcher icon restores the last queue, track and position, paused; you can turn off "Resume playback" in "Settings".
+- **Appearance and settings**: Language, night mode and "Theme color" follow AutoJs6 by default; in "Settings" you can also change the "Launcher icon", "Check for updates" and view "Release history".
 
-The file manager entry declares the generic `audio/*` type and explicitly covers the following 19 extensions to stay compatible with sparse or legacy MIME tables on some devices:
+### Requirements
 
-```text
-aac, ac3, amr, awb, flac, m4a, m4b, m4r, mka, mp1, mp2, mp3, mpga, oga, ogg, opus, wav, wave, wma
-```
+- Android 7.0 or later.
+- Playing from the file manager requires AutoJs6 6.8.0 or later; the standalone player opened from its launcher icon does not need AutoJs6.
+- On Android 13 or later, the media notification and lock screen controls need the notification permission; playback still works if it is denied.
 
-A supported extension does not guarantee decoding: actual playback depends on Media3, the Android version, the device codecs, and the file contents. When a file fails to play, the error panel offers to open it with another app.
+### FAQ
 
-### Permissions and Security
+**Why "Play audio" is missing in the file manager**
 
-The plugin requests no storage permission, accesses audio strictly read-only, and never writes source files; network access is used only for user-triggered or once-daily update checks. On Android 13+ the notification permission is optional; declining it only hides the notification controls without affecting playback.
+Make sure AutoJs6 meets the version requirement and this plugin is enabled in "Plugin center"; once both are true, audio files offer "Play audio".
 
-For more details, see the [project homepage](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player) and the [AutoJs6 documentation](https://docs.autojs6.com).
+**When an audio file cannot be played**
+
+Decoding depends on the device and the file, so rare codecs or damaged files may not play. When playback fails, tap "Open with another app" to use a different player.
+
+**Why other tracks from the same folder are queued**
+
+This is continuous playback: opening a single audio file queues the other audio files in the same folder by file name, without subfolders. Remove unwanted tracks in "Playback queue".
+
+**What the resume record stores**
+
+Only the latest queue opened from the launcher icon and its playback state, kept on this device only; turning off "Resume playback" clears it at once.
+
+See the [project homepage](https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Terra-Player) for more details.

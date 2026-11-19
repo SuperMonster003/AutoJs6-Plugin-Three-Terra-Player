@@ -1,23 +1,19 @@
-{{ p_introduction_what }}
+{{ instruction_p_what }}
 
-### {{ h3_usage }}
+### {{ instruction_h3_start }}
 
-{{ placeholder_usage_steps }}
+{{ placeholder_instruction_start_steps }}
 
-{{ p_usage_note }}
+### {{ instruction_h3_features }}
 
-### {{ h3_supported_formats }}
+{{ placeholder_instruction_features }}
 
-{{ p_supported_formats }}:
+### {{ instruction_h3_requirements }}
 
-```text
-{{ supported_extensions }}
-```
+{{ placeholder_instruction_requirements }}
 
-{{ p_decoder_support }}
+### {{ instruction_h3_faq }}
 
-### {{ h3_security }}
+{{ placeholder_instruction_faq }}
 
-{{ p_instruction_security }}
-
-{{ p_instruction_docs }}
+{{ instruction_p_more }}

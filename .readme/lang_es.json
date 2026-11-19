@@ -106,6 +106,50 @@
   "text_link_autojs6_docs": "Documentación de AutoJs6",
   "text_link_android_media3": "Android Media3",
   "text_link_android_secure_file_sharing": "Uso compartido seguro de archivos en Android",
-  "p_instruction_security": "El complemento no solicita permiso de almacenamiento, accede a los archivos de audio estrictamente en modo de solo lectura y nunca escribe en los archivos originales; la conexión a Internet se usa únicamente para comprobaciones de actualizaciones iniciadas por el usuario o una vez al día. En Android 13+ el permiso de notificaciones es opcional; si se rechaza, solo se ocultan los controles de la notificación, sin afectar a la reproducción.",
-  "p_instruction_docs": "Para más explicaciones y la documentación completa, consulta la [página principal del proyecto]({{ repo_url }}) y la [documentación de AutoJs6]({{ docs_autojs6_url }})."
+  "instruction_p_what": "3-Terra Player es el plugin de reproducción de audio del gestor de archivos de AutoJs6 y también funciona como reproductor de audio local independiente. Toca un archivo de audio en el gestor de archivos para reproducirlo; admite la reproducción continua de una carpeta, listas de reproducción locales, un temporizador de apagado, bucles A-B y reproducción en segundo plano, sin modificar nunca los archivos de origen.",
+  "instruction_h3_start": "Primeros pasos",
+  "instruction_start_steps": [
+    "Comprueba que este plugin esté activado en el \"Centro de plugins\" de AutoJs6.",
+    "En el gestor de archivos de AutoJs6, toca un archivo de audio y elige \"Reproducir audio\"; el reproductor se abre y empieza a reproducir.",
+    "Para reproducir varios archivos a la vez, mantén pulsado para seleccionarlos y elige \"Reproducir audios seleccionados\" en la barra de herramientas.",
+    "Para usarlo sin AutoJs6, abre este plugin desde su icono y toca \"Abrir archivos de audio\"."
+  ],
+  "instruction_h3_features": "Funciones principales",
+  "instruction_features": [
+    "**Reproducción continua**: Al abrir un archivo de audio, los demás audios de la misma carpeta se ponen en cola por nombre de archivo, hasta {{ max_queue_size }}; salta a una pista o quítala en \"Cola de reproducción\".",
+    "**Reproducir seleccionados**: Selecciona varios audios en el gestor de archivos y elige \"Reproducir audios seleccionados\" para reproducir hasta {{ max_queue_size }} en el orden de selección.",
+    "**Listas de reproducción locales**: Abre listas M3U/M3U8, PLS, XSPF y otras de hasta {{ max_queue_size }} elementos; guarda los audios en la carpeta de la lista y, al abrir desde el icono, elige esa carpeta cuando se te pida.",
+    "**Controles de reproducción**: Pista anterior y siguiente, desplazamiento, retroceso y avance; alterna entre \"Reproducción secuencial\", \"Reproducción aleatoria\" y \"Repetir pista actual\", y elige de 0,5x a 2x en \"Velocidad de reproducción\".",
+    "**Temporizador de apagado**: En \"Temporizador de apagado\", elige una duración o \"Detener al terminar la pista actual\"; el volumen baja poco a poco justo antes de parar.",
+    "**Bucle A-B**: Toca \"Bucle A-B\" una vez para fijar el inicio y otra para fijar el final, y ese tramo se repite; un tercer toque lo borra.",
+    "**Reproducción en segundo plano**: La reproducción sigue al salir del reproductor o bloquear la pantalla, con controles en la notificación multimedia y en la pantalla de bloqueo.",
+    "**Reanudar reproducción**: Al volver a abrir desde el icono se restauran la última cola, la pista y la posición, en pausa; puedes desactivar \"Reanudar reproducción\" en \"Ajustes\".",
+    "**Apariencia y ajustes**: El idioma, el modo nocturno y el \"Color del tema\" siguen a AutoJs6 de forma predeterminada; en \"Ajustes\" también puedes cambiar el \"Icono del lanzador\", \"Buscar actualizaciones\" y ver \"Historial de versiones\"."
+  ],
+  "instruction_h3_requirements": "Requisitos",
+  "instruction_requirements": [
+    "Android {{ min_android_version }} o posterior.",
+    "Reproducir desde el gestor de archivos requiere AutoJs6 {{ required_host_version }} o posterior; el reproductor independiente abierto desde su icono no necesita AutoJs6.",
+    "En Android 13 o posterior, la notificación multimedia y los controles de la pantalla de bloqueo necesitan el permiso de notificaciones; la reproducción funciona aunque se deniegue."
+  ],
+  "instruction_h3_faq": "Preguntas frecuentes",
+  "instruction_faq": [
+    {
+      "q": "Motivos por los que \"Reproducir audio\" no aparece en el gestor de archivos",
+      "a": "Comprueba que AutoJs6 cumple el requisito de versión y que este plugin está activado en el \"Centro de plugins\"; cuando se cumplen ambos, los archivos de audio ofrecen \"Reproducir audio\"."
+    },
+    {
+      "q": "Casos en que un archivo de audio no se puede reproducir",
+      "a": "La decodificación depende del dispositivo y del archivo, así que códecs poco comunes o archivos dañados pueden no reproducirse. Si falla, toca \"Abrir con otra aplicación\" para usar otro reproductor."
+    },
+    {
+      "q": "Motivos por los que se ponen en cola otras pistas de la misma carpeta",
+      "a": "Es la reproducción continua: al abrir un solo audio, los demás audios de la misma carpeta se ponen en cola por nombre, sin subcarpetas. Quita las pistas que no quieras en \"Cola de reproducción\"."
+    },
+    {
+      "q": "Contenido del registro de reanudación",
+      "a": "Solo la última cola abierta desde el icono y su estado de reproducción, guardados únicamente en este dispositivo; desactivar \"Reanudar reproducción\" los borra al instante."
+    }
+  ],
+  "instruction_p_more": "Más detalles en la [página del proyecto]({{ repo_url }})."
 }

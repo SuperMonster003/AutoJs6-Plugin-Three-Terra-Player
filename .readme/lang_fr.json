@@ -106,6 +106,50 @@
   "text_link_autojs6_docs": "Documentation AutoJs6",
   "text_link_android_media3": "Android Media3",
   "text_link_android_secure_file_sharing": "Partage sécurisé de fichiers Android",
-  "p_instruction_security": "Le plugin ne demande aucune autorisation de stockage, n'accède aux fichiers audio qu'en lecture seule et n'écrit jamais dans les fichiers sources; le réseau ne sert qu'aux vérifications de mise à jour déclenchées par l'utilisateur ou une fois par jour. Sur Android 13+, l'autorisation de notifications est facultative; la refuser masque seulement les commandes de notification, sans affecter la lecture.",
-  "p_instruction_docs": "Pour plus de détails, consultez la [page du projet]({{ repo_url }}) et la [documentation AutoJs6]({{ docs_autojs6_url }})."
+  "instruction_p_what": "3-Terra Player est le plugin de lecture audio du gestionnaire de fichiers d'AutoJs6 et sert aussi de lecteur audio local autonome. Touchez un fichier audio dans le gestionnaire de fichiers pour le lire; il prend en charge la lecture continue d'un dossier, les listes de lecture locales, une minuterie de veille, les boucles A-B et la lecture en arrière-plan, sans jamais modifier les fichiers source.",
+  "instruction_h3_start": "Prise en main",
+  "instruction_start_steps": [
+    "Vérifiez que ce plugin est activé dans le \"Centre des plugins\" d'AutoJs6.",
+    "Dans le gestionnaire de fichiers d'AutoJs6, touchez un fichier audio et choisissez \"Lire l'audio\"; le lecteur s'ouvre et lance la lecture.",
+    "Pour lire plusieurs fichiers d'un coup, sélectionnez-les par un appui long puis choisissez \"Lire les fichiers audio sélectionnés\" dans la barre d'outils.",
+    "Pour l'utiliser sans AutoJs6, ouvrez ce plugin depuis son icône et touchez \"Ouvrir des fichiers audio\"."
+  ],
+  "instruction_h3_features": "Fonctionnalités principales",
+  "instruction_features": [
+    "**Lecture continue**: Après l'ouverture d'un fichier audio, les autres fichiers audio du même dossier sont mis en file par nom, jusqu'à {{ max_queue_size }}; passez à une piste ou retirez-la dans \"File de lecture\".",
+    "**Lecture de la sélection**: Sélectionnez plusieurs fichiers audio dans le gestionnaire de fichiers et choisissez \"Lire les fichiers audio sélectionnés\" pour en lire jusqu'à {{ max_queue_size }} dans l'ordre de sélection.",
+    "**Listes de lecture locales**: Ouvrez des listes M3U/M3U8, PLS, XSPF et autres, jusqu'à {{ max_queue_size }} éléments; gardez les fichiers audio dans le dossier de la liste et choisissez ce dossier quand c'est demandé après une ouverture depuis l'icône.",
+    "**Commandes de lecture**: Piste précédente ou suivante, déplacement dans la piste, retour et avance rapides; basculez entre \"Lecture séquentielle\", \"Lecture aléatoire\" et \"Répéter la piste actuelle\", et choisissez de 0,5x à 2x dans \"Vitesse de lecture\".",
+    "**Minuterie de veille**: Dans \"Minuterie de veille\", choisissez une durée ou \"Arrêter après la piste actuelle\"; le volume baisse progressivement juste avant l'arrêt.",
+    "**Boucle A-B**: Touchez \"Boucle A-B\" une fois pour fixer le début, puis une deuxième fois pour fixer la fin, et ce passage se répète; une troisième touche l'efface.",
+    "**Lecture en arrière-plan**: La lecture continue après avoir quitté le lecteur ou verrouillé l'écran, avec des commandes dans la notification multimédia et sur l'écran de verrouillage.",
+    "**Reprise de la lecture**: Une nouvelle ouverture depuis l'icône restaure la dernière file, la piste et la position, en pause; vous pouvez désactiver \"Reprendre la lecture\" dans \"Paramètres\".",
+    "**Apparence et paramètres**: La langue, le mode nuit et la \"Couleur du thème\" suivent AutoJs6 par défaut; dans \"Paramètres\", vous pouvez aussi choisir une icône dans \"Icône du lanceur\", \"Rechercher des mises à jour\" et consulter \"Historique des versions\"."
+  ],
+  "instruction_h3_requirements": "Prérequis",
+  "instruction_requirements": [
+    "Android {{ min_android_version }} ou version ultérieure.",
+    "La lecture depuis le gestionnaire de fichiers nécessite AutoJs6 {{ required_host_version }} ou version ultérieure; le lecteur autonome ouvert depuis son icône n'a pas besoin d'AutoJs6.",
+    "Sur Android 13 ou version ultérieure, la notification multimédia et les commandes de l'écran de verrouillage nécessitent l'autorisation des notifications; la lecture fonctionne même si elle est refusée."
+  ],
+  "instruction_h3_faq": "Questions fréquentes",
+  "instruction_faq": [
+    {
+      "q": "Raisons pour lesquelles \"Lire l'audio\" n'apparaît pas dans le gestionnaire de fichiers",
+      "a": "Vérifiez qu'AutoJs6 remplit la condition de version et que ce plugin est activé dans le \"Centre des plugins\"; une fois les deux réunies, les fichiers audio proposent \"Lire l'audio\"."
+    },
+    {
+      "q": "Cas où un fichier audio ne peut pas être lu",
+      "a": "Le décodage dépend de l'appareil et du fichier: des codecs rares ou des fichiers endommagés peuvent ne pas être lus. En cas d'échec, touchez \"Ouvrir avec une autre application\" pour utiliser un autre lecteur."
+    },
+    {
+      "q": "Raisons pour lesquelles d'autres pistes du même dossier sont mises en file",
+      "a": "C'est la lecture continue: l'ouverture d'un seul fichier audio met en file les autres fichiers audio du même dossier par nom, sans les sous-dossiers. Retirez les pistes inutiles dans \"File de lecture\"."
+    },
+    {
+      "q": "Contenu de l'historique de reprise",
+      "a": "Seulement la dernière file ouverte depuis l'icône et son état de lecture, conservés sur cet appareil uniquement; désactiver \"Reprendre la lecture\" les efface aussitôt."
+    }
+  ],
+  "instruction_p_more": "Plus de détails sur la [page du projet]({{ repo_url }})."
 }
