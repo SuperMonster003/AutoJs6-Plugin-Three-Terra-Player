@@ -52,7 +52,7 @@
     <string name="error_no_external_app">No other audio app is available</string>
     <string name="error_no_supported_audio">None of the selected files is a supported, readable audio file</string>
     <string name="error_playback">This app could not decode or play the audio file</string>
-    <string name="error_release_history_unavailable">The bundled release history could not be loaded</string>
+    <string name="error_release_history_unavailable">Unable to load the release history</string>
     <string name="follow_autojs6">Follow AutoJs6</string>
     <string name="follow_autojs6_unavailable_value">Follow AutoJs6 unavailable (%1$s) · fallback: %2$s</string>
     <string name="follow_autojs6_value">Follow AutoJs6 · %1$s</string>
@@ -83,6 +83,10 @@
     <string name="plugin_description">Audio player plugin and standalone app with background playback</string>
     <string name="queue_empty">The queue is empty</string>
     <string name="queue_item_position">Track %1$d</string>
+    <string name="release_history_collapse_all">Collapse all</string>
+    <string name="release_history_collapsed">Collapsed</string>
+    <string name="release_history_expand_all">Expand all</string>
+    <string name="release_history_expanded">Expanded</string>
     <string name="setting_about">About the app and developer</string>
     <string name="setting_about_summary">Version, project, developer, and license information</string>
     <string name="setting_auto_check_updates">Automatically check for updates</string>
@@ -95,7 +99,7 @@
     <string name="setting_manage_ignored_updates">Manage ignored updates</string>
     <string name="setting_night_mode">Night mode</string>
     <string name="setting_release_history">Release history</string>
-    <string name="setting_release_history_summary">Read the changelog included with this version</string>
+    <string name="setting_release_history_summary">Read the release history included with this app</string>
     <string name="setting_resume_playback">Resume playback</string>
     <string name="setting_resume_playback_summary">Restore the last standalone queue, current track, and position when the app opens</string>
     <string name="setting_seek_increment">Rewind and fast-forward increment</string>

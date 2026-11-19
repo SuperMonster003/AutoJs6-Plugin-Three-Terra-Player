@@ -17,6 +17,10 @@ releaseComponents.onVariants(releaseComponents.selector().withBuildType('release
         if (nativeAbis.empty) {
             nativeAbis = outputs.collect { it.abi }.findAll { it != 'universal' }.unique().sort()
         }
+        // A universal APK whose dependencies bring native libraries (Compose graphics-path) names their ABIs here.
+        if (nativeAbis.empty && project.hasProperty('releaseUniversalNativeAbis')) {
+            nativeAbis = project.property('releaseUniversalNativeAbis').toList().sort()
+        }
         [name: variant.name, applicationId: variant.applicationId.get(), nativeAbis: nativeAbis, outputs: outputs]
     }
 }

@@ -7,7 +7,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivityAboutBinding
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivityLauncherBinding
-import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivityReleaseHistoryBinding
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.databinding.ActivitySettingsBinding
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -27,7 +26,6 @@ class StandaloneLayoutsInstrumentationTest {
             listOf(
                 ActivityLauncherBinding.inflate(inflater).root,
                 settings.root,
-                ActivityReleaseHistoryBinding.inflate(inflater).root,
                 ActivityAboutBinding.inflate(inflater).root,
             ).forEach { root ->
                 assertNotNull(root)

@@ -52,7 +52,7 @@
     <string name="error_no_external_app">사용 가능한 다른 오디오 앱이 없습니다</string>
     <string name="error_no_supported_audio">선택한 파일 중 지원되고 읽을 수 있는 오디오 파일이 없습니다</string>
     <string name="error_playback">이 앱에서 오디오 파일을 디코딩하거나 재생할 수 없습니다</string>
-    <string name="error_release_history_unavailable">포함된 릴리스 기록을 불러올 수 없습니다</string>
+    <string name="error_release_history_unavailable">릴리스 기록을 불러올 수 없습니다</string>
     <string name="follow_autojs6">AutoJs6 따르기</string>
     <string name="follow_autojs6_unavailable_value">AutoJs6를 따를 수 없음(%1$s) · 대체값: %2$s</string>
     <string name="follow_autojs6_value">AutoJs6 따르기 · %1$s</string>
@@ -83,6 +83,10 @@
     <string name="plugin_description">백그라운드 재생을 지원하는 오디오 플레이어 플러그인 겸 독립 실행 앱</string>
     <string name="queue_empty">재생 대기열이 비어 있습니다</string>
     <string name="queue_item_position">%1$d번 트랙</string>
+    <string name="release_history_collapse_all">모두 접기</string>
+    <string name="release_history_collapsed">접힘</string>
+    <string name="release_history_expand_all">모두 펼치기</string>
+    <string name="release_history_expanded">펼쳐짐</string>
     <string name="setting_about">앱 및 개발자 정보</string>
     <string name="setting_about_summary">버전, 프로젝트, 개발자 및 라이선스 정보</string>
     <string name="setting_auto_check_updates">업데이트 자동 확인</string>
@@ -95,7 +99,7 @@
     <string name="setting_manage_ignored_updates">무시한 업데이트 관리</string>
     <string name="setting_night_mode">야간 모드</string>
     <string name="setting_release_history">릴리스 기록</string>
-    <string name="setting_release_history_summary">이 버전에 포함된 변경 기록을 읽습니다</string>
+    <string name="setting_release_history_summary">앱에 포함된 릴리스 기록을 확인합니다</string>
     <string name="setting_resume_playback">이어서 재생</string>
     <string name="setting_resume_playback_summary">런처에서 앱을 열 때 마지막 독립 재생 대기열, 현재 곡 및 위치를 복원합니다</string>
     <string name="setting_seek_increment">되감기 및 빨리 감기 간격</string>

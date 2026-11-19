@@ -52,7 +52,7 @@
     <string name="error_no_external_app">Aucune autre application audio n\'est disponible</string>
     <string name="error_no_supported_audio">Aucun fichier sélectionné n\'est un fichier audio compatible et lisible</string>
     <string name="error_playback">Cette application n\'a pas pu décoder ni lire le fichier audio</string>
-    <string name="error_release_history_unavailable">Impossible de charger l\'historique des versions intégré</string>
+    <string name="error_release_history_unavailable">Impossible de charger l\'historique des versions</string>
     <string name="follow_autojs6">Suivre AutoJs6</string>
     <string name="follow_autojs6_unavailable_value">Impossible de suivre AutoJs6 (%1$s) · repli : %2$s</string>
     <string name="follow_autojs6_value">Suivre AutoJs6 · %1$s</string>
@@ -83,6 +83,10 @@
     <string name="plugin_description">Lecteur audio et application autonome avec lecture en arrière-plan</string>
     <string name="queue_empty">La file de lecture est vide</string>
     <string name="queue_item_position">Piste %1$d</string>
+    <string name="release_history_collapse_all">Tout réduire</string>
+    <string name="release_history_collapsed">Réduit</string>
+    <string name="release_history_expand_all">Tout développer</string>
+    <string name="release_history_expanded">Développé</string>
     <string name="setting_about">À propos de l\'application et du développeur</string>
     <string name="setting_about_summary">Informations sur la version, le projet, le développeur et la licence</string>
     <string name="setting_auto_check_updates">Rechercher automatiquement les mises à jour</string>
@@ -95,7 +99,7 @@
     <string name="setting_manage_ignored_updates">Gérer les mises à jour ignorées</string>
     <string name="setting_night_mode">Mode nuit</string>
     <string name="setting_release_history">Historique des versions</string>
-    <string name="setting_release_history_summary">Lire le journal des modifications inclus dans cette version</string>
+    <string name="setting_release_history_summary">Consulter l\'historique des versions inclus dans l\'application</string>
     <string name="setting_resume_playback">Reprendre la lecture</string>
     <string name="setting_resume_playback_summary">Restaurer la dernière file d\'attente autonome, le morceau actuel et sa position à l\'ouverture de l\'application</string>
     <string name="setting_seek_increment">Intervalle de recul et d\'avance</string>

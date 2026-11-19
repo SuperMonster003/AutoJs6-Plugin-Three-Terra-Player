@@ -55,6 +55,9 @@ circularreveal = "2.0.1"
 commonmark = "commonmark-parent-0.9.0"
 commons-compress = "1.28.0"
 commons-lang3 = "3.18.0"
+# Compose 1.12 line (compileSdk 37), the version of the release history page (AUTOJS6_PLUGIN_RELEASE_HISTORY_AGENTS.md).
+# The BOM also manages activity-compose, so that artifact carries no version of its own.
+compose-bom = "2026.09.00"
 constraintlayout = "2.2.1"
 easywindow = "10.3"
 eventbus = "3.3.1"
@@ -127,6 +130,15 @@ circularreveal = { module = "com.github.ozodrukh:CircularReveal", version.ref = 
 commonmark = { module = "com.github.atlassian:commonmark-java", version.ref = "commonmark" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+compose-activity = { module = "androidx.activity:activity-compose" }
+compose-animation = { module = "androidx.compose.animation:animation" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-runtime = { module = "androidx.compose.runtime:runtime" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }

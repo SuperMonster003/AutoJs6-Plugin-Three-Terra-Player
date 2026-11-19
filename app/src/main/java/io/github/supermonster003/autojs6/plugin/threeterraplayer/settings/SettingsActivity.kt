@@ -140,7 +140,7 @@ class SettingsActivity : AudioThemedActivity() {
             AppUpdateCoordinator.manageIgnoredUpdates(this) { renderValues() }
         }
         binding.releaseHistorySetting.setOnClickListener {
-            startActivity(Intent(this, ReleaseHistoryActivity::class.java))
+            openReleaseHistory()
         }
         binding.aboutSetting.setOnClickListener {
             startActivity(Intent(this, AboutActivity::class.java))

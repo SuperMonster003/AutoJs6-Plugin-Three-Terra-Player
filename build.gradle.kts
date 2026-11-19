@@ -8,6 +8,7 @@
 //  ! 它们的 plugins 块只接受字符串字面量, 无法写入运行时计算出的版本.
 plugins {
     id("com.android.application") version System.getProperty("gradle.agp.version") apply false
+    id("org.jetbrains.kotlin.plugin.compose") version System.getProperty("gradle.kotlin.version") apply false
 }
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

@@ -8,7 +8,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.BuildConfig
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.R
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.AppPreferenceStore
-import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.ReleaseHistoryActivity
+import io.github.supermonster003.autojs6.plugin.threeterraplayer.settings.openReleaseHistory
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemedActivity
 import io.github.supermonster003.autojs6.plugin.threeterraplayer.theme.AudioThemeDialogStyler
 import kotlinx.coroutines.Dispatchers
@@ -130,7 +130,8 @@ internal object AppUpdateCoordinator {
         }
     }
 
-    private fun showAvailableRelease(activity: AudioThemedActivity, release: AppRelease) {
+    /** Internal so that the instrumentation test can show it for a made-up release; returns the dialog it shows. */
+    internal fun showAvailableRelease(activity: AudioThemedActivity, release: AppRelease): AlertDialog {
         val message = buildString {
             append(activity.getString(R.string.update_available_message, release.version))
             release.notes.takeIf(String::isNotBlank)?.let { notes ->
@@ -143,11 +144,12 @@ internal object AppUpdateCoordinator {
             .setMessage(message)
             .setPositiveButton(R.string.update_view_release) { _, _ -> openUrl(activity, release.pageUrl) }
             .setNeutralButton(R.string.setting_release_history) { _, _ ->
-                activity.startActivity(Intent(activity, ReleaseHistoryActivity::class.java))
+                activity.openReleaseHistory()
             }
             .setNegativeButton(R.string.update_later, null)
             .create()
         showTinted(activity, dialog)
+        return dialog
     }
 
     private fun showCheckFailure(activity: AudioThemedActivity) {

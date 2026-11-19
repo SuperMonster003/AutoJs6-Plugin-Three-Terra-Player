@@ -52,7 +52,7 @@
     <string name="error_no_external_app">Нет другого приложения для аудио</string>
     <string name="error_no_supported_audio">Среди выбранных файлов нет поддерживаемых и доступных для чтения аудиофайлов</string>
     <string name="error_playback">Это приложение не смогло декодировать или воспроизвести аудиофайл</string>
-    <string name="error_release_history_unavailable">Не удалось загрузить встроенную историю выпусков</string>
+    <string name="error_release_history_unavailable">Не удалось загрузить историю выпусков</string>
     <string name="follow_autojs6">Как в AutoJs6</string>
     <string name="follow_autojs6_unavailable_value">Настройки AutoJs6 недоступны (%1$s) · резерв: %2$s</string>
     <string name="follow_autojs6_value">Как в AutoJs6 · %1$s</string>
@@ -83,6 +83,10 @@
     <string name="plugin_description">Аудиоплеер и самостоятельное приложение с фоновым воспроизведением</string>
     <string name="queue_empty">Очередь воспроизведения пуста</string>
     <string name="queue_item_position">Трек %1$d</string>
+    <string name="release_history_collapse_all">Свернуть всё</string>
+    <string name="release_history_collapsed">Свёрнуто</string>
+    <string name="release_history_expand_all">Развернуть всё</string>
+    <string name="release_history_expanded">Развёрнуто</string>
     <string name="setting_about">О приложении и разработчике</string>
     <string name="setting_about_summary">Версия, проект, разработчик и лицензия</string>
     <string name="setting_auto_check_updates">Автоматически проверять обновления</string>
@@ -95,7 +99,7 @@
     <string name="setting_manage_ignored_updates">Управление игнорируемыми обновлениями</string>
     <string name="setting_night_mode">Ночной режим</string>
     <string name="setting_release_history">История выпусков</string>
-    <string name="setting_release_history_summary">Прочитать журнал изменений, включённый в эту версию</string>
+    <string name="setting_release_history_summary">Открыть встроенную историю выпусков приложения</string>
     <string name="setting_resume_playback">Продолжать воспроизведение</string>
     <string name="setting_resume_playback_summary">Восстанавливать последнюю автономную очередь, текущий трек и позицию при запуске приложения</string>
     <string name="setting_seek_increment">Шаг перемотки назад и вперёд</string>

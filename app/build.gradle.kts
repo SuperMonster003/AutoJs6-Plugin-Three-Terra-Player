@@ -2,6 +2,8 @@ import com.android.build.api.variant.FilterConfiguration
 import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.file.RelativePath
 import org.gradle.api.provider.Property
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
 
 plugins {
     id("io.github.supermonster003.autojs6-native-alignment")
@@ -10,6 +12,7 @@ plugins {
     id("org.autojs.build.signs")
     id("org.autojs.build.jvm-convention")
     id("com.android.application")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 val sourceNamespace = "io.github.supermonster003.autojs6.plugin.threeterraplayer"
@@ -80,6 +83,7 @@ android {
     buildFeatures {
         aidl = true
         buildConfig = true
+        compose = true
         resValues = true
         viewBinding = true
     }
@@ -147,9 +151,22 @@ dependencies {
     implementation(libs.media3.session)
     implementation(libs.recyclerview)
 
+    // Jetpack Compose, only for the release history page (AUTOJS6_PLUGIN_RELEASE_HISTORY_AGENTS.md); the BOM is the
+    // single version source and also manages activity-compose.
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.animation)
+    implementation(libs.compose.activity)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.test.ext.junit)
     androidTestImplementation(libs.test.runner)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
 }
 
 tasks {
@@ -164,7 +181,35 @@ extra {
     versions.handleIfNeeded(project, "", listOf(buildTypeDebug, buildTypeRelease))
 }
 
-// Reject accidental native dependencies on every ABI.
-nativeAlignment { expectNoNativeLibraries.set(true) }
+// Native code inventory: the plugin has no native code of its own, but Compose ui-graphics depends on
+// androidx.graphics:graphics-path, whose libandroidx.graphics.path.so is packaged for four ABIs. The APK stays one
+// universal package without ABI splits (supportedAbis stays empty); the shared gate keeps the 16 KB alignment checks,
+// release-archive.gradle expects these ABIs in the universal APK, and verifyReleaseNativeLibraries below asserts that
+// exactly these libraries are present and stored uncompressed.
+val nativeLibraryAbis = listOf("arm64-v8a", "armeabi-v7a", "x86_64", "x86")
+val allowedNativeLibraries = nativeLibraryAbis.map { "lib/$it/libandroidx.graphics.path.so" }
+nativeAlignment { expectNoNativeLibraries.set(false) }
+extra["releaseUniversalNativeAbis"] = nativeLibraryAbis
 
 apply(from = rootProject.file("gradle/release-archive.gradle"))
+
+val verifyReleaseNativeLibraries = tasks.register("verifyReleaseNativeLibraries") {
+    group = "verification"
+    description = "Checks that the release APK carries exactly the allowed native libraries, stored uncompressed"
+    dependsOn("assembleRelease")
+    doLast {
+        val directory = layout.buildDirectory.dir("outputs/apk/release").get().asFile
+        val apks = directory.listFiles { file -> file.isFile && file.extension == "apk" }.orEmpty()
+        check(apks.isNotEmpty()) { "No release APK in $directory" }
+        apks.forEach { apk ->
+            ZipFile(apk).use { zip ->
+                val natives = zip.entries().asSequence().filter { it.name.startsWith("lib/") }.toList()
+                check(natives.map { it.name }.sorted() == allowedNativeLibraries.sorted()) {
+                    "Unexpected native library set in ${apk.name}: ${natives.map { it.name }.sorted()}"
+                }
+                check(natives.all { it.method == ZipEntry.STORED }) { "Native libraries must be stored uncompressed: ${apk.name}" }
+            }
+        }
+    }
+}
+tasks.named("appendDigestToReleasedFiles") { dependsOn(verifyReleaseNativeLibraries) }

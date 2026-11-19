@@ -52,7 +52,7 @@
     <string name="error_no_external_app">沒有可用的其他音訊應用程式</string>
     <string name="error_no_supported_audio">所選檔案中沒有可讀取且受支援的音訊檔案</string>
     <string name="error_playback">此應用程式無法解碼或播放音訊檔案</string>
-    <string name="error_release_history_unavailable">無法載入內置發行記錄</string>
+    <string name="error_release_history_unavailable">無法載入發行歷史</string>
     <string name="follow_autojs6">跟隨 AutoJs6</string>
     <string name="follow_autojs6_unavailable_value">無法跟隨 AutoJs6 (%1$s) · 後備: %2$s</string>
     <string name="follow_autojs6_value">跟隨 AutoJs6 · %1$s</string>
@@ -83,6 +83,10 @@
     <string name="plugin_description">支援背景播放的音訊播放插件與獨立應用程式</string>
     <string name="queue_empty">播放佇列為空</string>
     <string name="queue_item_position">第 %1$d 首</string>
+    <string name="release_history_collapse_all">收起全部</string>
+    <string name="release_history_collapsed">已收起</string>
+    <string name="release_history_expand_all">展開全部</string>
+    <string name="release_history_expanded">已展開</string>
     <string name="setting_about">關於應用程式及開發者</string>
     <string name="setting_about_summary">版本, 專案, 開發者及授權資訊</string>
     <string name="setting_auto_check_updates">自動檢查更新</string>
@@ -94,8 +98,8 @@
     <string name="setting_language">語言</string>
     <string name="setting_manage_ignored_updates">管理已忽略更新</string>
     <string name="setting_night_mode">夜間模式</string>
-    <string name="setting_release_history">發行記錄</string>
-    <string name="setting_release_history_summary">閱讀目前版本內置的更新記錄</string>
+    <string name="setting_release_history">發行歷史</string>
+    <string name="setting_release_history_summary">檢視應用程式內置的發行歷史</string>
     <string name="setting_resume_playback">接續播放</string>
     <string name="setting_resume_playback_summary">從啟動器開啟時還原上次獨立播放的佇列, 目前曲目及位置</string>
     <string name="setting_seek_increment">快退與快進步長</string>
