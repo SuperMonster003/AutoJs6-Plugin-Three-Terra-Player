@@ -166,7 +166,8 @@ dependencies {
     androidTestImplementation(libs.test.runner)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit4)
-    debugImplementation(libs.compose.ui.test.manifest)
+    // No ui-test-manifest: the Compose tests use createEmptyComposeRule and launch the real activities, while
+    // ui-test-manifest would merge an exported androidx.activity.ComponentActivity into the debug APK.
 }
 
 tasks {
