@@ -52,4 +52,8 @@ jobs:
           arch: x86_64
           target: google_apis
           disable-animations: true
-          script: ./gradlew --no-daemon --max-workers=2 :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=io.github.supermonster003.autojs6.plugin.threeterraplayer.PluginContractInstrumentationTest --stacktrace
+          # A freshly booted emulator may show "System UI isn't responding", whose dialog takes the window focus that the
+          # device tests wait for; hide_error_dialogs keeps such dialogs from appearing.
+          script: |
+            adb shell settings put global hide_error_dialogs 1
+            ./gradlew --no-daemon --max-workers=2 :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=io.github.supermonster003.autojs6.plugin.threeterraplayer.PluginContractInstrumentationTest --stacktrace
