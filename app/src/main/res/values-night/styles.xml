@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme.Toolbar.Popup" parent="ThemeOverlay.MaterialComponents.Dark" />
+    <!-- See values/styles.xml: #303030 keeps the menu apart from the #1E1E1E app bar. -->
+    <style name="AppTheme.Toolbar.Popup" parent="ThemeOverlay.Material3.Dark">
+        <item name="android:textColorPrimary">@color/popup_menu_text</item>
+        <item name="colorSurface">@color/popup_menu_surface</item>
+        <item name="colorSurfaceContainer">@color/popup_menu_surface</item>
+    </style>
 
 </resources>

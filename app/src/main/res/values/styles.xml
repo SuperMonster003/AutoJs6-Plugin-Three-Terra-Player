@@ -18,7 +18,15 @@
         <item name="android:textColorPrimary">@color/toolbar_text</item>
     </style>
 
-    <style name="AppTheme.Toolbar.Popup" parent="ThemeOverlay.Material3" />
+    <!-- The overflow menu is themed on top of AppTheme.Toolbar, whose primary text is white, so the overlay sets the
+         text again; without it the light menu showed white text on its light container. The Material 3 menu paints
+         colorSurfaceContainer, which uses the player's neutral surfaces instead of the tinted Material 3 defaults:
+         the app bar and dialog white here, the bottom control gray at night (values-night). -->
+    <style name="AppTheme.Toolbar.Popup" parent="ThemeOverlay.Material3.Light">
+        <item name="android:textColorPrimary">@color/popup_menu_text</item>
+        <item name="colorSurface">@color/popup_menu_surface</item>
+        <item name="colorSurfaceContainer">@color/popup_menu_surface</item>
+    </style>
 
     <style name="GatewayTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:backgroundDimEnabled">false</item>

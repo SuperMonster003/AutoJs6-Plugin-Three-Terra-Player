@@ -6,6 +6,8 @@
     <color name="color_primary_dark">#FF283593</color>
     <color name="color_secondary">#FF80CBC4</color>
     <color name="permission_banner_background">#FF252A42</color>
+    <color name="popup_menu_surface">#FF303030</color>
+    <color name="popup_menu_text">#FFE6E1E5</color>
     <color name="queue_handle">#40FFFFFF</color>
     <color name="toolbar_text">#FFFFFFFF</color>
     <color name="window_background">#FF0D1117</color>

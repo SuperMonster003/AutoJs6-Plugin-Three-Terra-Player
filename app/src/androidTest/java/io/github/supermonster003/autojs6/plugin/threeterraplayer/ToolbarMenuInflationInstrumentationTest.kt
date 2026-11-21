@@ -51,17 +51,26 @@ class ToolbarMenuInflationInstrumentationTest {
                 val textColor = popupContext.obtainStyledAttributes(
                     intArrayOf(android.R.attr.textColorPrimary),
                 ).use { attributes -> attributes.getColorStateList(0)?.defaultColor }
-                val surfaceColor = MaterialColors.getColor(
-                    popupContext,
-                    com.google.android.material.R.attr.colorSurface,
-                    "colorSurface",
-                )
-
                 assertNotNull(textColor)
-                assertTrue(ColorUtils.calculateContrast(requireNotNull(textColor), surfaceColor) >= 4.5)
+                val mode = if (nightMode == Configuration.UI_MODE_NIGHT_YES) "dark" else "light"
+                // The Material 3 overflow menu paints its container with colorSurfaceContainer
+                // (m3_comp_menu_container_color); colorSurface stays checked for older surfaces.
+                listOf(
+                    com.google.android.material.R.attr.colorSurface to "colorSurface",
+                    com.google.android.material.R.attr.colorSurfaceContainer to "colorSurfaceContainer",
+                ).forEach { (attribute, name) ->
+                    val surfaceColor = MaterialColors.getColor(popupContext, attribute, name)
+                    val contrast = ColorUtils.calculateContrast(requireNotNull(textColor), surfaceColor)
+                    assertTrue(
+                        "$mode: text ${hex(textColor)} on $name ${hex(surfaceColor)} has contrast %.2f < 4.5".format(contrast),
+                        contrast >= 4.5,
+                    )
+                }
             }
         }
     }
+
+    private fun hex(color: Int): String = "#%08X".format(color)
 
     private inline fun <T> android.content.res.TypedArray.use(block: (android.content.res.TypedArray) -> T): T =
         try {
